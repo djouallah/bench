@@ -22,6 +22,10 @@
 | **Comet** | Spark plugin, native Iceberg reader | no — no `abfss` driver |
 | **Gluten/Velox** | Spark plugin, Velox ABFS connector | no — no published package |
 
+OneLake is the example here, not the requirement. Any catalog that exposes an Iceberg REST
+endpoint should work, and the raw data can sit on `abfss://`, `s3://` or anything else the engine
+can read.
+
 **ETL: read the CSVs from OneLake, transform, write Iceberg.** 1000 daily files are landed once in the lakehouse's `Files/` section; each engine
 then reads all of them, filters and casts, and writes one Iceberg table of 149,146,763 rows into
 `Tables/` through the same OneLake REST catalog.
