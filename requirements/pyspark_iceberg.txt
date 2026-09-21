@@ -1,0 +1,7 @@
+# Iceberg ships one runtime per Spark MINOR, so this pin cannot float in either direction:
+# 4.2 has no released Iceberg runtime at all (tried, reverted -- it hangs TPC-H Q21), and a
+# 4.0 would need a different jar. bench/interactive/engines/pyspark_iceberg.py carries the
+# coordinates and the whole reason.
+azure-identity>=1.19
+psutil>=6
+pyspark>=4.1,<4.2

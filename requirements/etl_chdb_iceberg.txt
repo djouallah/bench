@@ -1,0 +1,10 @@
+# chDB plus pyiceberg. In the read benchmark chDB attaches the catalog natively and must not
+# carry pyiceberg (dependency skew in the measured environment). In the ETL it does not write
+# Iceberg itself: it produces Arrow and pyiceberg commits the table, the shape the notebook had
+# with deltalake. The writer's dependencies are part of what is measured, on purpose.
+# azure-storage-file-datalake: bench/etl/data.py lists Files/csv over ADLS before the engine starts.
+azure-identity>=1.19
+azure-storage-file-datalake>=12.17
+psutil>=6
+chdb>=4.4.0
+pyiceberg[pyarrow,adlfs]>=0.12.0

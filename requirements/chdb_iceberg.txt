@@ -1,0 +1,3 @@
+azure-identity>=1.19
+psutil>=6
+chdb>=4.4.0

@@ -1,0 +1,4 @@
+azure-identity>=1.19
+psutil>=6
+pyiceberg[pyarrow,adlfs]>=0.12.0
+polars>=2.0.0rc2

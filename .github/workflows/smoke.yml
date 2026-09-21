@@ -1,0 +1,199 @@
+name: smoke
+
+# TWO PHASES, CHEAP ONE FIRST.
+#
+#   sql (matrix)  ->  compare  ->  catalog (matrix)
+#
+# `sql` runs the 22 TPC-H queries against LOCAL parquet. No secrets, no Fabric, no id-token --
+# it answers "does this engine speak the dialect" in about a minute. `compare` then checks that
+# every engine returned the SAME row count for the same query, which is a correctness signal the
+# benchmark itself cannot produce.
+#
+# `catalog` attaches the real OneLake Iceberg REST catalog and reads two queries. It runs LAST
+# and only if `sql` passed, so a failure there is unambiguously credentials or storage -- never
+# SQL. Every expensive debugging session in this repo so far came from those two questions being
+# tangled together in one 15-minute log.
+#
+# This is the gate a new engine passes BEFORE it is added to bench.yml.
+
+on:
+  workflow_dispatch:
+    inputs:
+      engines:
+        description: Comma-separated engines to smoke.
+        type: string
+        default: duckdb_iceberg,chdb_iceberg,polars_iceberg,lakesail_iceberg,pyspark_iceberg
+      catalog:
+        description: Also run phase 2 against OneLake. Off runs the local SQL phase only.
+        type: boolean
+        default: true
+  push:
+    # Phase 1 only (see the `if` on `catalog`). It touches no secret and no Fabric, so it is safe
+    # and cheap on every commit that could change what the engines do.
+    paths:
+      - "bench/**"
+      - "sql/**"
+      - "requirements/**"
+      - ".github/scripts/smoke_*.py"
+      - ".github/workflows/smoke.yml"
+
+concurrency:
+  group: smoke-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PYTHONPATH: ${{ github.workspace }}
+  PYTHONUNBUFFERED: "1"
+
+jobs:
+  # The matrix needs a JSON array; the input is a human-friendly CSV. Same jq as bench.yml.
+  plan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    outputs:
+      engines: ${{ steps.plan.outputs.engines }}
+    steps:
+      - id: plan
+        run: |
+          ENGINES=$(printf '%s' "${{ inputs.engines || 'duckdb_iceberg,chdb_iceberg,polars_iceberg,lakesail_iceberg,pyspark_iceberg' }}" \
+            | jq -Rc 'split(",") | map(sub("^\\s+";"") | sub("\\s+$";"")) | map(select(length > 0))')
+          echo "engines=$ENGINES" >> "$GITHUB_OUTPUT"
+          echo "engines: $ENGINES"
+
+  sql:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    # NO id-token, NO secrets. That is the point of this job.
+    permissions:
+      contents: read
+    strategy:
+      # One engine's dialect gap must not hide another's.
+      fail-fast: false
+      matrix:
+        engine: ${{ fromJSON(needs.plan.outputs.engines) }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements/${{ matrix.engine }}.txt
+
+      # Spark 4 needs JDK 17+. ubuntu-latest already defaults to 17, but "latest" and "default"
+      # both drift, and a silent bump to a deprecated tier is not something a benchmark should
+      # discover from a stack trace. Temurin is cached on hosted runners, so this costs ~0s.
+      - uses: actions/setup-java@v5
+        if: startsWith(matrix.engine, 'pyspark')
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - run: pip install -r "requirements/${{ matrix.engine }}.txt" -r requirements/smoke.txt
+
+      # SF=1 TPC-H is deterministic, so one generation serves every run and every engine.
+      - uses: actions/cache@v4
+        with:
+          path: tpch-local
+          key: tpch-local-sf1-v1
+
+      - name: Run the 22 queries against local parquet
+        run: python .github/scripts/smoke_sql.py "${{ matrix.engine }}"
+
+      - uses: actions/upload-artifact@v6
+        if: always()
+        with:
+          name: smoke-${{ matrix.engine }}
+          path: smoke/*.json
+          if-no-files-found: warn
+
+  compare:
+    needs: sql
+    # always(): an engine that failed its own queries should not stop the others being compared.
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - uses: actions/download-artifact@v6
+        with:
+          pattern: smoke-*
+          merge-multiple: true
+          path: smoke
+      - name: Every engine must agree on every row count
+        run: python .github/scripts/smoke_sql.py --compare
+
+  catalog:
+    needs: [plan, sql]
+    # Dispatch-only, and only when phase 1 passed. A push never burns a Fabric round trip.
+    if: github.event_name == 'workflow_dispatch' && inputs.catalog != false && needs.sql.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      id-token: write
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        engine: ${{ fromJSON(needs.plan.outputs.engines) }}
+    env:
+      BENCH_ENGINE: ${{ matrix.engine }}
+      TPCH_SF: "1"
+      FABRIC_WORKSPACE_ID: ${{ secrets.FABRIC_WORKSPACE_ID }}
+      FABRIC_LAKEHOUSE_ID: ${{ secrets.FABRIC_LAKEHOUSE_ID }}
+      AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+      # Same pair bench.yml sets. DuckDB's azure extension fails the OneLake TLS handshake on
+      # its default transport, and the symptom is an unreadable data file, not an auth error.
+      AZURE_TRANSPORT_OPTION_TYPE: curl
+      CURL_CA_INFO: /etc/ssl/certs/ca-certificates.crt
+      # Local-mode Spark: the driver JVM IS the executor, and its heap is fixed before Python
+      # starts it -- so .config("spark.driver.memory") is silently ignored and this must be an
+      # env var. 11g matches the ceiling chDB is given, leaving room for Python and page cache.
+      SPARK_DRIVER_MEMORY: 11g
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements/${{ matrix.engine }}.txt
+
+      # Spark 4 needs JDK 17+. ubuntu-latest already defaults to 17, but "latest" and "default"
+      # both drift, and a silent bump to a deprecated tier is not something a benchmark should
+      # discover from a stack trace. Temurin is cached on hosted runners, so this costs ~0s.
+      - uses: actions/setup-java@v5
+        if: startsWith(matrix.engine, 'pyspark')
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      # spark.jars.packages resolves iceberg-spark-runtime + hadoop-azure from Maven at every
+      # SparkSession start. Without this it is a download per job.
+      - uses: actions/cache@v4
+        if: startsWith(matrix.engine, 'pyspark')
+        with:
+          path: |
+            ~/.ivy2
+            ~/.ivy2.5.2
+            ~/.m2/repository
+          key: ivy-spark41-iceberg111-v1
+
+      - run: pip install -r "requirements/${{ matrix.engine }}.txt"
+
+      # OIDC only. No client secret exists on this app registration.
+      - uses: azure/login@v3
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          allow-no-subscriptions: true
+
+      - name: Attach OneLake and read
+        run: python .github/scripts/smoke_catalog.py

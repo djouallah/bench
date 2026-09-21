@@ -1,0 +1,4 @@
+azure-identity>=1.19
+psutil>=6
+pysail>=0.7.1
+pyspark-client

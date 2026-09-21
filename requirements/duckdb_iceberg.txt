@@ -1,0 +1,3 @@
+azure-identity>=1.19
+psutil>=6
+duckdb>=2.0.0.dev0

@@ -1,0 +1,107 @@
+"""Load the 22 TPC-H statements and write their table references the way each engine needs.
+
+REPLACES cells 14 and the identifier half of cell 15.
+
+sql/tpch.sql is cell 14's f-string body, lifted verbatim: 22 statements separated by `;`, every
+table reference written as a BACKTICKED, SCHEMA-QUALIFIED name -- `{schema}.lineitem`. All 87
+references are backticked uniformly (checked), which is what makes the rewriting below a clean
+regex rather than a parser.
+
+THE ONE CHANGE FROM CELL 15. It had:
+
+    NEEDS_BACKTICKS = {'chdb_iceberg'}
+
+Polars was therefore handed `CH0010.lineitem` with the backticks stripped, which it parses as a
+relation named CH0010 -- `ComputeError: relation 'CH0010' was not found`. Polars has no catalog
+namespace to resolve the prefix against.
+
+The fix is on the Polars side and it is why the set below has two members: the engine registers
+each frame into its SQLContext under the FULL dotted name (`CH0010.lineitem`), so keeping the
+backticks makes the SQL ask for exactly that one quoted identifier. Same trick chDB needs, for
+the same underlying reason -- neither engine has a second namespace level, so the qualified name
+has to survive as a single identifier rather than being parsed as schema + table.
+"""
+
+from __future__ import annotations
+
+import re
+from pathlib import Path
+
+SQL_PATH = Path(__file__).resolve().parents[2] / "sql" / "tpch.sql"
+
+N_QUERIES = 22
+
+# How each engine wants `{schema}.lineitem` written.
+#
+#   backticked  The qualified name must survive as ONE identifier.
+#               chDB: the OneLake catalog reports `<namespace>.<table>` as a single name,
+#               and ClickHouse has no second namespace level to put it in -- unquoted it
+#               resolves as a database named CH0010.
+#               Polars: no catalog at all, but the engine registers each frame under the
+#               full dotted name, so the backticks ask for that exact key.
+#   quoted      The same single identifier, but DOUBLE-QUOTED. Daft registers temp tables
+#               under the full dotted name like Polars, and then rejects backticks outright:
+#               "Daft only supports delimited identifiers with double-quotes, found `".
+#               All 22 queries failed on that alone -- a quoting style, not a dialect gap.
+#   dotted      Ordinary schema-qualified SQL. DuckDB resolves it through the attached
+#               catalog's DEFAULT_SCHEMA; LakeSail through its OneLake catalog.
+IDENT_STYLE = {
+    "chdb_iceberg": "backticked",
+    "polars_iceberg": "backticked",
+    # Daft: a flat namespace like Polars, but ANSI quoting -- see the note above.
+    "daft_iceberg": "quoted",
+    "duckdb_iceberg": "dotted",
+    # Spark has real multi-level namespaces, same as LakeSail.
+    "pyspark_iceberg": "dotted",
+    "lakesail_iceberg": "dotted",
+}
+
+
+def render(sql: str, schema: str, sf: int) -> str:
+    """Substitute the two placeholders.
+
+    `{SF}` appears exactly once, in Q11's `(0.0001 / {SF})` -- the correct TPC-H scaling of
+    the value threshold. Dropping it would make Q11 return the wrong number of rows at every
+    scale factor but one, in a way no timing chart could reveal. test_queries.py pins it.
+    """
+    return sql.format(schema=schema, SF=sf)
+
+
+def style_for(engine: str) -> str:
+    try:
+        return IDENT_STYLE[engine]
+    except KeyError:
+        raise ValueError(
+            f"unknown engine {engine!r}; expected one of {sorted(IDENT_STYLE)}"
+        ) from None
+
+
+def rewrite_identifiers(sql: str, engine: str, schema: str) -> str:
+    """Rewrite every `schema.table` reference into `engine`'s spelling.
+
+    Runs on ALREADY-RENDERED sql, so the pattern matches the real schema name rather than the
+    `{schema}` placeholder.
+    """
+    style = style_for(engine)
+    if style == "backticked":
+        return sql
+    pattern = re.compile(rf"`{re.escape(schema)}\.(\w+)`")
+    if style == "quoted":
+        return pattern.sub(rf'"{schema}.\1"', sql)
+    return pattern.sub(rf"{schema}.\1", sql)
+
+
+def load(engine: str, schema: str, sf: int, path: Path | None = None) -> list[str]:
+    """The 22 statements, rendered and rewritten for `engine`, in TPC-H order.
+
+    Splitting on `;` is safe here and not in general: sql/tpch.sql contains no semicolon inside a
+    string literal (checked at extraction, and test_queries.py re-checks the count).
+    """
+    raw = (path or SQL_PATH).read_text(encoding="utf-8")
+    rendered = rewrite_identifiers(render(raw, schema, sf), engine, schema)
+    statements = [s.strip() for s in rendered.split(";") if s.strip()]
+    if len(statements) != N_QUERIES:
+        raise ValueError(
+            f"expected {N_QUERIES} statements in {path or SQL_PATH}, found {len(statements)}"
+        )
+    return statements

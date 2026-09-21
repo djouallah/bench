@@ -1,0 +1,5 @@
+# The `land` job of etl.yml: download the AEMO daily zips, upload the CSVs inside them to
+# Files/csv. The OIDC credential and the ADLS upload client, nothing else -- no pyiceberg, no
+# engine, no psutil (nothing here records host facts).
+azure-identity>=1.19
+azure-storage-file-datalake>=12.17

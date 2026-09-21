@@ -1,0 +1,23 @@
+[project]
+name = "bench"
+version = "0.1.0"
+description = "TPC-H on OneLake Iceberg, reproduced in GitHub Actions"
+requires-python = ">=3.12"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = [
+    # The engine modules import their package inside setup() on purpose: each job installs only
+    # its own requirements file, so a module-level import would make the package unimportable in
+    # every other job.
+    "E402",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-q"

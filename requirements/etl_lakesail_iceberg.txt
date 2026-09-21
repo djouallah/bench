@@ -1,0 +1,8 @@
+# lakesail_iceberg.txt plus azure-storage-file-datalake (bench/etl/data.py lists Files/csv over
+# ADLS before the engine starts). Sail writes Iceberg through its own catalog integration, so
+# nothing else is added. pyspark-client and never pyspark, as the read benchmark explains.
+azure-identity>=1.19
+azure-storage-file-datalake>=12.17
+psutil>=6
+pysail>=0.7.1
+pyspark-client
