@@ -20,6 +20,11 @@ ENGINES = (
 
 TABLES = ("lineitem", "orders", "partsupp", "part", "customer", "nation", "region", "supplier")
 
+# The scale the headline docs are built at: bench.yml's default, and what README's charts show.
+# A publish at SF=1 or SF=30 records its run and leaves docs/charts and docs/RESULTS.md alone, for
+# the reason bench/etl/config.py gives at HEADLINE_FILES.
+HEADLINE_SF = 10
+
 # Approximate parquet MiB per scale factor unit, measured from a real tpchgen-cli run. Used only
 # to choose a part count; being off by 30% moves a file from 200MB to 260MB and changes nothing.
 PARQUET_MB_PER_SF = {

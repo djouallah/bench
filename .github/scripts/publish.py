@@ -24,7 +24,7 @@ import sys
 from pathlib import Path
 
 from bench.interactive import charts
-from bench.interactive.config import ENGINES
+from bench.interactive.config import ENGINES, HEADLINE_SF
 from bench.report import leak_check, merge, write_csv
 from bench.store import Run, load_all, write_run
 
@@ -192,16 +192,23 @@ def main() -> int:
     print(f"wrote {run_path}")
 
     table = load_all(results_dir)
-    subtitle = (
-        f"TPC-H SF {run.sf} · {run.cpu} vCPU {run.mem_gb:.0f} GB · "
-        f"{run.run_started_at[:10]} · OneLake Iceberg REST catalog"
-    )
-    rendered = charts.render_all(table, sf, docs / "charts", subtitle)
-    for path in rendered:
-        print(f"wrote {path}")
-
     write_csv(table, docs / "data" / "tpch_results.csv")
-    write_results_md(run, rows, table, docs / "RESULTS.md")
+
+    # The charts and RESULTS.md are the HEADLINE_SF view; a run at another scale is recorded
+    # (the JSON above, the CSV, the step summary) and rewrites neither. etl_publish.py says why.
+    if sf == HEADLINE_SF:
+        subtitle = (
+            f"TPC-H SF {run.sf} · {run.cpu} vCPU {run.mem_gb:.0f} GB · "
+            f"{run.run_started_at[:10]} · OneLake Iceberg REST catalog"
+        )
+        for path in charts.render_all(table, sf, docs / "charts", subtitle):
+            print(f"wrote {path}")
+        write_results_md(run, rows, table, docs / "RESULTS.md")
+    else:
+        print(
+            f"::notice::SF={sf} is not the headline scale ({HEADLINE_SF}): the run and the CSV "
+            "are committed; docs/charts and docs/RESULTS.md are left as they are."
+        )
     leak_check([run_path, docs / "RESULTS.md", docs / "data" / "tpch_results.csv"])
     write_step_summary(run, rows)
 

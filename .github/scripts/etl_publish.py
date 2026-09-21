@@ -14,6 +14,11 @@ Outputs: results/etl/<run>.json     -- the immutable record, committed
 SEPARATE DIRECTORIES, ON PURPOSE. `store.load_all` globs `*.json` in one directory,
 non-recursively, so `results/etl/` is invisible to the TPC-H publish and `results/` to this one.
 Two benchmarks, two histories, one file format.
+
+THE CHARTS AND RESULTS.md ARE THE HEADLINE_FILES VIEW. Every run is recorded -- the JSON, the
+CSV, the step summary -- but only a run at the headline file count rewrites docs/etl/charts and
+docs/etl/RESULTS.md, because README captions that chart as 1000 files at a path that never
+changes. bench/etl/config.py says what a FILES=100 run did to it before this guard existed.
 """
 
 from __future__ import annotations
@@ -24,7 +29,7 @@ from pathlib import Path
 
 from bench.charts import LABEL
 from bench.etl import charts
-from bench.etl.config import DEFAULT_FILES, ETL_ENGINES
+from bench.etl.config import DEFAULT_FILES, ETL_ENGINES, HEADLINE_FILES
 from bench.etl.runner import load_row
 from bench.report import leak_check, merge, write_csv
 from bench.store import Run, load_all, write_run
@@ -158,15 +163,21 @@ def main() -> int:
     print(f"wrote {run_path}")
 
     table = load_all(results_dir)
-    subtitle = (
-        f"{run.sf} CSV files → Iceberg on OneLake · {run.cpu} vCPU {run.mem_gb:.0f} GB · "
-        f"{run.run_started_at[:10]}"
-    )
-    for path in charts.render_all(table, files, docs / "etl" / "charts", subtitle):
-        print(f"wrote {path}")
-
     write_csv(table, docs / "data" / "etl_results.csv")
-    write_results_md(run, rows, table, docs / "etl" / "RESULTS.md")
+
+    if files == HEADLINE_FILES:
+        subtitle = (
+            f"{run.sf} CSV files → Iceberg on OneLake · {run.cpu} vCPU {run.mem_gb:.0f} GB · "
+            f"{run.run_started_at[:10]}"
+        )
+        for path in charts.render_all(table, files, docs / "etl" / "charts", subtitle):
+            print(f"wrote {path}")
+        write_results_md(run, rows, table, docs / "etl" / "RESULTS.md")
+    else:
+        print(
+            f"::notice::FILES={files} is not the headline count ({HEADLINE_FILES}): the run and "
+            "the CSV are committed; docs/etl/charts and docs/etl/RESULTS.md are left as they are."
+        )
     leak_check([run_path, docs / "etl" / "RESULTS.md", docs / "data" / "etl_results.csv"])
     write_step_summary(run, rows)
 
