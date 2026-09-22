@@ -7,10 +7,11 @@ name: tpcds bench
 #   prepare  ->  bench (matrix, one engine at a time)  ->  publish
 #
 # `prepare` is the SINGLE WRITER of the TPC-DS Iceberg tables, for the reason bench.yml gives.
-# It differs from the TPC-H one in the tool: DuckDB's dsdgen generates SF=N into a local database
-# on the runner, and DuckDB's own Iceberg writer then creates each table in OneLake with a CTAS
-# through the write-capable ATTACH the ETL benchmark uses (bench/tpcds/generate.py says why, and
-# why tpcgen was not the answer). No parquet is uploaded and nothing is re-encoded.
+# It differs from the TPC-H one only in the generator: DuckDB's dsdgen fills a local database on
+# the runner and DuckDB's parquet writer COPYs each table out in ~200 MB files, already stamped
+# with the Iceberg field ids. From there it is the TPC-H landing exactly: upload the files as-is
+# to Tables/<ns>/<table>/, one pyiceberg add_files per table (bench/tpcds/generate.py says why
+# DuckDB's own Iceberg writer was tried and dropped, and why tpcgen was not the answer).
 #
 # `publish` is the SINGLE WRITER of results, under results/tpcds/ and docs/tpcds/ -- separate
 # trees so the two query suites' histories never mix. It needs NO Azure credentials at all.
@@ -27,6 +28,10 @@ on:
         description: Comma-separated engines to run.
         type: string
         default: duckdb_iceberg,duckdb_nocache_iceberg,chdb_iceberg,polars_iceberg,lakesail_iceberg,pyspark_iceberg
+      regenerate:
+        description: Drop and rewrite the namespace even if it is marked complete.
+        type: boolean
+        default: false
       publish:
         description: Commit results and charts. Off leaves the artifacts and touches nothing.
         type: boolean
@@ -50,6 +55,7 @@ env:
   # Which query suite the shared scripts run (bench/suite.py). bench.yml says tpch.
   BENCH_SUITE: tpcds
   TPCDS_SF: ${{ inputs.sf || '10' }}
+  TPCDS_REGENERATE: ${{ inputs.regenerate || 'false' }}
   FABRIC_WORKSPACE_ID: ${{ secrets.FABRIC_WORKSPACE_ID }}
   FABRIC_LAKEHOUSE_ID: ${{ secrets.FABRIC_LAKEHOUSE_ID }}
   AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
@@ -58,17 +64,11 @@ env:
 jobs:
   prepare:
     runs-on: ubuntu-latest
-    # dsdgen at SF=10 plus ~3 GB of CTAS out to OneLake. Generous; the cap is a hang guard.
+    # dsdgen at SF=10 plus ~3 GB of parquet out to OneLake. Generous; the cap is a hang guard.
     timeout-minutes: 90
     permissions:
       id-token: write
       contents: read
-    env:
-      # DuckDB WRITES here, through its azure extension, so the bench jobs' transport pair applies
-      # to this job too: the default transport fails the OneLake TLS handshake on Linux, and the
-      # symptom is an unreadable (here: unwritable) data file, not an auth error. See bench.yml.
-      AZURE_TRANSPORT_OPTION_TYPE: curl
-      CURL_CA_INFO: /etc/ssl/certs/ca-certificates.crt
     outputs:
       engines: ${{ steps.plan.outputs.engines }}
       started: ${{ steps.plan.outputs.started }}
@@ -81,10 +81,10 @@ jobs:
           cache-dependency-path: |
             requirements/catalog.txt
             requirements/duckdb_iceberg.txt
-      # catalog.txt for pyiceberg (the completion marker, the per-table layout read) and the
-      # credential; duckdb_iceberg.txt for the DuckDB that generates and writes -- the ENGINE's
-      # own file, so the writer is the same build the DuckDB bench job reads with. The same pair
-      # auth_smoke.yml installs.
+      # catalog.txt is the TPC-H landing environment (pyiceberg, the ADLS client, the credential).
+      # duckdb_iceberg.txt is the DuckDB that runs dsdgen -- the ENGINE's own file, on purpose:
+      # dsdgen's output differs between DuckDB builds, so the generator has to be the build the
+      # DuckDB bench job reads with, and smoke.yml generates SF=1 from the same file.
       - run: pip install -r requirements/catalog.txt -r requirements/duckdb_iceberg.txt
 
       - id: plan
@@ -104,7 +104,7 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           allow-no-subscriptions: true
 
-      - name: Generate TPC-DS into OneLake with DuckDB (idempotent)
+      - name: Generate TPC-DS with dsdgen, land it into OneLake (idempotent)
         run: python .github/scripts/prepare.py
 
   bench:

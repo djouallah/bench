@@ -6,13 +6,15 @@ jobs can both decide the table is missing, both create it, and both register the
 is a corrupt table, not a slow one. The fix is structural -- generation happens here, in a job
 with no matrix, and the bench jobs are read-only.
 
-WHICH SUITE is BENCH_SUITE's call (bench/suite.py). TPC-H generates with tpchgen-cli and registers
-the parquet through pyiceberg; TPC-DS generates with DuckDB's dsdgen and has DuckDB write the
-tables itself. Same marker, same idempotency, two generators.
+WHICH SUITE is BENCH_SUITE's call (bench/suite.py). TPC-H generates with tpchgen-cli, TPC-DS with
+DuckDB's dsdgen; both land the parquet the same way, through pyiceberg. Same marker, same
+idempotency, two generators. TPCDS_REGENERATE=true (tpcds.yml's `regenerate` input) makes the
+TPC-DS one purge the namespace and write it again.
 """
 
 from __future__ import annotations
 
+import os
 import sys
 
 from bench.suite import suite_class
@@ -21,8 +23,11 @@ if __name__ == "__main__":
     cfg = suite_class().from_env()
     if cfg.TEST == "tpcds":
         from bench.tpcds.generate import generate
+
+        stats = generate(cfg, force=os.environ.get("TPCDS_REGENERATE", "").lower() == "true")
     else:
         from bench.tpch.generate import generate
-    stats = generate(cfg)
+
+        stats = generate(cfg)
     print(f"::notice::{cfg.schema} ready (skipped={stats['skipped']})")
     sys.exit(0)
