@@ -13,7 +13,7 @@ much of that cold-to-warm gap is the cache -- needs both bars on one chart.
 
 from __future__ import annotations
 
-from bench.interactive.engines.duckdb_iceberg import DuckDBIceberg
+from bench.tpch.engines.duckdb_iceberg import DuckDBIceberg
 
 
 class DuckDBNoCacheIceberg(DuckDBIceberg):

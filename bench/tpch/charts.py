@@ -26,7 +26,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 
 from bench.charts import LABEL, RECENT_RUNS, THEMES, _legend, _runs_note, _save, _style
-from bench.interactive.config import ENGINES
+from bench.tpch.config import ENGINES
 
 
 def _window(con, sf: int) -> int:

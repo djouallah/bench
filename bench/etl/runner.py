@@ -27,8 +27,8 @@ import contextlib
 
 from bench import scrub
 from bench.etl.config import EtlConfig
-from bench.interactive.runner import _time
 from bench.store import EngineResult, Row
+from bench.tpch.runner import _time
 
 
 def benchmark(engine, cfg: EtlConfig, files: list[str]) -> EngineResult:

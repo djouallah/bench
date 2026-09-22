@@ -21,7 +21,7 @@ from dataclasses import dataclass
 from bench.config import ONELAKE_BLOB, Config, _env_int
 
 # The notebook's engines plus Spark, minus DataFusion (not a public-facing engine the way the
-# others are; dropped). Same identifiers as bench.interactive.config.ENGINES, so bench/charts.py's
+# others are; dropped). Same identifiers as bench.tpch.config.ENGINES, so bench/charts.py's
 # labels and colours apply to both benchmarks.
 ETL_ENGINES = (
     "duckdb_iceberg",

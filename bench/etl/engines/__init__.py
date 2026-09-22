@@ -1,6 +1,6 @@
 """ETL engine registry.
 
-Imports are deferred into the factory, as in bench/interactive/engines: each job installs
+Imports are deferred into the factory, as in bench/tpch/engines: each job installs
 only its own requirements file, so an eager import of any engine module would make the
 package unimportable in every other job.
 """

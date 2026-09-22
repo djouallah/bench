@@ -26,7 +26,7 @@ import contextlib
 
 from bench import onelake, scrub
 from bench.etl.config import EtlConfig
-from bench.interactive.generate import _all_optional
+from bench.tpch.generate import _all_optional
 
 
 def normalise_schema(schema):

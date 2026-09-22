@@ -1,6 +1,6 @@
 """The palette, the two themes and the axis styling every chart in this repo uses.
 
-Shared by bench/interactive/charts.py (the TPC-H charts) and bench/etl/charts.py (the ETL's).
+Shared by bench/tpch/charts.py (the TPC-H charts) and bench/etl/charts.py (the ETL's).
 The chart FUNCTIONS live next to the benchmark they draw; what is here is everything that has to
 be the same across both so that an engine looks the same in every picture.
 

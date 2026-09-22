@@ -6,8 +6,6 @@ import json
 
 import pytest
 
-from bench.interactive.config import ENGINES
-from bench.interactive.runner import benchmark, totals
 from bench.store import (
     EngineResult,
     Row,
@@ -18,6 +16,8 @@ from bench.store import (
     write_engine_part,
     write_run,
 )
+from bench.tpch.config import ENGINES
+from bench.tpch.runner import benchmark, totals
 
 
 def _run(run_id="1", stamp="2026-09-20T03:17:44Z", sf=10):

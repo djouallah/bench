@@ -23,10 +23,10 @@ import os
 import sys
 from pathlib import Path
 
-from bench.interactive import charts
-from bench.interactive.config import ENGINES, HEADLINE_SF
 from bench.report import leak_check, merge, write_csv
 from bench.store import Run, load_all, write_run
+from bench.tpch import charts
+from bench.tpch.config import ENGINES, HEADLINE_SF
 
 LABEL = charts.LABEL
 

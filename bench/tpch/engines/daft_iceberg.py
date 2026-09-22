@@ -23,7 +23,7 @@ from __future__ import annotations
 
 from bench import auth, scrub
 from bench.config import Config
-from bench.interactive.config import TABLES
+from bench.tpch.config import TABLES
 
 
 class DaftIceberg:
@@ -55,7 +55,7 @@ class DaftIceberg:
         catalog = auth.catalog(self.cfg)
 
         # Registered under the FULL DOTTED NAME, so `daft_iceberg` is in the backticked group in
-        # bench/interactive/queries.py alongside chDB and Polars. Same reasoning as Polars: a temp
+        # bench/tpch/queries.py alongside chDB and Polars. Same reasoning as Polars: a temp
         # table is a flat namespace, so `CH0010.lineitem` has to survive as one quoted identifier
         # rather than being parsed as schema + table.
         self._sess = Session()

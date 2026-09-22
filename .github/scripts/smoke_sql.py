@@ -2,7 +2,7 @@
 
 NO CREDENTIALS, NO NETWORK, NO FABRIC. TPC-H is generated locally, registered as plain parquet,
 and the engine is handed the SAME 22 statements bench.yml sends -- byte for byte, through
-bench/interactive/queries.py, including the per-engine identifier rewrite.
+bench/tpch/queries.py, including the per-engine identifier rewrite.
 
 WHY THIS EXISTS. Until now the only way to discover that an engine cannot parse Q22 was a full
 bench.yml dispatch: generate into OneLake, install four engines, attach, ~15 minutes and a Fabric
@@ -41,8 +41,8 @@ from pathlib import Path
 
 from bench import scrub
 from bench.config import Config
-from bench.interactive import queries
-from bench.interactive.config import TABLES
+from bench.tpch import queries
+from bench.tpch.config import TABLES
 
 # SF=1, not a token scale. The data is small enough to generate in seconds and real enough that
 # the row counts are the actual TPC-H answers -- which is what makes the cross-engine comparison
@@ -110,7 +110,7 @@ def generate(dest: Path) -> dict[str, Path]:
 # --- per-engine local registration ------------------------------------------------------------
 #
 # Each returns a constructed engine whose execute() is ready to run. The registered NAME must
-# match what bench/interactive/queries.py will ask for:
+# match what bench/tpch/queries.py will ask for:
 #
 #   dotted      -> a real schema/database, `CH0001.lineitem`
 #   backticked  -> ONE identifier whose text contains a dot, `` `CH0001.lineitem` ``
@@ -122,7 +122,7 @@ def generate(dest: Path) -> dict[str, Path]:
 def _duckdb(cfg: Config, paths: dict[str, Path]):
     import duckdb
 
-    from bench.interactive.engines.duckdb_iceberg import DuckDBIceberg
+    from bench.tpch.engines.duckdb_iceberg import DuckDBIceberg
 
     engine = DuckDBIceberg(cfg)
     engine._conn = duckdb.connect()
@@ -138,7 +138,7 @@ def _duckdb(cfg: Config, paths: dict[str, Path]):
 def _chdb(cfg: Config, paths: dict[str, Path]):
     from chdb import session
 
-    from bench.interactive.engines.chdb_iceberg import DB, SEMANTIC_SETTINGS, ChdbIceberg
+    from bench.tpch.engines.chdb_iceberg import DB, SEMANTIC_SETTINGS, ChdbIceberg
 
     engine = ChdbIceberg(cfg)
     # In-memory session: no config file, no filesystem cache. Those exist for OneLake reads.
@@ -164,7 +164,7 @@ def _chdb(cfg: Config, paths: dict[str, Path]):
 def _polars(cfg: Config, paths: dict[str, Path]):
     import polars as pl
 
-    from bench.interactive.engines.polars_iceberg import PolarsIceberg
+    from bench.tpch.engines.polars_iceberg import PolarsIceberg
 
     engine = PolarsIceberg(cfg)
     engine._ctx = pl.SQLContext()
@@ -178,7 +178,7 @@ def _lakesail(cfg: Config, paths: dict[str, Path]):
     from pysail.spark import SparkConnectServer
     from pyspark.sql import SparkSession
 
-    from bench.interactive.engines.lakesail_iceberg import LakesailIceberg
+    from bench.tpch.engines.lakesail_iceberg import LakesailIceberg
 
     engine = LakesailIceberg(cfg)
     engine._server = SparkConnectServer()
@@ -208,7 +208,7 @@ def _daft(cfg: Config, paths: dict[str, Path]):
     import daft
     from daft import Session
 
-    from bench.interactive.engines.daft_iceberg import DaftIceberg
+    from bench.tpch.engines.daft_iceberg import DaftIceberg
 
     engine = DaftIceberg(cfg)
     engine._sess = Session()
@@ -222,7 +222,7 @@ def _daft(cfg: Config, paths: dict[str, Path]):
 def _pyspark(cfg: Config, paths: dict[str, Path]):
     from pyspark.sql import SparkSession
 
-    from bench.interactive.engines.pyspark_iceberg import PysparkIceberg
+    from bench.tpch.engines.pyspark_iceberg import PysparkIceberg
 
     engine = PysparkIceberg(cfg)
     # No jars, no catalog, no credentials -- the point of phase 1 is the dialect alone. Only

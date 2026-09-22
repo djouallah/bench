@@ -11,7 +11,7 @@ from __future__ import annotations
 import pytest
 
 from bench.config import Config
-from bench.interactive.config import (
+from bench.tpch.config import (
     PART_FLOOR,
     TABLES,
     chdb_cache_gib,
@@ -94,7 +94,7 @@ def test_existing_data_without_a_marker_counts_as_complete():
     """The Fabric notebook generated CH0100 before this repo existed, so it has data and no
     marker. Regenerating over it would re-register every file through
     add_files(check_duplicate_files=False) and silently double every row count."""
-    from bench.interactive.generate import is_complete
+    from bench.tpch.generate import is_complete
 
     cfg = Config(workspace_id="w", lakehouse_id="l", sf=100)
     catalog = _FakeCatalog({"CH0100.supplier": _FakeTable(files=["a.parquet"])})
@@ -104,7 +104,7 @@ def test_existing_data_without_a_marker_counts_as_complete():
 def test_an_empty_supplier_is_not_complete():
     """The husk a crash leaves between create_table_if_not_exists and add_files. The notebook's
     bare table_exists() check read this as done and then benchmarked nothing."""
-    from bench.interactive.generate import is_complete
+    from bench.tpch.generate import is_complete
 
     cfg = Config(workspace_id="w", lakehouse_id="l", sf=10)
     catalog = _FakeCatalog({"CH0010.supplier": _FakeTable(files=[])})
@@ -112,7 +112,7 @@ def test_an_empty_supplier_is_not_complete():
 
 
 def test_the_marker_alone_is_enough():
-    from bench.interactive.generate import COMPLETE_PROPERTY, is_complete
+    from bench.tpch.generate import COMPLETE_PROPERTY, is_complete
 
     cfg = Config(workspace_id="w", lakehouse_id="l", sf=10)
     catalog = _FakeCatalog(
@@ -126,7 +126,7 @@ def test_the_marker_alone_is_enough():
 
 
 def test_a_marker_from_a_different_sf_does_not_count():
-    from bench.interactive.generate import COMPLETE_PROPERTY, is_complete
+    from bench.tpch.generate import COMPLETE_PROPERTY, is_complete
 
     cfg = Config(workspace_id="w", lakehouse_id="l", sf=10)
     catalog = _FakeCatalog(
@@ -189,7 +189,7 @@ def test_catalog_cache_is_one_number_every_engine_derives_from():
     # whole number of minutes would be silently truncated by the `// 60`.
     assert CATALOG_CACHE_SECONDS % 60 == 0, "must be a whole number of minutes for DuckDB"
 
-    engines = Path(__file__).resolve().parent.parent / "bench" / "interactive" / "engines"
+    engines = Path(__file__).resolve().parent.parent / "bench" / "tpch" / "engines"
     for name in ("duckdb_iceberg", "chdb_iceberg", "lakesail_iceberg", "pyspark_iceberg"):
         source = (engines / f"{name}.py").read_text(encoding="utf-8")
         assert "CATALOG_CACHE_SECONDS" in source, f"{name} does not derive its catalog cache"

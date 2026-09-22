@@ -7,7 +7,7 @@ partitions; bench/etl/iceberg.py says why), plus a `DROP TABLE IF EXISTS` first 
 creates and fills a fresh table rather than appending to last run's.
 
 The session is the TPC-H engine's:
-`bench.interactive.engines.lakesail_iceberg.LakesailIceberg.setup()` starts the in-process
+`bench.tpch.engines.lakesail_iceberg.LakesailIceberg.setup()` starts the in-process
 Spark Connect server with the OneLake catalog in `SAIL_CATALOG__LIST` and the storage token
 in `AZURE_STORAGE_TOKEN`, which is what signs both the CSV reads and the
 parquet writes. Everything that docstring says about the token's lifetime and the server
@@ -19,7 +19,7 @@ from __future__ import annotations
 from bench import scrub
 from bench.etl.config import TABLE, EtlConfig
 from bench.etl.engines._spark_df import transform
-from bench.interactive.engines.lakesail_iceberg import LakesailIceberg as _TpchSail
+from bench.tpch.engines.lakesail_iceberg import LakesailIceberg as _TpchSail
 
 
 class LakesailIceberg:

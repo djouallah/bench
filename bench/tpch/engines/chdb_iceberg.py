@@ -23,7 +23,7 @@ import pathlib
 
 from bench import auth, scrub
 from bench.config import CATALOG_CACHE_SECONDS, ICEBERG_ENDPOINT, Config
-from bench.interactive.config import chdb_cache_gib
+from bench.tpch.config import chdb_cache_gib
 
 # The attached catalog's name inside chDB.
 DB = "onelake"

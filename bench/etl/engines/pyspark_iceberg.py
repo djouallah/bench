@@ -2,7 +2,7 @@
 
 The seventh engine, and the one the notebook did not have. The session, the jars, the OIDC
 assertion that ABFS refreshes on its own and the catalog config are all
-`bench.interactive.engines.pyspark_iceberg.PysparkIceberg.setup()`, reused as-is; the read and
+`bench.tpch.engines.pyspark_iceberg.PysparkIceberg.setup()`, reused as-is; the read and
 the transform
 are `_spark_df.transform`, shared with LakeSail. What is specific to Spark is the CREATE.
 
@@ -41,8 +41,8 @@ from bench import onelake, scrub
 from bench.etl import iceberg
 from bench.etl.config import TABLE, EtlConfig
 from bench.etl.engines._spark_df import transform
-from bench.interactive.engines.pyspark_iceberg import CATALOG
-from bench.interactive.engines.pyspark_iceberg import PysparkIceberg as _TpchSpark
+from bench.tpch.engines.pyspark_iceberg import CATALOG
+from bench.tpch.engines.pyspark_iceberg import PysparkIceberg as _TpchSpark
 
 # Bytes of CSV one read task takes, and therefore roughly the input behind one output file.
 #

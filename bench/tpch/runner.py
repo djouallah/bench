@@ -21,8 +21,8 @@ import contextlib
 import time
 
 from bench import scrub
-from bench.interactive.queries import load
 from bench.store import EngineResult, Row
+from bench.tpch.queries import load
 
 
 def _time(fn, *args) -> tuple[float, object, Exception | None]:

@@ -12,7 +12,7 @@ from __future__ import annotations
 import sys
 
 from bench.config import Config
-from bench.interactive.generate import generate
+from bench.tpch.generate import generate
 
 if __name__ == "__main__":
     cfg = Config.from_env()

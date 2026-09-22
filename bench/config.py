@@ -6,11 +6,11 @@ whose ONLY purpose was to survive `notebookutils.session.restartPython()` in cel
 globals. Nothing restarts Python here (pip install happens in a workflow step before the
 interpreter starts), so the whole dance collapses into reading env vars once.
 
-WHAT IS HERE AND WHAT IS NOT. This module is what bench/interactive (the TPC-H queries) and
+WHAT IS HERE AND WHAT IS NOT. This module is what bench/tpch (the TPC-H queries) and
 bench/etl (the CSV-to-Iceberg load) both need: the OneLake endpoints, the catalog-cache lifetime
 every engine derives from, the DuckDB transport rule, and `Config` -- workspace, lakehouse,
 scale, run identity. The TPC-H specifics (the engine list, the tables, the part plan, chDB's
-cache size) are bench/interactive/config.py; the ETL's (file count, CSV paths) are
+cache size) are bench/tpch/config.py; the ETL's (file count, CSV paths) are
 bench/etl/config.py, whose EtlConfig is a Config.
 """
 

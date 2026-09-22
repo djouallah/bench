@@ -14,7 +14,7 @@ THE NAME RESOLUTION. Polars has no catalog namespace, so `CH0010.lineitem` parse
 named CH0010 and fails. The fix is to register each frame under its FULL dotted name and leave the
 backticks in the SQL, so `` `CH0010.lineitem` `` is one quoted identifier matching one registered
 key. That is why `polars_iceberg` is in NEEDS_BACKTICKS alongside chDB in
-bench/interactive/queries.py -- different reason, same spelling.
+bench/tpch/queries.py -- different reason, same spelling.
 
 An explicit `SQLContext` also replaces cell 12's `globals()[tbl] = ...`: same resolution, but the
 frames are scoped to this object instead of depending on which module's globals the caller is
@@ -27,7 +27,7 @@ import os
 
 from bench import auth, scrub
 from bench.config import Config
-from bench.interactive.config import TABLES
+from bench.tpch.config import TABLES
 
 
 class PolarsIceberg:

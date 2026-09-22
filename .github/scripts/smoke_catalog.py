@@ -32,8 +32,8 @@ import urllib.request
 
 from bench import auth, scrub
 from bench.config import ICEBERG_ENDPOINT, Config
-from bench.interactive import queries
-from bench.interactive.engines import get_engine
+from bench.tpch import queries
+from bench.tpch.engines import get_engine
 
 # Q1 is a full scan of lineitem with a group-by; Q6 is a filtered scan of it. Both touch the
 # largest table, which is the one whose data files a credential problem hides behind.

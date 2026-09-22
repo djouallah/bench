@@ -8,7 +8,7 @@ as a stream of record batches -- with two substitutions:
 THE READ IS `url()`, NOT `file()`. There is no mount on a runner, and chDB's Azure table
 functions (`azureBlobStorage`, `icebergAzure`) take a connection string, an account key or a
 SAS -- none of which OneLake accepts -- and never a bearer token
-(bench/interactive/engines/chdb_iceberg.py has the full list). `url()` takes arbitrary
+(bench/tpch/engines/chdb_iceberg.py has the full list). `url()` takes arbitrary
 headers, OneLake serves a file to a plain authenticated GET, and `url()` keeps the brace glob
 and the `_file` virtual column the notebook's `file()` call used. So the statement is the
 notebook's with the source swapped. It carries the token in its text: never printed, and
@@ -31,7 +31,7 @@ from bench import auth, scrub
 from bench.etl import iceberg
 from bench.etl.config import TABLE, EtlConfig
 from bench.etl.schema import COLUMNS
-from bench.interactive.engines.chdb_iceberg import ChdbIceberg as _TpchChdb
+from bench.tpch.engines.chdb_iceberg import ChdbIceberg as _TpchChdb
 
 SETTINGS = (
     # The notebook's three: infer every column as String, skip the `C` header line, accept the

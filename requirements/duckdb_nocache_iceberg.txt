@@ -1,5 +1,5 @@
 # Identical to duckdb_iceberg.txt on purpose: the same wheel, one SET differs (see
-# bench/interactive/engines/duckdb_nocache_iceberg.py). A copy rather than `-r` so that
+# bench/tpch/engines/duckdb_nocache_iceberg.py). A copy rather than `-r` so that
 # setup-python's cache-dependency-path hashes the real pins.
 azure-identity>=1.19
 psutil>=6

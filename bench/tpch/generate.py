@@ -33,7 +33,7 @@ from pathlib import Path
 
 from bench import onelake, scrub
 from bench.config import Config
-from bench.interactive.config import parts_plan
+from bench.tpch.config import parts_plan
 
 # The property that says "this namespace is fully generated", written on `supplier` once every
 # table has landed.

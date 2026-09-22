@@ -116,7 +116,7 @@ class LakesailIceberg:
         _, port = self._server.listening_address
         self._spark = SparkSession.builder.remote(f"sc://localhost:{port}").getOrCreate()
         # No `USE SCHEMA`: the statements arrive schema-qualified (`CH0010.lineitem`, the `dotted`
-        # style in bench/interactive/queries.py), so the catalog resolves them without a
+        # style in bench/tpch/queries.py), so the catalog resolves them without a
         # current schema.
         scrub.safe_print(f"  pysail {self.version} listening on {port}")
 

@@ -25,9 +25,9 @@ from pathlib import Path
 
 from bench import scrub
 from bench.config import Config
-from bench.interactive.engines import get_engine
-from bench.interactive.runner import benchmark, totals
 from bench.store import host_facts, write_engine_part
+from bench.tpch.engines import get_engine
+from bench.tpch.runner import benchmark, totals
 
 if __name__ == "__main__":
     cfg = Config.from_env()

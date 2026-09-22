@@ -10,9 +10,9 @@ import duckdb
 
 from bench import auth
 from bench.config import Config
-from bench.interactive.config import ENGINES
-from bench.interactive.engines.duckdb_iceberg import DuckDBIceberg
-from bench.interactive.engines.duckdb_nocache_iceberg import DuckDBNoCacheIceberg
+from bench.tpch.config import ENGINES
+from bench.tpch.engines.duckdb_iceberg import DuckDBIceberg
+from bench.tpch.engines.duckdb_nocache_iceberg import DuckDBNoCacheIceberg
 
 
 class _Recorder:

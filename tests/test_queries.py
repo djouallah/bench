@@ -10,8 +10,8 @@ import re
 
 import pytest
 
-from bench.interactive.config import ENGINES
-from bench.interactive.queries import (
+from bench.tpch.config import ENGINES
+from bench.tpch.queries import (
     IDENT_STYLE,
     N_QUERIES,
     SQL_PATH,
