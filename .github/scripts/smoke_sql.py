@@ -403,11 +403,11 @@ def run(engine_name: str, data_dir: Path, out_dir: Path, suite: type[Config]) ->
     }
     (out_dir / f"{engine_name}.json").write_text(json.dumps(payload, indent=1), encoding="utf-8")
 
-    ok = len(statements) - failed
-    print(f"\n{engine_name} {engine.version}: {ok}/{len(statements)} queries ran", flush=True)
+    ok = len(numbers) - failed
+    print(f"\n{engine_name} {engine.version}: {ok}/{len(numbers)} queries ran", flush=True)
     if failed:
         print(
-            f"::error::{engine_name} cannot run {failed} of {len(statements)} {suite.TITLE} queries"
+            f"::error::{engine_name} cannot run {failed} of {len(numbers)} {suite.TITLE} queries"
         )
     return 1 if failed else 0
 

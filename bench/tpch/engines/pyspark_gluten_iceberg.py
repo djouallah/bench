@@ -10,10 +10,18 @@ Gluten's fully tested version 4.1.1", so this engine pins its own pyspark to wha
 (requirements/pyspark_gluten_iceberg.txt). Iceberg's runtime and hadoop-azure are per-minor, so
 pyspark_iceberg's PACKAGES serve 4.1.1 unchanged.
 
-THE QUESTION THIS ENGINE ANSWERS FIRST is abfss://. Velox reads files itself, through its own
-ABFS connector, not hadoop-azure -- so whether the bundle was built with that connector, and
-whether it accepts the credential Spark's Hadoop reads use, decides everything. Operators
-Gluten cannot run natively fall back to the JVM; that is normal Gluten behaviour, not a failure.
+THE CREDENTIAL IS A OneLake SAS, not the OIDC token file every other Spark engine uses. Velox
+reads data files itself, through its own ABFS connector, and that connector knows three auth
+types: SharedKey, OAuth WITH A CLIENT SECRET, and SAS (velox/.../abfs/AzureClientProviderImpl.cpp).
+This app registration has no secret and OneLake has no account key, so SAS it is: a user
+delegation SAS minted at setup from the same OIDC credential, read+list, scoped to the lakehouse.
+Velox's key, `fs.azure.sas.fixed.token.<account>`, is also hadoop-azure's, so the JVM side
+(Iceberg metadata, any fallback scan) reads with the same token. OneLake caps its lifetime at one
+hour -- fine for a smoke, a limit for a long benchmark.
+
+ACCOUNT-SCOPED KEYS ONLY. Velox registers a provider for every key starting with
+`fs.azure.account.auth.type` by cutting the account off the end, so the base engine's unscoped
+copy crashed the native backend at startup: `substr: __pos (which is 27) > __size (which is 26)`.
 
 THE SNAPSHOT IS OVERWRITTEN NIGHTLY under the same name, so the jar's sha256 is printed at
 setup: that, not the file name, is what identifies the build a run measured.
@@ -24,12 +32,13 @@ nothing on a 16GB runner. The heap shrinks to 4g and Velox gets 8g; the total is
 
 from __future__ import annotations
 
+import datetime as dt
 import hashlib
 import os
 import urllib.request
 from pathlib import Path
 
-from bench import scrub
+from bench import auth, scrub
 from bench.tpch.engines.pyspark_iceberg import PysparkIceberg
 
 # The JDK 17 directory, because every Spark job sets up Temurin 17. amd64: the hosted runners.
@@ -79,8 +88,47 @@ def gluten_conf() -> dict[str, str]:
     }
 
 
+# OneLake's ceiling for a user delegation key, and so for the SAS signed with it.
+SAS_LIFETIME = dt.timedelta(hours=1)
+
+
+def onelake_sas(workspace_id: str, lakehouse_id: str) -> str:
+    """A read+list user delegation SAS on the lakehouse directory, signed via Entra."""
+    from azure.storage.filedatalake import (
+        DataLakeServiceClient,
+        DirectorySasPermissions,
+        generate_directory_sas,
+    )
+
+    from bench.config import ONELAKE_DFS
+
+    start = dt.datetime.now(dt.UTC) - dt.timedelta(minutes=5)
+    expiry = start + SAS_LIFETIME
+    service = DataLakeServiceClient(f"https://{ONELAKE_DFS}", credential=auth.credential())
+    key = service.get_user_delegation_key(start, expiry)
+    sas = generate_directory_sas(
+        account_name="onelake",
+        file_system_name=workspace_id,
+        directory_name=lakehouse_id,
+        credential=key,
+        permission=DirectorySasPermissions(read=True, list=True),
+        expiry=expiry,
+        start=start,
+    )
+    scrub.register(sas)
+    return sas
+
+
 class PysparkGlutenIceberg(PysparkIceberg):
     name = "pyspark_gluten_iceberg"
+
+    def _storage_conf(self, abfs: dict[str, str], account: str) -> dict[str, str]:
+        sas = onelake_sas(self.cfg.workspace_id, self.cfg.lakehouse_id)
+        scrub.safe_print(f"  onelake SAS for Velox and hadoop-azure, valid {SAS_LIFETIME}")
+        return {
+            f"spark.hadoop.fs.azure.account.auth.type.{account}": "SAS",
+            f"spark.hadoop.fs.azure.sas.fixed.token.{account}": sas,
+        }
 
     def _extra_config(self) -> dict[str, str]:
         return gluten_conf()

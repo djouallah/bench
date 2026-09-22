@@ -230,12 +230,8 @@ class PysparkIceberg:
         )
         for key, value in _catalog_conf(CATALOG, self.cfg.warehouse).items():
             builder = builder.config(key, value)
-        for key, value in abfs.items():
-            # Account-scoped AND unscoped: Fabric's own table metadata mixes schemes, with
-            # abfss:// in `location` and abfs:// in the `write.data.path` property, and the
-            # account-scoped keys only match one host spelling.
-            builder = builder.config(f"spark.hadoop.{key}.{account}", value)
-            builder = builder.config(f"spark.hadoop.{key}", value)
+        for key, value in self._storage_conf(abfs, account).items():
+            builder = builder.config(key, value)
 
         # HOW BYTES COME OFF ONELAKE, which is where Spark's time goes: warm is barely faster than
         # cold, and Q6 -- four columns of lineitem, no join -- takes 11s where Sail takes 3s.
@@ -264,6 +260,17 @@ class PysparkIceberg:
             f"  pyspark {self.version} on hadoop {hadoop}, catalog {CATALOG} "
             f"(local[4], {os.environ.get('SPARK_DRIVER_MEMORY', 'default')} driver heap)"
         )
+
+    def _storage_conf(self, abfs: dict[str, str], account: str) -> dict[str, str]:
+        """The ABFS credential keys as Spark sees them. A variant may swap the credential."""
+        conf = {}
+        for key, value in abfs.items():
+            # Account-scoped AND unscoped: Fabric's own table metadata mixes schemes, with
+            # abfss:// in `location` and abfs:// in the `write.data.path` property, and the
+            # account-scoped keys only match one host spelling.
+            conf[f"spark.hadoop.{key}.{account}"] = value
+            conf[f"spark.hadoop.{key}"] = value
+        return conf
 
     def _extra_config(self) -> dict[str, str]:
         """Session keys a variant adds on top of everything above. Stock Spark adds none."""
