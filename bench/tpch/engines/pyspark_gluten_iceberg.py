@@ -66,11 +66,11 @@ def gluten_conf() -> dict[str, str]:
         # shuffle died with IllegalAccessError on BypassMergeSortShuffleWriter.
         "spark.driver.extraClassPath": str(fetch_gluten_jar()),
         "spark.plugins": "org.apache.gluten.GlutenPlugin",
-        # ANSI OFF. It is Spark 4's default, and Gluten's answer to it is to fall back WHOLESALE:
-        # every node of every plan tagged "does not support ansi mode", so Velox ran nothing.
-        # The cost: doubleQuotedIdentifiers only works under ANSI, so the TPC-DS statements that
-        # alias `AS "order count"` will not parse here. TPC-H has none.
-        "spark.sql.ansi.enabled": "false",
+        # ANSI STAYS ON, as in stock Spark. Gluten's default answer to it is to fall back
+        # WHOLESALE -- every node tagged "does not support ansi mode", so Velox ran nothing -- and
+        # this asks Velox to execute ANSI instead. Not ANSI off: doubleQuotedIdentifiers only
+        # works under ANSI, and eight TPC-DS statements alias `AS "order count"`.
+        "spark.gluten.sql.ansiFallback.enabled": "false",
         "spark.memory.offHeap.enabled": "true",
         "spark.memory.offHeap.size": OFF_HEAP,
         "spark.shuffle.manager": "org.apache.spark.shuffle.sort.ColumnarShuffleManager",
