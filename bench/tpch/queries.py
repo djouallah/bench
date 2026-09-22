@@ -60,6 +60,8 @@ IDENT_STYLE = {
     "duckdb_nocache_iceberg": "dotted",
     # Spark has real multi-level namespaces, same as LakeSail.
     "pyspark_iceberg": "dotted",
+    # Stock Spark plus a file cache; the dialect is Spark's.
+    "pyspark_alluxio_iceberg": "dotted",
     "lakesail_iceberg": "dotted",
 }
 
