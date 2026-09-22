@@ -160,10 +160,35 @@ def fetch_packages() -> Path:
     return target
 
 
+# Where the bundle's libcurl looks for CA certificates -- it was built on CentOS -- and where
+# Ubuntu actually keeps them.
+CENTOS_CA_PATHS = (
+    "/etc/pki/tls/certs/ca-bundle.crt",
+    "/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem",
+)
+UBUNTU_CA_BUNDLE = "/etc/ssl/certs/ca-certificates.crt"
+
+
+def link_ca_bundle() -> None:
+    """Give Velox's libcurl its CA bundle at the CentOS path, on a CI runner only.
+
+    Without it every native read died on the first TLS handshake to OneLake: "Fail to get a new
+    connection for: https://onelake.blob.fabric.microsoft.com. Problem with the SSL CA cert
+    (path? access rights?)". The path is compiled into libcurl, and libcurl reads no env var.
+    """
+    if not os.environ.get("GITHUB_ACTIONS"):
+        return
+    for path in CENTOS_CA_PATHS:
+        if not Path(path).exists():
+            subprocess.run(["sudo", "mkdir", "-p", str(Path(path).parent)], check=True)
+            subprocess.run(["sudo", "ln", "-sf", UBUNTU_CA_BUNDLE, path], check=True)
+
+
 class PysparkGlutenIceberg(PysparkIceberg):
     name = "pyspark_gluten_iceberg"
 
     def _extra_config(self) -> dict[str, str]:
+        link_ca_bundle()
         conf = gluten_conf()
         conf["spark.driver.extraClassPath"] += os.pathsep + f"{fetch_packages()}/*"
         return conf
