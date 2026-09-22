@@ -27,6 +27,7 @@ installs only the engine under test.
 from __future__ import annotations
 
 import json
+import os
 import sys
 import time
 import urllib.request
@@ -103,9 +104,13 @@ def main() -> int:
         return 1
     print(f"  setup {time.perf_counter() - started:.2f}s")
 
+    # SMOKE_QUERIES, when a dispatch sets it, replaces the suite's two probes.
+    raw = os.environ.get("SMOKE_QUERIES", "").strip()
+    probes = [int(q) for q in raw.split(",") if q.strip()] if raw else list(cfg.PROBE_QUERIES)
+
     failed = 0
     try:
-        for number in cfg.PROBE_QUERIES:
+        for number in probes:
             query_started = time.perf_counter()
             try:
                 count = engine.execute(statements[number - 1])
@@ -126,7 +131,7 @@ def main() -> int:
     if failed:
         print(
             f"\n::error::{cfg.engine} attached but could not read data -- "
-            f"{failed} of {len(cfg.PROBE_QUERIES)} probe queries failed. "
+            f"{failed} of {len(probes)} probe queries failed. "
             f"Phase 1 passed, so this is storage or credentials, not SQL."
         )
         return 1

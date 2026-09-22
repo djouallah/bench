@@ -39,6 +39,10 @@ on:
         type: choice
         options: ["tpch", "tpcds"]
         default: "tpch"
+      queries:
+        description: Comma-separated query numbers for both phases, e.g. 3,7,16,42,55. Empty runs the whole suite locally and the two probes on OneLake.
+        type: string
+        default: ""
   push:
     # Phase 1 only (see the `if` on `catalog`). It touches no secret and no Fabric, so it is safe
     # and cheap on every commit that could change what the engines do.
@@ -58,6 +62,7 @@ env:
   PYTHONUNBUFFERED: "1"
   # A push runs TPC-H (the default); TPC-DS is dispatch-only. See bench/suite.py.
   BENCH_SUITE: ${{ inputs.suite || 'tpch' }}
+  SMOKE_QUERIES: ${{ inputs.queries || '' }}
 
 jobs:
   # The matrix needs a JSON array; the input is a human-friendly CSV. Same jq as bench.yml.

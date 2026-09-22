@@ -42,6 +42,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -57,6 +58,15 @@ from bench.tpch import queries
 # the row counts are the actual answers -- which is what makes the cross-engine comparison mean
 # something. It also keeps TPC-H Q11's `(0.0001 / {SF})` threshold at its correct value.
 SMOKE_SF = 1
+
+
+def selected_queries(n_queries: int) -> list[int]:
+    """SMOKE_QUERIES ("3,7,16"), or every query when unset -- a first run on a new engine
+    wants a handful of statements in a minute, not the whole suite."""
+    raw = os.environ.get("SMOKE_QUERIES", "").strip()
+    if not raw:
+        return list(range(1, n_queries + 1))
+    return sorted({int(q) for q in raw.split(",") if q.strip()})
 
 # Dummy GUIDs. Config wants them, phase 1 never uses them -- nothing here talks to Fabric.
 # Config.from_env() would demand the real secrets, and this job deliberately has none.
@@ -358,9 +368,11 @@ def run(engine_name: str, data_dir: Path, out_dir: Path, suite: type[Config]) ->
         flush=True,
     )
 
+    numbers = selected_queries(cfg.N_QUERIES)
     rows, failed = [], 0
     try:
-        for number, sql in enumerate(statements, start=1):
+        for number in numbers:
+            sql = statements[number - 1]
             query_started = time.perf_counter()
             try:
                 count = engine.execute(sql)
