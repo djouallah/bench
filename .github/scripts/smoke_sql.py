@@ -124,15 +124,21 @@ def _dsdgen(dest: Path, tables: tuple[str, ...]) -> dict[str, Path]:
 
     dsdgen builds every table at once, so one call fills an in-memory database and each table is
     then COPYed out to its own parquet, under the exact filename the adapters register.
+
+    The existence check comes BEFORE the duckdb import, on purpose: the engine jobs call this
+    with a full cache and no duckdb installed (only the plan job has the generator), and the
+    first version imported first -- four of six TPC-DS smoke jobs died on ModuleNotFoundError
+    with every file already on disk.
     """
-    import duckdb
-
-    from bench.tpcds.generate import load_tpcds_extension
-
     paths = {table: dest / f"{table}.parquet" for table in tables}
     missing = [table for table, path in paths.items() if not path.exists()]
     if not missing:
         return paths
+
+    import duckdb
+
+    from bench.tpcds.generate import load_tpcds_extension
+
     started = time.perf_counter()
     con = duckdb.connect()
     load_tpcds_extension(con)
