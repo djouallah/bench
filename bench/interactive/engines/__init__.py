@@ -19,6 +19,10 @@ def get_engine(name: str, cfg: Config):
         from bench.interactive.engines.duckdb_iceberg import DuckDBIceberg
 
         return DuckDBIceberg(cfg)
+    if name == "duckdb_nocache_iceberg":
+        from bench.interactive.engines.duckdb_nocache_iceberg import DuckDBNoCacheIceberg
+
+        return DuckDBNoCacheIceberg(cfg)
     if name == "chdb_iceberg":
         from bench.interactive.engines.chdb_iceberg import ChdbIceberg
 

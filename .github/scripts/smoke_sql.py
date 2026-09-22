@@ -250,6 +250,9 @@ def _pyspark(cfg: Config, paths: dict[str, Path]):
 
 ADAPTERS = {
     "duckdb_iceberg": _duckdb,
+    # The adapter bypasses setup(), where the one difference lives, and reads local parquet: the
+    # external file cache is a remote-read concern, so the smoke is the same for both engines.
+    "duckdb_nocache_iceberg": _duckdb,
     "chdb_iceberg": _chdb,
     "polars_iceberg": _polars,
     "lakesail_iceberg": _lakesail,

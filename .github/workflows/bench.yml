@@ -27,7 +27,7 @@ on:
       engines:
         description: Comma-separated engines to run.
         type: string
-        default: duckdb_iceberg,chdb_iceberg,polars_iceberg,lakesail_iceberg,pyspark_iceberg
+        default: duckdb_iceberg,duckdb_nocache_iceberg,chdb_iceberg,polars_iceberg,lakesail_iceberg,pyspark_iceberg
       publish:
         description: Commit results and charts. Off leaves the artifacts and touches nothing.
         type: boolean
@@ -82,7 +82,7 @@ jobs:
         # The matrix needs a JSON array; the input is a human-friendly CSV. `started` is stamped
         # once here so every artifact in the run shares one timestamp.
         run: |
-          ENGINES=$(printf '%s' "${{ inputs.engines || 'duckdb_iceberg,chdb_iceberg,polars_iceberg,lakesail_iceberg,pyspark_iceberg' }}" \
+          ENGINES=$(printf '%s' "${{ inputs.engines || 'duckdb_iceberg,duckdb_nocache_iceberg,chdb_iceberg,polars_iceberg,lakesail_iceberg,pyspark_iceberg' }}" \
             | jq -Rc 'split(",") | map(sub("^\\s+";"") | sub("\\s+$";"")) | map(select(length > 0))')
           echo "engines=$ENGINES" >> "$GITHUB_OUTPUT"
           echo "started=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_OUTPUT"
@@ -105,6 +105,7 @@ jobs:
     # Chained `&&`/`||` is GitHub's ternary; the final `|| matrix.engine` covers a new engine.
     name: >-
       ${{ matrix.engine == 'duckdb_iceberg' && '🦆 DuckDB'
+      || matrix.engine == 'duckdb_nocache_iceberg' && '🦆 DuckDB, cache off'
       || matrix.engine == 'chdb_iceberg' && '⚡ chDB'
       || matrix.engine == 'polars_iceberg' && '🐻‍❄️ Polars'
       || matrix.engine == 'lakesail_iceberg' && '⛵ LakeSail'

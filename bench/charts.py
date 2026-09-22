@@ -9,6 +9,12 @@ rank, so a run that omits an engine never repaints the survivors. Daft holds slo
 is not in bench.yml's engine list, which is the rule working as intended: adding it later must not
 recolour Spark.
 
+Slot 7, brown, is the DuckDB no-cache control, and it is last in ENGINES rather than next to
+DuckDB: validated in ENGINES order in both modes, whereas nothing passes the normal-vision floor
+between blue and orange -- teal and violet fail against blue, red, brown and green against
+orange. The totals chart sorts by cold time, so the two DuckDB bars sit together there regardless,
+and blue-brown-aqua passes.
+
 The palette is validated, not eyeballed (dataviz `scripts/validate_palette.js`), and re-validated
 whenever a slot is added -- every subset that can actually render has to pass, not just the full
 set. Light passes every gate with a contrast WARN on aqua and yellow, which obligates the relief
@@ -38,6 +44,7 @@ LIGHT = {
     "lakesail_iceberg": "#eda100",  # slot 4 yellow
     "daft_iceberg": "#8a5cd1",  # slot 5 purple
     "pyspark_iceberg": "#d6468f",  # slot 6 magenta
+    "duckdb_nocache_iceberg": "#a8642a",  # slot 7 brown
 }
 DARK = {
     "duckdb_iceberg": "#3987e5",
@@ -46,6 +53,7 @@ DARK = {
     "lakesail_iceberg": "#c98500",
     "daft_iceberg": "#9b6ee0",
     "pyspark_iceberg": "#e05a9c",
+    "duckdb_nocache_iceberg": "#c07a3a",
 }
 
 THEMES = {
@@ -86,6 +94,7 @@ LABEL = {
     "lakesail_iceberg": "LakeSail",
     "daft_iceberg": "Daft",
     "pyspark_iceberg": "Spark-OSS",
+    "duckdb_nocache_iceberg": "DuckDB (no cache)",
 }
 
 

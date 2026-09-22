@@ -1,3 +1,18 @@
+"""DuckDB: the iceberg extension attaches the catalog, the azure extension reads the files.
+
+THE EXTERNAL FILE CACHE. Since 1.3 DuckDB keeps the byte ranges it reads from remote files in
+its buffer pool (`enable_external_file_cache`, on by default), so a statement that touches a
+parquet file the session has already read does not go back to OneLake for it. It is the only
+cache DuckDB turns on by itself -- `enable_object_cache`, `enable_http_metadata_cache` and
+`parquet_metadata_cache` all default to off -- and it is what the warm pass measures: every
+other engine here fetches the same files again on the second pass.
+
+`EXTERNAL_FILE_CACHE` is therefore SET explicitly, as the first statement of the session, so the
+setting is stated rather than inherited, and so duckdb_nocache_iceberg.py can flip it and change
+nothing else. That engine exists to put a number on how much of DuckDB's cold-to-warm gap is
+the cache.
+"""
+
 from __future__ import annotations
 
 from bench import auth, scrub
@@ -6,6 +21,9 @@ from bench.config import CATALOG_CACHE_SECONDS, ICEBERG_ENDPOINT, Config, azure_
 
 class DuckDBIceberg:
     name = "duckdb_iceberg"
+
+    # DuckDB's own default. The one thing duckdb_nocache_iceberg.py changes.
+    EXTERNAL_FILE_CACHE = True
 
     def __init__(self, cfg: Config):
         self.cfg = cfg
@@ -27,6 +45,8 @@ class DuckDBIceberg:
         token = auth.onelake_token()
         self._conn = duckdb.connect()
         self._conn.sql(f"""
+            SET GLOBAL enable_external_file_cache = {str(self.EXTERNAL_FILE_CACHE).lower()};
+
             SET GLOBAL azure_transport_option_type = '{azure_transport() or "default"}';
 
             CREATE OR REPLACE SECRET onelake_storage (

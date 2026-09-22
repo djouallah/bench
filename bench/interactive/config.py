@@ -16,6 +16,10 @@ ENGINES = (
     "lakesail_iceberg",
     "daft_iceberg",
     "pyspark_iceberg",
+    # LAST, not beside DuckDB. Position is legend and per-query bar order, and no seventh colour
+    # passes the palette validator between blue and orange (bench/charts.py says which failed).
+    # The totals chart sorts by cold time, so the two DuckDB bars land together there anyway.
+    "duckdb_nocache_iceberg",
 )
 
 TABLES = ("lineitem", "orders", "partsupp", "part", "customer", "nation", "region", "supplier")

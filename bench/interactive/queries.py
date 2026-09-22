@@ -51,6 +51,8 @@ IDENT_STYLE = {
     # Daft: a flat namespace like Polars, but ANSI quoting -- see the note above.
     "daft_iceberg": "quoted",
     "duckdb_iceberg": "dotted",
+    # The same engine with one SET flipped; the dialect is DuckDB's.
+    "duckdb_nocache_iceberg": "dotted",
     # Spark has real multi-level namespaces, same as LakeSail.
     "pyspark_iceberg": "dotted",
     "lakesail_iceberg": "dotted",
