@@ -1,9 +1,14 @@
 """Spark exactly as pyspark_iceberg, with Gluten + Velox executing the plan natively.
 
 NO RELEASED PACKAGE, BUT A NIGHTLY ONE. Gluten's releases stop at Spark 3.5; Apache's nightly
-builds carry a Velox bundle for Spark 4.1 (since 1.7.0-SNAPSHOT, 2026-06), which is the Spark
-line pyspark_iceberg is pinned to. Compiling Velox in CI was the alternative -- hours cold, tens
-of GB of disk -- and is deliberately not done: if the nightly cannot read OneLake, Gluten is out.
+builds carry a Velox bundle for Spark 4.1 (since 1.7.0-SNAPSHOT, 2026-06). Compiling Velox in
+CI was the alternative -- hours cold, tens of GB of disk -- and is deliberately not done: if the
+nightly cannot read OneLake, Gluten is out.
+
+SPARK 4.1.1, NOT 4.1.3. The bundle warns "Spark runtime version 4.1.3 is not matched with
+Gluten's fully tested version 4.1.1", so this engine pins its own pyspark to what Gluten tests
+(requirements/pyspark_gluten_iceberg.txt). Iceberg's runtime and hadoop-azure are per-minor, so
+pyspark_iceberg's PACKAGES serve 4.1.1 unchanged.
 
 THE QUESTION THIS ENGINE ANSWERS FIRST is abfss://. Velox reads files itself, through its own
 ABFS connector, not hadoop-azure -- so whether the bundle was built with that connector, and
@@ -61,11 +66,11 @@ def gluten_conf() -> dict[str, str]:
         # shuffle died with IllegalAccessError on BypassMergeSortShuffleWriter.
         "spark.driver.extraClassPath": str(fetch_gluten_jar()),
         "spark.plugins": "org.apache.gluten.GlutenPlugin",
-        # ANSI IS SPARK 4'S DEFAULT, and Gluten's default answer to it is to fall back WHOLESALE:
+        # ANSI OFF. It is Spark 4's default, and Gluten's answer to it is to fall back WHOLESALE:
         # every node of every plan tagged "does not support ansi mode", so Velox ran nothing.
-        # Turning ANSI off would change semantics against stock Spark (and doubleQuotedIdentifiers
-        # only works under ANSI); this asks Velox to execute ANSI instead.
-        "spark.gluten.sql.ansiFallback.enabled": "false",
+        # The cost: doubleQuotedIdentifiers only works under ANSI, so the TPC-DS statements that
+        # alias `AS "order count"` will not parse here. TPC-H has none.
+        "spark.sql.ansi.enabled": "false",
         "spark.memory.offHeap.enabled": "true",
         "spark.memory.offHeap.size": OFF_HEAP,
         "spark.shuffle.manager": "org.apache.spark.shuffle.sort.ColumnarShuffleManager",

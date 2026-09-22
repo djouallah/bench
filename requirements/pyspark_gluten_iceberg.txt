@@ -1,3 +1,6 @@
-# Same stack as pyspark_iceberg; the Gluten/Velox bundle is a nightly jar fetched at engine setup
+# pyspark_iceberg's stack at the Spark patch the nightly Gluten/Velox bundle is tested against
+# (4.1.1, not 4.1.3). The bundle itself is a jar fetched at engine setup
 # (bench/tpch/engines/pyspark_gluten_iceberg.py), not pip-installed.
--r pyspark_iceberg.txt
+azure-identity>=1.19
+psutil>=6
+pyspark==4.1.1
