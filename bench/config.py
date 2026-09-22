@@ -49,7 +49,13 @@ STORAGE_SCOPE = "https://storage.azure.com/.default"
 # REST round-trip per table per statement, which is the 1.5-3s floor under its small queries and
 # where its 20-25s warm-pass stalls land. The setting is still applied to Sail, for the day it
 # caches the loaded table. See RUN.md and https://github.com/lakehq/sail/issues/2629.
-CATALOG_CACHE_SECONDS = 900  # 15 minutes
+# TWO HOURS, RAISED FROM 15 MINUTES on 2026-09-23, because 15 was shorter than a run. TPC-DS at
+# SF=10 takes Spark 42 minutes per pass, so its table objects expired three times mid-run and
+# every re-resolve was a REST round-trip against a bearer that, by the warm pass, had itself
+# expired -- 21 statements of run 35732997698 died `NotAuthorizedException` for that reason and
+# no other. A cache that outlives the longest run is what "one caching policy for every engine"
+# was supposed to mean; 900 only ever achieved it for the short suites.
+CATALOG_CACHE_SECONDS = 2 * 60 * 60  # 2 hours
 
 
 def azure_transport() -> str | None:

@@ -127,9 +127,10 @@ jobs:
     # with the whole run all but done and no part written, so the engine vanished from the
     # results entirely. The job cap must sit clear of the slowest engine, not on top of it.
     #
-    # Token lifetime is a separate clock and no longer collides with this one: the bearer baked
-    # into DuckDB's ATTACH lives 60-90 minutes, which is far more than either DuckDB needs, and
-    # Spark now re-issues its own between the passes (pyspark_iceberg.refresh).
+    # Token lifetime is a separate clock, and the catalog cache is what keeps the two from
+    # colliding: at CATALOG_CACHE_SECONDS (2 hours, raised from 15 minutes for exactly this run)
+    # every table is resolved in the first minutes and never looked up again, so a bearer that
+    # expires at minute 70 is never presented to the catalog a second time.
     timeout-minutes: 150
     permissions:
       id-token: write
