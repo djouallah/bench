@@ -33,10 +33,12 @@ from pathlib import Path
 
 from bench import onelake, scrub
 from bench.config import Config
-from bench.tpch.config import parts_plan
+from bench.tpch.config import TpchConfig, parts_plan
 
-# The property that says "this namespace is fully generated", written on `supplier` once every
-# table has landed.
+# The property that says "this namespace is fully generated", written on the suite's
+# MARKER_TABLE (`supplier` here, last in generation order) once every table has landed. The
+# TPC-DS generator writes the same property on its own last table, through the same two
+# functions below.
 #
 # NOT `catalog.table_exists(f"{namespace}.supplier")`, which is what cell 9 used. That works only
 # because `supplier` happens to be last in the generation order, and it cannot distinguish a
@@ -66,7 +68,7 @@ def is_complete(catalog, cfg: Config) -> bool:
     `create_table_if_not_exists` and `add_files` leaves behind. That is the case the notebook's
     bare `table_exists` check got wrong: it read the husk as "done" and benchmarked nothing.
     """
-    identifier = f"{cfg.schema}.supplier"
+    identifier = f"{cfg.schema}.{cfg.MARKER_TABLE}"
     if not catalog.table_exists(identifier):
         return False
     table = catalog.load_table(identifier)
@@ -76,7 +78,7 @@ def is_complete(catalog, cfg: Config) -> bool:
 
 
 def _mark_complete(catalog, cfg: Config) -> None:
-    table = catalog.load_table(f"{cfg.schema}.supplier")
+    table = catalog.load_table(f"{cfg.schema}.{cfg.MARKER_TABLE}")
     stamp = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
     with table.transaction() as tx:
         tx.set_properties(**{COMPLETE_PROPERTY: f"{cfg.sf}|{stamp}"})
@@ -172,7 +174,7 @@ def _ensure_table(catalog, cfg: Config, table: str, sample: Path):
     return tbl
 
 
-def generate(cfg: Config, force: bool = False) -> dict:
+def generate(cfg: TpchConfig, force: bool = False) -> dict:
     """Generate every TPC-H table for `cfg.sf` into OneLake. Idempotent."""
     import pyarrow.parquet as pq
 
@@ -324,4 +326,4 @@ def generate(cfg: Config, force: bool = False) -> dict:
 
 
 if __name__ == "__main__":  # pragma: no cover
-    sys.exit(0 if generate(Config.from_env()) else 1)
+    sys.exit(0 if generate(TpchConfig.from_env()) else 1)

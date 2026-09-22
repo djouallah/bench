@@ -1,6 +1,8 @@
 """Run one engine's cold and warm passes and write its slice as an artifact.
 
-READ-ONLY against OneLake. Writes exactly one local file, which `publish` merges.
+READ-ONLY against OneLake. Writes exactly one local file, which `publish` merges. Serves both
+query suites: BENCH_SUITE picks the config (bench/suite.py), and the config carries the SQL file,
+the namespace and the statement count.
 
 EXIT CODE, and the distinction matters more than it looks.
 
@@ -24,20 +26,20 @@ import sys
 from pathlib import Path
 
 from bench import scrub
-from bench.config import Config
 from bench.store import host_facts, write_engine_part
+from bench.suite import suite_class
 from bench.tpch.engines import get_engine
 from bench.tpch.runner import benchmark, totals
 
 if __name__ == "__main__":
-    cfg = Config.from_env()
+    cfg = suite_class().from_env()
     if not cfg.engine:
         raise SystemExit("BENCH_ENGINE is not set")
 
     out_dir = Path(sys.argv[1] if len(sys.argv) > 1 else "parts")
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    scrub.safe_print(f"{cfg.engine} | SF={cfg.sf} | namespace {cfg.schema}")
+    scrub.safe_print(f"{cfg.engine} | {cfg.TITLE} SF={cfg.sf} | namespace {cfg.schema}")
     result = benchmark(get_engine(cfg.engine, cfg), cfg)
     # Captured HERE, on the runner that did the work -- not in publish, which is a different
     # machine and would stamp the results with its own hardware.

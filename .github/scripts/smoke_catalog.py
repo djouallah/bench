@@ -15,8 +15,9 @@ it is testing proves nothing, and this repo has already paid for that lesson twi
   * LakeSail's own logs said "vended storage credentials... not implemented yet" and carried on,
     so the attach succeeded and every query died on a credential built from the wrong env vars.
 
-Then TWO queries, not 22: Q1 scans lineitem whole, Q6 scans it filtered. Between them they prove
-data files are readable rather than merely listed -- which is the exact failure both bugs above
+Then TWO queries, not the whole suite: the suite config's PROBE_QUERIES (TPC-H: Q1 scans lineitem
+whole, Q6 scans it filtered; TPC-DS: Q3 and Q42 both scan store_sales). Either pair proves data
+files are readable rather than merely listed -- which is the exact failure both bugs above
 produced. Timing is printed but is NOT a result; publish never sees it.
 
 NOT reusing auth_smoke.py's probes, deliberately: its probe 5 imports duckdb, and this job
@@ -32,12 +33,9 @@ import urllib.request
 
 from bench import auth, scrub
 from bench.config import ICEBERG_ENDPOINT, Config
+from bench.suite import suite_class
 from bench.tpch import queries
 from bench.tpch.engines import get_engine
-
-# Q1 is a full scan of lineitem with a group-by; Q6 is a filtered scan of it. Both touch the
-# largest table, which is the one whose data files a credential problem hides behind.
-PROBE_QUERIES = (1, 6)
 
 
 def _get(url: str, token: str) -> dict:
@@ -60,11 +58,14 @@ def list_namespaces(token: str, cfg: Config) -> list[str]:
 
 
 def main() -> int:
-    cfg = Config.from_env()
+    cfg = suite_class().from_env()
     if not cfg.engine:
         raise SystemExit("BENCH_ENGINE is not set")
 
-    print(f"{cfg.engine} | SF={cfg.sf} | namespace {cfg.schema} | warehouse {cfg.warehouse}")
+    print(
+        f"{cfg.engine} | {cfg.TITLE} SF={cfg.sf} | namespace {cfg.schema} | "
+        f"warehouse {cfg.warehouse}"
+    )
 
     # The shared credential half first, so an expired federated credential does not get reported
     # as an engine bug. Cheap: one token, two REST calls.
@@ -86,12 +87,13 @@ def main() -> int:
         return 1
     print(f"  token ok ({len(token)} chars); catalog lists {len(namespaces)} namespaces")
     if cfg.schema not in namespaces:
+        workflow = "tpcds.yml" if cfg.TEST == "tpcds" else "bench.yml"
         print(f"::error::namespace {cfg.schema} is not in the catalog: {sorted(namespaces)[:12]}")
-        print(f"run bench.yml at sf={cfg.sf} first, or its prepare job, to generate it")
+        print(f"run {workflow} at sf={cfg.sf} first, or its prepare job, to generate it")
         return 1
 
     engine = get_engine(cfg.engine, cfg)
-    statements = queries.load(cfg.engine, cfg.schema, cfg.sf)
+    statements = queries.load(cfg.engine, cfg.schema, cfg.sf, cfg.SQL_PATH, cfg.N_QUERIES)
 
     started = time.perf_counter()
     try:
@@ -103,7 +105,7 @@ def main() -> int:
 
     failed = 0
     try:
-        for number in PROBE_QUERIES:
+        for number in cfg.PROBE_QUERIES:
             query_started = time.perf_counter()
             try:
                 count = engine.execute(statements[number - 1])
@@ -124,7 +126,7 @@ def main() -> int:
     if failed:
         print(
             f"\n::error::{cfg.engine} attached but could not read data -- "
-            f"{failed} of {len(PROBE_QUERIES)} probe queries failed. "
+            f"{failed} of {len(cfg.PROBE_QUERIES)} probe queries failed. "
             f"Phase 1 passed, so this is storage or credentials, not SQL."
         )
         return 1

@@ -23,7 +23,6 @@ from __future__ import annotations
 
 from bench import auth, scrub
 from bench.config import Config
-from bench.tpch.config import TABLES
 
 
 class DaftIceberg:
@@ -59,7 +58,7 @@ class DaftIceberg:
         # table is a flat namespace, so `CH0010.lineitem` has to survive as one quoted identifier
         # rather than being parsed as schema + table.
         self._sess = Session()
-        for table in TABLES:
+        for table in self.cfg.TABLES:
             self._sess.create_temp_table(
                 f"{self.cfg.schema}.{table}",
                 daft.read_iceberg(
@@ -67,7 +66,7 @@ class DaftIceberg:
                     io_config=io_config,
                 ),
             )
-        scrub.safe_print(f"  daft {self.version} registered {len(TABLES)} tables")
+        scrub.safe_print(f"  daft {self.version} registered {len(self.cfg.TABLES)} tables")
 
     def execute(self, sql: str) -> int:
         """Run and count.

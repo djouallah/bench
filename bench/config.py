@@ -6,12 +6,14 @@ whose ONLY purpose was to survive `notebookutils.session.restartPython()` in cel
 globals. Nothing restarts Python here (pip install happens in a workflow step before the
 interpreter starts), so the whole dance collapses into reading env vars once.
 
-WHAT IS HERE AND WHAT IS NOT. This module is what bench/tpch (the TPC-H queries) and
-bench/etl (the CSV-to-Iceberg load) both need: the OneLake endpoints, the catalog-cache lifetime
-every engine derives from, the DuckDB transport rule, and `Config` -- workspace, lakehouse,
-scale, run identity. The TPC-H specifics (the engine list, the tables, the part plan, chDB's
-cache size) are bench/tpch/config.py; the ETL's (file count, CSV paths) are
-bench/etl/config.py, whose EtlConfig is a Config.
+WHAT IS HERE AND WHAT IS NOT. This module is what bench/tpch (the TPC-H queries), bench/tpcds
+(the TPC-DS queries) and bench/etl (the CSV-to-Iceberg load) all need: the OneLake endpoints, the
+catalog-cache lifetime every engine derives from, the DuckDB transport rule, and `Config` --
+workspace, lakehouse, scale, run identity. What describes ONE suite -- its engines, tables, SQL
+file, statement count, namespace, where its results and docs go -- is that suite's own Config
+subclass: TpchConfig in bench/tpch/config.py, TpcdsConfig in bench/tpcds/config.py, EtlConfig
+in bench/etl/config.py. The runner, the engines, the charts and the CI scripts read the suite
+off the config they are handed; bench/suite.py picks the class from BENCH_SUITE.
 """
 
 from __future__ import annotations
@@ -19,6 +21,10 @@ from __future__ import annotations
 import os
 import platform
 from dataclasses import dataclass
+from pathlib import Path
+
+# Where the query suites keep their SQL: sql/tpch.sql, sql/tpcds.sql.
+SQL_DIR = Path(__file__).resolve().parents[1] / "sql"
 
 ICEBERG_ENDPOINT = "https://onelake.table.fabric.microsoft.com/iceberg"
 ONELAKE_DFS = "onelake.dfs.fabric.microsoft.com"
@@ -88,6 +94,10 @@ def _env_int(name: str, default: int) -> int:
 
 @dataclass(frozen=True)
 class Config:
+    # The environment variable `from_env` reads the scale from. A suite overrides it (TpcdsConfig
+    # reads TPCDS_SF) so two suites dispatched with different scales never read each other's.
+    SF_ENV = "TPCH_SF"
+
     workspace_id: str
     lakehouse_id: str
     sf: int
@@ -128,7 +138,7 @@ class Config:
         return cls(
             workspace_id=os.environ["FABRIC_WORKSPACE_ID"],
             lakehouse_id=os.environ["FABRIC_LAKEHOUSE_ID"],
-            sf=_env_int("TPCH_SF", 10),
+            sf=_env_int(cls.SF_ENV, 10),
             engine=os.environ.get("BENCH_ENGINE", ""),
             run_id=os.environ.get("GITHUB_RUN_ID", "local"),
             run_url=os.environ.get("BENCH_RUN_URL", ""),

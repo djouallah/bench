@@ -8,4 +8,5 @@ parts/
 purpose.txt
 smoke/
 tpch-local/
+tpcds-local/
 *.ipynb

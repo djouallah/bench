@@ -27,7 +27,12 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
-SQL_PATH = Path(__file__).resolve().parents[2] / "sql" / "tpch.sql"
+from bench.config import SQL_DIR
+
+# The TPC-H defaults. `load` takes any suite's file and count -- sql/tpcds.sql is written
+# to the same convention (backticked `{schema}.table`, `;`-separated) so TPC-DS goes
+# through here too.
+SQL_PATH = SQL_DIR / "tpch.sql"
 
 N_QUERIES = 22
 
@@ -93,17 +98,24 @@ def rewrite_identifiers(sql: str, engine: str, schema: str) -> str:
     return pattern.sub(rf"{schema}.\1", sql)
 
 
-def load(engine: str, schema: str, sf: int, path: Path | None = None) -> list[str]:
-    """The 22 statements, rendered and rewritten for `engine`, in TPC-H order.
+def load(
+    engine: str,
+    schema: str,
+    sf: int,
+    path: Path | None = None,
+    expected: int = N_QUERIES,
+) -> list[str]:
+    """The suite's statements, rendered and rewritten for `engine`, in query order.
 
-    Splitting on `;` is safe here and not in general: sql/tpch.sql contains no semicolon inside a
-    string literal (checked at extraction, and test_queries.py re-checks the count).
+    Splitting on `;` is safe here and not in general: neither sql/tpch.sql nor sql/tpcds.sql
+    contains a semicolon inside a string literal (checked at extraction, and test_queries.py
+    re-checks the count for both).
     """
     raw = (path or SQL_PATH).read_text(encoding="utf-8")
     rendered = rewrite_identifiers(render(raw, schema, sf), engine, schema)
     statements = [s.strip() for s in rendered.split(";") if s.strip()]
-    if len(statements) != N_QUERIES:
+    if len(statements) != expected:
         raise ValueError(
-            f"expected {N_QUERIES} statements in {path or SQL_PATH}, found {len(statements)}"
+            f"expected {expected} statements in {path or SQL_PATH}, found {len(statements)}"
         )
     return statements

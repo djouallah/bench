@@ -1,13 +1,20 @@
 """Merge the matrix artifacts into one immutable run file, then render the public surface.
 
-THE SINGLE WRITER of results, and the only job that commits to the repo.
+THE SINGLE WRITER of results, and the only job that commits to the repo. Serves BOTH query
+suites: bench.yml runs it with BENCH_SUITE=tpch and tpcds.yml with BENCH_SUITE=tpcds, and
+everything that differs between them -- where the runs and the docs live, the CSV, the headline
+scale, the title, the statement count -- is read off the suite's config class (bench/suite.py).
 
-Inputs : parts/*.json          -- one per engine, from run_engine.py
-Outputs: results/<run>.json    -- the immutable record, committed
-         docs/charts/*.png     -- light and dark, committed
-         docs/RESULTS.md       -- the table view, committed
-         docs/data/tpch_results.csv -- flattened history, committed
-         $GITHUB_STEP_SUMMARY  -- the per-run signal on the Actions page
+Inputs : parts/*.json               -- one per engine, from run_engine.py
+Outputs: <RESULTS_DIR>/<run>.json   -- the immutable record, committed (results/, results/tpcds/)
+         <DOCS_DIR>/charts/*.png    -- light and dark, committed (docs/charts/, docs/tpcds/charts/)
+         <DOCS_DIR>/RESULTS.md      -- the table view, committed
+         <CSV>                      -- flattened history, committed (docs/data/<suite>_results.csv)
+         $GITHUB_STEP_SUMMARY       -- the per-run signal on the Actions page
+
+SEPARATE DIRECTORIES PER SUITE, ON PURPOSE. `store.load_all` globs `*.json` in one directory,
+non-recursively, so results/tpcds/ is invisible to the TPC-H publish and results/ to the TPC-DS
+one -- the split etl_publish.py already uses for the ETL. Two histories, one file format.
 
 It touches nothing in Azure: no pyiceberg, no credentials, no network. That is why
 requirements/report.txt has no azure-identity in it and the job needs no `id-token` permission.
@@ -19,22 +26,27 @@ package module and cannot sibling-import this script.
 
 from __future__ import annotations
 
+import math
 import os
 import sys
 from pathlib import Path
 
 from bench.report import leak_check, merge, write_csv
 from bench.store import Run, load_all, write_run
+from bench.suite import suite_class
 from bench.tpch import charts
-from bench.tpch.config import ENGINES, HEADLINE_SF
 
 LABEL = charts.LABEL
 
+# The per-query chart wraps at this many queries per band: TPC-H's 22 stay on one row, TPC-DS's
+# 99 become three rows of 33. `per_row` below is the band width that spreads a suite evenly.
+PER_ROW_MAX = 33
 
-def summarize(run: Run) -> list[dict]:
+
+def summarize(run: Run, engines: tuple[str, ...]) -> list[dict]:
     """Per-engine totals for the markdown tables."""
     out = []
-    for engine in ENGINES:
+    for engine in engines:
         result = run.engines.get(engine)
         if result is None:
             continue
@@ -79,7 +91,12 @@ def _table(rows: list[dict]) -> list[str]:
     return lines
 
 
-def write_results_md(run: Run, rows: list[dict], table, path: Path) -> None:
+def _rel(target: Path, start: Path) -> str:
+    """`target` as a forward-slash path relative to directory `start`, for a markdown link."""
+    return os.path.relpath(target, start).replace(os.sep, "/")
+
+
+def write_results_md(run: Run, rows: list[dict], table, path: Path, suite) -> None:
     """The table view.
 
     Required, not decorative: the light-mode palette carries a contrast WARN on two of the four
@@ -90,8 +107,8 @@ def write_results_md(run: Run, rows: list[dict], table, path: Path) -> None:
     lines = [
         "# Results",
         "",
-        f"TPC-H-like, scale factor {run.sf}, 22 queries, on {run.cpu} vCPU / {run.mem_gb} GB "
-        f"({run.runner}, Python {run.python}).",
+        f"{suite.TITLE}-like, scale factor {run.sf}, {suite.N_QUERIES} queries, on {run.cpu} vCPU "
+        f"/ {run.mem_gb} GB ({run.runner}, Python {run.python}).",
         "",
         f"Last run: `{run.run_started_at}` · commit `{run.git_sha}`"
         + (f" · [Actions run]({run.run_url})" if run.run_url else ""),
@@ -100,8 +117,9 @@ def write_results_md(run: Run, rows: list[dict], table, path: Path) -> None:
         "",
         *_table(rows),
         "",
-        "Cold = first pass after attaching the catalog. Warm = the identical 22 statements run "
-        "again immediately. Attach is timed separately and excluded from both totals.",
+        f"Cold = first pass after attaching the catalog. Warm = the identical {suite.N_QUERIES} "
+        "statements run again immediately. Attach is timed separately and excluded from both "
+        "totals.",
         "",
     ]
 
@@ -143,25 +161,28 @@ def write_results_md(run: Run, rows: list[dict], table, path: Path) -> None:
         cells = " | ".join(by_query[query].get(e, "—") for e in engines)
         lines.append(f"| Q{query} | {cells} |")
 
+    results_dir, csv = Path(suite.RESULTS_DIR), Path(suite.CSV)
     lines += [
         "",
         "## History",
         "",
         f"{table.num_rows:,} timed statements across "
         f"{len(set(table.column('run_id').to_pylist()))} runs.",
-        "Raw data: one immutable JSON per run under [`results/`](../results/), "
-        "flattened to [`data/tpch_results.csv`](data/tpch_results.csv).",
+        f"Raw data: one immutable JSON per run under [`{suite.RESULTS_DIR}/`]"
+        f"({_rel(results_dir, path.parent)}/), "
+        f"flattened to [`{_rel(csv, Path('docs'))}`]({_rel(csv, path.parent)}).",
         "",
     ]
+    path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
-def write_step_summary(run: Run, rows: list[dict]) -> None:
+def write_step_summary(run: Run, rows: list[dict], suite) -> None:
     target = os.environ.get("GITHUB_STEP_SUMMARY")
     if not target:
         return
     lines = [
-        f"## TPC-H SF {run.sf} — {run.cpu} vCPU, {run.mem_gb} GB",
+        f"## {suite.TITLE} SF {run.sf} — {run.cpu} vCPU, {run.mem_gb} GB",
         "",
         *_table(rows),
         "",
@@ -172,16 +193,20 @@ def write_step_summary(run: Run, rows: list[dict]) -> None:
 
 
 def main() -> int:
+    suite = suite_class()
     parts_dir = Path(sys.argv[1] if len(sys.argv) > 1 else "parts")
-    results_dir = Path("results")
-    docs = Path("docs")
-    sf = int(os.environ.get("TPCH_SF", "10"))
+    results_dir = Path(suite.RESULTS_DIR)
+    docs = Path(suite.DOCS_DIR)
+    csv = Path(suite.CSV)
+    # Off the class, not `from_env`: this job has no Fabric secrets to build a config from.
+    sf = int(os.environ.get(suite.SF_ENV, str(suite.HEADLINE_SF)))
 
     run = merge(parts_dir, sf)
-    rows = summarize(run)
+    run.test = suite.TEST
+    rows = summarize(run, suite.ENGINES)
 
     if not any_engine_produced_a_measurement(run):
-        write_step_summary(run, rows)
+        write_step_summary(run, rows, suite)
         print(
             "::error::every statement failed on every engine -- nothing was measured, so no "
             "results file is being committed. Read the per-engine logs in the artifacts."
@@ -192,25 +217,34 @@ def main() -> int:
     print(f"wrote {run_path}")
 
     table = load_all(results_dir)
-    write_csv(table, docs / "data" / "tpch_results.csv")
+    write_csv(table, csv)
 
     # The charts and RESULTS.md are the HEADLINE_SF view; a run at another scale is recorded
     # (the JSON above, the CSV, the step summary) and rewrites neither. etl_publish.py says why.
-    if sf == HEADLINE_SF:
+    if sf == suite.HEADLINE_SF:
         subtitle = (
-            f"TPC-H SF {run.sf} · {run.cpu} vCPU {run.mem_gb:.0f} GB · "
+            f"{suite.TITLE} SF {run.sf} · {run.cpu} vCPU {run.mem_gb:.0f} GB · "
             f"{run.run_started_at[:10]} · OneLake Iceberg REST catalog"
         )
-        for path in charts.render_all(table, sf, docs / "charts", subtitle):
+        per_row = math.ceil(suite.N_QUERIES / math.ceil(suite.N_QUERIES / PER_ROW_MAX))
+        for path in charts.render_all(
+            table,
+            sf,
+            docs / "charts",
+            subtitle,
+            test=suite.TEST,
+            n_queries=suite.N_QUERIES,
+            per_row=per_row,
+        ):
             print(f"wrote {path}")
-        write_results_md(run, rows, table, docs / "RESULTS.md")
+        write_results_md(run, rows, table, docs / "RESULTS.md", suite)
     else:
         print(
-            f"::notice::SF={sf} is not the headline scale ({HEADLINE_SF}): the run and the CSV "
-            "are committed; docs/charts and docs/RESULTS.md are left as they are."
+            f"::notice::SF={sf} is not the headline scale ({suite.HEADLINE_SF}): the run and the "
+            f"CSV are committed; {docs}/charts and {docs}/RESULTS.md are left as they are."
         )
-    leak_check([run_path, docs / "RESULTS.md", docs / "data" / "tpch_results.csv"])
-    write_step_summary(run, rows)
+    leak_check([run_path, docs / "RESULTS.md", csv])
+    write_step_summary(run, rows, suite)
 
     best = rows[0]
     print(f"::notice::fastest cold: {best['label']} at {best['cold']:,.1f}s")

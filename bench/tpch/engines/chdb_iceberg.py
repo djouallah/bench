@@ -85,7 +85,7 @@ class ChdbIceberg:
     <filesystem_caches>
         <onelake_cache>
             <path>{cache_dir}/onelake</path>
-            <max_size>{chdb_cache_gib(self.cfg.sf)}Gi</max_size>
+            <max_size>{chdb_cache_gib(self.cfg.estimated_gib)}Gi</max_size>
         </onelake_cache>
     </filesystem_caches>
 </clickhouse>""",
@@ -131,9 +131,8 @@ class ChdbIceberg:
             """
         )
         self._session.query(f"USE {DB}")
-        scrub.safe_print(
-            f"  chdb {self.version} attached, cache {chdb_cache_gib(self.cfg.sf)}Gi at {scratch}"
-        )
+        cache = chdb_cache_gib(self.cfg.estimated_gib)
+        scrub.safe_print(f"  chdb {self.version} attached, cache {cache}Gi at {scratch}")
 
     def execute(self, sql: str) -> int:
         """Run and count.

@@ -19,6 +19,7 @@ import os
 from dataclasses import dataclass
 
 from bench.config import ONELAKE_BLOB, Config, _env_int
+from bench.tpch.config import estimated_gib as _tpch_estimated_gib
 
 # The notebook's engines plus Spark, minus DataFusion (not a public-facing engine the way the
 # others are; dropped). Same identifiers as bench.tpch.config.ENGINES, so bench/charts.py's
@@ -66,6 +67,16 @@ class EtlConfig(Config):
     def schema(self) -> str:
         """Iceberg namespace holding this run's tables: T10, T100, T1000. Notebook parity."""
         return f"T{self.sf}"
+
+    @property
+    def estimated_gib(self) -> float:
+        """What chDB's filesystem cache is sized from (bench/tpch/config.py: chdb_cache_gib).
+
+        The ETL never had an estimate of its own: it passed its FILE COUNT through TPC-H's
+        per-SF formula, which lands the cache on the 8 GiB clamp at 100 and 1000 files. Kept as
+        that exact number so the ETL's chDB runs with the cache it always has.
+        """
+        return _tpch_estimated_gib(self.sf)
 
     @property
     def csv_relative(self) -> str:

@@ -1,4 +1,4 @@
-"""Render the TPC-H benchmark charts.
+"""Render the query-suite charts: per query, totals, trend. TPC-H and TPC-DS both come here.
 
 REPLACES cells 20-25. Four of the notebook's five charts survive in some form; one does not.
 
@@ -15,6 +15,9 @@ WHAT CHANGED AND WHY:
   which is the "who won" chart.
 * THE TREND CHART IS GUARDED. With one day of history a lineplot is a single dot, which reads as
   broken rather than as new. It renders from the second distinct day onwards.
+* THE PER-QUERY CHART WRAPS. 22 queries fit one row of grouped bars; 99 do not, so `per_row`
+  splits the query axis into stacked bands (TPC-DS: three of 33). With one band the TPC-H chart
+  is what it always was.
 
 The palette, the themes and the axis styling are bench/charts.py, shared with the ETL charts.
 """
@@ -29,8 +32,8 @@ from bench.charts import LABEL, RECENT_RUNS, THEMES, _legend, _runs_note, _save,
 from bench.tpch.config import ENGINES
 
 
-def _window(con, sf: int) -> int:
-    """Register `recent`: rows from the last RECENT_RUNS runs at this scale factor.
+def _window(con, sf: int, test: str) -> int:
+    """Register `recent`: rows from the last RECENT_RUNS runs of `test` at this scale factor.
 
     Ordered by the run timestamp rather than the id, because a GitHub run id is not monotonic
     across re-runs. Returns how many runs actually made it in, so a chart can say so.
@@ -39,9 +42,9 @@ def _window(con, sf: int) -> int:
         f"""
         CREATE OR REPLACE TEMP VIEW recent AS
         SELECT * FROM raw
-        WHERE sf = {sf} AND test = 'tpch' AND run_id IN (
+        WHERE sf = {sf} AND test = '{test}' AND run_id IN (
             SELECT run_id FROM raw
-            WHERE sf = {sf} AND test = 'tpch'
+            WHERE sf = {sf} AND test = '{test}'
             GROUP BY run_id
             ORDER BY max(run_started_at) DESC
             LIMIT {RECENT_RUNS}
@@ -63,7 +66,9 @@ def _present(con, run_type: str) -> list[str]:
     return [e for e in ENGINES if e in found]
 
 
-def per_query(con, sf: int, run_type: str, out_dir: Path, subtitle: str) -> list[Path]:
+def per_query(
+    con, sf: int, run_type: str, out_dir: Path, subtitle: str, per_row: int = 22
+) -> list[Path]:
     """Grouped bars: seconds per query, one group per query, one bar per engine.
 
     The headline chart, and the notebook's cell 21 -- except that it only ever plotted cold, so
@@ -84,6 +89,7 @@ def per_query(con, sf: int, run_type: str, out_dir: Path, subtitle: str) -> list
         if engine in data:
             data[engine][query] = dur
     queries = sorted({q for values in data.values() for q in values})
+    bands = [queries[i : i + per_row] for i in range(0, len(queries), per_row)]
 
     # Queries this engine could not complete. A missing bar and a near-zero bar look identical,
     # so a failure would otherwise read as "extremely fast" -- the opposite of the truth, and
@@ -99,56 +105,67 @@ def per_query(con, sf: int, run_type: str, out_dir: Path, subtitle: str) -> list
 
     paths = []
     for theme in THEMES.values():
-        fig, ax = plt.subplots(figsize=(18, 7))
+        fig, axes = plt.subplots(
+            len(bands),
+            1,
+            figsize=(18, 7 if len(bands) == 1 else 5.5 * len(bands) + 1.5),
+            squeeze=False,
+        )
         # A 2px surface gap between adjacent bars: total group width 0.82 of the slot.
         width = 0.82 / len(engines)
-        for index, engine in enumerate(engines):
-            offset = (index - (len(engines) - 1) / 2) * width
-            ax.bar(
-                [q + offset for q in queries],
-                [data[engine].get(q, 0.0) for q in queries],
-                width=width * 0.94,
-                color=theme["colors"][engine],
-                edgecolor=theme["surface"],
-                linewidth=1.0,
-                zorder=3,
-            )
-            for query in queries:
-                if (engine, query) in failed:
-                    ax.plot(
-                        query + offset,
-                        0,
-                        marker="x",
-                        markersize=7,
-                        markeredgewidth=1.8,
-                        color=theme["colors"][engine],
-                        zorder=5,
-                        clip_on=False,
-                    )
-        ax.set_xticks(queries)
-        ax.set_xticklabels([f"Q{q}" for q in queries])
-        ax.set_ylim(bottom=0)
-        _style(
-            ax,
-            theme,
+        for ax, band in zip(axes[:, 0], bands, strict=True):
+            for index, engine in enumerate(engines):
+                offset = (index - (len(engines) - 1) / 2) * width
+                ax.bar(
+                    [q + offset for q in band],
+                    [data[engine].get(q, 0.0) for q in band],
+                    width=width * 0.94,
+                    color=theme["colors"][engine],
+                    edgecolor=theme["surface"],
+                    linewidth=1.0,
+                    zorder=3,
+                )
+                for query in band:
+                    if (engine, query) in failed:
+                        ax.plot(
+                            query + offset,
+                            0,
+                            marker="x",
+                            markersize=7,
+                            markeredgewidth=1.8,
+                            color=theme["colors"][engine],
+                            zorder=5,
+                            clip_on=False,
+                        )
+            ax.set_xticks(band)
+            ax.set_xticklabels([f"Q{q}" for q in band])
+            ax.set_ylim(bottom=0)
+            _style(ax, theme, "", "seconds (lower is better)")
+        top, bottom = axes[0, 0], axes[-1, 0]
+        top.set_title(
             f"{run_type.title()} run, seconds per query — {subtitle}",
-            "seconds (lower is better)",
+            color=theme["primary"],
+            fontsize=13,
+            pad=14,
+            loc="left",
         )
-        _legend(ax, theme, engines)
+        _legend(top, theme, engines)
         if failed:
-            ax.text(
+            bottom.text(
                 0.0,
                 -0.13,
-                "✕ = query failed (see docs/RESULTS.md for the error)",
-                transform=ax.transAxes,
+                "✕ = query failed (see RESULTS.md for the error)",
+                transform=bottom.transAxes,
                 fontsize=9,
                 color=theme["secondary"],
             )
+        if len(bands) > 1:
+            fig.subplots_adjust(hspace=0.3)
         paths.append(_save(fig, out_dir, f"{run_type}_per_query", theme))
     return paths
 
 
-def totals(con, sf: int, out_dir: Path, subtitle: str) -> list[Path]:
+def totals(con, sf: int, out_dir: Path, subtitle: str, n_queries: int = 22) -> list[Path]:
     """Horizontal bars: total seconds per engine, cold and warm, fastest first.
 
     Replaces cell 23, which plotted warm totals against core count and then filtered to a single
@@ -208,7 +225,7 @@ def totals(con, sf: int, out_dir: Path, subtitle: str) -> list[Path]:
         ax.set_xlim(
             left=0, right=max(v for values in by_engine.values() for v in values.values()) * 1.28
         )
-        _style(ax, theme, f"Total seconds for all 22 queries — {subtitle}", "")
+        _style(ax, theme, f"Total seconds for all {n_queries} queries — {subtitle}", "")
         ax.set_xlabel("seconds (lower is better)", color=theme["secondary"], fontsize=10)
         ax.grid(axis="y", visible=False)
         ax.grid(axis="x", linestyle="--", linewidth=0.7, color=theme["grid"], alpha=0.8)
@@ -216,7 +233,7 @@ def totals(con, sf: int, out_dir: Path, subtitle: str) -> list[Path]:
     return paths
 
 
-def trend(con, sf: int, out_dir: Path, subtitle: str) -> list[Path]:
+def trend(con, sf: int, out_dir: Path, subtitle: str, test: str = "tpch") -> list[Path]:
     """Total seconds per engine over time, cold solid and warm dashed.
 
     Merges cells 22 and 24, which drew the same thing twice.
@@ -227,9 +244,9 @@ def trend(con, sf: int, out_dir: Path, subtitle: str) -> list[Path]:
     rows = con.execute(
         "SELECT substr(run_started_at, 1, 10) AS day, engine, run_type, "
         "       SUM(dur) / COUNT(DISTINCT run_id) AS dur "
-        "FROM raw WHERE sf=? AND test='tpch' AND phase='query' AND status='ok' "
+        "FROM raw WHERE sf=? AND test=? AND phase='query' AND status='ok' "
         "GROUP BY day, engine, run_type ORDER BY day",
-        [sf],
+        [sf, test],
     ).fetchall()
     days = sorted({row[0] for row in rows})
     if len(days) < 2:
@@ -275,8 +292,16 @@ def trend(con, sf: int, out_dir: Path, subtitle: str) -> list[Path]:
     return paths
 
 
-def render_all(table, sf: int, out_dir: str | Path, subtitle: str) -> list[Path]:
-    """Every chart that has data, light and dark."""
+def render_all(
+    table,
+    sf: int,
+    out_dir: str | Path,
+    subtitle: str,
+    test: str = "tpch",
+    n_queries: int = 22,
+    per_row: int = 22,
+) -> list[Path]:
+    """Every chart that has data, light and dark, for one suite (`test`) at one scale."""
     import duckdb
 
     con = duckdb.connect()
@@ -284,13 +309,13 @@ def render_all(table, sf: int, out_dir: str | Path, subtitle: str) -> list[Path]
     out_dir = Path(out_dir)
 
     # The headline charts read `recent` (the last RECENT_RUNS runs); trend still reads `raw`.
-    n = _window(con, sf)
+    n = _window(con, sf, test)
     windowed = f"{subtitle} · {_runs_note(n)}"
 
     paths: list[Path] = []
-    paths += per_query(con, sf, "cold", out_dir, windowed)
-    paths += per_query(con, sf, "warm", out_dir, windowed)
-    paths += totals(con, sf, out_dir, windowed)
-    paths += trend(con, sf, out_dir, subtitle)
+    paths += per_query(con, sf, "cold", out_dir, windowed, per_row)
+    paths += per_query(con, sf, "warm", out_dir, windowed, per_row)
+    paths += totals(con, sf, out_dir, windowed, n_queries)
+    paths += trend(con, sf, out_dir, subtitle, test)
     con.close()
     return paths

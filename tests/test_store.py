@@ -16,7 +16,8 @@ from bench.store import (
     write_engine_part,
     write_run,
 )
-from bench.tpch.config import ENGINES
+from bench.tpcds.config import TpcdsConfig
+from bench.tpch.config import ENGINES, TpchConfig
 from bench.tpch.runner import benchmark, totals
 
 
@@ -125,19 +126,23 @@ class _FailsToAttach(_Fake):
 
 def test_a_failing_query_does_not_stop_the_run():
     """Cell 15 had no try/except: one bad statement lost all 22 timings and both passes."""
-    from bench.config import Config
-
-    result = benchmark(_Fake(), Config(workspace_id="w", lakehouse_id="l", sf=10))
+    result = benchmark(_Fake(), TpchConfig(workspace_id="w", lakehouse_id="l", sf=10))
     assert result.status == "ok"
     assert len(result.rows) == 45  # 1 setup + 22 cold + 22 warm
     assert sum(1 for r in result.rows if r.status == "error") == 2  # Q22, both passes
     assert totals(result).keys() == {"cold", "warm"}
 
 
-def test_a_failing_attach_is_recorded_not_raised():
-    from bench.config import Config
+def test_the_runner_takes_the_statement_count_from_the_suite():
+    """Same runner, same fake engine, the TPC-DS config: 99 statements each pass."""
+    result = benchmark(_Fake(), TpcdsConfig(workspace_id="w", lakehouse_id="l", sf=10))
+    assert result.status == "ok"
+    assert len(result.rows) == 1 + 99 + 99
+    assert {r.query for r in result.rows if r.phase == "query"} == set(range(1, 100))
 
-    result = benchmark(_FailsToAttach(), Config(workspace_id="w", lakehouse_id="l", sf=10))
+
+def test_a_failing_attach_is_recorded_not_raised():
+    result = benchmark(_FailsToAttach(), TpchConfig(workspace_id="w", lakehouse_id="l", sf=10))
     assert result.status == "setup_failed"
     assert len(result.rows) == 1
     assert "catalog refused the token" in result.rows[0].error

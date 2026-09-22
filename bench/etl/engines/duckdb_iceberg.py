@@ -5,53 +5,21 @@ statement is the notebook's: `CREATE TABLE ... AS` over `read_csv(...)` with the
 struct, the filter and the `COLUMNS(* EXCLUDE ...)` cast -- minus its `PARTITIONED BY (year)`,
 because no engine here partitions (bench/etl/iceberg.py says why).
 
-TWO ATTACH FLAGS the TPC-H engine does not carry, both from the notebook and both about writing:
-
-* `STAGE_CREATE_TABLES false` -- OneLake does not implement staged creates, so the table is
-  created in one request instead of created-then-committed.
-* `SKIP_CREATE_TABLE_METADATA_UPDATES true` -- DuckDB follows a CREATE TABLE with a second commit
-  that updates the fresh table's metadata, and OneLake rejects that commit. This flag fully
-  initialises the metadata in the create itself. Spark's create has no such follow-up, which is
-  why the Spark engine did not need an equivalent.
-
-THE STORAGE PATH IS THE READ BENCHMARK'S: `CREATE SECRET ... access_token` plus
-`ACCESS_DELEGATION_MODE 'none'`. The parquet that CTAS writes goes out through the azure
-extension under that secret, the same way the TPC-H scans come in. Same curl transport too --
-see config.azure_transport for why that is not optional on Linux.
+THE ATTACH IS bench/duckdb_onelake.py: the two write flags the TPC-H read engine does not carry
+(`STAGE_CREATE_TABLES false`, `SKIP_CREATE_TABLE_METADATA_UPDATES true`) and the read benchmark's
+storage path, explained there. It moved out of this module when the TPC-DS generator became its
+second caller; `attach` and `CATALOG` are re-exported here so the concurrency benchmark, which
+opens a fresh connection per writer through this name, keeps working.
 """
 
 from __future__ import annotations
 
 from bench import auth, scrub
-from bench.config import ICEBERG_ENDPOINT, Config, azure_transport
+from bench.duckdb_onelake import CATALOG, attach
 from bench.etl.config import TABLE, EtlConfig
 from bench.etl.schema import COLUMNS
 
-CATALOG = "onelake"
-
-
-def attach(conn, cfg: Config, token: str) -> None:
-    """The write-capable ATTACH on one connection: transport, storage secret, the two flags.
-
-    A function rather than a line in `setup()` because the concurrency benchmark opens a fresh
-    connection per writer -- every `duckdb.connect()` is its own database, with its own secrets
-    and its own catalog attach -- and the attach has to be byte-for-byte this one.
-    """
-    conn.sql(f"""
-        SET GLOBAL azure_transport_option_type = '{azure_transport() or "default"}';
-        SET preserve_insertion_order = false;
-
-        CREATE OR REPLACE SECRET onelake_storage (
-            TYPE azure, PROVIDER access_token, ACCESS_TOKEN '{token}');
-
-        ATTACH OR REPLACE '{cfg.warehouse}' AS {CATALOG} (
-            TYPE ICEBERG,
-            ENDPOINT '{ICEBERG_ENDPOINT}',
-            TOKEN '{token}',
-            ACCESS_DELEGATION_MODE 'none',
-            STAGE_CREATE_TABLES false,
-            SKIP_CREATE_TABLE_METADATA_UPDATES true);
-    """)
+__all__ = ["CATALOG", "DuckDBIceberg", "attach"]
 
 
 class DuckDBIceberg:

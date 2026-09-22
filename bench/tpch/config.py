@@ -3,11 +3,21 @@
 All of this was bench/config.py until the ETL benchmark arrived. What both benchmarks share --
 the OneLake endpoints, the catalog-cache lifetime, the DuckDB transport rule and `Config` itself
 -- stayed there; what only the query benchmark needs is here.
+
+`TpchConfig` IS a `bench.config.Config` plus the description of the suite, as class constants:
+which tables, which SQL file, how many statements, which table carries the generation marker,
+where results and docs go. The runner, the engines, the charts and the CI scripts read those off
+the config they are handed and never import a TPC-H constant directly -- which is what lets
+bench/tpcds/config.py describe the second query suite and run it through the same runner, the
+same seven engines and the same charts.
 """
 
 from __future__ import annotations
 
 import math
+from dataclasses import dataclass
+
+from bench.config import SQL_DIR, Config
 
 ENGINES = (
     "duckdb_iceberg",
@@ -77,13 +87,44 @@ def estimated_gib(sf: int) -> float:
     return sum(PARQUET_MB_PER_SF.values()) * sf / 1024
 
 
-def chdb_cache_gib(sf: int) -> int:
-    """Size for chDB's filesystem cache.
+def chdb_cache_gib(dataset_gib: float) -> int:
+    """Size for chDB's filesystem cache, from the dataset's size in OneLake.
 
     The notebook asked for 150Gi, which was fine on a Fabric node and is 10x the runner's entire
     disk. ClickHouse does NOT check free space before filling this cache, so a max_size larger
     than the disk is an ENOSPC in the middle of a query rather than an eviction. 1.5x the dataset
     gives the warm run somewhere to hit; the clamp keeps it inside a 14GB disk with room for
-    spills and the OS.
+    spills and the OS. Takes the estimate rather than a scale factor because a TPC-DS SF is not a
+    TPC-H SF: each suite's config knows its own bytes-per-SF (`Config.estimated_gib`).
     """
-    return max(2, min(math.ceil(estimated_gib(sf) * 1.5), 8))
+    return max(2, min(math.ceil(dataset_gib * 1.5), 8))
+
+
+@dataclass(frozen=True)
+class TpchConfig(Config):
+    """The TPC-H suite: `Config` plus the constants that describe the suite.
+
+    Uppercase on purpose. These are the same for every instance and the CI publish job reads
+    them off the CLASS -- it has no Fabric secrets, so it cannot build an instance through
+    `from_env`.
+    """
+
+    TEST = "tpch"  # the `test` column in every results row
+    TITLE = "TPC-H"
+    SF_ENV = "TPCH_SF"
+    HEADLINE_SF = HEADLINE_SF
+    ENGINES = ENGINES
+    TABLES = TABLES
+    SQL_PATH = SQL_DIR / "tpch.sql"
+    N_QUERIES = 22
+    # Carries the generation-complete marker; last in generation order (see generate.py).
+    MARKER_TABLE = "supplier"
+    # smoke_catalog.py's two reads: Q1 scans lineitem whole, Q6 scans it filtered.
+    PROBE_QUERIES = (1, 6)
+    RESULTS_DIR = "results"
+    DOCS_DIR = "docs"
+    CSV = "docs/data/tpch_results.csv"
+
+    @property
+    def estimated_gib(self) -> float:
+        return estimated_gib(self.sf)

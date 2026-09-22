@@ -1,4 +1,4 @@
-"""Run the 22 statements cold, then warm, timing each.
+"""Run the suite's statements cold, then warm, timing each. TPC-H and TPC-DS both come here.
 
 REPLACES cells 15, 16 and 17.
 
@@ -41,7 +41,7 @@ def _time(fn, *args) -> tuple[float, object, Exception | None]:
 
 
 def run_pass(engine, statements: list[str], run_type: str) -> list[Row]:
-    """One full pass over the 22 statements."""
+    """One full pass over the statements."""
     rows: list[Row] = []
     for number, sql in enumerate(statements, start=1):
         duration, count, exc = _time(engine.execute, sql)
@@ -64,7 +64,7 @@ def benchmark(engine, cfg) -> EngineResult:
     the caller writes the artifact either way, so a failed engine still appears in the results
     with a reason instead of vanishing from the chart.
     """
-    statements = load(engine.name, cfg.schema, cfg.sf)
+    statements = load(engine.name, cfg.schema, cfg.sf, cfg.SQL_PATH, cfg.N_QUERIES)
     result = EngineResult(version="unknown")
 
     setup_duration, _, exc = _time(engine.setup)

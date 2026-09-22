@@ -1,4 +1,4 @@
-"""Part counts, cache sizing, and the naming that ties this repo to the Fabric notebook.
+"""Part counts, cache sizing, the suite configs, and the naming that ties this repo to the notebook.
 
 The part plan is pinned to exact numbers on purpose. It is the thing that keeps peak local disk
 proportional to PART size rather than dataset size, and a refactor that quietly returns 2 parts
@@ -11,9 +11,11 @@ from __future__ import annotations
 import pytest
 
 from bench.config import Config
+from bench.tpcds.config import TpcdsConfig
 from bench.tpch.config import (
     PART_FLOOR,
     TABLES,
+    TpchConfig,
     chdb_cache_gib,
     parts_for,
     parts_plan,
@@ -46,11 +48,20 @@ def test_plan_covers_every_table_in_generation_order():
     assert list(plan)[-1] == "supplier"
 
 
-@pytest.mark.parametrize("sf", [1, 10, 30, 100])
-def test_chdb_cache_always_fits_the_runner_disk(sf):
+@pytest.mark.parametrize("gib", [0.3, 2.7, 8.0, 27.0, 100.0])
+def test_chdb_cache_always_fits_the_runner_disk(gib):
     """ClickHouse does not check free space before filling the cache, so a max_size larger than
     the disk is an ENOSPC mid-query rather than an eviction."""
-    assert 2 <= chdb_cache_gib(sf) <= 8
+    assert 2 <= chdb_cache_gib(gib) <= 8
+
+
+def test_chdb_cache_is_sized_from_each_suites_own_estimate():
+    """A TPC-DS SF is not a TPC-H SF; both land on the same cache at SF=10 because both datasets
+    are ~3 GB there, not because the number was passed through."""
+    tpch = TpchConfig(workspace_id="w", lakehouse_id="l", sf=10)
+    tpcds = TpcdsConfig(workspace_id="w", lakehouse_id="l", sf=10)
+    assert 2 < tpch.estimated_gib < 4 and 2 < tpcds.estimated_gib < 4
+    assert chdb_cache_gib(tpch.estimated_gib) == chdb_cache_gib(tpcds.estimated_gib) == 5
 
 
 def test_schema_name_matches_the_fabric_notebook():
@@ -58,6 +69,48 @@ def test_schema_name_matches_the_fabric_notebook():
     assert Config(workspace_id="w", lakehouse_id="l", sf=1).schema == "CH0001"
     assert Config(workspace_id="w", lakehouse_id="l", sf=10).schema == "CH0010"
     assert Config(workspace_id="w", lakehouse_id="l", sf=100).schema == "CH0100"
+
+
+def test_tpcds_namespace_never_collides_with_tpch():
+    """DS0010 beside CH0010 in one lakehouse: neither suite can read the other's tables."""
+    assert TpcdsConfig(workspace_id="w", lakehouse_id="l", sf=1).schema == "DS0001"
+    assert TpcdsConfig(workspace_id="w", lakehouse_id="l", sf=10).schema == "DS0010"
+    assert TpchConfig(workspace_id="w", lakehouse_id="l", sf=10).schema == "CH0010"
+
+
+def test_each_suite_reads_its_own_scale(monkeypatch):
+    """bench.yml sets TPCH_SF and tpcds.yml sets TPCDS_SF; neither may read the other's."""
+    monkeypatch.setenv("FABRIC_WORKSPACE_ID", "w")
+    monkeypatch.setenv("FABRIC_LAKEHOUSE_ID", "l")
+    monkeypatch.setenv("TPCH_SF", "30")
+    monkeypatch.setenv("TPCDS_SF", "1")
+    assert TpchConfig.from_env().sf == 30
+    assert TpcdsConfig.from_env().sf == 1
+
+
+@pytest.mark.parametrize("suite", [TpchConfig, TpcdsConfig])
+def test_marker_table_is_last_in_generation_order(suite):
+    """The completion marker is written on the last table, so it must BE the last table."""
+    assert suite.TABLES[-1] == suite.MARKER_TABLE
+
+
+def test_tpcds_has_the_twenty_four_spec_tables():
+    assert len(TpcdsConfig.TABLES) == 24
+    assert len(set(TpcdsConfig.TABLES)) == 24
+    assert "dbgen_version" not in TpcdsConfig.TABLES  # dsdgen emits it; the spec does not have it
+    assert TpcdsConfig.TABLES[0] == "store_sales"  # largest first
+
+
+def test_suite_class_follows_bench_suite(monkeypatch):
+    from bench.suite import suite_class
+
+    monkeypatch.delenv("BENCH_SUITE", raising=False)
+    assert suite_class() is TpchConfig
+    monkeypatch.setenv("BENCH_SUITE", "tpcds")
+    assert suite_class() is TpcdsConfig
+    assert suite_class("tpch") is TpchConfig
+    with pytest.raises(ValueError, match="unknown suite"):
+        suite_class("etl")
 
 
 def test_warehouse_is_guid_over_guid():
@@ -96,7 +149,7 @@ def test_existing_data_without_a_marker_counts_as_complete():
     add_files(check_duplicate_files=False) and silently double every row count."""
     from bench.tpch.generate import is_complete
 
-    cfg = Config(workspace_id="w", lakehouse_id="l", sf=100)
+    cfg = TpchConfig(workspace_id="w", lakehouse_id="l", sf=100)
     catalog = _FakeCatalog({"CH0100.supplier": _FakeTable(files=["a.parquet"])})
     assert is_complete(catalog, cfg) is True
 
@@ -106,7 +159,7 @@ def test_an_empty_supplier_is_not_complete():
     bare table_exists() check read this as done and then benchmarked nothing."""
     from bench.tpch.generate import is_complete
 
-    cfg = Config(workspace_id="w", lakehouse_id="l", sf=10)
+    cfg = TpchConfig(workspace_id="w", lakehouse_id="l", sf=10)
     catalog = _FakeCatalog({"CH0010.supplier": _FakeTable(files=[])})
     assert is_complete(catalog, cfg) is False
 
@@ -114,7 +167,7 @@ def test_an_empty_supplier_is_not_complete():
 def test_the_marker_alone_is_enough():
     from bench.tpch.generate import COMPLETE_PROPERTY, is_complete
 
-    cfg = Config(workspace_id="w", lakehouse_id="l", sf=10)
+    cfg = TpchConfig(workspace_id="w", lakehouse_id="l", sf=10)
     catalog = _FakeCatalog(
         {
             "CH0010.supplier": _FakeTable(
@@ -128,7 +181,7 @@ def test_the_marker_alone_is_enough():
 def test_a_marker_from_a_different_sf_does_not_count():
     from bench.tpch.generate import COMPLETE_PROPERTY, is_complete
 
-    cfg = Config(workspace_id="w", lakehouse_id="l", sf=10)
+    cfg = TpchConfig(workspace_id="w", lakehouse_id="l", sf=10)
     catalog = _FakeCatalog(
         {
             "CH0010.supplier": _FakeTable(
@@ -137,6 +190,22 @@ def test_a_marker_from_a_different_sf_does_not_count():
         }
     )
     assert is_complete(catalog, cfg) is False
+
+
+def test_the_tpcds_marker_lives_on_web_site():
+    """Same two functions, different last table: the TPC-DS generator reuses the TPC-H marker."""
+    from bench.tpch.generate import COMPLETE_PROPERTY, is_complete
+
+    cfg = TpcdsConfig(workspace_id="w", lakehouse_id="l", sf=10)
+    catalog = _FakeCatalog(
+        {
+            "DS0010.web_site": _FakeTable(
+                files=[], properties={COMPLETE_PROPERTY: "10|2026-09-22T03:00:00Z"}
+            )
+        }
+    )
+    assert is_complete(catalog, cfg) is True
+    assert is_complete(_FakeCatalog({"DS0010.web_site": _FakeTable(files=[])}), cfg) is False
 
 
 def test_azure_transport_prefers_curl_off_windows(monkeypatch):

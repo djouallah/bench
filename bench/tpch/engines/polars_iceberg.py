@@ -27,7 +27,6 @@ import os
 
 from bench import auth, scrub
 from bench.config import Config
-from bench.tpch.config import TABLES
 
 
 class PolarsIceberg:
@@ -58,7 +57,7 @@ class PolarsIceberg:
         storage_options = {"bearer_token": token}
 
         self._ctx = pl.SQLContext()
-        for table in TABLES:
+        for table in self.cfg.TABLES:
             self._ctx.register(
                 f"{self.cfg.schema}.{table}",
                 pl.scan_iceberg(
@@ -66,7 +65,7 @@ class PolarsIceberg:
                     storage_options=storage_options,
                 ),
             )
-        scrub.safe_print(f"  polars {self.version} registered {len(TABLES)} tables")
+        scrub.safe_print(f"  polars {self.version} registered {len(self.cfg.TABLES)} tables")
 
     def execute(self, sql: str) -> int:
         """Run and count.

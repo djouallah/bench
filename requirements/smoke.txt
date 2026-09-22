@@ -1,1 +1,5 @@
 tpchgen-cli>=3.0.0
+# The TPC-DS smoke generates SF=1 with DuckDB's dsdgen (smoke_sql.py). For the two DuckDB engines
+# pip resolves this together with their >=2.0.0.dev0 line to the same dev wheel; for the others it
+# is one extra stable wheel that the engine under test never imports.
+duckdb>=1.5

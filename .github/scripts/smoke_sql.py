@@ -1,7 +1,8 @@
-"""PHASE 1: can this engine's SQL dialect run the 22 TPC-H queries at all?
+"""PHASE 1: can this engine's SQL dialect run the suite's queries at all?
 
-NO CREDENTIALS, NO NETWORK, NO FABRIC. TPC-H is generated locally, registered as plain parquet,
-and the engine is handed the SAME 22 statements bench.yml sends -- byte for byte, through
+NO CREDENTIALS, NO NETWORK, NO FABRIC. The suite -- TPC-H's 22 statements or TPC-DS's 99, by
+BENCH_SUITE (bench/suite.py) -- is generated locally at SF=1, registered as plain parquet, and
+the engine is handed the SAME statements the benchmark sends -- byte for byte, through
 bench/tpch/queries.py, including the per-engine identifier rewrite.
 
 WHY THIS EXISTS. Until now the only way to discover that an engine cannot parse Q22 was a full
@@ -27,6 +28,10 @@ measures, and a second code path inside them is a second thing that can drift.
 
 `execute()`, though, IS the real one -- Polars' streaming collect, chDB's JSONCompact, DuckDB's
 fetchall. That is where an engine's row counting lives, so the smoke test has to use it.
+
+TWO LOCAL GENERATORS, one per suite, each the same tool the suite's prepare job runs: tpchgen-cli
+for TPC-H, DuckDB's dsdgen for TPC-DS. Both are deterministic at SF=1, so one generation serves
+every engine and `actions/cache` makes it free after the first run.
 """
 
 from __future__ import annotations
@@ -41,12 +46,12 @@ from pathlib import Path
 
 from bench import scrub
 from bench.config import Config
+from bench.suite import suite_class
 from bench.tpch import queries
-from bench.tpch.config import TABLES
 
 # SF=1, not a token scale. The data is small enough to generate in seconds and real enough that
-# the row counts are the actual TPC-H answers -- which is what makes the cross-engine comparison
-# mean something. It also keeps Q11's `(0.0001 / {SF})` threshold at its correct value.
+# the row counts are the actual answers -- which is what makes the cross-engine comparison mean
+# something. It also keeps TPC-H Q11's `(0.0001 / {SF})` threshold at its correct value.
 SMOKE_SF = 1
 
 # Dummy GUIDs. Config wants them, phase 1 never uses them -- nothing here talks to Fabric.
@@ -54,20 +59,23 @@ SMOKE_SF = 1
 LOCAL_CFG_IDS = ("00000000-0000-0000-0000-000000000000",) * 2
 
 
-def local_config(engine: str) -> Config:
+def local_config(suite: type[Config], engine: str) -> Config:
     workspace, lakehouse = LOCAL_CFG_IDS
-    return Config(workspace_id=workspace, lakehouse_id=lakehouse, sf=SMOKE_SF, engine=engine)
+    return suite(workspace_id=workspace, lakehouse_id=lakehouse, sf=SMOKE_SF, engine=engine)
 
 
-def generate(dest: Path) -> dict[str, Path]:
-    """One parquet per table, via the tpchgen-cli already in requirements/catalog.txt.
-
-    Skips generation when the files are already there, so `actions/cache` makes this free on
-    every run after the first.
-    """
+def generate(dest: Path, suite: type[Config]) -> dict[str, Path]:
+    """One parquet per table, with the suite's own generator. Skips what is already there."""
     dest.mkdir(parents=True, exist_ok=True)
+    if suite.TEST == "tpcds":
+        return _dsdgen(dest, suite.TABLES)
+    return _tpchgen(dest, suite.TABLES)
+
+
+def _tpchgen(dest: Path, tables: tuple[str, ...]) -> dict[str, Path]:
+    """TPC-H via the tpchgen-cli already in requirements/catalog.txt."""
     paths = {}
-    for table in TABLES:
+    for table in tables:
         # EXACT filename, never a glob. `part*.parquet` also matches `partsupp.parquet`, so a
         # glob silently registered partsupp's data as `part` and eight queries died with
         # "Referenced column p_partkey not found" -- which reads like a dialect gap and is not
@@ -104,6 +112,32 @@ def generate(dest: Path) -> dict[str, Path]:
             f"in {time.perf_counter() - started:.1f}s",
             flush=True,
         )
+    return paths
+
+
+def _dsdgen(dest: Path, tables: tuple[str, ...]) -> dict[str, Path]:
+    """TPC-DS via DuckDB's dsdgen -- the generator tpcds.yml's prepare job runs, at SF=1.
+
+    dsdgen builds every table at once, so one call fills an in-memory database and each table is
+    then COPYed out to its own parquet, under the exact filename the adapters register.
+    """
+    import duckdb
+
+    from bench.tpcds.generate import load_tpcds_extension
+
+    paths = {table: dest / f"{table}.parquet" for table in tables}
+    missing = [table for table, path in paths.items() if not path.exists()]
+    if not missing:
+        return paths
+    started = time.perf_counter()
+    con = duckdb.connect()
+    load_tpcds_extension(con)
+    con.sql(f"CALL dsdgen(sf = {SMOKE_SF})")
+    print(f"  dsdgen SF={SMOKE_SF} in {time.perf_counter() - started:.1f}s", flush=True)
+    for table in missing:
+        con.sql(f"COPY {table} TO '{paths[table].as_posix()}' (FORMAT parquet)")
+        print(f"  generated {table:<22} {paths[table].stat().st_size / 1e6:6.1f} MB", flush=True)
+    con.close()
     return paths
 
 
@@ -261,8 +295,8 @@ ADAPTERS = {
 }
 
 
-def run(engine_name: str, data_dir: Path, out_dir: Path) -> int:
-    """Register locally, run all 22, write the JSON. Returns a process exit code.
+def run(engine_name: str, data_dir: Path, out_dir: Path, suite: type[Config]) -> int:
+    """Register locally, run every statement, write the JSON. Returns a process exit code.
 
     THE TWO FAILURE MODES ARE KEPT APART, because they mean opposite things:
 
@@ -270,8 +304,8 @@ def run(engine_name: str, data_dir: Path, out_dir: Path) -> int:
               local parquet, which is not a dialect result and must not be reported as one
       exit 1  one or more QUERIES failed -- the dialect gap this script exists to find
     """
-    cfg = local_config(engine_name)
-    statements = queries.load(engine_name, cfg.schema, cfg.sf)
+    cfg = local_config(suite, engine_name)
+    statements = queries.load(engine_name, cfg.schema, cfg.sf, cfg.SQL_PATH, cfg.N_QUERIES)
 
     adapter = ADAPTERS.get(engine_name)
     if adapter is None:
@@ -282,18 +316,21 @@ def run(engine_name: str, data_dir: Path, out_dir: Path) -> int:
         return 2
 
     print(
-        f"\n{engine_name} | local SF={SMOKE_SF} | schema {cfg.schema} | "
+        f"\n{engine_name} | {suite.TITLE} local SF={SMOKE_SF} | schema {cfg.schema} | "
         f"style {queries.style_for(engine_name)}",
         flush=True,
     )
 
     started = time.perf_counter()
     try:
-        engine = adapter(cfg, generate(data_dir))
+        engine = adapter(cfg, generate(data_dir, suite))
     except Exception as exc:  # noqa: BLE001 - reporting failures is this script's job
         print(f"::error::{engine_name} local registration failed: {scrub.scrub_exc(exc, 600)}")
         return 2
-    print(f"  registered {len(TABLES)} tables in {time.perf_counter() - started:.1f}s", flush=True)
+    print(
+        f"  registered {len(suite.TABLES)} tables in {time.perf_counter() - started:.1f}s",
+        flush=True,
+    )
 
     rows, failed = [], 0
     try:
@@ -321,6 +358,7 @@ def run(engine_name: str, data_dir: Path, out_dir: Path) -> int:
     payload = {
         "engine": engine_name,
         "version": engine.version,
+        "suite": suite.TEST,
         "sf": SMOKE_SF,
         "phase": "sql",
         "rows": rows,
@@ -330,11 +368,13 @@ def run(engine_name: str, data_dir: Path, out_dir: Path) -> int:
     ok = len(statements) - failed
     print(f"\n{engine_name} {engine.version}: {ok}/{len(statements)} queries ran", flush=True)
     if failed:
-        print(f"::error::{engine_name} cannot run {failed} of {len(statements)} TPC-H queries")
+        print(
+            f"::error::{engine_name} cannot run {failed} of {len(statements)} {suite.TITLE} queries"
+        )
     return 1 if failed else 0
 
 
-def compare(out_dir: Path) -> int:
+def compare(out_dir: Path, suite: type[Config]) -> int:
     """Every engine saw the same bytes, so every engine must agree on every row count.
 
     Runs after the matrix, over the downloaded artifacts. Only compares queries that SUCCEEDED
@@ -355,7 +395,7 @@ def compare(out_dir: Path) -> int:
     print(f"comparing row counts across {len(results)}: {', '.join(sorted(results))}")
 
     disagreements = 0
-    for number in range(1, queries.N_QUERIES + 1):
+    for number in range(1, suite.N_QUERIES + 1):
         counts = {e: r[number] for e, r in results.items() if number in r}
         if len(set(counts.values())) > 1:
             disagreements += 1
@@ -370,13 +410,14 @@ def compare(out_dir: Path) -> int:
 
 
 if __name__ == "__main__":
+    suite = suite_class()
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("engine", nargs="?", help="engine name, e.g. duckdb_iceberg")
     parser.add_argument(
         "--data",
-        default="tpch-local",
+        default=Path(f"{suite.TEST}-local"),
         type=Path,
-        help="where the local parquet lives (cached in CI)",
+        help="where the local parquet lives (cached in CI); tpch-local or tpcds-local",
     )
     parser.add_argument("--out", default="smoke", type=Path, help="where to write the JSON")
     parser.add_argument(
@@ -387,7 +428,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.compare:
-        sys.exit(compare(args.out))
+        sys.exit(compare(args.out, suite))
     if not args.engine:
         parser.error("an engine name is required unless --compare is given")
-    sys.exit(run(args.engine, args.data, args.out))
+    sys.exit(run(args.engine, args.data, args.out, suite))
