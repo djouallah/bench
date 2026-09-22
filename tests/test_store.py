@@ -141,6 +141,31 @@ def test_the_runner_takes_the_statement_count_from_the_suite():
     assert {r.query for r in result.rows if r.phase == "query"} == set(range(1, 100))
 
 
+def test_refresh_runs_once_between_the_passes_and_only_if_the_engine_has_one():
+    """Spark's credential outlives nothing; the other engines never grow a stub for it.
+
+    Both halves matter: called exactly once (a per-query refresh would be in the timed window)
+    and only where it exists (`_Fake` has no `refresh`, and benchmark() must not care).
+    """
+    calls = []
+
+    class _Refreshes(_Fake):
+        def execute(self, sql):
+            calls.append(("query", len(calls)))
+            return 7
+
+        def refresh(self):
+            calls.append(("refresh", len(calls)))
+
+    result = benchmark(_Refreshes(), TpchConfig(workspace_id="w", lakehouse_id="l", sf=10))
+    assert result.status == "ok"
+    kinds = [kind for kind, _ in calls]
+    assert kinds.count("refresh") == 1
+    assert kinds.index("refresh") == 22  # after the cold pass, before the first warm statement
+
+    benchmark(_Fake(), TpchConfig(workspace_id="w", lakehouse_id="l", sf=10))  # no refresh: fine
+
+
 def test_a_failing_attach_is_recorded_not_raised():
     result = benchmark(_FailsToAttach(), TpchConfig(workspace_id="w", lakehouse_id="l", sf=10))
     assert result.status == "setup_failed"

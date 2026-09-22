@@ -55,6 +55,15 @@ class Engine(Protocol):
         """Run one statement to completion and return its row count."""
         ...
 
+    def refresh(self) -> None:
+        """OPTIONAL. Renew whatever the engine captured at setup, between the two passes.
+
+        Not part of the measurement and not timed: the one engine that implements it (Spark)
+        does so because its catalog bearer is a fixed string and a long suite outlives it.
+        `bench/tpch/runner.py` calls it only if it exists, so no other engine needs a stub.
+        """
+        ...
+
     def close(self) -> None:
         """Release whatever the engine holds. Must be safe to call twice."""
         ...

@@ -87,6 +87,15 @@ def benchmark(engine, cfg) -> EngineResult:
 
     try:
         result.rows += run_pass(engine, statements, "cold")
+        # OPTIONAL, AND ONLY SPARK IMPLEMENTS IT: an engine whose credential is a fixed string
+        # gets one chance here to replace it. TPC-DS at SF=10 takes Spark longer than an Entra
+        # token lives, so without this its warm pass fails on authorization rather than on
+        # anything it measures. Engines without a `refresh` are untouched.
+        # getattr, not try/except AttributeError: the latter would also swallow an AttributeError
+        # raised INSIDE a refresh, which is a bug and should be seen.
+        refresh = getattr(engine, "refresh", None)
+        if refresh is not None:
+            refresh()
         # The SAME statements again, immediately. Whatever the engine cached -- chDB's filesystem
         # cache, DuckDB's buffer pool, the OS page cache -- is what the warm numbers measure.
         result.rows += run_pass(engine, statements, "warm")

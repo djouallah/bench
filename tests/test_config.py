@@ -8,6 +8,9 @@ of disk, twenty minutes in.
 
 from __future__ import annotations
 
+import re
+from pathlib import Path
+
 import pytest
 
 from bench.config import Config
@@ -99,6 +102,38 @@ def test_tpcds_has_the_twenty_four_spec_tables():
     assert len(set(TpcdsConfig.TABLES)) == 24
     assert "dbgen_version" not in TpcdsConfig.TABLES  # dsdgen emits it; the spec does not have it
     assert TpcdsConfig.TABLES[0] == "store_sales"  # largest first
+
+
+def test_tpcds_runs_a_subset_of_the_tpch_engines():
+    """Fewer engines, but only ones TPC-H also knows -- the charts key off shared identifiers.
+
+    The exclusions are measured (bench/tpcds/config.py names the runs); what this guards is that
+    dropping one never invents a NEW engine id, which would reach bench/charts.py with no label
+    and no colour.
+    """
+    assert set(TpcdsConfig.ENGINES) < set(TpchConfig.ENGINES)
+    assert TpcdsConfig.ENGINES[-1] == "duckdb_nocache_iceberg"  # legend order, as in TPC-H
+
+
+def test_workflow_defaults_dispatch_only_engines_their_suite_lists():
+    """Each workflow hardcodes its engine list twice; nothing in it may be off the suite's roll.
+
+    An engine the suite does not list writes a part file publish.py never reads, so the run
+    spends a job on it and then drops it from the results. A workflow may list FEWER than the
+    suite -- bench.yml leaves Daft out over Eventual-Inc/Daft#7532 while TPC-H's ENGINES keeps it
+    for the ETL charts -- and tpcds.yml lists its three exactly.
+    """
+    root = Path(__file__).resolve().parent.parent
+    for workflow, suite in (("tpcds.yml", TpcdsConfig), ("bench.yml", TpchConfig)):
+        text = (root / ".github" / "workflows" / workflow).read_text(encoding="utf-8")
+        listed = re.findall(r"(?:default: |inputs\.engines \|\| ')([a-z_,]*iceberg)", text)
+        assert len(listed) == 2, workflow
+        assert listed[0] == listed[1], workflow  # the input default and the plan step's fallback
+        for value in listed:
+            assert set(value.split(",")) <= set(suite.ENGINES), (workflow, value)
+    text = (root / ".github" / "workflows" / "tpcds.yml").read_text(encoding="utf-8")
+    listed = re.findall(r"(?:default: |inputs\.engines \|\| ')([a-z_,]*iceberg)", text)
+    assert sorted(listed[0].split(",")) == sorted(TpcdsConfig.ENGINES)
 
 
 def test_suite_class_follows_bench_suite(monkeypatch):

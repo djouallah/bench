@@ -41,6 +41,7 @@ from __future__ import annotations
 
 import os
 import threading
+import time
 from pathlib import Path
 
 from bench import auth, scrub
@@ -70,6 +71,58 @@ PACKAGES = (
 
 ASSERTION_REFRESH_S = 240
 
+# HOW LONG A COLD PASS MAY RUN BEFORE THE CATALOG BEARER IS REPLACED (see `refresh`). An Entra
+# access token lives 60-90 minutes and the warm pass costs about what the cold one did, so a cold
+# pass over half an hour is the signal that the second half of the run would outlive the token.
+# Under it -- every TPC-H run, and TPC-DS at SF=1 -- nothing happens at all, which keeps those
+# numbers comparable with every run published before this existed.
+TOKEN_AT_RISK_AFTER_S = 30 * 60
+
+
+def _catalog_conf(name: str, warehouse: str) -> dict[str, str]:
+    """Every `spark.sql.catalog.<name>.*` key, as a dict rather than a builder chain.
+
+    A dict because these keys are set TWICE: once on the builder in `setup`, and once through
+    `spark.conf.set` in `refresh`, which registers a SECOND catalog mid-run. Spark's
+    CatalogManager loads a catalog plugin by reading these keys out of the live SQLConf the first
+    time the name is used, so a runtime `conf.set` is all it takes -- there is no other supported
+    way to change a catalog's options once its instance is cached.
+    """
+    prefix = f"spark.sql.catalog.{name}"
+    return {
+        prefix: "org.apache.iceberg.spark.SparkCatalog",
+        f"{prefix}.type": "rest",
+        f"{prefix}.uri": ICEBERG_ENDPOINT,
+        f"{prefix}.warehouse": warehouse,
+        # rest.auth.type=none + a literal header, NOT the `token` property. Setting `token`
+        # selects Iceberg's OAuth2 manager, whose token-refresh-enabled defaults to TRUE and
+        # which then calls POST <uri>/v1/oauth/tokens -- an endpoint Fabric's own /v1/config
+        # does not advertise. The catalog is metadata-only and read-only.
+        #
+        # The cost of that choice is that the bearer is a STRING, fixed for the life of the
+        # catalog instance. See `refresh`.
+        f"{prefix}.rest.auth.type": "none",
+        f"{prefix}.header.Authorization": f"Bearer {auth.onelake_token()}",
+        # PIN THE FileIO. Iceberg's ResolvingFileIO maps abfss:// to ADLSFileIO when
+        # iceberg-azure is on the classpath, and ADLSFileIO uses the Azure SDK -- it ignores
+        # every fs.azure.* key in `setup` and fails with a credential error that looks nothing
+        # like a classpath problem. HadoopFileIO is what routes reads through the provider.
+        f"{prefix}.io-impl": "org.apache.iceberg.hadoop.HadoopFileIO",
+        # Iceberg's catalog cache expires after 30 SECONDS by default, so across 44 statements
+        # Spark alone would keep re-resolving tables over REST while the others answer from
+        # cache. See config.CATALOG_CACHE_SECONDS.
+        f"{prefix}.cache-enabled": "true",
+        f"{prefix}.cache.expiration-interval-ms": str(CATALOG_CACHE_SECONDS * 1000),
+        # THE CATALOG CACHE KEEPS THE TABLE OBJECT, NOT ITS MANIFESTS. Scan planning still
+        # fetches the manifest list and every manifest over ABFS for each statement -- a cold
+        # open() (HEAD + GET) on a small file, times up to 8 tables per query. That is the ~5s
+        # floor under Q11, Q16 and Q22, which touch no lineitem at all. Off by default in
+        # Iceberg; same 15-minute lifetime as the catalog cache, so it is still one number for
+        # every engine.
+        f"{prefix}.io.manifest.cache-enabled": "true",
+        f"{prefix}.io.manifest.cache.expiration-interval-ms": str(CATALOG_CACHE_SECONDS * 1000),
+    }
+
 
 class PysparkIceberg:
     name = "pyspark_iceberg"
@@ -80,6 +133,9 @@ class PysparkIceberg:
         self._stop = threading.Event()
         self._refresher: threading.Thread | None = None
         self._assertion: Path | None = None
+        # Names the catalogs `refresh` registers; onelake_1, onelake_2, ... after the first.
+        self._catalogs = 1
+        self._setup_at = 0.0
 
     @property
     def version(self) -> str:
@@ -178,48 +234,10 @@ class PysparkIceberg:
             # were parse errors. With ANSI mode (Spark 4's default) this flag makes the parser
             # standard on that one point. It changes no plan and no TPC-H statement.
             .config("spark.sql.ansi.doubleQuotedIdentifiers", "true")
-            .config("spark.sql.catalog." + CATALOG, "org.apache.iceberg.spark.SparkCatalog")
-            .config(f"spark.sql.catalog.{CATALOG}.type", "rest")
-            .config(f"spark.sql.catalog.{CATALOG}.uri", ICEBERG_ENDPOINT)
-            .config(f"spark.sql.catalog.{CATALOG}.warehouse", self.cfg.warehouse)
-            # rest.auth.type=none + a literal header, NOT the `token` property. Setting `token`
-            # selects Iceberg's OAuth2 manager, whose token-refresh-enabled defaults to TRUE and
-            # which then calls POST <uri>/v1/oauth/tokens -- an endpoint Fabric's own /v1/config
-            # does not advertise. The catalog is metadata-only and read-only.
-            .config(f"spark.sql.catalog.{CATALOG}.rest.auth.type", "none")
-            .config(
-                f"spark.sql.catalog.{CATALOG}.header.Authorization",
-                f"Bearer {auth.onelake_token()}",
-            )
-            # PIN THE FileIO. Iceberg's ResolvingFileIO maps abfss:// to ADLSFileIO when
-            # iceberg-azure is on the classpath, and ADLSFileIO uses the Azure SDK -- it ignores
-            # every fs.azure.* key above and fails with a credential error that looks nothing
-            # like a classpath problem. HadoopFileIO is what routes reads through the provider.
-            .config(
-                f"spark.sql.catalog.{CATALOG}.io-impl",
-                "org.apache.iceberg.hadoop.HadoopFileIO",
-            )
-            # Iceberg's catalog cache expires after 30 SECONDS by default, so across 44
-            # statements Spark alone would keep re-resolving tables over REST while the others
-            # answer from cache. See config.CATALOG_CACHE_SECONDS.
-            .config(f"spark.sql.catalog.{CATALOG}.cache-enabled", "true")
-            .config(
-                f"spark.sql.catalog.{CATALOG}.cache.expiration-interval-ms",
-                str(CATALOG_CACHE_SECONDS * 1000),
-            )
-            # THE CATALOG CACHE KEEPS THE TABLE OBJECT, NOT ITS MANIFESTS. Scan planning still
-            # fetches the manifest list and every manifest over ABFS for each of the 44
-            # statements -- a cold open() (HEAD + GET) on a small file, times up to 8 tables per
-            # query. That is the ~5s floor under Q11, Q16 and Q22, which touch no lineitem at all.
-            # Off by default in Iceberg; same 15-minute lifetime as the catalog cache, so it is
-            # still one number for every engine.
-            .config(f"spark.sql.catalog.{CATALOG}.io.manifest.cache-enabled", "true")
-            .config(
-                f"spark.sql.catalog.{CATALOG}.io.manifest.cache.expiration-interval-ms",
-                str(CATALOG_CACHE_SECONDS * 1000),
-            )
             .config("spark.sql.defaultCatalog", CATALOG)
         )
+        for key, value in _catalog_conf(CATALOG, self.cfg.warehouse).items():
+            builder = builder.config(key, value)
         for key, value in abfs.items():
             # Account-scoped AND unscoped: Fabric's own table metadata mixes schemes, with
             # abfss:// in `location` and abfs:// in the `write.data.path` property, and the
@@ -243,6 +261,7 @@ class PysparkIceberg:
         }.items():
             builder = builder.config(f"spark.hadoop.{key}", value)
 
+        self._setup_at = time.monotonic()
         self._spark = builder.getOrCreate()
         self._spark.catalog.setCurrentCatalog(CATALOG)
 
@@ -251,6 +270,47 @@ class PysparkIceberg:
             f"  pyspark {self.version} on hadoop {hadoop}, catalog {CATALOG} "
             f"(local[4], {os.environ.get('SPARK_DRIVER_MEMORY', 'default')} driver heap)"
         )
+
+    def refresh(self) -> None:
+        """Hand Spark a FRESH catalog bearer between the cold and warm passes.
+
+        THE ONLY ENGINE THAT NEEDS THIS, and only because it is the only one whose run outlives
+        its token. An Entra access token lives about an hour; TPC-DS at SF=10 costs Spark ~42
+        minutes cold, so the warm pass starts with minutes left on the clock and ends without
+        one. Run 35732997698 is what that looks like: a clean cold pass, then 21 statements
+        failing `NotAuthorizedException` from the REST catalog while the ABFS reads -- which DO
+        refresh, off the assertion file -- carried on fine.
+
+        The bearer is baked into the catalog instance (see `_catalog_conf`), and Iceberg gives no
+        way to replace it. So this registers a SECOND catalog, same warehouse, new token, and
+        makes it current: the statements are schema-qualified, never catalog-qualified, so they
+        follow `setCurrentCatalog` without being rewritten.
+
+        WHAT IT COSTS THE MEASUREMENT, and why it is gated on TOKEN_AT_RISK_AFTER_S rather than
+        done every run: a new catalog starts with empty catalog and manifest caches. Past half an
+        hour of cold pass that is free -- both caches expire after CATALOG_CACHE_SECONDS (15 min),
+        so Spark is re-resolving over REST throughout anyway -- but under it the warm pass would
+        lose a cache it still had. TPC-H at every scale, and TPC-DS at SF=1, are under it and take
+        this branch not at all, so their numbers stay comparable with runs published before this.
+
+        Best-effort by design: a failure here is printed and the warm pass runs on the old
+        catalog, which is exactly today's behaviour.
+        """
+        if self._spark is None:
+            return
+        elapsed = time.monotonic() - self._setup_at
+        if elapsed < TOKEN_AT_RISK_AFTER_S:
+            return
+        name = f"{CATALOG}_{self._catalogs}"
+        self._catalogs += 1
+        try:
+            for key, value in _catalog_conf(name, self.cfg.warehouse).items():
+                self._spark.conf.set(key, value)
+            self._spark.catalog.setCurrentCatalog(name)
+        except Exception as exc:  # noqa: BLE001 - never lose a pass over a token refresh
+            scrub.safe_print(f"  warning: catalog refresh failed: {scrub.scrub_exc(exc, 200)}")
+        else:
+            scrub.safe_print(f"  catalog {name}: new bearer")
 
     def execute(self, sql: str) -> int:
         return len(self._spark.sql(sql).collect())

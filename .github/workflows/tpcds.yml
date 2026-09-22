@@ -1,8 +1,9 @@
 name: tpcds bench
 
 # THE SECOND QUERY SUITE: the same job graph as bench.yml, on TPC-DS's 24 tables and 99
-# statements, with the same seven engines and the same shared scripts (BENCH_SUITE=tpcds picks
-# the suite, bench/suite.py).
+# statements and the same shared scripts (BENCH_SUITE=tpcds picks the suite, bench/suite.py).
+# It runs FEWER ENGINES than bench.yml -- three of TPC-H's seven cannot answer TPC-DS at SF=10
+# at all, and bench/tpcds/config.py's ENGINES says which and on what evidence.
 #
 #   prepare  ->  bench (matrix, one engine at a time)  ->  publish
 #
@@ -27,7 +28,7 @@ on:
       engines:
         description: Comma-separated engines to run.
         type: string
-        default: duckdb_iceberg,duckdb_nocache_iceberg,chdb_iceberg,polars_iceberg,lakesail_iceberg,pyspark_iceberg
+        default: duckdb_iceberg,duckdb_nocache_iceberg,pyspark_iceberg
       regenerate:
         description: Drop and rewrite the namespace even if it is marked complete.
         type: boolean
@@ -91,7 +92,7 @@ jobs:
         # The matrix needs a JSON array; the input is a human-friendly CSV. `started` is stamped
         # once here so every artifact in the run shares one timestamp.
         run: |
-          ENGINES=$(printf '%s' "${{ inputs.engines || 'duckdb_iceberg,duckdb_nocache_iceberg,chdb_iceberg,polars_iceberg,lakesail_iceberg,pyspark_iceberg' }}" \
+          ENGINES=$(printf '%s' "${{ inputs.engines || 'duckdb_iceberg,duckdb_nocache_iceberg,pyspark_iceberg' }}" \
             | jq -Rc 'split(",") | map(sub("^\\s+";"") | sub("\\s+$";"")) | map(select(length > 0))')
           echo "engines=$ENGINES" >> "$GITHUB_OUTPUT"
           echo "started=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_OUTPUT"
@@ -120,12 +121,16 @@ jobs:
       || matrix.engine == 'pyspark_iceberg' && '✨ Spark-OSS'
       || matrix.engine }}
     runs-on: ubuntu-latest
-    # LONGER THAN bench.yml's 50. 99 statements twice is four and a half times TPC-H's 44, and
-    # at SF=1 Sail already took 16 minutes and Spark 7. The token baked into DuckDB's ATTACH,
-    # chDB's CREATE DATABASE and Sail's env var lives 60-90 minutes; past it a query fails with a
-    # 401 and is RECORDED as an error, whereas the job cap kills the process before it writes its
-    # part and the engine vanishes from the run. A 401 is a result; a lost part is not.
-    timeout-minutes: 85
+    # LONGER THAN bench.yml's 50, and longer than the 85 that cost run 35732997698 its Spark
+    # numbers: 99 statements twice is four and a half times TPC-H's 44, and Spark at SF=10 spends
+    # 42 minutes on the cold pass alone. It was killed at Q97 of the warm pass -- 85 minutes in,
+    # with the whole run all but done and no part written, so the engine vanished from the
+    # results entirely. The job cap must sit clear of the slowest engine, not on top of it.
+    #
+    # Token lifetime is a separate clock and no longer collides with this one: the bearer baked
+    # into DuckDB's ATTACH lives 60-90 minutes, which is far more than either DuckDB needs, and
+    # Spark now re-issues its own between the passes (pyspark_iceberg.refresh).
+    timeout-minutes: 150
     permissions:
       id-token: write
       contents: read
