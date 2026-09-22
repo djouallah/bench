@@ -1,0 +1,3 @@
+# Same stack as pyspark_iceberg; the Gluten/Velox bundle is a nightly jar fetched at engine setup
+# (bench/tpch/engines/pyspark_gluten_iceberg.py), not pip-installed.
+-r pyspark_iceberg.txt

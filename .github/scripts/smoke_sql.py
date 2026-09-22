@@ -263,7 +263,7 @@ def _daft(cfg: Config, paths: dict[str, Path]):
     return engine
 
 
-def _pyspark(cfg: Config, paths: dict[str, Path]):
+def _pyspark(cfg: Config, paths: dict[str, Path], extra: dict[str, str] | None = None):
     from pyspark.sql import SparkSession
 
     from bench.tpch.engines.pyspark_iceberg import PysparkIceberg
@@ -271,15 +271,17 @@ def _pyspark(cfg: Config, paths: dict[str, Path]):
     engine = PysparkIceberg(cfg)
     # No jars, no catalog, no credentials -- the point of phase 1 is the dialect alone. Only
     # the settings that shape EXECUTION are carried over from the real setup().
-    engine._spark = (
+    builder = (
         SparkSession.builder.master("local[4]")
         .appName("bench-smoke")
         .config("spark.sql.shuffle.partitions", "8")
         # A PARSER setting, so it belongs in the dialect check. The engine module says why the
         # benchmark sets it.
         .config("spark.sql.ansi.doubleQuotedIdentifiers", "true")
-        .getOrCreate()
     )
+    for key, value in (extra or {}).items():
+        builder = builder.config(key, value)
+    engine._spark = builder.getOrCreate()
     engine._spark.sql(f"CREATE DATABASE IF NOT EXISTS {cfg.schema}")
     for table, path in paths.items():
         # `USING parquet OPTIONS (path ...)`, NOT a view over a temp view: Spark refuses to
@@ -295,6 +297,14 @@ def _pyspark(cfg: Config, paths: dict[str, Path]):
     return engine
 
 
+def _pyspark_gluten(cfg: Config, paths: dict[str, Path]):
+    # Unlike the file cache, Gluten changes EXECUTION -- a different engine computes every row --
+    # so phase 1 loads the plugin, and `compare` checks Velox's answers against everyone else's.
+    from bench.tpch.engines.pyspark_gluten_iceberg import gluten_conf
+
+    return _pyspark(cfg, paths, gluten_conf())
+
+
 ADAPTERS = {
     "duckdb_iceberg": _duckdb,
     # The adapter bypasses setup(), where the one difference lives, and reads local parquet: the
@@ -307,6 +317,7 @@ ADAPTERS = {
     "pyspark_iceberg": _pyspark,
     # Phase 1 reads local parquet; the file cache only exists on the abfss:// path.
     "pyspark_alluxio_iceberg": _pyspark,
+    "pyspark_gluten_iceberg": _pyspark_gluten,
 }
 
 
