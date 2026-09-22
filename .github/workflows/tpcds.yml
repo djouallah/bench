@@ -120,11 +120,12 @@ jobs:
       || matrix.engine == 'pyspark_iceberg' && '✨ Spark-OSS'
       || matrix.engine }}
     runs-on: ubuntu-latest
-    # The Entra token is baked into DuckDB's ATTACH, chDB's CREATE DATABASE and Sail's env var,
-    # and none of them ever asks for a new one. 50 minutes keeps the whole job inside the
-    # lifetime of the token it was handed -- and 99 statements twice is a longer job than 22
-    # twice, so an engine that cannot finish inside it reports what it did finish.
-    timeout-minutes: 50
+    # LONGER THAN bench.yml's 50. 99 statements twice is four and a half times TPC-H's 44, and
+    # at SF=1 Sail already took 16 minutes and Spark 7. The token baked into DuckDB's ATTACH,
+    # chDB's CREATE DATABASE and Sail's env var lives 60-90 minutes; past it a query fails with a
+    # 401 and is RECORDED as an error, whereas the job cap kills the process before it writes its
+    # part and the engine vanishes from the run. A 401 is a result; a lost part is not.
+    timeout-minutes: 85
     permissions:
       id-token: write
       contents: read
