@@ -55,8 +55,17 @@ def gluten_conf() -> dict[str, str]:
     """
     os.environ["SPARK_DRIVER_MEMORY"] = HEAP
     return {
-        "spark.jars": str(fetch_gluten_jar()),
+        # THE APP CLASSPATH, NOT spark.jars. ColumnarShuffleManager lives in Spark's own
+        # org.apache.spark.shuffle.sort package and calls package-private classes there; loaded
+        # through spark.jars' child classloader it is a different runtime package, and every
+        # shuffle died with IllegalAccessError on BypassMergeSortShuffleWriter.
+        "spark.driver.extraClassPath": str(fetch_gluten_jar()),
         "spark.plugins": "org.apache.gluten.GlutenPlugin",
+        # ANSI IS SPARK 4'S DEFAULT, and Gluten's default answer to it is to fall back WHOLESALE:
+        # every node of every plan tagged "does not support ansi mode", so Velox ran nothing.
+        # Turning ANSI off would change semantics against stock Spark (and doubleQuotedIdentifiers
+        # only works under ANSI); this asks Velox to execute ANSI instead.
+        "spark.gluten.sql.ansiFallback.enabled": "false",
         "spark.memory.offHeap.enabled": "true",
         "spark.memory.offHeap.size": OFF_HEAP,
         "spark.shuffle.manager": "org.apache.spark.shuffle.sort.ColumnarShuffleManager",
