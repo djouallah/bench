@@ -172,6 +172,12 @@ class PysparkIceberg:
             # max(spark.default.parallelism, spark.sql.shuffle.partitions) -- so raising that one
             # would ALSO multiply the scan task count and shrink every split. One knob, one job.
             .config("spark.sql.adaptive.coalescePartitions.initialPartitionNum", "64")
+            # DOUBLE QUOTES ARE IDENTIFIERS, as in the SQL standard and every other engine here.
+            # Spark's default reads "order count" as a STRING literal, so eight TPC-DS statements
+            # that alias a column `AS "order count"` or `AS "30 days"` -- the spec's own text --
+            # were parse errors. With ANSI mode (Spark 4's default) this flag makes the parser
+            # standard on that one point. It changes no plan and no TPC-H statement.
+            .config("spark.sql.ansi.doubleQuotedIdentifiers", "true")
             .config("spark.sql.catalog." + CATALOG, "org.apache.iceberg.spark.SparkCatalog")
             .config(f"spark.sql.catalog.{CATALOG}.type", "rest")
             .config(f"spark.sql.catalog.{CATALOG}.uri", ICEBERG_ENDPOINT)

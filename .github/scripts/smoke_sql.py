@@ -30,8 +30,12 @@ measures, and a second code path inside them is a second thing that can drift.
 fetchall. That is where an engine's row counting lives, so the smoke test has to use it.
 
 TWO LOCAL GENERATORS, one per suite, each the same tool the suite's prepare job runs: tpchgen-cli
-for TPC-H, DuckDB's dsdgen for TPC-DS. Both are deterministic at SF=1, so one generation serves
-every engine and `actions/cache` makes it free after the first run.
+for TPC-H, DuckDB's dsdgen for TPC-DS. GENERATED ONCE, by smoke.yml's plan job (`--generate`),
+and read from the cache by every engine job. Not a shortcut: dsdgen's output differs between
+DuckDB builds (the 2.0 nightly the DuckDB engines run and stable 1.5 give the same row counts
+and different values), and the first TPC-DS run let each engine job generate its own copy --
+so `compare` reported 18 disagreements that were about data, not SQL. The engine jobs fail on
+a cache miss rather than generate, so every engine reads identical bytes or nothing.
 """
 
 from __future__ import annotations
@@ -265,6 +269,9 @@ def _pyspark(cfg: Config, paths: dict[str, Path]):
         SparkSession.builder.master("local[4]")
         .appName("bench-smoke")
         .config("spark.sql.shuffle.partitions", "8")
+        # A PARSER setting, so it belongs in the dialect check. The engine module says why the
+        # benchmark sets it.
+        .config("spark.sql.ansi.doubleQuotedIdentifiers", "true")
         .getOrCreate()
     )
     engine._spark.sql(f"CREATE DATABASE IF NOT EXISTS {cfg.schema}")
@@ -425,8 +432,17 @@ if __name__ == "__main__":
         action="store_true",
         help="compare row counts across every JSON in --out and exit",
     )
+    parser.add_argument(
+        "--generate",
+        action="store_true",
+        help="generate the suite's SF=1 parquet into --data and exit (the plan job)",
+    )
     args = parser.parse_args()
 
+    if args.generate:
+        paths = generate(args.data, suite)
+        print(f"{suite.TITLE} SF={SMOKE_SF}: {len(paths)} tables under {args.data}")
+        sys.exit(0)
     if args.compare:
         sys.exit(compare(args.out, suite))
     if not args.engine:

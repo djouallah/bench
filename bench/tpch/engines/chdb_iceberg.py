@@ -49,6 +49,11 @@ SEMANTIC_SETTINGS = (
     # Wrong in every published chDB result, at every scale factor, and invisible to a timing
     # chart. smoke_sql.py found it by making all four engines read identical local parquet.
     "SET join_use_nulls = 1",
+    # A bare `UNION` is `UNION DISTINCT` in the SQL standard and in every other engine here.
+    # ClickHouse refuses to guess ("Expected ALL or DISTINCT in SelectWithUnion query") unless
+    # told, and four TPC-DS statements -- q36, q49, q75 among them -- write the bare form. This
+    # tells it the standard's answer; no TPC-H statement has a UNION.
+    "SET union_default_mode = 'DISTINCT'",
 )
 
 

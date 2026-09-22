@@ -23,6 +23,13 @@ The database is FILE-BACKED so generation spills instead of dying, and memory_li
 the runner's RAM to leave room for the azure extension's buffers and the process itself. SF=30
 does not fit; tpcds.yml offers 1 and 10.
 
+THE GENERATOR IS THE WRITER'S WHEEL, and that is load-bearing. dsdgen's output is not the same
+across DuckDB builds: measured 2026-09-22, stable 1.5.5 and the 2.0 nightly the DuckDB engine
+runs give identical row counts and DIFFERENT values (prices, dates, text), so 18 of the 99
+queries return different row counts on the two datasets. This job installs the DuckDB engine's
+own requirements file, so the wheel that generates is the wheel that writes, and smoke.yml
+generates its SF=1 copy from the same file -- one generator per dataset, never two.
+
 IDEMPOTENT the way the TPC-H generate is, through the same two functions: the completion marker
 is the same table property, written on this suite's MARKER_TABLE (`web_site`, last in TABLES),
 and a table that already has data files is skipped so a crashed run resumes rather than
