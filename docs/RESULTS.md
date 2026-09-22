@@ -2,17 +2,18 @@
 
 TPC-H-like, scale factor 10, 22 queries, on 4 vCPU / 15.6 GB (linux-6.17.0-1022-azure, Python 3.12.14).
 
-Last run: `2026-09-21T10:53:26Z` · commit `44dd28a` · [Actions run](https://github.com/djouallah/onelake-iceberg/actions/runs/35591079526)
+Last run: `2026-09-22T00:46:24Z` · commit `c2871af` · [Actions run](https://github.com/djouallah/lakehouse_benchmark/actions/runs/35673269660)
 
 ## Latest run
 
 | Engine | Version | Cold total | Warm total | Attach | Failed queries |
 |---|---|---:|---:|---:|---|
-| DuckDB | `2.0.0.dev2609121639` | 38.1s | 23.5s | 7.6s | — |
-| Polars | `2.0.0-rc.2` | 87.8s | 89.4s | 6.5s | — |
-| chDB | `4.4.0` | 116.4s | 102.7s | 2.5s | — |
-| LakeSail | `0.7.1` | 117.9s | 112.0s | 1.2s | — |
-| Spark-OSS | `4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9)` | 550.7s | 518.7s | 19.2s | — |
+| DuckDB | `2.0.0.dev2609121639` | 44.3s | 23.9s | 7.1s | — |
+| DuckDB (no cache) | `2.0.0.dev2609121639` | 80.2s | 57.9s | 4.7s | — |
+| Polars | `2.0.0-rc.2` | 100.4s | 97.3s | 7.5s | — |
+| chDB | `4.4.0` | 147.8s | 106.2s | 2.5s | — |
+| LakeSail | `0.7.1` | 222.6s | 261.2s | 2.4s | — |
+| Spark-OSS | `4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9)` | 429.8s | 389.9s | 18.9s | — |
 
 Cold = first pass after attaching the catalog. Warm = the identical 22 statements run again immediately. Attach is timed separately and excluded from both totals.
 
@@ -20,33 +21,33 @@ Cold = first pass after attaching the catalog. Warm = the identical 22 statement
 
 Seconds, cold pass. `—` means the query failed; see Failures above.
 
-| Query | DuckDB | Polars | chDB | LakeSail | Spark-OSS |
-|---|---|---|---|---|---|
-| Q1 | 8.89 | 8.81 | 10.23 | 7.04 | 51.92 |
-| Q2 | 2.24 | 3.71 | 8.13 | 5.36 | 14.14 |
-| Q3 | 3.58 | 3.71 | 7.27 | 5.17 | 23.15 |
-| Q4 | 1.05 | 2.74 | 4.20 | 2.86 | 16.11 |
-| Q5 | 2.08 | 3.76 | 5.95 | 6.04 | 32.86 |
-| Q6 | 0.46 | 1.87 | 1.21 | 3.24 | 14.95 |
-| Q7 | 0.88 | 9.93 | 15.71 | 6.08 | 46.75 |
-| Q8 | 1.35 | 4.20 | 7.40 | 8.04 | 28.80 |
-| Q9 | 2.07 | 5.78 | 7.70 | 7.64 | 37.24 |
-| Q10 | 1.45 | 2.55 | 4.75 | 5.89 | 20.99 |
-| Q11 | 0.15 | 0.60 | 3.11 | 3.09 | 4.10 |
-| Q12 | 0.57 | 1.26 | 3.08 | 3.90 | 17.24 |
-| Q13 | 1.83 | 2.91 | 3.19 | 2.73 | 12.35 |
-| Q14 | 0.78 | 1.67 | 1.93 | 3.98 | 14.71 |
-| Q15 | 0.59 | 1.60 | 2.87 | 6.59 | 26.90 |
-| Q16 | 0.24 | 0.65 | 1.67 | 1.93 | 5.69 |
-| Q17 | 2.44 | 5.15 | 4.25 | 7.31 | 46.95 |
-| Q18 | 1.14 | 8.67 | 3.71 | 9.07 | 40.30 |
-| Q19 | 0.85 | 2.84 | 2.96 | 4.24 | 17.63 |
-| Q20 | 1.07 | 4.41 | 3.58 | 5.60 | 15.78 |
-| Q21 | 3.89 | 8.80 | 10.91 | 9.89 | 55.23 |
-| Q22 | 0.49 | 2.18 | 2.58 | 2.22 | 6.97 |
+| Query | DuckDB | DuckDB (no cache) | Polars | chDB | LakeSail | Spark-OSS |
+|---|---|---|---|---|---|---|
+| Q1 | 8.68 | 24.93 | 11.28 | 11.34 | 13.60 | 42.51 |
+| Q2 | 4.08 | 1.52 | 5.80 | 11.65 | 11.90 | 10.18 |
+| Q3 | 5.50 | 3.18 | 3.78 | 9.13 | 9.68 | 37.80 |
+| Q4 | 2.01 | 2.04 | 2.57 | 4.45 | 6.09 | 11.32 |
+| Q5 | 2.45 | 3.19 | 3.92 | 6.51 | 11.92 | 26.32 |
+| Q6 | 0.50 | 1.93 | 1.99 | 1.53 | 5.56 | 7.42 |
+| Q7 | 0.96 | 2.79 | 10.42 | 17.65 | 11.22 | 40.10 |
+| Q8 | 1.62 | 3.48 | 7.11 | 8.05 | 14.12 | 23.74 |
+| Q9 | 2.13 | 3.68 | 7.70 | 7.18 | 13.18 | 31.40 |
+| Q10 | 1.86 | 2.77 | 5.38 | 4.70 | 10.55 | 13.34 |
+| Q11 | 0.15 | 0.86 | 3.13 | 3.81 | 6.05 | 2.92 |
+| Q12 | 0.78 | 2.17 | 1.61 | 2.58 | 7.45 | 9.74 |
+| Q13 | 1.85 | 2.28 | 4.17 | 3.49 | 4.20 | 11.42 |
+| Q14 | 0.83 | 2.46 | 2.10 | 1.99 | 6.80 | 7.43 |
+| Q15 | 0.62 | 1.28 | 1.43 | 2.83 | 12.12 | 19.78 |
+| Q16 | 0.26 | 0.64 | 0.81 | 2.00 | 3.66 | 5.05 |
+| Q17 | 2.35 | 4.71 | 5.23 | 4.24 | 12.87 | 36.76 |
+| Q18 | 1.48 | 2.68 | 7.71 | 25.79 | 16.38 | 31.93 |
+| Q19 | 0.92 | 1.88 | 2.12 | 2.60 | 9.18 | 9.18 |
+| Q20 | 1.12 | 3.01 | 3.43 | 4.04 | 11.23 | 9.04 |
+| Q21 | 3.55 | 7.47 | 7.67 | 9.32 | 19.56 | 37.19 |
+| Q22 | 0.55 | 1.23 | 1.07 | 2.89 | 5.27 | 5.27 |
 
 ## History
 
-675 timed statements across 3 runs.
+945 timed statements across 4 runs.
 Raw data: one immutable JSON per run under [`results/`](../results/), flattened to [`data/tpch_results.csv`](data/tpch_results.csv).
 
