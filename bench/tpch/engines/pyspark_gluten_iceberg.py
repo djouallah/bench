@@ -35,11 +35,12 @@ from __future__ import annotations
 import datetime as dt
 import hashlib
 import os
+import subprocess
 import urllib.request
 from pathlib import Path
 
 from bench import auth, scrub
-from bench.tpch.engines.pyspark_iceberg import PysparkIceberg
+from bench.tpch.engines.pyspark_iceberg import PACKAGES, PysparkIceberg
 
 # The JDK 17 directory, because every Spark job sets up Temurin 17. amd64: the hosted runners.
 GLUTEN_JAR_URL = (
@@ -119,8 +120,53 @@ def onelake_sas(workspace_id: str, lakehouse_id: str) -> str:
     return sas
 
 
+def fetch_packages() -> Path:
+    """pyspark_iceberg's PACKAGES, resolved onto disk BEFORE the JVM starts.
+
+    ONE CLASSLOADER FOR GLUTEN AND ICEBERG. Gluten has to sit on the app classpath (see
+    extraClassPath above), and spark.jars.packages lands Iceberg in a CHILD loader the app loader
+    cannot see -- so Gluten's Iceberg offload died with NoClassDefFoundError on
+    SparkBatchQueryScan for every query. extraClassPath is read at JVM launch, so the jars must
+    already exist: the Ivy jar pyspark ships resolves them here, same coordinates, same
+    transitive set. The spark.jars.packages copy stays and is harmless -- Spark's loader asks its
+    parent first.
+    """
+    import pyspark
+
+    target = Path(os.environ.get("RUNNER_TEMP", "/tmp")) / "gluten-classpath"
+    target.mkdir(parents=True, exist_ok=True)
+    ivy = next((Path(pyspark.__file__).parent / "jars").glob("ivy-*.jar"))
+    for coordinate in PACKAGES.split(","):
+        group, artifact, version = coordinate.split(":")
+        subprocess.run(
+            [
+                "java",
+                "-jar",
+                str(ivy),
+                "-dependency",
+                group,
+                artifact,
+                version,
+                "-confs",
+                "default",
+                "-retrieve",
+                f"{target}/[artifact]-[revision](-[classifier]).[ext]",
+            ],
+            check=True,
+            stdout=subprocess.DEVNULL,
+        )
+    jars = sorted(target.glob("*.jar"))
+    scrub.safe_print(f"  {len(jars)} Iceberg/ABFS jars on the app classpath beside Gluten")
+    return target
+
+
 class PysparkGlutenIceberg(PysparkIceberg):
     name = "pyspark_gluten_iceberg"
+
+    def _extra_config(self) -> dict[str, str]:
+        conf = gluten_conf()
+        conf["spark.driver.extraClassPath"] += os.pathsep + f"{fetch_packages()}/*"
+        return conf
 
     def _storage_conf(self, abfs: dict[str, str], account: str) -> dict[str, str]:
         sas = onelake_sas(self.cfg.workspace_id, self.cfg.lakehouse_id)
@@ -129,6 +175,3 @@ class PysparkGlutenIceberg(PysparkIceberg):
             f"spark.hadoop.fs.azure.account.auth.type.{account}": "SAS",
             f"spark.hadoop.fs.azure.sas.fixed.token.{account}": sas,
         }
-
-    def _extra_config(self) -> dict[str, str]:
-        return gluten_conf()
