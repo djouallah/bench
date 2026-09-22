@@ -253,6 +253,9 @@ class PysparkIceberg:
         }.items():
             builder = builder.config(f"spark.hadoop.{key}", value)
 
+        for key, value in self._extra_config().items():
+            builder = builder.config(key, value)
+
         self._spark = builder.getOrCreate()
         self._spark.catalog.setCurrentCatalog(CATALOG)
 
@@ -261,6 +264,10 @@ class PysparkIceberg:
             f"  pyspark {self.version} on hadoop {hadoop}, catalog {CATALOG} "
             f"(local[4], {os.environ.get('SPARK_DRIVER_MEMORY', 'default')} driver heap)"
         )
+
+    def _extra_config(self) -> dict[str, str]:
+        """Session keys a variant adds on top of everything above. Stock Spark adds none."""
+        return {}
 
     def execute(self, sql: str) -> int:
         return len(self._spark.sql(sql).collect())

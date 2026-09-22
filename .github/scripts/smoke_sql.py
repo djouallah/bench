@@ -305,6 +305,8 @@ ADAPTERS = {
     "lakesail_iceberg": _lakesail,
     "daft_iceberg": _daft,
     "pyspark_iceberg": _pyspark,
+    # Phase 1 reads local parquet; the file cache only exists on the abfss:// path.
+    "pyspark_alluxio_iceberg": _pyspark,
 }
 
 
