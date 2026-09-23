@@ -1,0 +1,1619 @@
+{
+  "run_id": "35813131273-1",
+  "run_started_at": "2026-09-23T03:17:15Z",
+  "sf": 10,
+  "run_url": "https://github.com/djouallah/lakehouse_benchmark/actions/runs/35813131273",
+  "git_sha": "914a548",
+  "test": "tpcds",
+  "runner": "linux-6.17.0-1022-azure",
+  "cpu": 4,
+  "mem_gb": 15.6,
+  "python": "3.12.14",
+  "schema_version": 1,
+  "engines": {
+    "pyspark_gluten_iceberg": {
+      "version": "4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9)",
+      "status": "ok",
+      "rows": [
+        {
+          "run_type": "cold",
+          "phase": "setup",
+          "query": 0,
+          "dur": 24.0358,
+          "rows": null,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 1,
+          "dur": 18.8118,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 2,
+          "dur": 18.3311,
+          "rows": 2513,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 3,
+          "dur": 10.1574,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 4,
+          "dur": 34.6606,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 5,
+          "dur": 23.6785,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 6,
+          "dur": 26.8556,
+          "rows": 51,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 7,
+          "dur": 11.1939,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 8,
+          "dur": 3.4918,
+          "rows": 9,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 9,
+          "dur": 27.6914,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 10,
+          "dur": 7.7213,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 11,
+          "dur": 11.4143,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 12,
+          "dur": 2.007,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 13,
+          "dur": 9.1433,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 14,
+          "dur": 27.8783,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 15,
+          "dur": 4.0207,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 16,
+          "dur": 18.3982,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 17,
+          "dur": 9.8141,
+          "rows": 0,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 18,
+          "dur": 8.1921,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 19,
+          "dur": 2.8815,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 20,
+          "dur": 2.5422,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 21,
+          "dur": 12.8643,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 22,
+          "dur": 19.9811,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 23,
+          "dur": 17.8798,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 24,
+          "dur": 7.2898,
+          "rows": 7,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 25,
+          "dur": 6.0156,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 26,
+          "dur": 6.9575,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 27,
+          "dur": 4.3112,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 28,
+          "dur": 13.7451,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 29,
+          "dur": 6.2551,
+          "rows": 3,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 30,
+          "dur": 1.9947,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 31,
+          "dur": 11.3723,
+          "rows": 288,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 32,
+          "dur": 5.0293,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 33,
+          "dur": 6.5202,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 34,
+          "dur": 2.8222,
+          "rows": 1546,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 35,
+          "dur": 6.9317,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 36,
+          "dur": 3.0738,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 37,
+          "dur": 8.0108,
+          "rows": 2,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 38,
+          "dur": 6.8993,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 39,
+          "dur": 16.7807,
+          "rows": 2433,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 40,
+          "dur": 5.288,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 41,
+          "dur": 0.6706,
+          "rows": 41,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 42,
+          "dur": 2.5768,
+          "rows": 11,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 43,
+          "dur": 2.3245,
+          "rows": 17,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 44,
+          "dur": 3.7659,
+          "rows": 10,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 45,
+          "dur": 3.6509,
+          "rows": 49,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 46,
+          "dur": 3.0439,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 47,
+          "dur": 4.9765,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 48,
+          "dur": 2.9741,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 49,
+          "dur": 11.6647,
+          "rows": 41,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 50,
+          "dur": 4.5069,
+          "rows": 51,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 51,
+          "dur": 7.1907,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 52,
+          "dur": 2.1127,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 53,
+          "dur": 2.34,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 54,
+          "dur": 6.458,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 55,
+          "dur": 2.0505,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 56,
+          "dur": 6.9842,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 57,
+          "dur": 4.7064,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 58,
+          "dur": 5.8969,
+          "rows": 38,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 59,
+          "dur": 4.7332,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 60,
+          "dur": 6.35,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 61,
+          "dur": 4.59,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 62,
+          "dur": 6.9053,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 63,
+          "dur": 2.3363,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 64,
+          "dur": 15.865,
+          "rows": 33,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 65,
+          "dur": 5.7411,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 66,
+          "dur": 11.3318,
+          "rows": 10,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 67,
+          "dur": 20.7352,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 68,
+          "dur": 6.6336,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 69,
+          "dur": 7.0217,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 70,
+          "dur": 4.6695,
+          "rows": 8,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 71,
+          "dur": 10.3985,
+          "rows": 9669,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 72,
+          "dur": 45.0569,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 73,
+          "dur": 2.4038,
+          "rows": 16,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 74,
+          "dur": 9.2706,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 75,
+          "dur": 13.2974,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 76,
+          "dur": 7.3519,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 77,
+          "dur": 10.91,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 78,
+          "dur": 14.8958,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 79,
+          "dur": 2.93,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 80,
+          "dur": 12.079,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 81,
+          "dur": 2.2635,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 82,
+          "dur": 7.2827,
+          "rows": 6,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 83,
+          "dur": 1.4851,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 84,
+          "dur": 1.296,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 85,
+          "dur": 6.3055,
+          "rows": 19,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 86,
+          "dur": 1.7407,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 87,
+          "dur": 6.6789,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 88,
+          "dur": 13.5789,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 89,
+          "dur": 3.4411,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 90,
+          "dur": 4.0357,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 91,
+          "dur": 1.3793,
+          "rows": 16,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 92,
+          "dur": 2.7544,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 93,
+          "dur": 4.3998,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 94,
+          "dur": 4.9328,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 95,
+          "dur": 9.0954,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 96,
+          "dur": 1.8897,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 97,
+          "dur": 5.3175,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 98,
+          "dur": 3.0994,
+          "rows": 15080,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 99,
+          "dur": 3.6554,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 1,
+          "dur": 1.2358,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 2,
+          "dur": 7.9155,
+          "rows": 2513,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 3,
+          "dur": 2.0424,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 4,
+          "dur": 18.646,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 5,
+          "dur": 8.6576,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 6,
+          "dur": 2.7359,
+          "rows": 51,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 7,
+          "dur": 3.7918,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 8,
+          "dur": 2.7736,
+          "rows": 9,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 9,
+          "dur": 22.4036,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 10,
+          "dur": 6.8461,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 11,
+          "dur": 10.7159,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 12,
+          "dur": 1.7437,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 13,
+          "dur": 3.0162,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 14,
+          "dur": 21.05,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 15,
+          "dur": 2.9126,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 16,
+          "dur": 7.8833,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 17,
+          "dur": 6.0283,
+          "rows": 0,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 18,
+          "dur": 6.3578,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 19,
+          "dur": 2.7919,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 20,
+          "dur": 2.4195,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 21,
+          "dur": 5.7563,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 22,
+          "dur": 16.1709,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 23,
+          "dur": 16.6233,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 24,
+          "dur": 7.1033,
+          "rows": 7,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 25,
+          "dur": 5.7598,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 26,
+          "dur": 5.9053,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 27,
+          "dur": 3.9979,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 28,
+          "dur": 10.2082,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 29,
+          "dur": 6.2413,
+          "rows": 3,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 30,
+          "dur": 1.2111,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 31,
+          "dur": 9.4885,
+          "rows": 288,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 32,
+          "dur": 4.9794,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 33,
+          "dur": 5.8507,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 34,
+          "dur": 2.4437,
+          "rows": 1546,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 35,
+          "dur": 6.9443,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 36,
+          "dur": 2.8577,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 37,
+          "dur": 7.6375,
+          "rows": 2,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 38,
+          "dur": 6.5241,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 39,
+          "dur": 12.5751,
+          "rows": 2433,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 40,
+          "dur": 4.1645,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 41,
+          "dur": 0.5359,
+          "rows": 41,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 42,
+          "dur": 2.0177,
+          "rows": 11,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 43,
+          "dur": 2.2723,
+          "rows": 17,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 44,
+          "dur": 3.6807,
+          "rows": 10,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 45,
+          "dur": 2.0386,
+          "rows": 49,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 46,
+          "dur": 2.772,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 47,
+          "dur": 4.8115,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 48,
+          "dur": 2.9164,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 49,
+          "dur": 7.0227,
+          "rows": 41,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 50,
+          "dur": 4.404,
+          "rows": 51,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 51,
+          "dur": 6.5044,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 52,
+          "dur": 2.1033,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 53,
+          "dur": 2.4152,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 54,
+          "dur": 6.3589,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 55,
+          "dur": 2.0561,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 56,
+          "dur": 7.2399,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 57,
+          "dur": 4.5389,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 58,
+          "dur": 5.7674,
+          "rows": 38,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 59,
+          "dur": 4.3086,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 60,
+          "dur": 6.0711,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 61,
+          "dur": 4.6699,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 62,
+          "dur": 2.2075,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 63,
+          "dur": 2.2973,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 64,
+          "dur": 11.9326,
+          "rows": 33,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 65,
+          "dur": 5.7479,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 66,
+          "dur": 7.4785,
+          "rows": 10,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 67,
+          "dur": 20.1456,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 68,
+          "dur": 3.4526,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 69,
+          "dur": 6.1501,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 70,
+          "dur": 4.4059,
+          "rows": 8,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 71,
+          "dur": 6.2796,
+          "rows": 9669,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 72,
+          "dur": 34.241,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 73,
+          "dur": 2.3982,
+          "rows": 16,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 74,
+          "dur": 9.0956,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 75,
+          "dur": 13.4779,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 76,
+          "dur": 7.0815,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 77,
+          "dur": 6.7002,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 78,
+          "dur": 14.2197,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 79,
+          "dur": 2.6844,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 80,
+          "dur": 8.8566,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 81,
+          "dur": 1.3797,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 82,
+          "dur": 7.2167,
+          "rows": 6,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 83,
+          "dur": 1.757,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 84,
+          "dur": 0.9149,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 85,
+          "dur": 4.1733,
+          "rows": 19,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 86,
+          "dur": 1.7543,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 87,
+          "dur": 6.7262,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 88,
+          "dur": 13.7497,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 89,
+          "dur": 2.6529,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 90,
+          "dur": 3.898,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 91,
+          "dur": 1.2243,
+          "rows": 16,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 92,
+          "dur": 2.7963,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 93,
+          "dur": 4.8501,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 94,
+          "dur": 4.9663,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 95,
+          "dur": 9.0158,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 96,
+          "dur": 1.8556,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 97,
+          "dur": 5.5406,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 98,
+          "dur": 2.7002,
+          "rows": 15080,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 99,
+          "dur": 3.5262,
+          "rows": 100,
+          "status": "ok"
+        }
+      ],
+      "host": {
+        "runner": "linux-6.17.0-1022-azure",
+        "cpu": 4,
+        "mem_gb": 15.6,
+        "python": "3.12.14"
+      }
+    }
+  }
+}
