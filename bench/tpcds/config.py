@@ -18,7 +18,7 @@ from dataclasses import dataclass
 
 from bench.config import SQL_DIR, Config
 
-# THE ENGINES THAT FINISH. TPC-H runs all seven; TPC-DS runs these two. Four of the rest were
+# THE ENGINES THAT FINISH. TPC-H runs all seven; TPC-DS runs these three. Four of the rest were
 # dropped on measurement, not taste -- run 35732997698 (SF=10) and 35732283791 (SF=1) are the
 # evidence, and every number below is from the SF=10 run over identical OneLake tables.
 #
@@ -46,6 +46,9 @@ from bench.config import SQL_DIR, Config
 ENGINES = (
     "duckdb_iceberg",
     "pyspark_iceberg",
+    # Spark with Gluten/Velox underneath. Velox reads OneLake with a one-hour SAS (the engine
+    # module says why), so a TPC-DS run has to finish inside that hour.
+    "pyspark_gluten_iceberg",
 )
 
 # The 24 tables of the spec (dsdgen also emits `dbgen_version`, which is not one), LARGEST FIRST

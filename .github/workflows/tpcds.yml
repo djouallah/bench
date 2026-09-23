@@ -28,7 +28,7 @@ on:
       engines:
         description: Comma-separated engines to run.
         type: string
-        default: duckdb_iceberg,pyspark_iceberg
+        default: duckdb_iceberg,pyspark_iceberg,pyspark_gluten_iceberg
       regenerate:
         description: Drop and rewrite the namespace even if it is marked complete.
         type: boolean
@@ -92,7 +92,7 @@ jobs:
         # The matrix needs a JSON array; the input is a human-friendly CSV. `started` is stamped
         # once here so every artifact in the run shares one timestamp.
         run: |
-          ENGINES=$(printf '%s' "${{ inputs.engines || 'duckdb_iceberg,pyspark_iceberg' }}" \
+          ENGINES=$(printf '%s' "${{ inputs.engines || 'duckdb_iceberg,pyspark_iceberg,pyspark_gluten_iceberg' }}" \
             | jq -Rc 'split(",") | map(sub("^\\s+";"") | sub("\\s+$";"")) | map(select(length > 0))')
           echo "engines=$ENGINES" >> "$GITHUB_OUTPUT"
           echo "started=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_OUTPUT"
@@ -118,6 +118,7 @@ jobs:
       || matrix.engine == 'lakesail_iceberg' && '⛵ LakeSail'
       || matrix.engine == 'daft_iceberg' && '💠 Daft'
       || matrix.engine == 'pyspark_iceberg' && '✨ Spark-OSS'
+      || matrix.engine == 'pyspark_gluten_iceberg' && '🚀 Gluten/Velox'
       || matrix.engine }}
     runs-on: ubuntu-latest
     # LONGER THAN bench.yml's 50, and longer than the 85 that cost run 35732997698 its Spark
