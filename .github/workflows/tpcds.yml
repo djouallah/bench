@@ -21,9 +21,9 @@ on:
   workflow_dispatch:
     inputs:
       sf:
-        description: Scale factor. 1 is the smoke value; 10 is the default. 30 and 100 free the runner's hidden disk first.
+        description: Scale factor. 1 is the smoke value; 10 is the default. 30, 60 and 100 free the runner's hidden disk first.
         type: choice
-        options: ["1", "10", "30", "100"]
+        options: ["1", "10", "30", "60", "100"]
         default: "10"
       engines:
         description: Comma-separated engines to run.
@@ -79,7 +79,7 @@ jobs:
       # deleting the preinstalled toolchains nobody here uses frees ~30 GB more, and the VM's
       # temporary disk at /mnt (~70 GB, normally unused) takes the scratch. SF=1/10 skip this.
       - name: Free runner disk (SF >= 30)
-        if: (inputs.sf || '10') == '30' || (inputs.sf || '10') == '100'
+        if: contains(fromJSON('["30","60","100"]'), inputs.sf || '10')
         run: |
           df -h / /mnt
           sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/share/boost
@@ -166,7 +166,7 @@ jobs:
       # SAME CLEANUP FOR THE ENGINE JOB, `/` only: DuckDB spills beside the workspace and the
       # engines' local caches live under $RUNNER_TEMP, both on `/`.
       - name: Free runner disk (SF >= 30)
-        if: (inputs.sf || '10') == '30' || (inputs.sf || '10') == '100'
+        if: contains(fromJSON('["30","60","100"]'), inputs.sf || '10')
         run: |
           sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/share/boost
           df -h /
