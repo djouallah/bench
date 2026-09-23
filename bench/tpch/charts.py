@@ -32,26 +32,39 @@ from bench.charts import LABEL, RECENT_RUNS, THEMES, _legend, _runs_note, _save,
 from bench.tpch.config import ENGINES
 
 
-def _window(con, sf: int, test: str) -> int:
-    """Register `recent`: rows from the last RECENT_RUNS runs of `test` at this scale factor.
+def _window(con, sf: int, test: str) -> tuple[int, int]:
+    """Register `recent`: each engine's last RECENT_RUNS runs of `test` at this scale factor.
+
+    PER ENGINE, not per run. A run may carry one engine or all of them -- adding Gluten needed
+    one job, not six -- and a window over whole runs would let three single-engine runs push
+    every other engine off the charts. Each engine is drawn from its own latest runs instead.
 
     Ordered by the run timestamp rather than the id, because a GitHub run id is not monotonic
-    across re-runs. Returns how many runs actually made it in, so a chart can say so.
+    across re-runs. Returns the fewest and most runs any engine contributed, so a chart can say.
     """
     con.execute(
         f"""
         CREATE OR REPLACE TEMP VIEW recent AS
-        SELECT * FROM raw
-        WHERE sf = {sf} AND test = '{test}' AND run_id IN (
-            SELECT run_id FROM raw
-            WHERE sf = {sf} AND test = '{test}'
-            GROUP BY run_id
-            ORDER BY max(run_started_at) DESC
-            LIMIT {RECENT_RUNS}
-        )
+        SELECT raw.* FROM raw
+        JOIN (
+            SELECT engine, run_id FROM (
+                SELECT engine, run_id,
+                       row_number() OVER (
+                           PARTITION BY engine ORDER BY max(run_started_at) DESC
+                       ) AS rn
+                FROM raw
+                WHERE sf = {sf} AND test = '{test}'
+                GROUP BY engine, run_id
+            ) WHERE rn <= {RECENT_RUNS}
+        ) latest USING (engine, run_id)
+        WHERE sf = {sf} AND test = '{test}'
         """
     )
-    return con.execute("SELECT count(DISTINCT run_id) FROM recent").fetchone()[0]
+    low, high = con.execute(
+        "SELECT min(n), max(n) FROM "
+        "(SELECT engine, count(DISTINCT run_id) AS n FROM recent GROUP BY engine)"
+    ).fetchone()
+    return low or 0, high or 0
 
 
 def _present(con, run_type: str) -> list[str]:
@@ -308,9 +321,10 @@ def render_all(
     con.register("raw", table)
     out_dir = Path(out_dir)
 
-    # The headline charts read `recent` (the last RECENT_RUNS runs); trend still reads `raw`.
-    n = _window(con, sf, test)
-    windowed = f"{subtitle} · {_runs_note(n)}"
+    # The headline charts read `recent` (each engine's last RECENT_RUNS runs); trend reads `raw`.
+    low, high = _window(con, sf, test)
+    note = _runs_note(high) if low == high else f"each engine's last {low}-{high} runs"
+    windowed = f"{subtitle} · {note}"
 
     paths: list[Path] = []
     paths += per_query(con, sf, "cold", out_dir, windowed, per_row)

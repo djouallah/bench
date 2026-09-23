@@ -32,7 +32,7 @@ import sys
 from pathlib import Path
 
 from bench.report import leak_check, merge, write_csv
-from bench.store import Run, load_all, write_run
+from bench.store import Run, latest_per_engine, load_all, write_run
 from bench.suite import suite_class
 from bench.tpch import charts
 
@@ -114,6 +114,8 @@ def write_results_md(run: Run, rows: list[dict], table, path: Path, suite) -> No
         + (f" · [Actions run]({run.run_url})" if run.run_url else ""),
         "",
         "## Latest run",
+        "",
+        "Each engine's most recent run at this scale; the newest run may not include every engine.",
         "",
         *_table(rows),
         "",
@@ -253,7 +255,8 @@ def main() -> int:
     # The charts and RESULTS.md are the HEADLINE_SF view; a run at another scale is recorded
     # (the JSON above, the CSV, the step summary) and rewrites neither. etl_publish.py says why.
     if sf == suite.HEADLINE_SF:
-        write_headline_docs(run, rows, table, suite)
+        latest = latest_per_engine(results_dir, sf, suite.ENGINES, run)
+        write_headline_docs(latest, summarize(latest, suite.ENGINES), table, suite)
     else:
         print(
             f"::notice::SF={sf} is not the headline scale ({suite.HEADLINE_SF}): the run and the "
