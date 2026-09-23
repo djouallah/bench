@@ -8,9 +8,7 @@ cache DuckDB turns on by itself -- `enable_object_cache`, `enable_http_metadata_
 other engine here fetches the same files again on the second pass.
 
 `EXTERNAL_FILE_CACHE` is therefore SET explicitly, as the first statement of the session, so the
-setting is stated rather than inherited, and so duckdb_nocache_iceberg.py can flip it and change
-nothing else. That engine exists to put a number on how much of DuckDB's cold-to-warm gap is
-the cache.
+setting is stated rather than inherited.
 """
 
 from __future__ import annotations
@@ -22,7 +20,7 @@ from bench.config import CATALOG_CACHE_SECONDS, ICEBERG_ENDPOINT, Config, azure_
 class DuckDBIceberg:
     name = "duckdb_iceberg"
 
-    # DuckDB's own default. The one thing duckdb_nocache_iceberg.py changes.
+    # DuckDB's own default.
     EXTERNAL_FILE_CACHE = True
 
     def __init__(self, cfg: Config):

@@ -182,7 +182,7 @@ def write_headline_docs(run: Run, rows: list[dict], table, suite) -> None:
     """Charts and RESULTS.md, drawn from the suite's CURRENT engine roll only.
 
     The history keeps every engine that ever ran; the headline does not. An engine dropped from
-    a suite (TPC-DS's DuckDB no-cache control, 2026-09-23) would otherwise stay on the charts
+    a suite (the DuckDB no-cache control, 2026-09-23) would otherwise stay on the charts
     until it aged out of the recent-runs window.
     """
     import pyarrow as pa

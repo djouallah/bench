@@ -18,9 +18,9 @@
 | **LakeSail** | in-process Spark Connect, catalog via `SAIL_CATALOG__LIST` | yes |
 | **Polars** | `pl.scan_iceberg` over a pyiceberg `RestCatalog` | yes |
 | **Spark-OSS** | `spark.sql.catalog.… type=rest`, abfss via `WorkloadIdentityTokenProvider` | yes |
+| **Gluten/Velox** | Spark plugin, Velox ABFS connector over a OneLake SAS | yes |
 | **Daft** | `daft.read_iceberg` over a pyiceberg `Table` | no — 16/22, decimal overflow |
 | **Comet** | Spark plugin, native Iceberg reader | no — no `abfss` driver |
-| **Gluten/Velox** | Spark plugin, Velox ABFS connector | no — no published package |
 
 OneLake is the example here, not the requirement. Any catalog that exposes an Iceberg REST
 endpoint should work, and the raw data can sit on `abfss://`, `s3://` or anything else the engine

@@ -113,7 +113,6 @@ jobs:
     # Display only -- see bench.yml. The final `|| matrix.engine` covers a new engine.
     name: >-
       ${{ matrix.engine == 'duckdb_iceberg' && '🦆 DuckDB'
-      || matrix.engine == 'duckdb_nocache_iceberg' && '🦆 DuckDB, cache off'
       || matrix.engine == 'chdb_iceberg' && '⚡ chDB'
       || matrix.engine == 'polars_iceberg' && '🐻‍❄️ Polars'
       || matrix.engine == 'lakesail_iceberg' && '⛵ LakeSail'

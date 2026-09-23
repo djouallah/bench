@@ -68,6 +68,7 @@ def selected_queries(n_queries: int) -> list[int]:
         return list(range(1, n_queries + 1))
     return sorted({int(q) for q in raw.split(",") if q.strip()})
 
+
 # Dummy GUIDs. Config wants them, phase 1 never uses them -- nothing here talks to Fabric.
 # Config.from_env() would demand the real secrets, and this job deliberately has none.
 LOCAL_CFG_IDS = ("00000000-0000-0000-0000-000000000000",) * 2
@@ -317,9 +318,6 @@ def _pyspark_gluten(cfg: Config, paths: dict[str, Path]):
 
 ADAPTERS = {
     "duckdb_iceberg": _duckdb,
-    # The adapter bypasses setup(), where the one difference lives, and reads local parquet: the
-    # external file cache is a remote-read concern, so the smoke is the same for both engines.
-    "duckdb_nocache_iceberg": _duckdb,
     "chdb_iceberg": _chdb,
     "polars_iceberg": _polars,
     "lakesail_iceberg": _lakesail,
@@ -406,9 +404,7 @@ def run(engine_name: str, data_dir: Path, out_dir: Path, suite: type[Config]) ->
     ok = len(numbers) - failed
     print(f"\n{engine_name} {engine.version}: {ok}/{len(numbers)} queries ran", flush=True)
     if failed:
-        print(
-            f"::error::{engine_name} cannot run {failed} of {len(numbers)} {suite.TITLE} queries"
-        )
+        print(f"::error::{engine_name} cannot run {failed} of {len(numbers)} {suite.TITLE} queries")
     return 1 if failed else 0
 
 
