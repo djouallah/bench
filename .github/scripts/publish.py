@@ -126,6 +126,7 @@ def write_results_md(run: Run, rows: list[dict], table, path: Path, suite) -> No
     failures = [
         (engine, row)
         for engine, result in run.engines.items()
+        if engine in suite.ENGINES
         for row in result.rows
         if row.status == "error"
     ]
@@ -177,6 +178,36 @@ def write_results_md(run: Run, rows: list[dict], table, path: Path, suite) -> No
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
+def write_headline_docs(run: Run, rows: list[dict], table, suite) -> None:
+    """Charts and RESULTS.md, drawn from the suite's CURRENT engine roll only.
+
+    The history keeps every engine that ever ran; the headline does not. An engine dropped from
+    a suite (TPC-DS's DuckDB no-cache control, 2026-09-23) would otherwise stay on the charts
+    until it aged out of the recent-runs window.
+    """
+    import pyarrow as pa
+    import pyarrow.compute as pc
+
+    docs = Path(suite.DOCS_DIR)
+    shown = table.filter(pc.is_in(table["engine"], value_set=pa.array(list(suite.ENGINES))))
+    subtitle = (
+        f"{suite.TITLE} SF {run.sf} · {run.cpu} vCPU {run.mem_gb:.0f} GB · "
+        f"{run.run_started_at[:10]} · OneLake Iceberg REST catalog"
+    )
+    per_row = math.ceil(suite.N_QUERIES / math.ceil(suite.N_QUERIES / PER_ROW_MAX))
+    for path in charts.render_all(
+        shown,
+        run.sf,
+        docs / "charts",
+        subtitle,
+        test=suite.TEST,
+        n_queries=suite.N_QUERIES,
+        per_row=per_row,
+    ):
+        print(f"wrote {path}")
+    write_results_md(run, rows, shown, docs / "RESULTS.md", suite)
+
+
 def write_step_summary(run: Run, rows: list[dict], suite) -> None:
     target = os.environ.get("GITHUB_STEP_SUMMARY")
     if not target:
@@ -222,22 +253,7 @@ def main() -> int:
     # The charts and RESULTS.md are the HEADLINE_SF view; a run at another scale is recorded
     # (the JSON above, the CSV, the step summary) and rewrites neither. etl_publish.py says why.
     if sf == suite.HEADLINE_SF:
-        subtitle = (
-            f"{suite.TITLE} SF {run.sf} · {run.cpu} vCPU {run.mem_gb:.0f} GB · "
-            f"{run.run_started_at[:10]} · OneLake Iceberg REST catalog"
-        )
-        per_row = math.ceil(suite.N_QUERIES / math.ceil(suite.N_QUERIES / PER_ROW_MAX))
-        for path in charts.render_all(
-            table,
-            sf,
-            docs / "charts",
-            subtitle,
-            test=suite.TEST,
-            n_queries=suite.N_QUERIES,
-            per_row=per_row,
-        ):
-            print(f"wrote {path}")
-        write_results_md(run, rows, table, docs / "RESULTS.md", suite)
+        write_headline_docs(run, rows, table, suite)
     else:
         print(
             f"::notice::SF={sf} is not the headline scale ({suite.HEADLINE_SF}): the run and the "

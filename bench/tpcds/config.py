@@ -18,7 +18,7 @@ from dataclasses import dataclass
 
 from bench.config import SQL_DIR, Config
 
-# THE ENGINES THAT FINISH. TPC-H runs all seven; TPC-DS runs these three, and the other four were
+# THE ENGINES THAT FINISH. TPC-H runs all seven; TPC-DS runs these two. Four of the rest were
 # dropped on measurement, not taste -- run 35732997698 (SF=10) and 35732283791 (SF=1) are the
 # evidence, and every number below is from the SF=10 run over identical OneLake tables.
 #
@@ -36,15 +36,16 @@ from bench.config import SQL_DIR, Config
 #   daft_iceberg      never ran here: TPC-H already excludes it from the query benchmark
 #                     (Eventual-Inc/Daft#7532).
 #
-# What is left is DuckDB, the same DuckDB with its file cache off, and Spark. Spark is slow --
+# DuckDB WITH ITS FILE CACHE OFF is not here either. It was a TPC-H question -- is Polars slower
+# only because it has no cache? -- and TPC-H still runs it; TPC-DS never needed the control.
+#
+# What is left is DuckDB and Spark. Spark is slow --
 # ~42 min cold, and bench/tpch/engines/pyspark_iceberg.py's `refresh` exists because of it -- but
 # it is the only non-DuckDB engine that answers all 99, so dropping it would leave one engine
 # measured against itself.
 ENGINES = (
     "duckdb_iceberg",
     "pyspark_iceberg",
-    # LAST for the reason bench/tpch/config.py gives at the same line: position is legend order.
-    "duckdb_nocache_iceberg",
 )
 
 # The 24 tables of the spec (dsdgen also emits `dbgen_version`, which is not one), LARGEST FIRST

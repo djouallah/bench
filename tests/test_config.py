@@ -112,7 +112,6 @@ def test_tpcds_runs_a_subset_of_the_tpch_engines():
     and no colour.
     """
     assert set(TpcdsConfig.ENGINES) < set(TpchConfig.ENGINES)
-    assert TpcdsConfig.ENGINES[-1] == "duckdb_nocache_iceberg"  # legend order, as in TPC-H
 
 
 def test_workflow_defaults_dispatch_only_engines_their_suite_lists():
