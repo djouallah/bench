@@ -1,0 +1,24 @@
+# TEMPORARY: reproduce Sail's "Physical input schema" error (TPC-DS Q71 on Iceberg) without
+# OneLake. Delete this file and .github/scripts/tmp_sail_q71_repro.py once the issue is filed.
+name: tmp-sail-repro
+on:
+  workflow_dispatch:
+    inputs:
+      pysail:
+        description: pysail spec to test
+        type: string
+        default: "pysail==0.7.1"
+permissions:
+  contents: read
+jobs:
+  repro:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install "${{ inputs.pysail }}" "pyspark-client>=4.1,<4.2" "pyiceberg[sql-sqlite,pyarrow]"
+      - run: pip list --format=freeze | grep -Ei '^(pysail|pyspark|pyiceberg|pyarrow)='
+      - run: python .github/scripts/tmp_sail_q71_repro.py
