@@ -226,6 +226,14 @@ class PysparkIceberg:
             # were parse errors. With ANSI mode (Spark 4's default) this flag makes the parser
             # standard on that one point. It changes no plan and no TPC-H statement.
             .config("spark.sql.ansi.doubleQuotedIdentifiers", "true")
+            # JOIN REORDERING, OFF IN STOCK SPARK. Every CBO switch defaults to false on 4.1, and
+            # AQE re-plans joins at runtime but never reorders them, so Spark joins in the order
+            # the SQL is written. TPC-DS Q72's written order joins catalog_sales to inventory
+            # before the filters that shrink it: 341s cold at SF=10 against DuckDB's 3.4s. The
+            # statistics come from Iceberg (row counts and sizes from snapshot metadata); Spark's
+            # own ANALYZE TABLE does not support Iceberg tables.
+            .config("spark.sql.cbo.enabled", "true")
+            .config("spark.sql.cbo.joinReorder.enabled", "true")
             .config("spark.sql.defaultCatalog", CATALOG)
         )
         for key, value in _catalog_conf(CATALOG, self.cfg.warehouse).items():
