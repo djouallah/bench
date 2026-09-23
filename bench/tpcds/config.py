@@ -87,8 +87,8 @@ TABLES = (
 # makes a 30% error here change nothing.
 PARQUET_MB_PER_SF = 300
 
-# The scale the headline docs are built at, and tpcds.yml's default. SF=30 does not fit the
-# runner through DuckDB (bench/tpcds/generate.py), so the workflow offers 1 and 10 only.
+# The scale the headline docs are built at, and tpcds.yml's default. SF=30 and SF=100 run too
+# (tpcds.yml frees the runner's hidden disk for them) and are recorded, not charted.
 HEADLINE_SF = 10
 
 

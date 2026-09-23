@@ -34,7 +34,8 @@ generator per dataset, never two.
 RUNNER BUDGET. dsdgen(sf=10) is ~3-4 GB of DuckDB storage on a 14 GB disk / 16 GB RAM runner.
 The database is FILE-BACKED so generation spills instead of dying, memory_limit sits below the
 runner's RAM, and the parquet for ONE table at a time sits beside it (store_sales, the largest,
-~1.2 GB) and is deleted as it uploads. SF=30 does not fit; tpcds.yml offers 1 and 10.
+~1.2 GB) and is deleted as it uploads. SF=30 and SF=100 need more: tpcds.yml
+frees the preinstalled toolchains and moves this scratch to /mnt (TPCDS_SCRATCH) for them.
 
 IDEMPOTENT the way the TPC-H generate is, through the same two functions: the completion marker
 is the same table property, written on this suite's MARKER_TABLE (`web_site`, last in TABLES).
@@ -70,8 +71,11 @@ def _log(message: str) -> None:
 
 def _scratch() -> Path:
     """Where the local database, DuckDB's spill files and the parquet-in-flight live: the
-    runner's temp, gone with it."""
-    root = Path(os.environ.get("RUNNER_TEMP", tempfile.gettempdir())) / "tpcds"
+    runner's temp, gone with it -- or TPCDS_SCRATCH, which tpcds.yml points at /mnt for SF>=30."""
+    root = Path(
+        os.environ.get("TPCDS_SCRATCH")
+        or Path(os.environ.get("RUNNER_TEMP", tempfile.gettempdir())) / "tpcds"
+    )
     (root / "tmp").mkdir(parents=True, exist_ok=True)
     return root
 

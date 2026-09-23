@@ -21,9 +21,9 @@ on:
   workflow_dispatch:
     inputs:
       sf:
-        description: Scale factor. 1 is the smoke value; 10 is the default. 30 does not fit the runner disk through DuckDB.
+        description: Scale factor. 1 is the smoke value; 10 is the default. 30 and 100 free the runner's hidden disk first.
         type: choice
-        options: ["1", "10"]
+        options: ["1", "10", "30", "100"]
         default: "10"
       engines:
         description: Comma-separated engines to run.
@@ -65,8 +65,9 @@ env:
 jobs:
   prepare:
     runs-on: ubuntu-latest
-    # dsdgen at SF=10 plus ~3 GB of parquet out to OneLake. Generous; the cap is a hang guard.
-    timeout-minutes: 90
+    # dsdgen at SF=10 plus ~3 GB of parquet out to OneLake takes well under this; SF=100 is ten
+    # times the data through one runner. The cap is a hang guard, sized for the largest scale.
+    timeout-minutes: 360
     permissions:
       id-token: write
       contents: read
@@ -74,6 +75,17 @@ jobs:
       engines: ${{ steps.plan.outputs.engines }}
       started: ${{ steps.plan.outputs.started }}
     steps:
+      # BIG SCALES NEED THE DISK THE RUNNER HIDES. The documented 14 GB is what is left on `/`;
+      # deleting the preinstalled toolchains nobody here uses frees ~30 GB more, and the VM's
+      # temporary disk at /mnt (~70 GB, normally unused) takes the scratch. SF=1/10 skip this.
+      - name: Free runner disk (SF >= 30)
+        if: (inputs.sf || '10') == '30' || (inputs.sf || '10') == '100'
+        run: |
+          df -h / /mnt
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/share/boost
+          sudo mkdir -p /mnt/tpcds && sudo chown "$USER" /mnt/tpcds
+          echo "TPCDS_SCRATCH=/mnt/tpcds" >> "$GITHUB_ENV"
+          df -h / /mnt
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6
         with:
@@ -151,6 +163,13 @@ jobs:
       # starts it, so .config("spark.driver.memory") is silently ignored and this must be env.
       SPARK_DRIVER_MEMORY: 11g
     steps:
+      # SAME CLEANUP FOR THE ENGINE JOB, `/` only: DuckDB spills beside the workspace and the
+      # engines' local caches live under $RUNNER_TEMP, both on `/`.
+      - name: Free runner disk (SF >= 30)
+        if: (inputs.sf || '10') == '30' || (inputs.sf || '10') == '100'
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/share/boost
+          df -h /
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6
         with:
