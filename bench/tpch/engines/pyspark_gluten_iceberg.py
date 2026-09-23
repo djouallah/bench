@@ -97,12 +97,6 @@ def gluten_conf() -> dict[str, str]:
         "spark.sql.optimizer.runtime.bloomFilter.applicationSideScanSizeThreshold": "0",
         # Velox otherwise reserves 30% more memory than it asks for, as headroom.
         "spark.gluten.memory.overAcquiredMemoryRatio": "0",
-        # MORE READS IN FLIGHT against OneLake. The IO pool defaults to the task slots (4), one
-        # row group is prefetched and two splits preloaded -- sized for local disks. Every read
-        # here is an HTTPS round trip, so more of them overlap.
-        "spark.gluten.sql.columnar.backend.velox.IOThreads": "16",
-        "spark.gluten.sql.columnar.backend.velox.prefetchRowGroups": "4",
-        "spark.gluten.sql.columnar.backend.velox.SplitPreloadPerDriver": "4",
         # Gluten's Arrow/netty buffers need reflective access on JDK 17.
         "spark.driver.extraJavaOptions": "-Dio.netty.tryReflectionSetAccessible=true",
     }
