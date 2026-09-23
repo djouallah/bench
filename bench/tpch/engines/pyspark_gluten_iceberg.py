@@ -184,12 +184,34 @@ def link_ca_bundle() -> None:
             subprocess.run(["sudo", "ln", "-sf", UBUNTU_CA_BUNDLE, path], check=True)
 
 
+# Velox's own file cache, the counterpart of DuckDB's: 8GB on local disk -- the whole SF=10 working
+# set, the same budget pyspark_alluxio_iceberg gives Alluxio -- in front of a 1GB memory tier,
+# Gluten's default, since heap and off-heap already hold 12 of the runner's 16GB. It caches only
+# what Velox reads itself; a scan Gluten hands back to the JVM still goes through hadoop-azure.
+SSD_CACHE_SIZE = "8GB"
+MEM_CACHE_SIZE = "1GB"
+
+
+def cache_conf() -> dict[str, str]:
+    cache_dir = Path(os.environ.get("RUNNER_TEMP", "/tmp")) / "velox-cache"
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    scrub.safe_print(f"  velox cache {SSD_CACHE_SIZE} ssd at {cache_dir} + {MEM_CACHE_SIZE} memory")
+    prefix = "spark.gluten.sql.columnar.backend.velox"
+    return {
+        f"{prefix}.cacheEnabled": "true",
+        f"{prefix}.memCacheSize": MEM_CACHE_SIZE,
+        f"{prefix}.ssdCachePath": str(cache_dir),
+        f"{prefix}.ssdCacheSize": SSD_CACHE_SIZE,
+        f"{prefix}.ssdCacheShards": "4",
+    }
+
+
 class PysparkGlutenIceberg(PysparkIceberg):
     name = "pyspark_gluten_iceberg"
 
     def _extra_config(self) -> dict[str, str]:
         link_ca_bundle()
-        conf = gluten_conf()
+        conf = gluten_conf() | cache_conf()
         conf["spark.driver.extraClassPath"] += os.pathsep + f"{fetch_packages()}/*"
         return conf
 
