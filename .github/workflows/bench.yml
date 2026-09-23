@@ -32,10 +32,6 @@ on:
         description: Commit results and charts. Off leaves the artifacts and touches nothing.
         type: boolean
         default: true
-      override:
-        description: A package spec (e.g. a wheel URL) installed over each engine's requirements, no deps. For testing an unreleased build; leave publish off.
-        type: string
-        default: ""
   # Enable once a manual SF=10 run over all four engines has gone green and the leak check in
   # publish.py has been confirmed clean. See RUN.md, step 8.
   # schedule:
@@ -163,11 +159,8 @@ jobs:
       # One self-contained file per engine. Which line it tracks -- pre-release for duckdb and
       # polars, stable for chdb and pysail -- is a property of that file, not a workflow input.
       - name: Install ${{ matrix.engine }}
-        env:
-          OVERRIDE: ${{ inputs.override }}
         run: |
           pip install -r "requirements/${BENCH_ENGINE}.txt"
-          if [ -n "$OVERRIDE" ]; then pip install --force-reinstall --no-deps "$OVERRIDE"; fi
           pip list --format=freeze | grep -Ei '^(duckdb|chdb|polars|pysail|pyiceberg|pyarrow)=' || true
 
       - uses: actions/setup-java@v5
