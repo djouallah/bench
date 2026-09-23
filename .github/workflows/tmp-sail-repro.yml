@@ -21,4 +21,4 @@ jobs:
           python-version: "3.12"
       - run: pip install "${{ inputs.pysail }}" "pyspark-client>=4.1,<4.2" "pyiceberg[sql-sqlite,pyarrow]" duckdb
       - run: pip list --format=freeze | grep -Ei '^(pysail|pyspark|pyiceberg|pyarrow)='
-      - run: python .github/scripts/tmp_sail_q71_repro.py
+      - run: python -u .github/scripts/tmp_sail_q71_repro.py

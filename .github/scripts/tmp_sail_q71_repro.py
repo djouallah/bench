@@ -68,4 +68,5 @@ for label, sql in cases.items():
         failed += 1
         print(f"FAIL  {label}: {' '.join(str(exc).split())[:700]}")
 print(f"{failed} of {len(cases)} failed")
+sys.stdout.flush()
 os._exit(1 if failed else 0)  # skip the client's shutdown retries (they cost ~10 min last time)
