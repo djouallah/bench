@@ -84,6 +84,10 @@ def gluten_conf() -> dict[str, str]:
         "spark.memory.offHeap.enabled": "true",
         "spark.memory.offHeap.size": OFF_HEAP,
         "spark.shuffle.manager": "org.apache.spark.shuffle.sort.ColumnarShuffleManager",
+        # Let Spark's own join choice stand instead of forcing shuffled hash joins, so a
+        # sort-merge join runs natively where Spark plans one. Gluten's forced SHJ is the known
+        # cause of TPC-DS Q72 running slower than stock Spark (apache/gluten#8417).
+        "spark.gluten.sql.columnar.forceShuffledHashJoin": "false",
         # Gluten's Arrow/netty buffers need reflective access on JDK 17.
         "spark.driver.extraJavaOptions": "-Dio.netty.tryReflectionSetAccessible=true",
     }
