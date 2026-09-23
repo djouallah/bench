@@ -95,6 +95,31 @@ def main() -> int:
             CREATE LOCATION onelake_probe WITH SOURCE = CLOUD_STORAGE
               URL = '{cfg.base_path}/Tables/' CREDENTIALS = (BEARER_TOKEN = '{token}')"""),
     }
+
+    # ROUND 2, from round 1's answer. Every Azure-shaped URL above failed on the SCHEME, and the
+    # CREATE LOCATION error named the one Firebolt takes: "azure:// for Azure Blob Storage". Its
+    # authority layout and credential keys are undocumented, so try both common layouts, and let
+    # a LOCATION error name the credential keys it accepts.
+    rel = data_file.split(f"/{cfg.lakehouse_id}/", 1)[1]
+    blob = "onelake.blob.fabric.microsoft.com"
+    layouts = {
+        "container@host": f"azure://{cfg.workspace_id}@{blob}/{cfg.lakehouse_id}/{rel}",
+        "account/container": f"azure://onelake/{cfg.workspace_id}/{cfg.lakehouse_id}/{rel}",
+    }
+    for name, url in layouts.items():
+        results[f"6 parquet azure {name}"] = _probe(
+            f"6 READ_PARQUET, azure:// {name}", f"SELECT count(*) FROM READ_PARQUET(URL => '{url}')")
+    for i, creds in enumerate(["", f"CREDENTIALS = (BEARER_TOKEN = '{token}')",
+                               f"CREDENTIALS = (AZURE_BEARER_TOKEN = '{token}')"]):
+        loc = f"onelake_probe_{i}"
+        results[f"7 location {i}"] = _probe(f"7 CREATE LOCATION azure:// #{i}", f"""
+            CREATE LOCATION {loc} WITH SOURCE = CLOUD_STORAGE
+              URL = '{layouts["container@host"].rsplit("/", 1)[0]}/' {creds}""")
+        if results[f"7 location {i}"]:
+            results[f"8 parquet via {loc}"] = _probe(
+                f"8 READ_PARQUET via {loc}",
+                f"SELECT count(*) FROM READ_PARQUET(LOCATION => '{loc}', PATTERN => '*.parquet')")
+
     print("\nSUMMARY")
     for name, ok in results.items():
         print(f"  {'PASS' if ok else 'FAIL'}  {name}")
