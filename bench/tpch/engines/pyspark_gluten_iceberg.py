@@ -27,7 +27,9 @@ THE SNAPSHOT IS OVERWRITTEN NIGHTLY under the same name, so the jar's sha256 is 
 setup: that, not the file name, is what identifies the build a run measured.
 
 MEMORY. Velox allocates OFF-HEAP, so the 11g heap every other Spark run gets would leave it
-nothing on a 16GB runner. The heap shrinks to 4g and Velox gets 8g; the total is the same.
+nothing on a 16GB runner. The heap shrinks to 3g and Velox gets 9g; the total is the same. The
+vendors lean further (Google's Dataproc guidance 6:1 off-heap to heap, Gluten's benchmark 7:1),
+but in local mode the one JVM also plans every query and holds Iceberg's metadata.
 """
 
 from __future__ import annotations
@@ -48,8 +50,8 @@ GLUTEN_JAR_URL = (
     "gluten-velox-bundle-spark4.1_2.13-linux_amd64-1.8.0-SNAPSHOT.jar"
 )
 
-HEAP = "4g"
-OFF_HEAP = "8g"
+HEAP = "3g"
+OFF_HEAP = "9g"
 
 
 def fetch_gluten_jar() -> Path:
@@ -84,10 +86,17 @@ def gluten_conf() -> dict[str, str]:
         "spark.memory.offHeap.enabled": "true",
         "spark.memory.offHeap.size": OFF_HEAP,
         "spark.shuffle.manager": "org.apache.spark.shuffle.sort.ColumnarShuffleManager",
-        # Let Spark's own join choice stand instead of forcing shuffled hash joins, so a
-        # sort-merge join runs natively where Spark plans one. Gluten's forced SHJ is the known
-        # cause of TPC-DS Q72 running slower than stock Spark (apache/gluten#8417).
-        "spark.gluten.sql.columnar.forceShuffledHashJoin": "false",
+        # GLUTEN'S OWN TPC-DS BENCHMARK CONFIG (tools/workload in apache/gluten, and Intel's
+        # tuning guide), not guesses. Shuffled hash joins stay forced (the default: native
+        # sort-merge "still has some performance issues"); instead a long chain of joins falls
+        # back to row operators -- the documented Q72 answer (apache/gluten#8417).
+        "spark.gluten.sql.columnar.physicalJoinOptimizeEnable": "true",
+        "spark.gluten.sql.columnar.physicalJoinOptimizationLevel": "18",
+        # Runtime bloom filters on every probe-side scan, however small.
+        "spark.sql.optimizer.runtime.bloomFilter.enabled": "true",
+        "spark.sql.optimizer.runtime.bloomFilter.applicationSideScanSizeThreshold": "0",
+        # Velox otherwise reserves 30% more memory than it asks for, as headroom.
+        "spark.gluten.memory.overAcquiredMemoryRatio": "0",
         # Gluten's Arrow/netty buffers need reflective access on JDK 17.
         "spark.driver.extraJavaOptions": "-Dio.netty.tryReflectionSetAccessible=true",
     }
