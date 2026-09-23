@@ -1,4 +1,4 @@
-"""TEMPORARY (delete after use). Minimal repro attempt for Sail's 'Physical input schema should be the same' on a UNION of
+"""TEMPORARY (delete after use). Repro for Sail "Physical input schema" on a UNION of
 parquet sources whose columns carry different PARQUET:field_id metadata (what Iceberg writers
 produce), followed by an aggregate -- the shape of TPC-DS Q71."""
 
@@ -65,8 +65,8 @@ try:
     t1.append(pa.table({"item_sk": [1, 2], "price": [1.0, 2.0]}))
     t2 = cat.create_table("ns.t2", s2)
     t2.append(pa.table({"pad": ["x"], "item_sk": [1], "price": [3.0]}))
-    spark.read.format("iceberg").load(t1.metadata_location).createOrReplaceTempView("i1")
-    spark.read.format("iceberg").load(t2.metadata_location).createOrReplaceTempView("i2")
+    spark.read.format("iceberg").load(t1.location()).createOrReplaceTempView("i1")
+    spark.read.format("iceberg").load(t2.location()).createOrReplaceTempView("i2")
     cases["iceberg: union, aggregate"] = (
         "SELECT item_sk, sum(price) FROM "
         "(SELECT item_sk, price FROM i1 UNION ALL SELECT item_sk, price FROM i2) GROUP BY item_sk"
