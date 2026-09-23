@@ -203,6 +203,9 @@ def cache_conf() -> dict[str, str]:
         f"{prefix}.ssdCachePath": str(cache_dir),
         f"{prefix}.ssdCacheSize": SSD_CACHE_SIZE,
         f"{prefix}.ssdCacheShards": "4",
+        # The SSD tier refuses to start above an 8MB read unit ("Velox currently only support up
+        # to 8MB load quantum size on SSD cache"); Gluten's default is 256MB.
+        f"{prefix}.loadQuantum": "8MB",
     }
 
 
