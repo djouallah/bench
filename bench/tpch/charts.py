@@ -208,8 +208,14 @@ def totals(con, sf: int, out_dir: Path, subtitle: str, n_queries: int = 22) -> l
     for theme in THEMES.values():
         fig, ax = plt.subplots(figsize=(11, 1.1 * len(order) + 2.2))
         height = 0.36
+        # One bar per engine, centred, when there is no warm pass (TPC-DS runs cold only).
+        slots = (
+            ((height / 2, "cold", 1.0), (-height / 2, "warm", 0.55))
+            if any("warm" in values for values in by_engine.values())
+            else ((0.0, "cold", 1.0),)
+        )
         for index, engine in enumerate(order):
-            for offset, run_type, alpha in ((height / 2, "cold", 1.0), (-height / 2, "warm", 0.55)):
+            for offset, run_type, alpha in slots:
                 value = by_engine[engine].get(run_type)
                 if value is None:
                     continue
@@ -292,14 +298,15 @@ def trend(con, sf: int, out_dir: Path, subtitle: str, test: str = "tpch") -> lis
         present = [e for e in ENGINES if any(k[0] == e for k in series)]
         _legend(ax, theme, present)
         # The second encoding: line style, so cold/warm is not carried by opacity alone.
-        ax.text(
-            0.0,
-            -0.16,
-            "solid = cold   ·   dashed = warm",
-            transform=ax.transAxes,
-            fontsize=9,
-            color=theme["secondary"],
-        )
+        if any(k[1] == "warm" for k in series):
+            ax.text(
+                0.0,
+                -0.16,
+                "solid = cold   ·   dashed = warm",
+                transform=ax.transAxes,
+                fontsize=9,
+                color=theme["secondary"],
+            )
         plt.setp(ax.get_xticklabels(), rotation=45, ha="right")
         paths.append(_save(fig, out_dir, "trend", theme))
     return paths

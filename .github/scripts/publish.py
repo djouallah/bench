@@ -75,20 +75,30 @@ def summarize(run: Run, engines: tuple[str, ...]) -> list[dict]:
     return sorted(out, key=lambda r: r["cold"] if r["cold"] else float("inf"))
 
 
-def _table(rows: list[dict]) -> list[str]:
+def _table(rows: list[dict], passes: tuple[str, ...] = ("cold", "warm")) -> list[str]:
+    """One column per pass the suite runs: TPC-DS has no warm column at all."""
+    totals = " | ".join(f"{p.capitalize()} total" for p in passes)
     lines = [
-        "| Engine | Version | Cold total | Warm total | Attach | Failed queries |",
-        "|---|---|---:|---:|---:|---|",
+        f"| Engine | Version | {totals} | Attach | Failed queries |",
+        "|---|---|" + "---:|" * len(passes) + "---:|---|",
     ]
     for row in rows:
         failed = ", ".join(f"Q{q}" for q in row["failed"]) if row["failed"] else "—"
-        cold = f"{row['cold']:,.1f}s" if row["cold"] else "—"
-        warm = f"{row['warm']:,.1f}s" if row["warm"] else "—"
+        cells = " | ".join(f"{row[p]:,.1f}s" if row[p] else "—" for p in passes)
         setup = f"{row['setup']:,.1f}s" if row["setup"] else "—"
-        lines.append(
-            f"| {row['label']} | `{row['version']}` | {cold} | {warm} | {setup} | {failed} |"
-        )
+        lines.append(f"| {row['label']} | `{row['version']}` | {cells} | {setup} | {failed} |")
     return lines
+
+
+def only_passes(run: Run, passes: tuple[str, ...]) -> Run:
+    """`run` with every row outside the suite's passes dropped.
+
+    TPC-DS ran cold then warm until it went to one pass; its older runs still carry warm rows,
+    and the headline must not show a pass the suite no longer runs.
+    """
+    for result in run.engines.values():
+        result.rows = [r for r in result.rows if r.run_type in passes]
+    return run
 
 
 def _rel(target: Path, start: Path) -> str:
@@ -117,11 +127,16 @@ def write_results_md(run: Run, rows: list[dict], table, path: Path, suite) -> No
         "",
         "Each engine's most recent run at this scale; the newest run may not include every engine.",
         "",
-        *_table(rows),
+        *_table(rows, suite.PASSES),
         "",
-        f"Cold = first pass after attaching the catalog. Warm = the identical {suite.N_QUERIES} "
-        "statements run again immediately. Attach is timed separately and excluded from both "
-        "totals.",
+        (
+            f"Cold = first pass after attaching the catalog. Warm = the identical "
+            f"{suite.N_QUERIES} statements run again immediately. Attach is timed separately and "
+            "excluded from both totals."
+            if "warm" in suite.PASSES
+            else "One cold pass, the first after attaching the catalog. Attach is timed "
+            "separately and excluded from the total."
+        ),
         "",
     ]
 
@@ -191,7 +206,12 @@ def write_headline_docs(run: Run, rows: list[dict], table, suite) -> None:
     import pyarrow.compute as pc
 
     docs = Path(suite.DOCS_DIR)
-    shown = table.filter(pc.is_in(table["engine"], value_set=pa.array(list(suite.ENGINES))))
+    shown = table.filter(
+        pc.and_(
+            pc.is_in(table["engine"], value_set=pa.array(list(suite.ENGINES))),
+            pc.is_in(table["run_type"], value_set=pa.array(list(suite.PASSES))),
+        )
+    )
     subtitle = (
         f"{suite.TITLE} SF {run.sf} · {run.cpu} vCPU {run.mem_gb:.0f} GB · "
         f"{run.run_started_at[:10]} · OneLake Iceberg REST catalog"
@@ -217,7 +237,7 @@ def write_step_summary(run: Run, rows: list[dict], suite) -> None:
     lines = [
         f"## {suite.TITLE} SF {run.sf} — {run.cpu} vCPU, {run.mem_gb} GB",
         "",
-        *_table(rows),
+        *_table(rows, suite.PASSES),
         "",
         f"`{run.run_started_at}` · commit `{run.git_sha}`",
     ]
@@ -256,6 +276,7 @@ def main() -> int:
     # (the JSON above, the CSV, the step summary) and rewrites neither. etl_publish.py says why.
     if sf == suite.HEADLINE_SF:
         latest = latest_per_engine(results_dir, sf, suite.ENGINES, run)
+        latest = only_passes(latest, suite.PASSES)
         write_headline_docs(latest, summarize(latest, suite.ENGINES), table, suite)
     else:
         print(

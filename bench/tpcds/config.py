@@ -88,9 +88,10 @@ TABLES = (
 # makes a 30% error here change nothing.
 PARQUET_MB_PER_SF = 300
 
-# The scale the headline docs are built at, and tpcds.yml's default. SF=30, 60 and 100 run too
-# (tpcds.yml frees the runner's hidden disk for them) and are recorded, not charted.
-HEADLINE_SF = 10
+# The scale the headline docs are built at, and tpcds.yml's default. SF=60, the largest a 16 GB
+# runner gets through: 20 GiB of parquet that does not fit in memory, so the engines are measured
+# reading OneLake, not their caches. SF=1, 10, 30 and 100 run too and are recorded, not charted.
+HEADLINE_SF = 60
 
 
 @dataclass(frozen=True)
