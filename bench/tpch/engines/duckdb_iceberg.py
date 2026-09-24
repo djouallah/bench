@@ -9,6 +9,14 @@ other engine here fetches the same files again on the second pass.
 
 `EXTERNAL_FILE_CACHE` is therefore SET explicitly, as the first statement of the session, so the
 setting is stated rather than inherited.
+
+THE STORAGE SECRET IS REPLACED WHEN THE TOKEN IS. It holds a token STRING, good for about an hour,
+and TPC-DS at SF=100 runs DuckDB longer than that: run 35862492772 read fine for 65 minutes, then
+failed Q88 onwards `Unauthorized` on store_sales. `refresh` asks bench.auth for the token before
+every statement -- auth re-mints it five minutes before expiry -- and re-creates the secret only
+when the string changed, so it costs one comparison per statement and one CREATE SECRET an hour.
+The catalog token in ATTACH is left alone: table metadata is cached for CATALOG_CACHE_SECONDS
+(two hours), so the REST catalog is not called again inside a run.
 """
 
 from __future__ import annotations
@@ -26,6 +34,7 @@ class DuckDBIceberg:
     def __init__(self, cfg: Config):
         self.cfg = cfg
         self._conn = None
+        self._token = ""
 
     @property
     def version(self) -> str:
@@ -46,10 +55,9 @@ class DuckDBIceberg:
             SET GLOBAL enable_external_file_cache = {str(self.EXTERNAL_FILE_CACHE).lower()};
 
             SET GLOBAL azure_transport_option_type = '{azure_transport() or "default"}';
-
-            CREATE OR REPLACE SECRET onelake_storage (
-                TYPE azure, PROVIDER access_token, ACCESS_TOKEN '{token}');
-
+        """)
+        self._storage_secret(token)
+        self._conn.sql(f"""
             ATTACH OR REPLACE '{self.cfg.warehouse}' AS onelake (
                 TYPE ICEBERG,
                 ENDPOINT '{ICEBERG_ENDPOINT}',
@@ -61,6 +69,19 @@ class DuckDBIceberg:
             USE onelake;
         """)
         scrub.safe_print(f"  duckdb {self.version} attached to {self.cfg.schema}")
+
+    def _storage_secret(self, token: str) -> None:
+        self._conn.sql(f"""
+            CREATE OR REPLACE SECRET onelake_storage (
+                TYPE azure, PROVIDER access_token, ACCESS_TOKEN '{token}');
+        """)
+        self._token = token
+
+    def refresh(self) -> None:
+        token = auth.onelake_token()
+        if self._conn is not None and token != self._token:
+            self._storage_secret(token)
+            scrub.safe_print("  storage token re-minted, secret replaced")
 
     def execute(self, sql: str) -> int:
         return len(self._conn.sql(sql).fetchall())
