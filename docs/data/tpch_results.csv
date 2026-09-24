@@ -1263,3 +1263,83 @@ run_id,run_started_at,run_url,git_sha,sf,test,runner,cpu,mem_gb,python,engine,en
 36001440696-2,2026-09-24T13:41:33Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36001440696,c33be9d,30,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,20,39.5687,5404,ok,
 36001440696-2,2026-09-24T13:41:33Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36001440696,c33be9d,30,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,21,150.2578,100,ok,
 36001440696-2,2026-09-24T13:41:33Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36001440696,c33be9d,30,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,22,21.0417,7,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,chdb_iceberg,4.4.0,ok,cold,setup,0,1.9134,,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,chdb_iceberg,4.4.0,ok,cold,query,1,24.6955,4,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,chdb_iceberg,4.4.0,ok,cold,query,2,19.3431,10,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,chdb_iceberg,4.4.0,ok,cold,query,3,,,error,"RuntimeError: Code: 241. DB::Exception: Query memory limit exceeded: would use 9.31 GiB (attempt to allocate chunk of 3.86 MiB), maximum: 9.31 GiB. Untracked memory across all threads: -5.88 MiB: read stage: ColumnData: column: l_orderkey: (in file/uri ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/CH0060/lineitem/part-00051-000-lineitem.51.parquet): While executing ParquetV3BlockInputFormat: While executing ReadFromObjectStorage. (MEMORY_LIMIT_EXCEEDED)"
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,chdb_iceberg,4.4.0,ok,cold,query,4,,,error,JSONDecodeError: Extra data: line 36 column 1 (char 415)
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,chdb_iceberg,4.4.0,ok,cold,query,5,55.7366,5,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,chdb_iceberg,4.4.0,ok,cold,query,6,16.4971,1,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,chdb_iceberg,4.4.0,ok,cold,query,7,,,error,"RuntimeError: Code: 241. DB::Exception: Query memory limit exceeded: would use 9.43 GiB (attempt to allocate chunk of 129.08 MiB), maximum: 9.31 GiB. Untracked memory across all threads: -8.19 MiB: While executing FillingRightJoinSide. (MEMORY_LIMIT_EXCEEDED)"
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,chdb_iceberg,4.4.0,ok,cold,query,8,,,error,JSONDecodeError: Extra data: line 36 column 1 (char 411)
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,chdb_iceberg,4.4.0,ok,cold,query,9,,,error,"RuntimeError: Code: 241. DB::Exception: Query memory limit exceeded: would use 11.42 GiB (attempt to allocate chunk of 4.00 GiB), maximum: 9.31 GiB. Untracked memory across all threads: -819.08 KiB: While executing FillingRightJoinSide. (MEMORY_LIMIT_EXCEEDED)"
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,chdb_iceberg,4.4.0,ok,cold,query,10,,,error,JSONDecodeError: Extra data: line 32 column 1 (char 342)
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,chdb_iceberg,4.4.0,ok,cold,query,11,6.5527,56470,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,chdb_iceberg,4.4.0,ok,cold,query,12,23.8331,2,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,chdb_iceberg,4.4.0,ok,cold,query,13,24.9313,46,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,chdb_iceberg,4.4.0,ok,cold,query,14,17.1242,1,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,chdb_iceberg,4.4.0,ok,cold,query,15,13.3374,1,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,chdb_iceberg,4.4.0,ok,cold,query,16,4.4199,27840,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,chdb_iceberg,4.4.0,ok,cold,query,17,23.2681,1,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,chdb_iceberg,4.4.0,ok,cold,query,18,22.8674,100,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,chdb_iceberg,4.4.0,ok,cold,query,19,21.4339,1,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,chdb_iceberg,4.4.0,ok,cold,query,20,11.4339,10738,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,chdb_iceberg,4.4.0,ok,cold,query,21,,,error,"RuntimeError: Code: 241. DB::Exception: Iceberg iterator is failed with exception: Code: 241. DB::Exception: Query memory limit exceeded: would use 10.40 GiB (attempt to allocate chunk of 1.15 GiB), maximum: 9.31 GiB. Untracked memory across all threads: -2.43 MiB. (MEMORY_LIMIT_EXCEEDED), Stack trace (when copying this message, always include the lines below):
+
+0. ? @ 0x000000001c9d9233
+1. ? @ 0x000000000ef44e9e
+2. ? @ 0x000000000919dbd2
+3. ? @ 0x000000000919d67b
+4. ? @ 0x000000000efc104e
+5. ? @ 0x000000000efbf5ca
+6. ? @ 0x000000000efbed62
+7. ? @ 0x000000000ef18e4c
+8. ? @ 0x000000000ef15892
+9. ? @ 0x00000000171c80a1
+10. ? @ 0x000000001749290d
+11. ? @ 0x00000000172cbb1b
+12. ? @ 0x00000000172cc60e
+13. ? @ 0x000000001498209c
+14. ? @ 0x0000000014981c02
+15. ? @ 0x00000000145f36f6
+16. ? @ 0x0000000017cbe944
+17. ? @ 0x0000000017cc335e
+18. ? @ 0x00000000180e0053
+19. ? @ 0x00000000180e0164
+20. ? @ 0x00000000180dfe61
+21. ? @ 0x0000000017cb7537
+22. ? @ 0x0000000012b80e3e
+23. ? @ 0x0000000012b7cbe9
+24. ? @ 0x0000000012b7b79f
+25. ? @ 0x0000000012b7cef1
+26. ? @ 0x0000000012b4f37e
+27. ? @ 0x0000000012b56480
+28. ? @ 0x000000000f15d106
+29. ? @ 0x000000000f15271e
+30. ? @ 0x000000000f15a63b
+31. arrow::Status arrow::py::internal::(anonymous namespace)::DecimalFromStdString<arrow::Decimal64>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, arrow::DecimalType const&, arrow::Decimal64*) @ 0x000000000009cb84
+ (version 26.7.2.1): While executing ReadFromObjectStorage. (MEMORY_LIMIT_EXCEEDED)"
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,chdb_iceberg,4.4.0,ok,cold,query,22,,,error,JSONDecodeError: Extra data: line 28 column 1 (char 263)
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,setup,0,26.345,,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,1,168.7297,4,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,2,41.4623,10,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,3,105.2283,10,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,4,77.1609,5,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,5,144.356,5,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,6,65.6823,1,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,7,92.1885,9,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,8,130.5283,2,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,9,180.1848,175,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,10,94.0602,20,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,11,13.3379,49493,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,12,84.7168,2,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,13,56.4029,46,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,14,62.5095,1,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,15,123.6912,1,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,16,19.4137,27840,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,17,214.0615,1,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,18,180.6082,100,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,19,77.3069,1,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,20,68.6778,10738,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,21,280.0731,100,ok,
+36016149239-1,2026-09-24T14:54:36Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/36016149239,d588872,60,tpch,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,22,37.933,7,ok,
