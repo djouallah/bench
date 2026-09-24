@@ -47,7 +47,8 @@ ENGINES = (
     "duckdb_iceberg",
     "pyspark_iceberg",
     # Spark with Gluten/Velox underneath. Velox reads OneLake with a one-hour SAS (the engine
-    # module says why), so a TPC-DS run has to finish inside that hour.
+    # module says why), so a TPC-DS run has to finish inside that hour -- which is why
+    # TpcdsConfig runs one pass.
     "pyspark_gluten_iceberg",
 )
 
@@ -97,6 +98,12 @@ class TpcdsConfig(Config):
     TEST = "tpcds"
     TITLE = "TPC-DS"
     SF_ENV = "TPCDS_SF"
+    # ONE PASS, COLD, AT EVERY SCALE. Run 35942277983 (SF=60) is why: Gluten's one-hour SAS
+    # expired 57 minutes in, at Q61 of the warm pass, and the 39 statements after it failed with
+    # 401 Unauthorized. And past SF=10 the warm pass barely measures a cache anyway -- 20 GiB
+    # does not fit a 16 GB runner, so DuckDB's warm was only 8% under its cold (1,046s -> 962s).
+    # One pass also halves a run that was already the longest in the repo.
+    PASSES = ("cold",)
     HEADLINE_SF = HEADLINE_SF
     ENGINES = ENGINES
     TABLES = TABLES

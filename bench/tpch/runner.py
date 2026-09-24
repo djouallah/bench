@@ -1,4 +1,4 @@
-"""Run the suite's statements cold, then warm, timing each. TPC-H and TPC-DS both come here.
+"""Run the suite's statements cold (then warm, for TPC-H), timing each. TPC-H and TPC-DS both come here.
 
 REPLACES cells 15, 16 and 17.
 
@@ -58,7 +58,7 @@ def run_pass(engine, statements: list[str], run_type: str) -> list[Row]:
 
 
 def benchmark(engine, cfg) -> EngineResult:
-    """Attach, run cold, run warm. Always closes the engine.
+    """Attach, run each of the suite's passes (cold, then warm for TPC-H). Always closes the engine.
 
     A setup failure returns `status='setup_failed'` with the one setup row rather than raising:
     the caller writes the artifact either way, so a failed engine still appears in the results
@@ -86,10 +86,11 @@ def benchmark(engine, cfg) -> EngineResult:
     scrub.safe_print(f"  setup {setup_duration:.3f}s")
 
     try:
-        result.rows += run_pass(engine, statements, "cold")
-        # The SAME statements again, immediately. Whatever the engine cached -- chDB's filesystem
-        # cache, DuckDB's buffer pool, the OS page cache -- is what the warm numbers measure.
-        result.rows += run_pass(engine, statements, "warm")
+        # A second pass runs the SAME statements again, immediately. Whatever the engine cached --
+        # chDB's filesystem cache, DuckDB's buffer pool, the OS page cache -- is what the warm
+        # numbers measure. The suite's config says how many passes there are.
+        for run_type in cfg.PASSES:
+            result.rows += run_pass(engine, statements, run_type)
     finally:
         engine.close()
 

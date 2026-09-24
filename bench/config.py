@@ -103,6 +103,9 @@ class Config:
     # The environment variable `from_env` reads the scale from. A suite overrides it (TpcdsConfig
     # reads TPCDS_SF) so two suites dispatched with different scales never read each other's.
     SF_ENV = "TPCH_SF"
+    # The passes over the statements, in order. TPC-H runs every statement twice, the second
+    # time measuring whatever the engine cached; TpcdsConfig runs once (it says why).
+    PASSES = ("cold", "warm")
 
     workspace_id: str
     lakehouse_id: str

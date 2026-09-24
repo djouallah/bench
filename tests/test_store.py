@@ -134,11 +134,12 @@ def test_a_failing_query_does_not_stop_the_run():
 
 
 def test_the_runner_takes_the_statement_count_from_the_suite():
-    """Same runner, same fake engine, the TPC-DS config: 99 statements each pass."""
+    """Same runner, same fake engine, the TPC-DS config: 99 statements, one cold pass."""
     result = benchmark(_Fake(), TpcdsConfig(workspace_id="w", lakehouse_id="l", sf=10))
     assert result.status == "ok"
-    assert len(result.rows) == 1 + 99 + 99
+    assert len(result.rows) == 1 + 99
     assert {r.query for r in result.rows if r.phase == "query"} == set(range(1, 100))
+    assert {r.run_type for r in result.rows} == {"cold"}
 
 
 def test_a_failing_attach_is_recorded_not_raised():

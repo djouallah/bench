@@ -207,7 +207,7 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           allow-no-subscriptions: true
 
-      - name: Run 99 queries, cold then warm
+      - name: Run 99 queries, one cold pass
         # `shell: bash` is pipefail. Without it `... | tee` exits 0 whatever the script did, and
         # run_engine.py's "attached but completed 0 statements" guard is silently defeated.
         shell: bash
