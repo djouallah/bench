@@ -16,7 +16,7 @@ failed Q88 onwards `Unauthorized` on store_sales. `refresh` asks bench.auth for 
 every statement -- auth re-mints it five minutes before expiry -- and re-creates the secret only
 when the string changed, so it costs one comparison per statement and one CREATE SECRET an hour.
 The catalog token in ATTACH is left alone: table metadata is cached for CATALOG_CACHE_SECONDS
-(two hours), so the REST catalog is not called again inside a run.
+(six hours), so the REST catalog is not called again inside a run.
 """
 
 from __future__ import annotations

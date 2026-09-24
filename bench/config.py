@@ -55,7 +55,12 @@ STORAGE_SCOPE = "https://storage.azure.com/.default"
 # expired -- 21 statements of run 35732997698 died `NotAuthorizedException` for that reason and
 # no other. A cache that outlives the longest run is what "one caching policy for every engine"
 # was supposed to mean; 900 only ever achieved it for the short suites.
-CATALOG_CACHE_SECONDS = 2 * 60 * 60  # 2 hours
+# SIX HOURS, RAISED FROM TWO on 2026-09-24, for the same reason one scale up. Spark-OSS's cold
+# pass took 2.1 hours at TPC-DS SF=30 and 2.3 at SF=60 (runs 35956230538, 35956245381), and both
+# lost the same 15 statements from Q62 on to `NotAuthorizedException`. The ceiling is now tied to
+# the job rather than to a measured run: tpcds.yml caps a bench job at 355 minutes, so no run
+# that can finish at all outlives this.
+CATALOG_CACHE_SECONDS = 6 * 60 * 60  # 6 hours, above tpcds.yml's 355-minute job cap
 
 
 def azure_transport() -> str | None:

@@ -140,7 +140,7 @@ jobs:
     # results entirely. The job cap must sit clear of the slowest engine, not on top of it.
     #
     # Token lifetime is a separate clock, and the catalog cache is what keeps the two from
-    # colliding: at CATALOG_CACHE_SECONDS (2 hours, raised from 15 minutes for exactly this run)
+    # colliding: at CATALOG_CACHE_SECONDS (6 hours; 2 when this was written, 15 minutes before that)
     # every table is resolved in the first minutes and never looked up again, so a bearer that
     # expires at minute 70 is never presented to the catalog a second time.
     #
