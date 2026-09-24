@@ -9,9 +9,8 @@ rank, so a run that omits an engine never repaints the survivors. Daft holds slo
 is not in bench.yml's engine list, which is the rule working as intended: adding it later must not
 recolour Spark.
 
-Slot 7, brown, is Gluten/Velox, last in ENGINES. It inherited the slot from the one-off DuckDB
-no-cache control, whose brown was validated in that last position in both modes -- nothing
-passes the normal-vision floor between blue and orange -- so the palette did not change.
+Slot 7, brown, is Gluten/Velox, last in ENGINES, validated in that last position in both modes --
+nothing passes the normal-vision floor between blue and orange.
 
 The palette is validated, not eyeballed (dataviz `scripts/validate_palette.js`), and re-validated
 whenever a slot is added -- every subset that can actually render has to pass, not just the full
@@ -93,8 +92,6 @@ LABEL = {
     "daft_iceberg": "Daft",
     "pyspark_iceberg": "Spark-OSS",
     "pyspark_gluten_iceberg": "Gluten/Velox",
-    # Retired engine: its colour is gone, its label stays so historical rows still render.
-    "duckdb_nocache_iceberg": "DuckDB (no cache)",
 }
 
 

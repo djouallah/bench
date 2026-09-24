@@ -26,7 +26,7 @@ ENGINES = (
     "lakesail_iceberg",
     "daft_iceberg",
     "pyspark_iceberg",
-    # Spark with Gluten/Velox underneath, in the slot the one-off DuckDB no-cache control held.
+    # Spark with Gluten/Velox underneath.
     "pyspark_gluten_iceberg",
 )
 

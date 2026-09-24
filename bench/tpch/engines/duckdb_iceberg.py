@@ -4,11 +4,7 @@ THE EXTERNAL FILE CACHE. Since 1.3 DuckDB keeps the byte ranges it reads from re
 its buffer pool (`enable_external_file_cache`, on by default), so a statement that touches a
 parquet file the session has already read does not go back to OneLake for it. It is the only
 cache DuckDB turns on by itself -- `enable_object_cache`, `enable_http_metadata_cache` and
-`parquet_metadata_cache` all default to off -- and it is what the warm pass measures: every
-other engine here fetches the same files again on the second pass.
-
-`EXTERNAL_FILE_CACHE` is therefore SET explicitly, as the first statement of the session, so the
-setting is stated rather than inherited.
+`parquet_metadata_cache` all default to off. Left at its default.
 
 THE STORAGE SECRET IS REPLACED WHEN THE TOKEN IS. It holds a token STRING, good for about an hour,
 and TPC-DS at SF=100 runs DuckDB longer than that: run 35862492772 read fine for 65 minutes, then
@@ -27,9 +23,6 @@ from bench.config import CATALOG_CACHE_SECONDS, ICEBERG_ENDPOINT, Config, azure_
 
 class DuckDBIceberg:
     name = "duckdb_iceberg"
-
-    # DuckDB's own default.
-    EXTERNAL_FILE_CACHE = True
 
     def __init__(self, cfg: Config):
         self.cfg = cfg
@@ -52,8 +45,6 @@ class DuckDBIceberg:
         token = auth.onelake_token()
         self._conn = duckdb.connect()
         self._conn.sql(f"""
-            SET GLOBAL enable_external_file_cache = {str(self.EXTERNAL_FILE_CACHE).lower()};
-
             SET GLOBAL azure_transport_option_type = '{azure_transport() or "default"}';
         """)
         self._storage_secret(token)

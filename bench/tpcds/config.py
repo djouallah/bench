@@ -36,9 +36,6 @@ from bench.config import SQL_DIR, Config
 #   daft_iceberg      never ran here: TPC-H already excludes it from the query benchmark
 #                     (Eventual-Inc/Daft#7532).
 #
-# DuckDB WITH ITS FILE CACHE OFF is not here either. It was a TPC-H question -- is Polars slower
-# only because it has no cache? -- and TPC-H still runs it; TPC-DS never needed the control.
-#
 # What is left is DuckDB and Spark. Spark is slow --
 # ~42 min cold, and bench/tpch/engines/pyspark_iceberg.py's `refresh` exists because of it -- but
 # it is the only non-DuckDB engine that answers all 99, so dropping it would leave one engine
