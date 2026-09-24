@@ -32,7 +32,7 @@ import sys
 from pathlib import Path
 
 from bench.report import leak_check, merge, write_csv
-from bench.store import Run, latest_per_engine, load_all, write_run
+from bench.store import Run, latest_per_engine, load_all, read_run, write_run
 from bench.suite import suite_class
 from bench.tpch import charts
 
@@ -272,10 +272,16 @@ def main() -> int:
     table = load_all(results_dir)
     write_csv(table, csv)
 
-    # The charts and RESULTS.md are the HEADLINE_SF view; a run at another scale is recorded
-    # (the JSON above, the CSV, the step summary) and rewrites neither. etl_publish.py says why.
-    if sf == suite.HEADLINE_SF:
-        latest = latest_per_engine(results_dir, sf, suite.ENGINES, run)
+    # RESULTS.md and the per-query chart are the HEADLINE_SF view. The totals chart spans
+    # TOTALS_SFS, so a run at any of those scales redraws the docs too -- from the latest stored
+    # headline run, which is what the per-scale pages show whichever scale just ran. A run at a
+    # scale outside both (SF=1) is recorded and rewrites nothing. etl_publish.py says why.
+    headline = run if sf == suite.HEADLINE_SF else None
+    if headline is None and sf in suite.TOTALS_SFS:
+        stored = sorted(results_dir.glob(f"*_sf{suite.HEADLINE_SF}_*.json"))
+        headline = read_run(stored[-1]) if stored else None
+    if headline is not None:
+        latest = latest_per_engine(results_dir, suite.HEADLINE_SF, suite.ENGINES, headline)
         latest = only_passes(latest, suite.PASSES)
         write_headline_docs(latest, summarize(latest, suite.ENGINES), table, suite)
     else:
