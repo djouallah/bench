@@ -50,6 +50,6 @@ Seconds, cold pass. `—` means the query failed; see Failures above.
 
 ## History
 
-575 timed statements across 9 runs.
+598 timed statements across 10 runs.
 Raw data: one immutable JSON per run under [`results/`](../results/), flattened to [`data/tpch_results.csv`](data/tpch_results.csv).
 
