@@ -1,4 +1,4 @@
-"""Run the suite's statements cold (then warm, for TPC-H), timing each. TPC-H and TPC-DS both come here.
+"""Run the suite's statements cold (then warm, for TPC-H), timing each. Both suites come here.
 
 REPLACES cells 15, 16 and 17.
 
