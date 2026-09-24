@@ -1,0 +1,3262 @@
+{
+  "run_id": "35942277983-1",
+  "run_started_at": "2026-09-24T01:19:48Z",
+  "sf": 60,
+  "run_url": "https://github.com/djouallah/lakehouse_benchmark/actions/runs/35942277983",
+  "git_sha": "11b3ebc",
+  "test": "tpcds",
+  "runner": "linux-6.17.0-1022-azure",
+  "cpu": 4,
+  "mem_gb": 15.6,
+  "python": "3.12.14",
+  "schema_version": 1,
+  "engines": {
+    "duckdb_iceberg": {
+      "version": "2.0.0.dev2609222040",
+      "status": "ok",
+      "rows": [
+        {
+          "run_type": "cold",
+          "phase": "setup",
+          "query": 0,
+          "dur": 6.7357,
+          "rows": null,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 1,
+          "dur": 11.2637,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 2,
+          "dur": 15.9335,
+          "rows": 2513,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 3,
+          "dur": 30.2756,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 4,
+          "dur": 19.9999,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 5,
+          "dur": 18.0032,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 6,
+          "dur": 5.8721,
+          "rows": 52,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 7,
+          "dur": 9.6189,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 8,
+          "dur": 6.0592,
+          "rows": 8,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 9,
+          "dur": 77.0361,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 10,
+          "dur": 7.6909,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 11,
+          "dur": 15.9978,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 12,
+          "dur": 2.0133,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 13,
+          "dur": 17.3207,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 14,
+          "dur": 39.087,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 15,
+          "dur": 1.2205,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 16,
+          "dur": 10.1176,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 17,
+          "dur": 6.4022,
+          "rows": 37,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 18,
+          "dur": 3.7417,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 19,
+          "dur": 125.7762,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 20,
+          "dur": 3.5148,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 21,
+          "dur": 2.5161,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 22,
+          "dur": 3.646,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 23,
+          "dur": 52.7849,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 24,
+          "dur": 13.3645,
+          "rows": 18,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 25,
+          "dur": 4.1433,
+          "rows": 7,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 26,
+          "dur": 4.1901,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 27,
+          "dur": 3.0252,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 28,
+          "dur": 7.4767,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 29,
+          "dur": 8.213,
+          "rows": 53,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 30,
+          "dur": 1.4275,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 31,
+          "dur": 5.7554,
+          "rows": 272,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 32,
+          "dur": 0.6725,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 33,
+          "dur": 6.6378,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 34,
+          "dur": 2.4337,
+          "rows": 6698,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 35,
+          "dur": 8.4283,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 36,
+          "dur": 8.7692,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 37,
+          "dur": 4.8368,
+          "rows": 3,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 38,
+          "dur": 9.2779,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 39,
+          "dur": 1.5691,
+          "rows": 4528,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 40,
+          "dur": 3.112,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 41,
+          "dur": 0.1141,
+          "rows": 69,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 42,
+          "dur": 7.2678,
+          "rows": 11,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 43,
+          "dur": 6.0676,
+          "rows": 63,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 44,
+          "dur": 44.3559,
+          "rows": 10,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 45,
+          "dur": 2.384,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 46,
+          "dur": 19.4237,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 47,
+          "dur": 11.8439,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 48,
+          "dur": 11.1877,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 49,
+          "dur": 18.729,
+          "rows": 92,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 50,
+          "dur": 9.7586,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 51,
+          "dur": 20.5659,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 52,
+          "dur": 10.0627,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 53,
+          "dur": 4.9655,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 54,
+          "dur": 14.1772,
+          "rows": 42,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 55,
+          "dur": 5.7594,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 56,
+          "dur": 10.3258,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 57,
+          "dur": 2.2658,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 58,
+          "dur": 12.7332,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 59,
+          "dur": 11.4004,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 60,
+          "dur": 17.1135,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 61,
+          "dur": 17.5627,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 62,
+          "dur": 3.7997,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 63,
+          "dur": 9.3917,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 64,
+          "dur": 31.9333,
+          "rows": 287,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 65,
+          "dur": 29.0222,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 66,
+          "dur": 14.1787,
+          "rows": 12,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 67,
+          "dur": 46.405,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 68,
+          "dur": 47.3356,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 69,
+          "dur": 9.487,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 70,
+          "dur": 2.0864,
+          "rows": 14,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 71,
+          "dur": 9.4689,
+          "rows": 40853,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 72,
+          "dur": 23.6947,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 73,
+          "dur": 7.8356,
+          "rows": 107,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 74,
+          "dur": 8.0299,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 75,
+          "dur": 29.3949,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 76,
+          "dur": 16.7667,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 77,
+          "dur": 20.3958,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 78,
+          "dur": 29.1258,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 79,
+          "dur": 21.5668,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 80,
+          "dur": 15.1573,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 81,
+          "dur": 0.967,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 82,
+          "dur": 4.0236,
+          "rows": 10,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 83,
+          "dur": 0.9406,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 84,
+          "dur": 0.6243,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 85,
+          "dur": 2.5522,
+          "rows": 55,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 86,
+          "dur": 2.0497,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 87,
+          "dur": 7.7731,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 88,
+          "dur": 16.7711,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 89,
+          "dur": 3.0304,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 90,
+          "dur": 3.6442,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 91,
+          "dur": 0.7931,
+          "rows": 26,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 92,
+          "dur": 1.135,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 93,
+          "dur": 10.1883,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 94,
+          "dur": 3.7749,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 95,
+          "dur": 58.7879,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 96,
+          "dur": 20.7054,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 97,
+          "dur": 6.4215,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 98,
+          "dur": 8.5745,
+          "rows": 23658,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 99,
+          "dur": 1.8759,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 1,
+          "dur": 3.3811,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 2,
+          "dur": 12.5668,
+          "rows": 2513,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 3,
+          "dur": 4.9301,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 4,
+          "dur": 21.1621,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 5,
+          "dur": 14.2399,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 6,
+          "dur": 5.1264,
+          "rows": 52,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 7,
+          "dur": 11.7587,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 8,
+          "dur": 5.2712,
+          "rows": 8,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 9,
+          "dur": 76.8588,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 10,
+          "dur": 8.9953,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 11,
+          "dur": 14.2674,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 12,
+          "dur": 2.2776,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 13,
+          "dur": 12.0767,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 14,
+          "dur": 51.9031,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 15,
+          "dur": 2.3744,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 16,
+          "dur": 10.7334,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 17,
+          "dur": 7.0276,
+          "rows": 37,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 18,
+          "dur": 4.2101,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 19,
+          "dur": 117.9335,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 20,
+          "dur": 4.1392,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 21,
+          "dur": 0.8238,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 22,
+          "dur": 2.9427,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 23,
+          "dur": 52.7585,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 24,
+          "dur": 12.9058,
+          "rows": 18,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 25,
+          "dur": 4.1833,
+          "rows": 7,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 26,
+          "dur": 4.3546,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 27,
+          "dur": 2.7277,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 28,
+          "dur": 7.4873,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 29,
+          "dur": 7.0343,
+          "rows": 53,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 30,
+          "dur": 1.4528,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 31,
+          "dur": 3.9537,
+          "rows": 272,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 32,
+          "dur": 0.4092,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 33,
+          "dur": 8.0577,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 34,
+          "dur": 4.5712,
+          "rows": 6698,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 35,
+          "dur": 8.0164,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 36,
+          "dur": 7.4359,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 37,
+          "dur": 4.0563,
+          "rows": 3,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 38,
+          "dur": 7.1087,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 39,
+          "dur": 1.0848,
+          "rows": 4528,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 40,
+          "dur": 2.7007,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 41,
+          "dur": 0.4051,
+          "rows": 69,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 42,
+          "dur": 7.2588,
+          "rows": 11,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 43,
+          "dur": 5.8996,
+          "rows": 63,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 44,
+          "dur": 41.8718,
+          "rows": 10,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 45,
+          "dur": 2.108,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 46,
+          "dur": 18.4242,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 47,
+          "dur": 9.809,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 48,
+          "dur": 10.8222,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 49,
+          "dur": 16.5351,
+          "rows": 92,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 50,
+          "dur": 9.114,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 51,
+          "dur": 19.9684,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 52,
+          "dur": 10.748,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 53,
+          "dur": 1.4179,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 54,
+          "dur": 14.081,
+          "rows": 42,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 55,
+          "dur": 5.6104,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 56,
+          "dur": 10.4796,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 57,
+          "dur": 2.0658,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 58,
+          "dur": 9.1603,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 59,
+          "dur": 7.1224,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 60,
+          "dur": 16.6959,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 61,
+          "dur": 11.5187,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 62,
+          "dur": 2.5643,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 63,
+          "dur": 7.5812,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 64,
+          "dur": 32.7581,
+          "rows": 287,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 65,
+          "dur": 23.9842,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 66,
+          "dur": 13.9423,
+          "rows": 12,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 67,
+          "dur": 50.2747,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 68,
+          "dur": 47.1666,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 69,
+          "dur": 6.5398,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 70,
+          "dur": 2.0961,
+          "rows": 14,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 71,
+          "dur": 4.6374,
+          "rows": 40853,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 72,
+          "dur": 19.9735,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 73,
+          "dur": 9.6168,
+          "rows": 107,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 74,
+          "dur": 9.4573,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 75,
+          "dur": 26.3773,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 76,
+          "dur": 21.3442,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 77,
+          "dur": 19.3112,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 78,
+          "dur": 28.4439,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 79,
+          "dur": 18.8072,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 80,
+          "dur": 13.9389,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 81,
+          "dur": 1.0668,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 82,
+          "dur": 4.2723,
+          "rows": 10,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 83,
+          "dur": 0.9936,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 84,
+          "dur": 0.6032,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 85,
+          "dur": 2.6851,
+          "rows": 55,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 86,
+          "dur": 2.7581,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 87,
+          "dur": 5.9336,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 88,
+          "dur": 16.6371,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 89,
+          "dur": 3.0148,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 90,
+          "dur": 3.1036,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 91,
+          "dur": 0.6941,
+          "rows": 26,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 92,
+          "dur": 1.5128,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 93,
+          "dur": 6.8154,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 94,
+          "dur": 3.7325,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 95,
+          "dur": 60.9761,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 96,
+          "dur": 20.342,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 97,
+          "dur": 6.7694,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 98,
+          "dur": 11.5498,
+          "rows": 23658,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 99,
+          "dur": 1.9675,
+          "rows": 100,
+          "status": "ok"
+        }
+      ],
+      "host": {
+        "runner": "linux-6.17.0-1022-azure",
+        "cpu": 4,
+        "mem_gb": 15.6,
+        "python": "3.12.14"
+      }
+    },
+    "pyspark_gluten_iceberg": {
+      "version": "4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9)",
+      "status": "ok",
+      "rows": [
+        {
+          "run_type": "cold",
+          "phase": "setup",
+          "query": 0,
+          "dur": 39.2832,
+          "rows": null,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 1,
+          "dur": 21.0093,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 2,
+          "dur": 31.2182,
+          "rows": 2513,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 3,
+          "dur": 36.2807,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 4,
+          "dur": 93.6007,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 5,
+          "dur": 73.6995,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 6,
+          "dur": 7.6973,
+          "rows": 52,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 7,
+          "dur": 36.0449,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 8,
+          "dur": 3.6641,
+          "rows": 8,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 9,
+          "dur": 40.7214,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 10,
+          "dur": 10.277,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 11,
+          "dur": 30.633,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 12,
+          "dur": 2.7003,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 13,
+          "dur": 31.9303,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 14,
+          "dur": 60.9387,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 15,
+          "dur": 12.6265,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 16,
+          "dur": 42.0109,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 17,
+          "dur": 27.4327,
+          "rows": 37,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 18,
+          "dur": 15.6139,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 19,
+          "dur": 15.1617,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 20,
+          "dur": 3.2865,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 21,
+          "dur": 11.9716,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 22,
+          "dur": 15.3558,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 23,
+          "dur": 53.1187,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 24,
+          "dur": 15.6065,
+          "rows": 18,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 25,
+          "dur": 23.0841,
+          "rows": 7,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 26,
+          "dur": 13.2533,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 27,
+          "dur": 20.977,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 28,
+          "dur": 36.1869,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 29,
+          "dur": 9.551,
+          "rows": 53,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 30,
+          "dur": 3.3962,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 31,
+          "dur": 26.2829,
+          "rows": 272,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 32,
+          "dur": 10.6202,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 33,
+          "dur": 11.4005,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 34,
+          "dur": 12.9811,
+          "rows": 6698,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 35,
+          "dur": 8.4019,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 36,
+          "dur": 10.9302,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 37,
+          "dur": 8.549,
+          "rows": 3,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 38,
+          "dur": 9.4423,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 39,
+          "dur": 20.6806,
+          "rows": 4528,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 40,
+          "dur": 9.4997,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 41,
+          "dur": 0.5132,
+          "rows": 69,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 42,
+          "dur": 2.595,
+          "rows": 11,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 43,
+          "dur": 6.7177,
+          "rows": 63,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 44,
+          "dur": 6.2787,
+          "rows": 10,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 45,
+          "dur": 6.0843,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 46,
+          "dur": 11.9261,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 47,
+          "dur": 11.8757,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 48,
+          "dur": 13.2267,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 49,
+          "dur": 65.2072,
+          "rows": 93,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 50,
+          "dur": 20.8342,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 51,
+          "dur": 23.6484,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 52,
+          "dur": 14.3578,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 53,
+          "dur": 5.9723,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 54,
+          "dur": 21.3247,
+          "rows": 42,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 55,
+          "dur": 3.5104,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 56,
+          "dur": 12.1252,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 57,
+          "dur": 5.3452,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 58,
+          "dur": 6.1246,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 59,
+          "dur": 9.0371,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 60,
+          "dur": 10.5939,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 61,
+          "dur": 22.6685,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 62,
+          "dur": 12.6716,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 63,
+          "dur": 4.2416,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 64,
+          "dur": 69.6792,
+          "rows": 287,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 65,
+          "dur": 18.9653,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 66,
+          "dur": 18.7911,
+          "rows": 12,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 67,
+          "dur": 49.3429,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 68,
+          "dur": 26.6823,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 69,
+          "dur": 9.1502,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 70,
+          "dur": 23.1758,
+          "rows": 14,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 71,
+          "dur": 28.3563,
+          "rows": 40853,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 72,
+          "dur": 71.3273,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 73,
+          "dur": 14.1281,
+          "rows": 107,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 74,
+          "dur": 42.8022,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 75,
+          "dur": 65.419,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 76,
+          "dur": 29.8603,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 77,
+          "dur": 31.6573,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 78,
+          "dur": 60.0454,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 79,
+          "dur": 37.619,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 80,
+          "dur": 53.3393,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 81,
+          "dur": 4.7172,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 82,
+          "dur": 10.9515,
+          "rows": 10,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 83,
+          "dur": 3.448,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 84,
+          "dur": 3.3294,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 85,
+          "dur": 5.1121,
+          "rows": 55,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 86,
+          "dur": 2.8523,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 87,
+          "dur": 12.6148,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 88,
+          "dur": 35.1221,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 89,
+          "dur": 7.181,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 90,
+          "dur": 8.6486,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 91,
+          "dur": 2.0022,
+          "rows": 26,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 92,
+          "dur": 7.5369,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 93,
+          "dur": 22.2528,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 94,
+          "dur": 18.1573,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 95,
+          "dur": 62.3489,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 96,
+          "dur": 10.1075,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 97,
+          "dur": 13.2332,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 98,
+          "dur": 6.0846,
+          "rows": 23658,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 99,
+          "dur": 6.3635,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 1,
+          "dur": 5.9049,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 2,
+          "dur": 10.273,
+          "rows": 2513,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 3,
+          "dur": 5.5574,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 4,
+          "dur": 78.8191,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 5,
+          "dur": 51.9248,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 6,
+          "dur": 18.109,
+          "rows": 52,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 7,
+          "dur": 36.7303,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 8,
+          "dur": 14.2597,
+          "rows": 8,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 9,
+          "dur": 37.8969,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 10,
+          "dur": 16.2644,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 11,
+          "dur": 31.2935,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 12,
+          "dur": 6.223,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 13,
+          "dur": 24.7063,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 14,
+          "dur": 51.3257,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 15,
+          "dur": 11.1555,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 16,
+          "dur": 38.5688,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 17,
+          "dur": 25.871,
+          "rows": 37,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 18,
+          "dur": 15.1186,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 19,
+          "dur": 17.4966,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 20,
+          "dur": 4.034,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 21,
+          "dur": 8.603,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 22,
+          "dur": 14.0265,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 23,
+          "dur": 54.7623,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 24,
+          "dur": 16.0318,
+          "rows": 18,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 25,
+          "dur": 21.3257,
+          "rows": 7,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 26,
+          "dur": 14.1228,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 27,
+          "dur": 22.9479,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 28,
+          "dur": 36.721,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 29,
+          "dur": 14.0634,
+          "rows": 53,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 30,
+          "dur": 3.4056,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 31,
+          "dur": 22.0952,
+          "rows": 272,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 32,
+          "dur": 10.5334,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 33,
+          "dur": 14.1709,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 34,
+          "dur": 13.123,
+          "rows": 6698,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 35,
+          "dur": 8.3472,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 36,
+          "dur": 15.959,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 37,
+          "dur": 7.5246,
+          "rows": 3,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 38,
+          "dur": 12.1812,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 39,
+          "dur": 16.8721,
+          "rows": 4528,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 40,
+          "dur": 5.1928,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 41,
+          "dur": 0.3113,
+          "rows": 69,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 42,
+          "dur": 4.304,
+          "rows": 11,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 43,
+          "dur": 7.6655,
+          "rows": 63,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 44,
+          "dur": 9.9583,
+          "rows": 10,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 45,
+          "dur": 6.9653,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 46,
+          "dur": 9.1553,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 47,
+          "dur": 10.5132,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 48,
+          "dur": 10.8883,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 49,
+          "dur": 56.5942,
+          "rows": 93,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 50,
+          "dur": 33.2574,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 51,
+          "dur": 22.6473,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 52,
+          "dur": 13.3316,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 53,
+          "dur": 7.5047,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 54,
+          "dur": 16.0088,
+          "rows": 42,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 55,
+          "dur": 3.9568,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 56,
+          "dur": 9.5951,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 57,
+          "dur": 5.082,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 58,
+          "dur": 6.4011,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 59,
+          "dur": 8.4281,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 60,
+          "dur": 8.5693,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 61,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o755.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 19 in stage 3885.0 failed 1 times, most recent failure: Lost task 19.0 in stage 3885.0 (TID 36986) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operator::getOutput failed for [operator: TableScan, plan node ID: 0]: 401 Unauthorized\nAuthentication Failed with Bearer token is not present in the request\nRequest ID: \nRetriable: False\nFunction: operator()\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/velox/exec/Driver.cpp\nLine: 690\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS0_24CompileTimeStringLiteralENS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_NS0_24CompileTimeStringLiteralE\n# 3  _ZZN8facebook5velox4exec6Driver11runInternalERSt10shared_ptrIS2_ERS3_INS1_13BlockingStateEERS3_INS0_9RowVectorEEENKUlvE4_clEv.cold\n# 4  _ZN8facebook5velox4exec6Driver11runInternalERSt10shared_ptrIS2_ERS3_INS1_13BlockingStateEERS3_INS0_9RowVectorEE\n# 5  _ZN8facebook5velox4exec6Driver4nextEPN5folly10SemiFutureINS3_4UnitEEERPNS1_8OperatorERNS1_14BlockingReasonE\n# 6  _ZN8facebook5velox4exec4Task4nextEPN5folly10SemiFutureINS3_4UnitEEE\n# 7  _ZN8facebook5velox4exec12_GLOBAL__N_124SingleThreadedTaskCursor8moveNextEPN5folly10SemiFutureINS4_4UnitEEE\n# 8  _ZN6gluten24WholeStageResultIterator4nextEv\n# 9  Java_org_apache_gluten_vectorized_ColumnarBatchOutIterator_n\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 62,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o764.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 3892.0 failed 1 times, most recent failure: Lost task 0.0 in stage 3892.0 (TID 36995) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/date_dim/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/date_dim/00000-data_0.parquet 4 - 1813944 Task test_cursor_39623\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8facebook5velox19FileHandleGeneratorclERKNS0_13FileHandleKeyEPKNS0_14FilePropertiesEPNS0_7IoStatsE\n# 7  _ZN8facebook5velox13CachedFactoryINS0_13FileHandleKeyENS0\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 63,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o773.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 3894.0 failed 1 times, most recent failure: Lost task 0.0 in stage 3894.0 (TID 36997) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/item/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/item/00000-data_0.parquet 4 - 15126370 Task test_cursor_39626\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8facebook5velox19FileHandleGeneratorclERKNS0_13FileHandleKeyEPKNS0_14FilePropertiesEPNS0_7IoStatsE\n# 7  _ZN8facebook5velox13CachedFactoryINS0_13FileHandleKeyENS0_10File\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 64,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o782.collectToPython.\n: org.apache.spark.SparkException: [STAGE_MATERIALIZATION_MULTIPLE_FAILURES] Multiple failures (2) in stage materialization: \n  1. SparkException: Job aborted due to stage failure: Task 0 in stage 3897.0 failed 1 times, most recent failure: Lost task 0.0 in stage 3897.0 (TID 37000) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/store/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/store/00000-data_0.parquet 4 - 31942 Task test_cursor_39628\nAdditional Context: Operator: TableScan[0] 0\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8facebook5ve\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 65,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o793.collectToPython.\n: org.apache.spark.SparkException: [STAGE_MATERIALIZATION_MULTIPLE_FAILURES] Multiple failures (2) in stage materialization: \n  1. SparkException: Job aborted due to stage failure: Task 0 in stage 3914.0 failed 1 times, most recent failure: Lost task 0.0 in stage 3914.0 (TID 37015) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/item/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/item/00000-data_0.parquet 4 - 15126370 Task test_cursor_39642\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8facebook5velox19FileHandleGeneratorclERKNS0_13FileHandl\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 66,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o804.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 3919.0 failed 1 times, most recent failure: Lost task 0.0 in stage 3919.0 (TID 37020) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/time_dim/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/time_dim/00000-data_0.parquet 4 - 1128221 Task test_cursor_39648\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8facebook5velox19FileHandleGeneratorclERKNS0_13FileHandleKeyEPKNS0_14FilePropertiesEPNS0_7IoStatsE\n# 7  _ZN8facebook5velox13CachedFactoryINS0_13FileHandleKeyENS0\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 67,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o813.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 3920.0 failed 1 times, most recent failure: Lost task 0.0 in stage 3920.0 (TID 37021) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/item/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/item/00000-data_0.parquet 4 - 15126370 Task test_cursor_39650\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8facebook5velox19FileHandleGe\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 68,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o822.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 3 in stage 3923.0 failed 1 times, most recent failure: Lost task 3.0 in stage 3923.0 (TID 37027) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/customer/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/customer/00000-data_0.parquet 41417818 - 13803273 Task test_cursor_39655\nAdditional Context: Operator: TableScan[0] 0\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIc\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 69,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o831.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 2 in stage 3928.0 failed 1 times, most recent failure: Lost task 2.0 in stage 3928.0 (TID 37034) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/customer_demographics/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/customer_demographics/00000-data_0.parquet 3984111 - 1992272 Task test_cursor_39661\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptions\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 70,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o840.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 3934.0 failed 1 times, most recent failure: Lost task 0.0 in stage 3934.0 (TID 37043) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/store/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/store/00000-data_0.parquet 4 - 31942 Task test_cursor_39671\nAdditional Context: Operator: TableScan[0] 0\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8facebook5velox19FileHandleGeneratorclERKNS0_13FileHandleKeyEPKNS0_14FilePropertiesEPNS0_7IoStatsE\n# 7  _ZN8facebook5velox13\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 71,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o849.collectToPython.\n: org.apache.spark.SparkException: [STAGE_MATERIALIZATION_MULTIPLE_FAILURES] Multiple failures (3) in stage materialization: \n  1. SparkException: Job aborted due to stage failure: Task 0 in stage 3935.0 failed 1 times, most recent failure: Lost task 0.0 in stage 3935.0 (TID 37044) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/date_dim/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/date_dim/00000-data_0.parquet 4 - 1813944 Task test_cursor_39672\nAdditional Context: Operator: TableScan[0] 0\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8fac\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 72,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o860.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 1 in stage 3938.0 failed 1 times, most recent failure: Lost task 1.0 in stage 3938.0 (TID 37048) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/inventory/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/inventory/00000-data_0.parquet 2621889 - 2610833 Task test_cursor_39677\nAdditional Context: Operator: TableScan[0] 0\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIc\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 73,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o869.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 3950.0 failed 1 times, most recent failure: Lost task 0.0 in stage 3950.0 (TID 37070) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/customer/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/customer/00000-data_0.parquet 4 - 13753697 Task test_cursor_39697\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8facebook5velox19File\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 74,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o878.collectToPython.\n: org.apache.spark.SparkException: [STAGE_MATERIALIZATION_MULTIPLE_FAILURES] Multiple failures (4) in stage materialization: \n  1. SparkException: Job aborted due to stage failure: Task 1 in stage 3954.0 failed 1 times, most recent failure: Lost task 1.0 in stage 3954.0 (TID 37077) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/customer/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/customer/00000-data_0.parquet 13753701 - 13859453 Task test_cursor_39703\nAdditional Context: Operator: TableScan[0] 0\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptions\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 75,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o889.collectToPython.\n: org.apache.spark.SparkException: [STAGE_MATERIALIZATION_MULTIPLE_FAILURES] Multiple failures (3) in stage materialization: \n  1. SparkException: Job aborted due to stage failure: Task 0 in stage 3959.0 failed 1 times, most recent failure: Lost task 0.0 in stage 3959.0 (TID 37085) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/date_dim/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/date_dim/00000-data_0.parquet 4 - 1813944 Task test_cursor_39712\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8facebook5velox19FileHandleGeneratorclERKNS0_13Fi\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 76,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o900.collectToPython.\n: org.apache.spark.SparkException: [STAGE_MATERIALIZATION_MULTIPLE_FAILURES] Multiple failures (3) in stage materialization: \n  1. SparkException: Job aborted due to stage failure: Task 0 in stage 3964.0 failed 1 times, most recent failure: Lost task 0.0 in stage 3964.0 (TID 37090) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/date_dim/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/date_dim/00000-data_0.parquet 4 - 1813944 Task test_cursor_39717\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8facebook5velox19FileHandleGeneratorclERKNS0_13Fi\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 77,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o911.collectToPython.\n: org.apache.spark.SparkException: [STAGE_MATERIALIZATION_MULTIPLE_FAILURES] Multiple failures (6) in stage materialization: \n  1. SparkException: Job aborted due to stage failure: Task 0 in stage 3965.0 failed 1 times, most recent failure: Lost task 0.0 in stage 3965.0 (TID 37091) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/date_dim/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/date_dim/00000-data_0.parquet 4 - 1813944 Task test_cursor_39718\nAdditional Context: Operator: TableScan[0] 0\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8fac\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 78,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o922.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 2 in stage 3968.0 failed 1 times, most recent failure: Lost task 2.0 in stage 3968.0 (TID 37096) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/store_returns/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/store_returns/00000-data_0.parquet 61746585 - 15447036 Task test_cursor_39723\nAdditional Context: Operator: TableScan[0] 0\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11cha\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 79,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o931.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 3 in stage 3975.0 failed 1 times, most recent failure: Lost task 3.0 in stage 3975.0 (TID 37117) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/customer/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/customer/00000-data_0.parquet 41417818 - 13803273 Task test_cursor_39743\nAdditional Context: Operator: TableScan[0] 0\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIc\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 80,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o940.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 3979.0 failed 1 times, most recent failure: Lost task 0.0 in stage 3979.0 (TID 37119) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/web_returns/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/web_returns/00000-data_0.parquet 19806498 - 9913070 Task test_cursor_39746\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8facebook\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 81,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o949.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 3991.0 failed 1 times, most recent failure: Lost task 0.0 in stage 3991.0 (TID 37143) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/customer_address/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/customer_address/00000-data_0.parquet 4 - 9938269 Task test_cursor_39770\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8faceb\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 82,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o958.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 3997.0 failed 1 times, most recent failure: Lost task 0.0 in stage 3997.0 (TID 37149) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/date_dim/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/date_dim/00000-data_0.parquet 4 - 1813944 Task test_cursor_39776\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8facebook5velox19FileHandleGeneratorclERKNS0_13FileHandleKeyEPKNS0_14FilePropertiesEPNS0_7IoStatsE\n# 7  _ZN8facebook5velox13CachedFactoryINS0_13FileHandleKeyENS0\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 83,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o967.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 4000.0 failed 1 times, most recent failure: Lost task 0.0 in stage 4000.0 (TID 37152) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/item/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/item/00000-data_0.parquet 4 - 15126370 Task test_cursor_39778\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8facebook5velox19FileHandleGeneratorclERKNS0_13FileHandleKeyEPKNS0_14FilePropertiesEPNS0_7IoStatsE\n# 7  _ZN8facebook5velox13CachedFactoryINS0_13FileHandleKeyENS0_10File\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 84,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o976.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 4001.0 failed 1 times, most recent failure: Lost task 0.0 in stage 4001.0 (TID 37153) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/customer_demographics/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/customer_demographics/00000-data_0.parquet 4 - 1992026 Task test_cursor_39781\nAdditional Context: Operator: TableScan[0] 0\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewI\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 85,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o985.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 1 in stage 4006.0 failed 1 times, most recent failure: Lost task 1.0 in stage 4006.0 (TID 37161) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/web_returns/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/web_returns/00000-data_0.parquet 4 - 9906320 Task test_cursor_39787\nAdditional Context: Operator: TableScan[0] 0\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEE\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 86,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o994.collectToPython.\n: org.apache.spark.SparkException: [STAGE_MATERIALIZATION_MULTIPLE_FAILURES] Multiple failures (2) in stage materialization: \n  1. SparkException: Job aborted due to stage failure: Task 0 in stage 4015.0 failed 1 times, most recent failure: Lost task 0.0 in stage 4015.0 (TID 37180) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/date_dim/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/date_dim/00000-data_0.parquet 4 - 1813944 Task test_cursor_39806\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8facebook5velox19FileHandleGeneratorclERKNS0_13Fi\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 87,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o1005.collectToPython.\n: org.apache.spark.SparkException: [STAGE_MATERIALIZATION_MULTIPLE_FAILURES] Multiple failures (3) in stage materialization: \n  1. SparkException: Job aborted due to stage failure: Task 3 in stage 4016.0 failed 1 times, most recent failure: Lost task 3.0 in stage 4016.0 (TID 37184) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/customer/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/customer/00000-data_0.parquet 41417818 - 13803273 Task test_cursor_39808\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14Abfs\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 88,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o1016.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 4019.0 failed 1 times, most recent failure: Lost task 0.0 in stage 4019.0 (TID 37188) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/time_dim/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/time_dim/00000-data_0.parquet 4 - 1128221 Task test_cursor_39812\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8facebook5velox19FileHandleGeneratorclERKNS0_13FileHandleKeyEPKNS0_14FilePropertiesEPNS0_7IoStatsE\n# 7  _ZN8facebook5velox13CachedFactoryINS0_13FileHandleKeyENS\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 89,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o1025.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 4028.0 failed 1 times, most recent failure: Lost task 0.0 in stage 4028.0 (TID 37192) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/item/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/item/00000-data_0.parquet 4 - 15126370 Task test_cursor_39816\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8facebook5velox19FileHandleG\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 90,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o1034.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 4034.0 failed 1 times, most recent failure: Lost task 0.0 in stage 4034.0 (TID 37198) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/time_dim/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/time_dim/00000-data_0.parquet 4 - 1128221 Task test_cursor_39821\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8facebook5velox19FileHandleGeneratorclERKNS0_13FileHandleKeyEPKNS0_14FilePropertiesEPNS0_7IoStatsE\n# 7  _ZN8facebook5velox13CachedFactoryINS0_13FileHandleKeyENS\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 91,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o1043.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 4036.0 failed 1 times, most recent failure: Lost task 0.0 in stage 4036.0 (TID 37200) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/customer_demographics/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/customer_demographics/00000-data_0.parquet 4 - 1992026 Task test_cursor_39827\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 92,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o1052.collectToPython.\n: org.apache.spark.SparkException: [STAGE_MATERIALIZATION_MULTIPLE_FAILURES] Multiple failures (2) in stage materialization: \n  1. SparkException: Job aborted due to stage failure: Task 0 in stage 4044.0 failed 1 times, most recent failure: Lost task 0.0 in stage 4044.0 (TID 37212) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/date_dim/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/date_dim/00000-data_0.parquet 4 - 1813944 Task test_cursor_39836\nAdditional Context: Operator: TableScan[0] 0\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8fa\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 93,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o1063.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 2 in stage 4045.0 failed 1 times, most recent failure: Lost task 2.0 in stage 4045.0 (TID 37215) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/store_sales/00001-data_1.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/store_sales/00001-data_1.parquet 183484418 - 26085088 Task test_cursor_39837\nAdditional Context: Operator: TableScan[0] 0\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 94,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o1072.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 1 in stage 4048.0 failed 1 times, most recent failure: Lost task 1.0 in stage 4048.0 (TID 37221) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/web_sales/00001-data_1.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/web_sales/00001-data_1.parquet 52910119 - 44132156 Task test_cursor_39846\nAdditional Context: Operator: TableScan[0] 0\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_trait\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 95,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o1081.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 4056.0 failed 1 times, most recent failure: Lost task 0.0 in stage 4056.0 (TID 37239) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/web_returns/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/web_returns/00000-data_0.parquet 19806498 - 9913070 Task test_cursor_39864\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8faceboo\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 96,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o1090.collectToPython.\n: org.apache.spark.SparkException: [STAGE_MATERIALIZATION_MULTIPLE_FAILURES] Multiple failures (2) in stage materialization: \n  1. SparkException: Job aborted due to stage failure: Task 0 in stage 4064.0 failed 1 times, most recent failure: Lost task 0.0 in stage 4064.0 (TID 37259) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/time_dim/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/time_dim/00000-data_0.parquet 4 - 1128221 Task test_cursor_39883\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8facebook5velox19FileHandleGeneratorclERKNS0_13F\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 97,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o1101.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 4067.0 failed 1 times, most recent failure: Lost task 0.0 in stage 4067.0 (TID 37262) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/date_dim/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/date_dim/00000-data_0.parquet 4 - 1813944 Task test_cursor_39886\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8facebook5velox19FileHandleGeneratorclERKNS0_13FileHandleKeyEPKNS0_14FilePropertiesEPNS0_7IoStatsE\n# 7  _ZN8facebook5velox13CachedFactoryINS0_13FileHandleKeyENS\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 98,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o1110.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 4068.0 failed 1 times, most recent failure: Lost task 0.0 in stage 4068.0 (TID 37263) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/item/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/item/00000-data_0.parquet 4 - 15126370 Task test_cursor_39887\nAdditional Context: Operator: TableScan[0] 0\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11File\u2026"
+        },
+        {
+          "run_type": "warm",
+          "phase": "query",
+          "query": 99,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o1119.collectToPython.\n: org.apache.spark.SparkException: [STAGE_MATERIALIZATION_MULTIPLE_FAILURES] Multiple failures (2) in stage materialization: \n  1. SparkException: Job aborted due to stage failure: Task 0 in stage 4072.0 failed 1 times, most recent failure: Lost task 0.0 in stage 4072.0 (TID 37267) (runnervmlun5p.muer2hnzbnoefbmbuvuzrgo3ig.gx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/warehouse/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0060/warehouse/00000-data_0.parquet 4 - 3433 Task test_cursor_39890\nAdditional Context: Operator: TableScan[0] 0\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8fac\u2026"
+        }
+      ],
+      "host": {
+        "runner": "linux-6.17.0-1022-azure",
+        "cpu": 4,
+        "mem_gb": 15.6,
+        "python": "3.12.14"
+      }
+    }
+  }
+}
