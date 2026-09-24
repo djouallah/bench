@@ -3155,3 +3155,473 @@ Stack trace:
 # 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE
 # 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE
 # 6  _ZN8fac…"
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,setup,0,24.9154,,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,1,14.2492,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,2,13.8988,2513,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,3,10.5332,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,4,44.5242,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,5,46.277,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,6,3.7885,52,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,7,13.2975,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,8,3.4883,10,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,9,18.7312,1,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,10,4.0166,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,11,18.8039,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,12,1.9009,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,13,7.0027,1,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,14,29.101,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,15,2.2802,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,16,13.8206,1,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,17,9.1757,12,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,18,6.8733,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,19,3.0389,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,20,1.7368,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,21,48.1028,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,22,26.1075,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,23,31.2966,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,24,11.0324,14,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,25,6.6908,6,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,26,6.3673,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,27,6.0596,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,28,12.4603,1,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,29,7.1079,26,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,30,2.5961,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,31,10.9562,275,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,32,2.3021,1,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,33,4.7704,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,34,3.3332,4053,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,35,4.5281,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,36,3.8384,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,37,4.1801,3,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,38,6.7337,1,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,39,6.8454,3364,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,40,2.8388,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,41,0.4871,57,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,42,2.0333,11,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,43,2.7641,41,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,44,2.7504,10,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,45,2.6601,89,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,46,3.9249,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,47,8.2823,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,48,4.9196,1,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,49,10.562,57,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,50,9.4128,84,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,51,12.5443,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,52,2.3122,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,53,2.7528,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,54,5.4112,18,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,55,2.1216,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,56,4.3732,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,57,3.217,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,58,4.1468,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,59,5.6511,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,60,5.3163,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,61,6.6379,1,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,62,5.0477,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,63,2.806,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,64,20.9234,147,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,65,9.9811,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,66,7.246,11,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,67,47.4167,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,68,6.9888,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,69,3.8346,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,70,5.6984,10,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,71,8.3323,24658,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,72,49.9261,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,73,3.1669,46,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,74,13.2962,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,75,13.805,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,76,6.3557,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,77,8.6555,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,78,20.6587,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,79,3.7027,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,80,18.2769,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,81,2.8494,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,82,3.9723,7,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,83,1.4427,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,84,1.6462,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,85,3.5379,45,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,86,1.8886,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,87,7.2549,1,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,88,10.3479,1,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,89,3.323,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,90,2.6437,1,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,91,1.246,19,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,92,1.8874,1,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,93,8.9633,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,94,5.6064,1,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,95,42.861,1,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,96,3.7366,1,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,97,8.6322,1,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,98,4.1077,18522,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,99,2.4577,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,setup,0,23.9302,,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,1,28.8484,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,2,33.3221,2513,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,3,49.2185,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,4,151.1134,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,5,132.9158,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,6,46.3243,52,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,7,109.6382,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,8,38.1748,10,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,9,588.765,1,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,10,62.9388,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,11,108.9534,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,12,18.382,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,13,100.4959,1,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,14,285.9248,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,15,38.7876,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,16,81.4629,1,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,17,135.7023,12,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,18,59.1986,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,19,63.1963,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,20,30.2635,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,21,39.9818,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,22,46.6167,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,23,243.9075,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,24,87.2519,14,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,25,135.1221,6,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,26,53.0602,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,27,113.2206,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,28,367.9725,1,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,29,132.9908,26,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,30,8.5113,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,31,189.7932,275,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,32,56.8255,1,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,33,116.9119,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,34,68.7892,4053,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,35,64.1969,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,36,63.9512,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,37,63.9933,3,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,38,67.8865,1,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,39,65.382,3364,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,40,44.6051,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,41,1.6048,57,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,42,49.247,11,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,43,46.5706,41,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,44,128.3281,10,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,45,22.2156,89,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,46,76.0639,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,47,66.7673,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,48,44.5037,1,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,49,148.9573,57,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,50,73.7741,84,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,51,82.3343,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,52,50.805,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,53,60.1165,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,54,92.3705,18,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,55,50.3919,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,56,109.7201,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,57,36.121,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,58,87.5419,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,59,48.8353,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,60,105.3233,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,61,117.9821,1,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,62,,,error,"Py4JJavaError: An error occurred while calling o95.sql.
+: org.apache.iceberg.exceptions.NotAuthorizedException: Not authorized: {""code"":""Unauthorized"",""subCode"":2,""message"":""Access token validation failed."",""timeStamp"":""2026-09-24T06:15:12.358295Z"",""httpStatusCode"":401,""hresult"":-2147467259,""details"":[{""code"":""RootActivityId"",""message"":""7fe1179b-98fb-444f-a938-d7847c0e677c""}],""exceptionCategory"":1}
+	at org.apache.iceberg.rest.ErrorHandlers$DefaultErrorHandler.accept(ErrorHandlers.java:343)
+	at org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:160)
+	at org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:142)
+	at org.apache.iceberg.rest.HTTPClient.throwFailure(HTTPClient.java:242)
+	at org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:347)
+	at org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:299)
+	at org.apache.iceberg.rest.BaseHTTPClient.get(BaseHTTPClient.java:101)
+	at org.apache.iceberg.rest.RESTSessionCatalog.loadInternal(RESTSessionCatalog.java:438)
+	at org.apache.iceberg.rest.RESTSessionCatalog.loadTable(RESTSessionCatalog.java:468)
+	at org.apache.iceberg.catalog.BaseSessionCatalog$AsCatalog.loadTable(BaseSessionCatalog.java:105)
+	at org.apache.iceberg.rest.RESTCatalog.loadTable(RESTCatalog.java:124)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.lambda$doComputeIfAbsent$14(BoundedLocalCache.java:2406)
+	at java.base/java.util.concurrent.ConcurrentHashMap.compute(ConcurrentHashMap.java:1916)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.doComputeIfAbsent(BoundedLocalCache.java:2404)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.computeIfAbsent(BoundedLocalCache.java:2387)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalCache.computeIfAbsent(LocalCache.java:108)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalManualCache.get(LocalMan…"
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,63,58.4375,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,64,,,error,"Py4JJavaError: An error occurred while calling o95.sql.
+: org.apache.iceberg.exceptions.NotAuthorizedException: Not authorized: {""code"":""Unauthorized"",""subCode"":2,""message"":""Access token validation failed."",""timeStamp"":""2026-09-24T06:16:10.9691858Z"",""httpStatusCode"":401,""hresult"":-2147467259,""details"":[{""code"":""RootActivityId"",""message"":""83e4521f-6627-48c2-a415-2c877cb94b4c""}],""exceptionCategory"":1}
+	at org.apache.iceberg.rest.ErrorHandlers$DefaultErrorHandler.accept(ErrorHandlers.java:343)
+	at org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:160)
+	at org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:142)
+	at org.apache.iceberg.rest.HTTPClient.throwFailure(HTTPClient.java:242)
+	at org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:347)
+	at org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:299)
+	at org.apache.iceberg.rest.BaseHTTPClient.get(BaseHTTPClient.java:101)
+	at org.apache.iceberg.rest.RESTSessionCatalog.loadInternal(RESTSessionCatalog.java:438)
+	at org.apache.iceberg.rest.RESTSessionCatalog.loadTable(RESTSessionCatalog.java:468)
+	at org.apache.iceberg.catalog.BaseSessionCatalog$AsCatalog.loadTable(BaseSessionCatalog.java:105)
+	at org.apache.iceberg.rest.RESTCatalog.loadTable(RESTCatalog.java:124)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.lambda$doComputeIfAbsent$14(BoundedLocalCache.java:2406)
+	at java.base/java.util.concurrent.ConcurrentHashMap.compute(ConcurrentHashMap.java:1916)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.doComputeIfAbsent(BoundedLocalCache.java:2404)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.computeIfAbsent(BoundedLocalCache.java:2387)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalCache.computeIfAbsent(LocalCache.java:108)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalManualCache.get(LocalMa…"
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,65,124.379,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,66,,,error,"Py4JJavaError: An error occurred while calling o95.sql.
+: org.apache.iceberg.exceptions.NotAuthorizedException: Not authorized: {""code"":""Unauthorized"",""subCode"":2,""message"":""Access token validation failed."",""timeStamp"":""2026-09-24T06:18:15.513777Z"",""httpStatusCode"":401,""hresult"":-2147467259,""details"":[{""code"":""RootActivityId"",""message"":""7f66ce8a-ab28-40e7-a57e-759c81adde0d""}],""exceptionCategory"":1}
+	at org.apache.iceberg.rest.ErrorHandlers$DefaultErrorHandler.accept(ErrorHandlers.java:343)
+	at org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:160)
+	at org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:142)
+	at org.apache.iceberg.rest.HTTPClient.throwFailure(HTTPClient.java:242)
+	at org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:347)
+	at org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:299)
+	at org.apache.iceberg.rest.BaseHTTPClient.get(BaseHTTPClient.java:101)
+	at org.apache.iceberg.rest.RESTSessionCatalog.loadInternal(RESTSessionCatalog.java:438)
+	at org.apache.iceberg.rest.RESTSessionCatalog.loadTable(RESTSessionCatalog.java:468)
+	at org.apache.iceberg.catalog.BaseSessionCatalog$AsCatalog.loadTable(BaseSessionCatalog.java:105)
+	at org.apache.iceberg.rest.RESTCatalog.loadTable(RESTCatalog.java:124)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.lambda$doComputeIfAbsent$14(BoundedLocalCache.java:2406)
+	at java.base/java.util.concurrent.ConcurrentHashMap.compute(ConcurrentHashMap.java:1955)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.doComputeIfAbsent(BoundedLocalCache.java:2404)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.computeIfAbsent(BoundedLocalCache.java:2387)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalCache.computeIfAbsent(LocalCache.java:108)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalManualCache.get(LocalMan…"
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,67,119.9452,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,68,85.5815,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,69,59.266,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,70,70.1818,10,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,71,,,error,"Py4JJavaError: An error occurred while calling o95.sql.
+: org.apache.iceberg.exceptions.NotAuthorizedException: Not authorized: {""code"":""Unauthorized"",""subCode"":2,""message"":""Access token validation failed."",""timeStamp"":""2026-09-24T06:23:50.6925639Z"",""httpStatusCode"":401,""hresult"":-2147467259,""details"":[{""code"":""RootActivityId"",""message"":""ee1e4dd7-4e64-4920-9777-6729233fb044""}],""exceptionCategory"":1}
+	at org.apache.iceberg.rest.ErrorHandlers$DefaultErrorHandler.accept(ErrorHandlers.java:343)
+	at org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:160)
+	at org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:142)
+	at org.apache.iceberg.rest.HTTPClient.throwFailure(HTTPClient.java:242)
+	at org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:347)
+	at org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:299)
+	at org.apache.iceberg.rest.BaseHTTPClient.get(BaseHTTPClient.java:101)
+	at org.apache.iceberg.rest.RESTSessionCatalog.loadInternal(RESTSessionCatalog.java:438)
+	at org.apache.iceberg.rest.RESTSessionCatalog.loadTable(RESTSessionCatalog.java:468)
+	at org.apache.iceberg.catalog.BaseSessionCatalog$AsCatalog.loadTable(BaseSessionCatalog.java:105)
+	at org.apache.iceberg.rest.RESTCatalog.loadTable(RESTCatalog.java:124)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.lambda$doComputeIfAbsent$14(BoundedLocalCache.java:2406)
+	at java.base/java.util.concurrent.ConcurrentHashMap.compute(ConcurrentHashMap.java:1955)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.doComputeIfAbsent(BoundedLocalCache.java:2404)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.computeIfAbsent(BoundedLocalCache.java:2387)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalCache.computeIfAbsent(LocalCache.java:108)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalManualCache.get(LocalMa…"
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,72,225.9339,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,73,66.0064,46,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,74,86.2665,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,75,234.9088,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,76,102.071,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,77,,,error,"Py4JJavaError: An error occurred while calling o95.sql.
+: org.apache.iceberg.exceptions.NotAuthorizedException: Not authorized: {""code"":""Unauthorized"",""subCode"":2,""message"":""Access token validation failed."",""timeStamp"":""2026-09-24T06:35:46.0937953Z"",""httpStatusCode"":401,""hresult"":-2147467259,""details"":[{""code"":""RootActivityId"",""message"":""4a09220d-a4e2-4ea6-88fe-a7414d1d26ff""}],""exceptionCategory"":1}
+	at org.apache.iceberg.rest.ErrorHandlers$DefaultErrorHandler.accept(ErrorHandlers.java:343)
+	at org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:160)
+	at org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:142)
+	at org.apache.iceberg.rest.HTTPClient.throwFailure(HTTPClient.java:242)
+	at org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:347)
+	at org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:299)
+	at org.apache.iceberg.rest.BaseHTTPClient.get(BaseHTTPClient.java:101)
+	at org.apache.iceberg.rest.RESTSessionCatalog.loadInternal(RESTSessionCatalog.java:438)
+	at org.apache.iceberg.rest.RESTSessionCatalog.loadTable(RESTSessionCatalog.java:468)
+	at org.apache.iceberg.catalog.BaseSessionCatalog$AsCatalog.loadTable(BaseSessionCatalog.java:105)
+	at org.apache.iceberg.rest.RESTCatalog.loadTable(RESTCatalog.java:124)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.lambda$doComputeIfAbsent$14(BoundedLocalCache.java:2406)
+	at java.base/java.util.concurrent.ConcurrentHashMap.compute(ConcurrentHashMap.java:1916)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.doComputeIfAbsent(BoundedLocalCache.java:2404)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.computeIfAbsent(BoundedLocalCache.java:2387)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalCache.computeIfAbsent(LocalCache.java:108)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalManualCache.get(LocalMa…"
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,78,174.3549,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,79,74.1319,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,80,,,error,"Py4JJavaError: An error occurred while calling o95.sql.
+: org.apache.iceberg.exceptions.NotAuthorizedException: Not authorized: {""code"":""Unauthorized"",""subCode"":2,""message"":""Access token validation failed."",""timeStamp"":""2026-09-24T06:39:54.7907017Z"",""httpStatusCode"":401,""hresult"":-2147467259,""details"":[{""code"":""RootActivityId"",""message"":""a55867c8-5935-4cc7-88ef-70d752b712bc""}],""exceptionCategory"":1}
+	at org.apache.iceberg.rest.ErrorHandlers$DefaultErrorHandler.accept(ErrorHandlers.java:343)
+	at org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:160)
+	at org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:142)
+	at org.apache.iceberg.rest.HTTPClient.throwFailure(HTTPClient.java:242)
+	at org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:347)
+	at org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:299)
+	at org.apache.iceberg.rest.BaseHTTPClient.get(BaseHTTPClient.java:101)
+	at org.apache.iceberg.rest.RESTSessionCatalog.loadInternal(RESTSessionCatalog.java:438)
+	at org.apache.iceberg.rest.RESTSessionCatalog.loadTable(RESTSessionCatalog.java:468)
+	at org.apache.iceberg.catalog.BaseSessionCatalog$AsCatalog.loadTable(BaseSessionCatalog.java:105)
+	at org.apache.iceberg.rest.RESTCatalog.loadTable(RESTCatalog.java:124)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.lambda$doComputeIfAbsent$14(BoundedLocalCache.java:2406)
+	at java.base/java.util.concurrent.ConcurrentHashMap.compute(ConcurrentHashMap.java:1955)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.doComputeIfAbsent(BoundedLocalCache.java:2404)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.computeIfAbsent(BoundedLocalCache.java:2387)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalCache.computeIfAbsent(LocalCache.java:108)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalManualCache.get(LocalMa…"
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,81,11.5508,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,82,75.7354,7,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,83,12.8245,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,84,,,error,"Py4JJavaError: An error occurred while calling o95.sql.
+: org.apache.iceberg.exceptions.NotAuthorizedException: Not authorized: {""code"":""Unauthorized"",""subCode"":2,""message"":""Access token validation failed."",""timeStamp"":""2026-09-24T06:41:35.0593173Z"",""httpStatusCode"":401,""hresult"":-2147467259,""details"":[{""code"":""RootActivityId"",""message"":""201e5ad8-5e5b-454f-ab50-4863c9796d7e""}],""exceptionCategory"":1}
+	at org.apache.iceberg.rest.ErrorHandlers$DefaultErrorHandler.accept(ErrorHandlers.java:343)
+	at org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:160)
+	at org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:142)
+	at org.apache.iceberg.rest.HTTPClient.throwFailure(HTTPClient.java:242)
+	at org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:347)
+	at org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:299)
+	at org.apache.iceberg.rest.BaseHTTPClient.get(BaseHTTPClient.java:101)
+	at org.apache.iceberg.rest.RESTSessionCatalog.loadInternal(RESTSessionCatalog.java:438)
+	at org.apache.iceberg.rest.RESTSessionCatalog.loadTable(RESTSessionCatalog.java:468)
+	at org.apache.iceberg.catalog.BaseSessionCatalog$AsCatalog.loadTable(BaseSessionCatalog.java:105)
+	at org.apache.iceberg.rest.RESTCatalog.loadTable(RESTCatalog.java:124)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.lambda$doComputeIfAbsent$14(BoundedLocalCache.java:2406)
+	at java.base/java.util.concurrent.ConcurrentHashMap.compute(ConcurrentHashMap.java:1916)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.doComputeIfAbsent(BoundedLocalCache.java:2404)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.computeIfAbsent(BoundedLocalCache.java:2387)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalCache.computeIfAbsent(LocalCache.java:108)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalManualCache.get(LocalMa…"
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,85,,,error,"Py4JJavaError: An error occurred while calling o95.sql.
+: org.apache.iceberg.exceptions.NotAuthorizedException: Not authorized: {""code"":""Unauthorized"",""subCode"":2,""message"":""Access token validation failed."",""timeStamp"":""2026-09-24T06:41:35.2269324Z"",""httpStatusCode"":401,""hresult"":-2147467259,""details"":[{""code"":""RootActivityId"",""message"":""3c6cb758-eb10-40b6-ac69-ad0d5d1d63b7""}],""exceptionCategory"":1}
+	at org.apache.iceberg.rest.ErrorHandlers$DefaultErrorHandler.accept(ErrorHandlers.java:343)
+	at org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:160)
+	at org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:142)
+	at org.apache.iceberg.rest.HTTPClient.throwFailure(HTTPClient.java:242)
+	at org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:347)
+	at org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:299)
+	at org.apache.iceberg.rest.BaseHTTPClient.get(BaseHTTPClient.java:101)
+	at org.apache.iceberg.rest.RESTSessionCatalog.loadInternal(RESTSessionCatalog.java:438)
+	at org.apache.iceberg.rest.RESTSessionCatalog.loadTable(RESTSessionCatalog.java:468)
+	at org.apache.iceberg.catalog.BaseSessionCatalog$AsCatalog.loadTable(BaseSessionCatalog.java:105)
+	at org.apache.iceberg.rest.RESTCatalog.loadTable(RESTCatalog.java:124)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.lambda$doComputeIfAbsent$14(BoundedLocalCache.java:2406)
+	at java.base/java.util.concurrent.ConcurrentHashMap.compute(ConcurrentHashMap.java:1916)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.doComputeIfAbsent(BoundedLocalCache.java:2404)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.computeIfAbsent(BoundedLocalCache.java:2387)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalCache.computeIfAbsent(LocalCache.java:108)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalManualCache.get(LocalMa…"
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,86,15.2855,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,87,65.9085,1,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,88,,,error,"Py4JJavaError: An error occurred while calling o95.sql.
+: org.apache.iceberg.exceptions.NotAuthorizedException: Not authorized: {""code"":""Unauthorized"",""subCode"":2,""message"":""Access token validation failed."",""timeStamp"":""2026-09-24T06:42:56.5873701Z"",""httpStatusCode"":401,""hresult"":-2147467259,""details"":[{""code"":""RootActivityId"",""message"":""af350ed3-5f62-4dfa-9187-98ac522b33df""}],""exceptionCategory"":1}
+	at org.apache.iceberg.rest.ErrorHandlers$DefaultErrorHandler.accept(ErrorHandlers.java:343)
+	at org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:160)
+	at org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:142)
+	at org.apache.iceberg.rest.HTTPClient.throwFailure(HTTPClient.java:242)
+	at org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:347)
+	at org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:299)
+	at org.apache.iceberg.rest.BaseHTTPClient.get(BaseHTTPClient.java:101)
+	at org.apache.iceberg.rest.RESTSessionCatalog.loadInternal(RESTSessionCatalog.java:438)
+	at org.apache.iceberg.rest.RESTSessionCatalog.loadTable(RESTSessionCatalog.java:468)
+	at org.apache.iceberg.catalog.BaseSessionCatalog$AsCatalog.loadTable(BaseSessionCatalog.java:105)
+	at org.apache.iceberg.rest.RESTCatalog.loadTable(RESTCatalog.java:124)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.lambda$doComputeIfAbsent$14(BoundedLocalCache.java:2406)
+	at java.base/java.util.concurrent.ConcurrentHashMap.compute(ConcurrentHashMap.java:1955)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.doComputeIfAbsent(BoundedLocalCache.java:2404)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.computeIfAbsent(BoundedLocalCache.java:2387)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalCache.computeIfAbsent(LocalCache.java:108)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalManualCache.get(LocalMa…"
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,89,60.283,100,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,90,,,error,"Py4JJavaError: An error occurred while calling o95.sql.
+: org.apache.iceberg.exceptions.NotAuthorizedException: Not authorized: {""code"":""Unauthorized"",""subCode"":2,""message"":""Access token validation failed."",""timeStamp"":""2026-09-24T06:43:57.0339454Z"",""httpStatusCode"":401,""hresult"":-2147467259,""details"":[{""code"":""RootActivityId"",""message"":""862bea76-3608-456b-bd17-03379079d788""}],""exceptionCategory"":1}
+	at org.apache.iceberg.rest.ErrorHandlers$DefaultErrorHandler.accept(ErrorHandlers.java:343)
+	at org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:160)
+	at org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:142)
+	at org.apache.iceberg.rest.HTTPClient.throwFailure(HTTPClient.java:242)
+	at org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:347)
+	at org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:299)
+	at org.apache.iceberg.rest.BaseHTTPClient.get(BaseHTTPClient.java:101)
+	at org.apache.iceberg.rest.RESTSessionCatalog.loadInternal(RESTSessionCatalog.java:438)
+	at org.apache.iceberg.rest.RESTSessionCatalog.loadTable(RESTSessionCatalog.java:468)
+	at org.apache.iceberg.catalog.BaseSessionCatalog$AsCatalog.loadTable(BaseSessionCatalog.java:105)
+	at org.apache.iceberg.rest.RESTCatalog.loadTable(RESTCatalog.java:124)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.lambda$doComputeIfAbsent$14(BoundedLocalCache.java:2406)
+	at java.base/java.util.concurrent.ConcurrentHashMap.compute(ConcurrentHashMap.java:1955)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.doComputeIfAbsent(BoundedLocalCache.java:2404)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.computeIfAbsent(BoundedLocalCache.java:2387)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalCache.computeIfAbsent(LocalCache.java:108)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalManualCache.get(LocalMa…"
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,91,6.0479,19,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,92,27.1228,1,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,93,,,error,"Py4JJavaError: An error occurred while calling o95.sql.
+: org.apache.iceberg.exceptions.NotAuthorizedException: Not authorized: {""code"":""Unauthorized"",""subCode"":2,""message"":""Access token validation failed."",""timeStamp"":""2026-09-24T06:44:30.364422Z"",""httpStatusCode"":401,""hresult"":-2147467259,""details"":[{""code"":""RootActivityId"",""message"":""c35f392f-e28f-491f-aa37-102c842b5d60""}],""exceptionCategory"":1}
+	at org.apache.iceberg.rest.ErrorHandlers$DefaultErrorHandler.accept(ErrorHandlers.java:343)
+	at org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:160)
+	at org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:142)
+	at org.apache.iceberg.rest.HTTPClient.throwFailure(HTTPClient.java:242)
+	at org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:347)
+	at org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:299)
+	at org.apache.iceberg.rest.BaseHTTPClient.get(BaseHTTPClient.java:101)
+	at org.apache.iceberg.rest.RESTSessionCatalog.loadInternal(RESTSessionCatalog.java:438)
+	at org.apache.iceberg.rest.RESTSessionCatalog.loadTable(RESTSessionCatalog.java:468)
+	at org.apache.iceberg.catalog.BaseSessionCatalog$AsCatalog.loadTable(BaseSessionCatalog.java:105)
+	at org.apache.iceberg.rest.RESTCatalog.loadTable(RESTCatalog.java:124)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.lambda$doComputeIfAbsent$14(BoundedLocalCache.java:2406)
+	at java.base/java.util.concurrent.ConcurrentHashMap.compute(ConcurrentHashMap.java:1916)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.doComputeIfAbsent(BoundedLocalCache.java:2404)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.computeIfAbsent(BoundedLocalCache.java:2387)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalCache.computeIfAbsent(LocalCache.java:108)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalManualCache.get(LocalMan…"
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,94,,,error,"Py4JJavaError: An error occurred while calling o95.sql.
+: org.apache.iceberg.exceptions.NotAuthorizedException: Not authorized: {""code"":""Unauthorized"",""subCode"":2,""message"":""Access token validation failed."",""timeStamp"":""2026-09-24T06:44:30.5202937Z"",""httpStatusCode"":401,""hresult"":-2147467259,""details"":[{""code"":""RootActivityId"",""message"":""6e79aedf-70e8-45af-9591-88d1eb3b1f56""}],""exceptionCategory"":1}
+	at org.apache.iceberg.rest.ErrorHandlers$DefaultErrorHandler.accept(ErrorHandlers.java:343)
+	at org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:160)
+	at org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:142)
+	at org.apache.iceberg.rest.HTTPClient.throwFailure(HTTPClient.java:242)
+	at org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:347)
+	at org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:299)
+	at org.apache.iceberg.rest.BaseHTTPClient.get(BaseHTTPClient.java:101)
+	at org.apache.iceberg.rest.RESTSessionCatalog.loadInternal(RESTSessionCatalog.java:438)
+	at org.apache.iceberg.rest.RESTSessionCatalog.loadTable(RESTSessionCatalog.java:468)
+	at org.apache.iceberg.catalog.BaseSessionCatalog$AsCatalog.loadTable(BaseSessionCatalog.java:105)
+	at org.apache.iceberg.rest.RESTCatalog.loadTable(RESTCatalog.java:124)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.lambda$doComputeIfAbsent$14(BoundedLocalCache.java:2406)
+	at java.base/java.util.concurrent.ConcurrentHashMap.compute(ConcurrentHashMap.java:1916)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.doComputeIfAbsent(BoundedLocalCache.java:2404)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.computeIfAbsent(BoundedLocalCache.java:2387)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalCache.computeIfAbsent(LocalCache.java:108)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalManualCache.get(LocalMa…"
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,95,,,error,"Py4JJavaError: An error occurred while calling o95.sql.
+: org.apache.iceberg.exceptions.NotAuthorizedException: Not authorized: {""code"":""Unauthorized"",""subCode"":2,""message"":""Access token validation failed."",""timeStamp"":""2026-09-24T06:44:30.6777481Z"",""httpStatusCode"":401,""hresult"":-2147467259,""details"":[{""code"":""RootActivityId"",""message"":""442d75d9-4f88-4f2e-b6d5-909d0fb345a0""}],""exceptionCategory"":1}
+	at org.apache.iceberg.rest.ErrorHandlers$DefaultErrorHandler.accept(ErrorHandlers.java:343)
+	at org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:160)
+	at org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:142)
+	at org.apache.iceberg.rest.HTTPClient.throwFailure(HTTPClient.java:242)
+	at org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:347)
+	at org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:299)
+	at org.apache.iceberg.rest.BaseHTTPClient.get(BaseHTTPClient.java:101)
+	at org.apache.iceberg.rest.RESTSessionCatalog.loadInternal(RESTSessionCatalog.java:438)
+	at org.apache.iceberg.rest.RESTSessionCatalog.loadTable(RESTSessionCatalog.java:468)
+	at org.apache.iceberg.catalog.BaseSessionCatalog$AsCatalog.loadTable(BaseSessionCatalog.java:105)
+	at org.apache.iceberg.rest.RESTCatalog.loadTable(RESTCatalog.java:124)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.lambda$doComputeIfAbsent$14(BoundedLocalCache.java:2406)
+	at java.base/java.util.concurrent.ConcurrentHashMap.compute(ConcurrentHashMap.java:1916)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.doComputeIfAbsent(BoundedLocalCache.java:2404)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.computeIfAbsent(BoundedLocalCache.java:2387)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalCache.computeIfAbsent(LocalCache.java:108)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalManualCache.get(LocalMa…"
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,96,,,error,"Py4JJavaError: An error occurred while calling o95.sql.
+: org.apache.iceberg.exceptions.NotAuthorizedException: Not authorized: {""code"":""Unauthorized"",""subCode"":2,""message"":""Access token validation failed."",""timeStamp"":""2026-09-24T06:44:30.8340265Z"",""httpStatusCode"":401,""hresult"":-2147467259,""details"":[{""code"":""RootActivityId"",""message"":""fabf9e20-3c60-4760-a882-5342556b3baa""}],""exceptionCategory"":1}
+	at org.apache.iceberg.rest.ErrorHandlers$DefaultErrorHandler.accept(ErrorHandlers.java:343)
+	at org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:160)
+	at org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:142)
+	at org.apache.iceberg.rest.HTTPClient.throwFailure(HTTPClient.java:242)
+	at org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:347)
+	at org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:299)
+	at org.apache.iceberg.rest.BaseHTTPClient.get(BaseHTTPClient.java:101)
+	at org.apache.iceberg.rest.RESTSessionCatalog.loadInternal(RESTSessionCatalog.java:438)
+	at org.apache.iceberg.rest.RESTSessionCatalog.loadTable(RESTSessionCatalog.java:468)
+	at org.apache.iceberg.catalog.BaseSessionCatalog$AsCatalog.loadTable(BaseSessionCatalog.java:105)
+	at org.apache.iceberg.rest.RESTCatalog.loadTable(RESTCatalog.java:124)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.lambda$doComputeIfAbsent$14(BoundedLocalCache.java:2406)
+	at java.base/java.util.concurrent.ConcurrentHashMap.compute(ConcurrentHashMap.java:1955)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.doComputeIfAbsent(BoundedLocalCache.java:2404)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.computeIfAbsent(BoundedLocalCache.java:2387)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalCache.computeIfAbsent(LocalCache.java:108)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalManualCache.get(LocalMa…"
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,97,66.6647,1,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,98,55.1446,18522,ok,
+35956230538-1,2026-09-24T04:36:29Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956230538,54a0f36,30,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_iceberg,4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,99,,,error,"Py4JJavaError: An error occurred while calling o95.sql.
+: org.apache.iceberg.exceptions.NotAuthorizedException: Not authorized: {""code"":""Unauthorized"",""subCode"":2,""message"":""Access token validation failed."",""timeStamp"":""2026-09-24T06:46:32.8021975Z"",""httpStatusCode"":401,""hresult"":-2147467259,""details"":[{""code"":""RootActivityId"",""message"":""328930f4-c49b-4fb4-9a95-108616b96848""}],""exceptionCategory"":1}
+	at org.apache.iceberg.rest.ErrorHandlers$DefaultErrorHandler.accept(ErrorHandlers.java:343)
+	at org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:160)
+	at org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:142)
+	at org.apache.iceberg.rest.HTTPClient.throwFailure(HTTPClient.java:242)
+	at org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:347)
+	at org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:299)
+	at org.apache.iceberg.rest.BaseHTTPClient.get(BaseHTTPClient.java:101)
+	at org.apache.iceberg.rest.RESTSessionCatalog.loadInternal(RESTSessionCatalog.java:438)
+	at org.apache.iceberg.rest.RESTSessionCatalog.loadTable(RESTSessionCatalog.java:468)
+	at org.apache.iceberg.catalog.BaseSessionCatalog$AsCatalog.loadTable(BaseSessionCatalog.java:105)
+	at org.apache.iceberg.rest.RESTCatalog.loadTable(RESTCatalog.java:124)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.lambda$doComputeIfAbsent$14(BoundedLocalCache.java:2406)
+	at java.base/java.util.concurrent.ConcurrentHashMap.compute(ConcurrentHashMap.java:1916)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.doComputeIfAbsent(BoundedLocalCache.java:2404)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.computeIfAbsent(BoundedLocalCache.java:2387)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalCache.computeIfAbsent(LocalCache.java:108)
+	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalManualCache.get(LocalMa…"
