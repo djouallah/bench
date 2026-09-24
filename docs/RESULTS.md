@@ -8,16 +8,16 @@ Last run: `2026-09-23T05:28:33Z` · commit `2f68d50` · [Actions run](https://gi
 
 Each engine's most recent run at this scale; the newest run may not include every engine.
 
-| Engine | Version | Cold total | Warm total | Attach | Failed queries |
-|---|---|---:|---:|---:|---|
-| DuckDB | `2.0.0.dev2609121639` | 44.3s | 23.9s | 7.1s | — |
-| Polars | `2.0.0-rc.2` | 100.4s | 97.3s | 7.5s | — |
-| chDB | `4.4.0` | 147.8s | 106.2s | 2.5s | — |
-| Gluten/Velox | `4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9)` | 160.4s | 120.2s | 24.7s | — |
-| LakeSail | `0.7.1` | 222.6s | 261.2s | 2.4s | — |
-| Spark-OSS | `4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9)` | 429.8s | 389.9s | 18.9s | — |
+| Engine | Version | Cold total | Attach | Failed queries |
+|---|---|---:|---:|---|
+| DuckDB | `2.0.0.dev2609121639` | 44.3s | 7.1s | — |
+| Polars | `2.0.0-rc.2` | 100.4s | 7.5s | — |
+| chDB | `4.4.0` | 147.8s | 2.5s | — |
+| Gluten/Velox | `4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9)` | 160.4s | 24.7s | — |
+| LakeSail | `0.7.1` | 222.6s | 2.4s | — |
+| Spark-OSS | `4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9)` | 429.8s | 18.9s | — |
 
-Cold = first pass after attaching the catalog. Warm = the identical 22 statements run again immediately. Attach is timed separately and excluded from both totals.
+One cold pass, the first after attaching the catalog. Attach is timed separately and excluded from the total.
 
 ## Per query, latest run
 
@@ -50,6 +50,6 @@ Seconds, cold pass. `—` means the query failed; see Failures above.
 
 ## History
 
-1,080 timed statements across 8 runs.
+552 timed statements across 8 runs.
 Raw data: one immutable JSON per run under [`results/`](../results/), flattened to [`data/tpch_results.csv`](data/tpch_results.csv).
 

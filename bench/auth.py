@@ -19,7 +19,7 @@ configuration -- same app registration, same federated credential, same
 `api://AzureADTokenExchange` audience that `azure/login` itself uses -- and it removes the Azure
 CLI from the Python process, so `bench/` behaves identically on a laptop.
 
-WHAT THIS STILL CANNOT FIX, and why bench.yml sets `timeout-minutes: 50`. DuckDB bakes the token
+WHAT THIS STILL CANNOT FIX, and why etl.yml sets `timeout-minutes: 50`. DuckDB bakes the token
 into `ATTACH`, chDB into `CREATE DATABASE`, LakeSail into an env var read once at server start.
 Those three capture a STRING and never ask again. Refreshing the credential does not reach inside
 them, so an engine session is hard-bounded by the lifetime of the token it was handed. Mint late

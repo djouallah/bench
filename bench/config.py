@@ -108,9 +108,9 @@ class Config:
     # The environment variable `from_env` reads the scale from. A suite overrides it (TpcdsConfig
     # reads TPCDS_SF) so two suites dispatched with different scales never read each other's.
     SF_ENV = "TPCH_SF"
-    # The passes over the statements, in order. TPC-H runs every statement twice, the second
-    # time measuring whatever the engine cached; TpcdsConfig runs once (it says why).
-    PASSES = ("cold", "warm")
+    # The passes over the statements, in order. Both query suites run one cold pass (TpchConfig
+    # says why); a "warm" entry would run every statement again, measuring what the engine cached.
+    PASSES = ("cold",)
     # Scales the totals chart compares side by side; empty draws it at the headline scale only.
     TOTALS_SFS = ()
 

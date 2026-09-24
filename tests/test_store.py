@@ -125,12 +125,12 @@ class _FailsToAttach(_Fake):
 
 
 def test_a_failing_query_does_not_stop_the_run():
-    """Cell 15 had no try/except: one bad statement lost all 22 timings and both passes."""
+    """Cell 15 had no try/except: one bad statement lost all 22 timings."""
     result = benchmark(_Fake(), TpchConfig(workspace_id="w", lakehouse_id="l", sf=10))
     assert result.status == "ok"
-    assert len(result.rows) == 45  # 1 setup + 22 cold + 22 warm
-    assert sum(1 for r in result.rows if r.status == "error") == 2  # Q22, both passes
-    assert totals(result).keys() == {"cold", "warm"}
+    assert len(result.rows) == 23  # 1 setup + 22 cold
+    assert sum(1 for r in result.rows if r.status == "error") == 1  # Q22
+    assert totals(result).keys() == {"cold"}
 
 
 def test_the_runner_takes_the_statement_count_from_the_suite():

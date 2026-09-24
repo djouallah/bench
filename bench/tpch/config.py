@@ -110,6 +110,11 @@ class TpchConfig(Config):
     TEST = "tpch"  # the `test` column in every results row
     TITLE = "TPC-H"
     SF_ENV = "TPCH_SF"
+    # ONE COLD PASS, as TPC-DS: past SF=10 the data outgrows a 16 GB runner and a warm pass
+    # measures little but a second read of OneLake, while doubling a run that the one-hour token
+    # already bounds. The totals chart compares every scale the suite runs at.
+    PASSES = ("cold",)
+    TOTALS_SFS = (10, 30, 60, 100)
     HEADLINE_SF = HEADLINE_SF
     ENGINES = ENGINES
     TABLES = TABLES

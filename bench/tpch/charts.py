@@ -256,49 +256,53 @@ def totals(con, sf: int, out_dir: Path, subtitle: str, n_queries: int = 22) -> l
 def totals_by_sf(
     con, sfs: tuple[int, ...], out_dir: Path, subtitle: str, test: str, n_queries: int
 ) -> list[Path]:
-    """Grouped bars: cold total per engine, one group per scale factor. TPC-DS's totals chart.
+    """Grouped bars: cold total per engine, one group per scale factor. Both suites' totals chart.
 
-    Each engine's LATEST run at each scale, not an average: SF=30 and 60 have one run apiece,
-    and averaging SF=10's five against them would compare a mean with a sample.
+    THE MEAN OF EACH ENGINE'S LAST RECENT_RUNS COMPLETE RUNS at each scale -- the same three-run
+    window the per-query chart uses, because one run on a shared runner is noisier than the
+    differences being shown. A bar resting on fewer runs says how many.
 
-    ONLY A RUN THAT COMPLETED EVERY STATEMENT GETS A BAR. A total over the statements that
-    finished leaves out the ones that died, so it reads as fast when it is not a total at all.
-    An engine whose latest run at a scale lost any statement has no bar there.
+    ONLY A RUN THAT COMPLETED EVERY STATEMENT COUNTS. A total over the statements that finished
+    leaves out the ones that died, so it reads as fast when it is not a total at all. A run that
+    lost any statement is skipped, and an engine with no complete run at a scale has no bar there.
     """
     rows = con.execute(
         f"""
-        WITH latest AS (
-            SELECT engine, sf, arg_max(run_id, run_started_at) AS run_id
+        WITH runs AS (
+            SELECT engine, sf, run_id, max(run_started_at) AS started,
+                   sum(dur) AS dur,
+                   count(*) FILTER (WHERE status = 'ok') AS ok
             FROM raw
             WHERE test = ? AND run_type = 'cold' AND phase = 'query'
               AND sf IN ({", ".join(str(s) for s in sfs)})
-            GROUP BY engine, sf
+            GROUP BY engine, sf, run_id
+        ), ranked AS (
+            SELECT *, row_number() OVER (PARTITION BY engine, sf ORDER BY started DESC) AS rn
+            FROM runs
+            WHERE ok = {n_queries}
         )
-        SELECT engine, sf,
-               sum(dur) FILTER (WHERE status = 'ok') AS dur,
-               count(*) FILTER (WHERE status = 'error') AS failed
-        FROM raw JOIN latest USING (engine, sf, run_id)
-        WHERE run_type = 'cold' AND phase = 'query'
+        SELECT engine, sf, avg(dur), count(*) FROM ranked
+        WHERE rn <= {RECENT_RUNS}
         GROUP BY engine, sf
         """,
         [test],
     ).fetchall()
-    data = {(engine, sf): dur for engine, sf, dur, failed in rows if failed == 0 and dur}
+    data = {(engine, sf): (dur, n) for engine, sf, dur, n in rows}
     if not data:
         return []
     engines = [e for e in ENGINES if any(k[0] == e for k in data)]
     shown = [s for s in sfs if any(k[1] == s for k in data)]
     width = 0.8 / len(engines)
-    top = max(data.values())
+    top = max(dur for dur, _ in data.values())
 
     paths = []
     for theme in THEMES.values():
-        fig, ax = plt.subplots(figsize=(11, 6))
+        fig, ax = plt.subplots(figsize=(max(11, 2.2 * len(shown) + 0.5 * len(engines)), 6))
         for slot, engine in enumerate(engines):
             for group, sf in enumerate(shown):
                 if (engine, sf) not in data:
                     continue
-                dur = data[(engine, sf)]
+                dur, n = data[(engine, sf)]
                 x = group + (slot - (len(engines) - 1) / 2) * width
                 ax.bar(
                     x,
@@ -312,7 +316,7 @@ def totals_by_sf(
                 ax.text(
                     x,
                     dur + top * 0.01,
-                    f"{dur:,.0f}s",
+                    f"{dur:,.0f}s" + ("" if n >= RECENT_RUNS else f"\n{n} run" + "s" * (n > 1)),
                     ha="center",
                     va="bottom",
                     fontsize=9,
@@ -425,7 +429,7 @@ def render_all(
         # Every scale on one chart: the subtitle drops its own "SF n", and the date is not the
         # date of every bar, so it says whose runs these are instead.
         subtitle_all = re.sub(r" · \d{4}-\d{2}-\d{2}", "", subtitle.replace(f" SF {sf} ·", " ·"))
-        subtitle_all += " · each engine's latest run"
+        subtitle_all += f" · mean of each engine's last {RECENT_RUNS} complete runs"
         paths += totals_by_sf(con, totals_sfs, out_dir, subtitle_all, test, n_queries)
     else:
         paths += totals(con, sf, out_dir, windowed, n_queries)
