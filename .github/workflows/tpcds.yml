@@ -143,7 +143,11 @@ jobs:
     # colliding: at CATALOG_CACHE_SECONDS (2 hours, raised from 15 minutes for exactly this run)
     # every table is resolved in the first minutes and never looked up again, so a bearer that
     # expires at minute 70 is never presented to the catalog a second time.
-    timeout-minutes: 150
+    #
+    # 355, JUST UNDER GITHUB'S 360 CEILING, raised from 150 for Spark-OSS at SF=30 and 60: 36
+    # minutes cold at SF=10 grows at least with the data, and a job killed at the cap writes no
+    # part at all. A hang still ends; it just ends later.
+    timeout-minutes: 355
     permissions:
       id-token: write
       contents: read
