@@ -259,9 +259,11 @@ def totals_by_sf(
     """Grouped bars: cold total per engine, one group per scale factor. TPC-DS's totals chart.
 
     Each engine's LATEST run at each scale, not an average: SF=30 and 60 have one run apiece,
-    and averaging SF=10's five against them would compare a mean with a sample. A run that lost
-    statements is labelled with how many, because its total counts only the ones that finished
-    and would otherwise read as fast.
+    and averaging SF=10's five against them would compare a mean with a sample.
+
+    ONLY A RUN THAT COMPLETED EVERY STATEMENT GETS A BAR. A total over the statements that
+    finished leaves out the ones that died, so it reads as fast when it is not a total at all.
+    An engine whose latest run at a scale lost any statement has no bar there.
     """
     rows = con.execute(
         f"""
@@ -281,13 +283,13 @@ def totals_by_sf(
         """,
         [test],
     ).fetchall()
-    if not rows:
+    data = {(engine, sf): dur for engine, sf, dur, failed in rows if failed == 0 and dur}
+    if not data:
         return []
-    data = {(engine, sf): (dur or 0.0, failed) for engine, sf, dur, failed in rows}
     engines = [e for e in ENGINES if any(k[0] == e for k in data)]
     shown = [s for s in sfs if any(k[1] == s for k in data)]
     width = 0.8 / len(engines)
-    top = max(v[0] for v in data.values())
+    top = max(data.values())
 
     paths = []
     for theme in THEMES.values():
@@ -296,7 +298,7 @@ def totals_by_sf(
             for group, sf in enumerate(shown):
                 if (engine, sf) not in data:
                     continue
-                dur, failed = data[(engine, sf)]
+                dur = data[(engine, sf)]
                 x = group + (slot - (len(engines) - 1) / 2) * width
                 ax.bar(
                     x,
@@ -307,11 +309,10 @@ def totals_by_sf(
                     linewidth=1.0,
                     zorder=3,
                 )
-                label = f"{dur:,.0f}s" + (f"\n{failed} failed" if failed else "")
                 ax.text(
                     x,
                     dur + top * 0.01,
-                    label,
+                    f"{dur:,.0f}s",
                     ha="center",
                     va="bottom",
                     fontsize=9,
