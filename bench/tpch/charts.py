@@ -290,10 +290,7 @@ def totals_by_sf(
     data = {(engine, sf): (dur, n) for engine, sf, dur, n in rows}
     if not data:
         return []
-    # Palette order, except Spark-OSS goes LAST: it is the engine most often missing at the big
-    # scales (hours per pass), and last is where its absence leaves nothing out of place.
-    order = sorted(ENGINES, key=lambda e: e == "pyspark_iceberg")
-    engines = [e for e in order if any(k[0] == e for k in data)]
+    engines = [e for e in ENGINES if any(k[0] == e for k in data)]
     shown = [s for s in sfs if any(k[1] == s for k in data)]
     width = 0.8 / len(engines)
     top = max(dur for dur, _ in data.values())
@@ -302,9 +299,9 @@ def totals_by_sf(
     for theme in THEMES.values():
         fig, ax = plt.subplots(figsize=(max(11, 2.2 * len(shown) + 0.5 * len(engines)), 6))
         for group, sf in enumerate(shown):
-            # PACKED PER SCALE: only the engines with a bar here, centred on the tick, so an
-            # engine missing at this scale leaves no hole. Bar width stays fixed across groups.
-            present = [e for e in engines if (e, sf) in data]
+            # FASTEST FIRST within each scale, and only the engines with a bar here, centred on
+            # the tick -- so a missing engine leaves no hole. Colour, not position, says which.
+            present = sorted((e for e in engines if (e, sf) in data), key=lambda e: data[(e, sf)])
             for slot, engine in enumerate(present):
                 dur, n = data[(engine, sf)]
                 x = group + (slot - (len(present) - 1) / 2) * width
