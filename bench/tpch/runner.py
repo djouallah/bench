@@ -43,13 +43,7 @@ def _time(fn, *args) -> tuple[float, object, Exception | None]:
 def run_pass(engine, statements: list[str], run_type: str) -> list[Row]:
     """One full pass over the statements."""
     rows: list[Row] = []
-    refresh = getattr(engine, "refresh", None)
     for number, sql in enumerate(statements, start=1):
-        if refresh is not None:
-            # Untimed: re-minting a credential is not the query's work. A failure here is left
-            # to surface as the statement's own error, with whatever token is still in place.
-            with contextlib.suppress(Exception):
-                refresh()
         duration, count, exc = _time(engine.execute, sql)
         if exc is None:
             rows.append(Row(run_type, "query", number, round(duration, 4), rows=count))
