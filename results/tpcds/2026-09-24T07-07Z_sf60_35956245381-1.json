@@ -1,0 +1,842 @@
+{
+  "run_id": "35956245381-1",
+  "run_started_at": "2026-09-24T07:07:35Z",
+  "sf": 60,
+  "run_url": "https://github.com/djouallah/lakehouse_benchmark/actions/runs/35956245381",
+  "git_sha": "54a0f36",
+  "test": "tpcds",
+  "runner": "linux-6.17.0-1022-azure",
+  "cpu": 4,
+  "mem_gb": 15.6,
+  "python": "3.12.14",
+  "schema_version": 1,
+  "engines": {
+    "pyspark_iceberg": {
+      "version": "4.1.3 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9)",
+      "status": "ok",
+      "rows": [
+        {
+          "run_type": "cold",
+          "phase": "setup",
+          "query": 0,
+          "dur": 12.3798,
+          "rows": null,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 1,
+          "dur": 26.1703,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 2,
+          "dur": 30.3071,
+          "rows": 2513,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 3,
+          "dur": 40.4073,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 4,
+          "dur": 236.871,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 5,
+          "dur": 127.216,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 6,
+          "dur": 56.5803,
+          "rows": 52,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 7,
+          "dur": 85.9945,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 8,
+          "dur": 34.2379,
+          "rows": 8,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 9,
+          "dur": 471.4814,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 10,
+          "dur": 51.6581,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 11,
+          "dur": 137.0617,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 12,
+          "dur": 17.7384,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 13,
+          "dur": 187.703,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 14,
+          "dur": 288.0072,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 15,
+          "dur": 55.4209,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 16,
+          "dur": 86.4985,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 17,
+          "dur": 178.4116,
+          "rows": 37,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 18,
+          "dur": 65.63,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 19,
+          "dur": 61.5435,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 20,
+          "dur": 34.3023,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 21,
+          "dur": 28.4912,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 22,
+          "dur": 50.1486,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 23,
+          "dur": 381.7366,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 24,
+          "dur": 111.756,
+          "rows": 18,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 25,
+          "dur": 180.6141,
+          "rows": 7,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 26,
+          "dur": 54.6272,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 27,
+          "dur": 83.6112,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 28,
+          "dur": 341.7415,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 29,
+          "dur": 181.5588,
+          "rows": 53,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 30,
+          "dur": 9.09,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 31,
+          "dur": 178.7703,
+          "rows": 272,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 32,
+          "dur": 48.833,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 33,
+          "dur": 100.2035,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 34,
+          "dur": 53.3398,
+          "rows": 6698,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 35,
+          "dur": 58.9038,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 36,
+          "dur": 57.4808,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 37,
+          "dur": 43.7064,
+          "rows": 3,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 38,
+          "dur": 73.7914,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 39,
+          "dur": 48.4402,
+          "rows": 4528,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 40,
+          "dur": 50.4849,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 41,
+          "dur": 1.2528,
+          "rows": 69,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 42,
+          "dur": 46.7232,
+          "rows": 11,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 43,
+          "dur": 44.8992,
+          "rows": 63,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 44,
+          "dur": 112.4873,
+          "rows": 10,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 45,
+          "dur": 31.3693,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 46,
+          "dur": 70.1352,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 47,
+          "dur": 70.7731,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 48,
+          "dur": 49.7894,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 49,
+          "dur": 155.1816,
+          "rows": 93,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 50,
+          "dur": 85.4332,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 51,
+          "dur": 99.2655,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 52,
+          "dur": 46.552,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 53,
+          "dur": 56.3462,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 54,
+          "dur": 99.591,
+          "rows": 42,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 55,
+          "dur": 46.6999,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 56,
+          "dur": 102.4697,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 57,
+          "dur": 36.3094,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 58,
+          "dur": 81.348,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 59,
+          "dur": 54.3556,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 60,
+          "dur": 95.746,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 61,
+          "dur": 107.3515,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 62,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o95.sql.\n: org.apache.iceberg.exceptions.NotAuthorizedException: Not authorized: {\"code\":\"Unauthorized\",\"subCode\":2,\"message\":\"Access token validation failed.\",\"timeStamp\":\"2026-09-24T08:48:27.3987778Z\",\"httpStatusCode\":401,\"hresult\":-2147467259,\"details\":[{\"code\":\"RootActivityId\",\"message\":\"44258f26-142f-4697-9417-7ab0e4fd743e\"}],\"exceptionCategory\":1}\n\tat org.apache.iceberg.rest.ErrorHandlers$DefaultErrorHandler.accept(ErrorHandlers.java:343)\n\tat org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:160)\n\tat org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:142)\n\tat org.apache.iceberg.rest.HTTPClient.throwFailure(HTTPClient.java:242)\n\tat org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:347)\n\tat org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:299)\n\tat org.apache.iceberg.rest.BaseHTTPClient.get(BaseHTTPClient.java:101)\n\tat org.apache.iceberg.rest.RESTSessionCatalog.loadInternal(RESTSessionCatalog.java:438)\n\tat org.apache.iceberg.rest.RESTSessionCatalog.loadTable(RESTSessionCatalog.java:468)\n\tat org.apache.iceberg.catalog.BaseSessionCatalog$AsCatalog.loadTable(BaseSessionCatalog.java:105)\n\tat org.apache.iceberg.rest.RESTCatalog.loadTable(RESTCatalog.java:124)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.lambda$doComputeIfAbsent$14(BoundedLocalCache.java:2406)\n\tat java.base/java.util.concurrent.ConcurrentHashMap.compute(ConcurrentHashMap.java:1955)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.doComputeIfAbsent(BoundedLocalCache.java:2404)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.computeIfAbsent(BoundedLocalCache.java:2387)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalCache.computeIfAbsent(LocalCache.java:108)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalManualCache.get(LocalMa\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 63,
+          "dur": 52.9284,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 64,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o95.sql.\n: org.apache.iceberg.exceptions.NotAuthorizedException: Not authorized: {\"code\":\"Unauthorized\",\"subCode\":2,\"message\":\"Access token validation failed.\",\"timeStamp\":\"2026-09-24T08:49:20.5030892Z\",\"httpStatusCode\":401,\"hresult\":-2147467259,\"details\":[{\"code\":\"RootActivityId\",\"message\":\"88254fa4-5c4f-40be-bebe-b12a3a80e4cb\"}],\"exceptionCategory\":1}\n\tat org.apache.iceberg.rest.ErrorHandlers$DefaultErrorHandler.accept(ErrorHandlers.java:343)\n\tat org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:160)\n\tat org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:142)\n\tat org.apache.iceberg.rest.HTTPClient.throwFailure(HTTPClient.java:242)\n\tat org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:347)\n\tat org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:299)\n\tat org.apache.iceberg.rest.BaseHTTPClient.get(BaseHTTPClient.java:101)\n\tat org.apache.iceberg.rest.RESTSessionCatalog.loadInternal(RESTSessionCatalog.java:438)\n\tat org.apache.iceberg.rest.RESTSessionCatalog.loadTable(RESTSessionCatalog.java:468)\n\tat org.apache.iceberg.catalog.BaseSessionCatalog$AsCatalog.loadTable(BaseSessionCatalog.java:105)\n\tat org.apache.iceberg.rest.RESTCatalog.loadTable(RESTCatalog.java:124)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.lambda$doComputeIfAbsent$14(BoundedLocalCache.java:2406)\n\tat java.base/java.util.concurrent.ConcurrentHashMap.compute(ConcurrentHashMap.java:1955)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.doComputeIfAbsent(BoundedLocalCache.java:2404)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.computeIfAbsent(BoundedLocalCache.java:2387)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalCache.computeIfAbsent(LocalCache.java:108)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalManualCache.get(LocalMa\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 65,
+          "dur": 124.4909,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 66,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o95.sql.\n: org.apache.iceberg.exceptions.NotAuthorizedException: Not authorized: {\"code\":\"Unauthorized\",\"subCode\":2,\"message\":\"Access token validation failed.\",\"timeStamp\":\"2026-09-24T08:51:25.2168109Z\",\"httpStatusCode\":401,\"hresult\":-2147467259,\"details\":[{\"code\":\"RootActivityId\",\"message\":\"5690a277-537f-453f-b224-8b19d40a14bc\"}],\"exceptionCategory\":1}\n\tat org.apache.iceberg.rest.ErrorHandlers$DefaultErrorHandler.accept(ErrorHandlers.java:343)\n\tat org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:160)\n\tat org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:142)\n\tat org.apache.iceberg.rest.HTTPClient.throwFailure(HTTPClient.java:242)\n\tat org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:347)\n\tat org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:299)\n\tat org.apache.iceberg.rest.BaseHTTPClient.get(BaseHTTPClient.java:101)\n\tat org.apache.iceberg.rest.RESTSessionCatalog.loadInternal(RESTSessionCatalog.java:438)\n\tat org.apache.iceberg.rest.RESTSessionCatalog.loadTable(RESTSessionCatalog.java:468)\n\tat org.apache.iceberg.catalog.BaseSessionCatalog$AsCatalog.loadTable(BaseSessionCatalog.java:105)\n\tat org.apache.iceberg.rest.RESTCatalog.loadTable(RESTCatalog.java:124)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.lambda$doComputeIfAbsent$14(BoundedLocalCache.java:2406)\n\tat java.base/java.util.concurrent.ConcurrentHashMap.compute(ConcurrentHashMap.java:1955)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.doComputeIfAbsent(BoundedLocalCache.java:2404)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.computeIfAbsent(BoundedLocalCache.java:2387)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalCache.computeIfAbsent(LocalCache.java:108)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalManualCache.get(LocalMa\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 67,
+          "dur": 185.7507,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 68,
+          "dur": 74.0877,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 69,
+          "dur": 51.8074,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 70,
+          "dur": 66.6725,
+          "rows": 14,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 71,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o95.sql.\n: org.apache.iceberg.exceptions.NotAuthorizedException: Not authorized: {\"code\":\"Unauthorized\",\"subCode\":2,\"message\":\"Access token validation failed.\",\"timeStamp\":\"2026-09-24T08:57:43.7087604Z\",\"httpStatusCode\":401,\"hresult\":-2147467259,\"details\":[{\"code\":\"RootActivityId\",\"message\":\"62e98283-8be2-4c4f-b778-608334ad37cc\"}],\"exceptionCategory\":1}\n\tat org.apache.iceberg.rest.ErrorHandlers$DefaultErrorHandler.accept(ErrorHandlers.java:343)\n\tat org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:160)\n\tat org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:142)\n\tat org.apache.iceberg.rest.HTTPClient.throwFailure(HTTPClient.java:242)\n\tat org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:347)\n\tat org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:299)\n\tat org.apache.iceberg.rest.BaseHTTPClient.get(BaseHTTPClient.java:101)\n\tat org.apache.iceberg.rest.RESTSessionCatalog.loadInternal(RESTSessionCatalog.java:438)\n\tat org.apache.iceberg.rest.RESTSessionCatalog.loadTable(RESTSessionCatalog.java:468)\n\tat org.apache.iceberg.catalog.BaseSessionCatalog$AsCatalog.loadTable(BaseSessionCatalog.java:105)\n\tat org.apache.iceberg.rest.RESTCatalog.loadTable(RESTCatalog.java:124)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.lambda$doComputeIfAbsent$14(BoundedLocalCache.java:2406)\n\tat java.base/java.util.concurrent.ConcurrentHashMap.compute(ConcurrentHashMap.java:1955)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.doComputeIfAbsent(BoundedLocalCache.java:2404)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.computeIfAbsent(BoundedLocalCache.java:2387)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalCache.computeIfAbsent(LocalCache.java:108)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalManualCache.get(LocalMa\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 72,
+          "dur": 484.6971,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 73,
+          "dur": 49.55,
+          "rows": 107,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 74,
+          "dur": 113.614,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 75,
+          "dur": 213.9405,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 76,
+          "dur": 89.779,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 77,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o95.sql.\n: org.apache.iceberg.exceptions.NotAuthorizedException: Not authorized: {\"code\":\"Unauthorized\",\"subCode\":2,\"message\":\"Access token validation failed.\",\"timeStamp\":\"2026-09-24T09:13:35.4961224Z\",\"httpStatusCode\":401,\"hresult\":-2147467259,\"details\":[{\"code\":\"RootActivityId\",\"message\":\"e580ed97-4af0-4293-8869-4062649b2846\"}],\"exceptionCategory\":1}\n\tat org.apache.iceberg.rest.ErrorHandlers$DefaultErrorHandler.accept(ErrorHandlers.java:343)\n\tat org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:160)\n\tat org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:142)\n\tat org.apache.iceberg.rest.HTTPClient.throwFailure(HTTPClient.java:242)\n\tat org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:347)\n\tat org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:299)\n\tat org.apache.iceberg.rest.BaseHTTPClient.get(BaseHTTPClient.java:101)\n\tat org.apache.iceberg.rest.RESTSessionCatalog.loadInternal(RESTSessionCatalog.java:438)\n\tat org.apache.iceberg.rest.RESTSessionCatalog.loadTable(RESTSessionCatalog.java:468)\n\tat org.apache.iceberg.catalog.BaseSessionCatalog$AsCatalog.loadTable(BaseSessionCatalog.java:105)\n\tat org.apache.iceberg.rest.RESTCatalog.loadTable(RESTCatalog.java:124)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.lambda$doComputeIfAbsent$14(BoundedLocalCache.java:2406)\n\tat java.base/java.util.concurrent.ConcurrentHashMap.compute(ConcurrentHashMap.java:1916)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.doComputeIfAbsent(BoundedLocalCache.java:2404)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.computeIfAbsent(BoundedLocalCache.java:2387)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalCache.computeIfAbsent(LocalCache.java:108)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalManualCache.get(LocalMa\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 78,
+          "dur": 224.2983,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 79,
+          "dur": 59.9854,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 80,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o95.sql.\n: org.apache.iceberg.exceptions.NotAuthorizedException: Not authorized: {\"code\":\"Unauthorized\",\"subCode\":2,\"message\":\"Access token validation failed.\",\"timeStamp\":\"2026-09-24T09:18:19.9653233Z\",\"httpStatusCode\":401,\"hresult\":-2147467259,\"details\":[{\"code\":\"RootActivityId\",\"message\":\"7cc524bb-2359-4493-859a-ebc6c7a05032\"}],\"exceptionCategory\":1}\n\tat org.apache.iceberg.rest.ErrorHandlers$DefaultErrorHandler.accept(ErrorHandlers.java:343)\n\tat org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:160)\n\tat org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:142)\n\tat org.apache.iceberg.rest.HTTPClient.throwFailure(HTTPClient.java:242)\n\tat org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:347)\n\tat org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:299)\n\tat org.apache.iceberg.rest.BaseHTTPClient.get(BaseHTTPClient.java:101)\n\tat org.apache.iceberg.rest.RESTSessionCatalog.loadInternal(RESTSessionCatalog.java:438)\n\tat org.apache.iceberg.rest.RESTSessionCatalog.loadTable(RESTSessionCatalog.java:468)\n\tat org.apache.iceberg.catalog.BaseSessionCatalog$AsCatalog.loadTable(BaseSessionCatalog.java:105)\n\tat org.apache.iceberg.rest.RESTCatalog.loadTable(RESTCatalog.java:124)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.lambda$doComputeIfAbsent$14(BoundedLocalCache.java:2406)\n\tat java.base/java.util.concurrent.ConcurrentHashMap.compute(ConcurrentHashMap.java:1916)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.doComputeIfAbsent(BoundedLocalCache.java:2404)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.computeIfAbsent(BoundedLocalCache.java:2387)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalCache.computeIfAbsent(LocalCache.java:108)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalManualCache.get(LocalMa\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 81,
+          "dur": 13.441,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 82,
+          "dur": 59.1021,
+          "rows": 10,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 83,
+          "dur": 11.2688,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 84,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o95.sql.\n: org.apache.iceberg.exceptions.NotAuthorizedException: Not authorized: {\"code\":\"Unauthorized\",\"subCode\":2,\"message\":\"Access token validation failed.\",\"timeStamp\":\"2026-09-24T09:19:43.9343246Z\",\"httpStatusCode\":401,\"hresult\":-2147467259,\"details\":[{\"code\":\"RootActivityId\",\"message\":\"ae96db31-3277-4cfa-89b4-036065569f97\"}],\"exceptionCategory\":1}\n\tat org.apache.iceberg.rest.ErrorHandlers$DefaultErrorHandler.accept(ErrorHandlers.java:343)\n\tat org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:160)\n\tat org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:142)\n\tat org.apache.iceberg.rest.HTTPClient.throwFailure(HTTPClient.java:242)\n\tat org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:347)\n\tat org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:299)\n\tat org.apache.iceberg.rest.BaseHTTPClient.get(BaseHTTPClient.java:101)\n\tat org.apache.iceberg.rest.RESTSessionCatalog.loadInternal(RESTSessionCatalog.java:438)\n\tat org.apache.iceberg.rest.RESTSessionCatalog.loadTable(RESTSessionCatalog.java:468)\n\tat org.apache.iceberg.catalog.BaseSessionCatalog$AsCatalog.loadTable(BaseSessionCatalog.java:105)\n\tat org.apache.iceberg.rest.RESTCatalog.loadTable(RESTCatalog.java:124)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.lambda$doComputeIfAbsent$14(BoundedLocalCache.java:2406)\n\tat java.base/java.util.concurrent.ConcurrentHashMap.compute(ConcurrentHashMap.java:1955)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.doComputeIfAbsent(BoundedLocalCache.java:2404)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.computeIfAbsent(BoundedLocalCache.java:2387)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalCache.computeIfAbsent(LocalCache.java:108)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalManualCache.get(LocalMa\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 85,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o95.sql.\n: org.apache.iceberg.exceptions.NotAuthorizedException: Not authorized: {\"code\":\"Unauthorized\",\"subCode\":2,\"message\":\"Access token validation failed.\",\"timeStamp\":\"2026-09-24T09:19:44.0969082Z\",\"httpStatusCode\":401,\"hresult\":-2147467259,\"details\":[{\"code\":\"RootActivityId\",\"message\":\"709cd5a1-4046-499f-8d5f-762725e73d8a\"}],\"exceptionCategory\":1}\n\tat org.apache.iceberg.rest.ErrorHandlers$DefaultErrorHandler.accept(ErrorHandlers.java:343)\n\tat org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:160)\n\tat org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:142)\n\tat org.apache.iceberg.rest.HTTPClient.throwFailure(HTTPClient.java:242)\n\tat org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:347)\n\tat org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:299)\n\tat org.apache.iceberg.rest.BaseHTTPClient.get(BaseHTTPClient.java:101)\n\tat org.apache.iceberg.rest.RESTSessionCatalog.loadInternal(RESTSessionCatalog.java:438)\n\tat org.apache.iceberg.rest.RESTSessionCatalog.loadTable(RESTSessionCatalog.java:468)\n\tat org.apache.iceberg.catalog.BaseSessionCatalog$AsCatalog.loadTable(BaseSessionCatalog.java:105)\n\tat org.apache.iceberg.rest.RESTCatalog.loadTable(RESTCatalog.java:124)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.lambda$doComputeIfAbsent$14(BoundedLocalCache.java:2406)\n\tat java.base/java.util.concurrent.ConcurrentHashMap.compute(ConcurrentHashMap.java:1916)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.doComputeIfAbsent(BoundedLocalCache.java:2404)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.computeIfAbsent(BoundedLocalCache.java:2387)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalCache.computeIfAbsent(LocalCache.java:108)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalManualCache.get(LocalMa\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 86,
+          "dur": 12.4966,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 87,
+          "dur": 67.4866,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 88,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o95.sql.\n: org.apache.iceberg.exceptions.NotAuthorizedException: Not authorized: {\"code\":\"Unauthorized\",\"subCode\":2,\"message\":\"Access token validation failed.\",\"timeStamp\":\"2026-09-24T09:21:04.2435736Z\",\"httpStatusCode\":401,\"hresult\":-2147467259,\"details\":[{\"code\":\"RootActivityId\",\"message\":\"8ec9b76f-5e19-44b4-8ec4-e892ea5be88e\"}],\"exceptionCategory\":1}\n\tat org.apache.iceberg.rest.ErrorHandlers$DefaultErrorHandler.accept(ErrorHandlers.java:343)\n\tat org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:160)\n\tat org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:142)\n\tat org.apache.iceberg.rest.HTTPClient.throwFailure(HTTPClient.java:242)\n\tat org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:347)\n\tat org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:299)\n\tat org.apache.iceberg.rest.BaseHTTPClient.get(BaseHTTPClient.java:101)\n\tat org.apache.iceberg.rest.RESTSessionCatalog.loadInternal(RESTSessionCatalog.java:438)\n\tat org.apache.iceberg.rest.RESTSessionCatalog.loadTable(RESTSessionCatalog.java:468)\n\tat org.apache.iceberg.catalog.BaseSessionCatalog$AsCatalog.loadTable(BaseSessionCatalog.java:105)\n\tat org.apache.iceberg.rest.RESTCatalog.loadTable(RESTCatalog.java:124)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.lambda$doComputeIfAbsent$14(BoundedLocalCache.java:2406)\n\tat java.base/java.util.concurrent.ConcurrentHashMap.compute(ConcurrentHashMap.java:1955)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.doComputeIfAbsent(BoundedLocalCache.java:2404)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.computeIfAbsent(BoundedLocalCache.java:2387)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalCache.computeIfAbsent(LocalCache.java:108)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalManualCache.get(LocalMa\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 89,
+          "dur": 70.2847,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 90,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o95.sql.\n: org.apache.iceberg.exceptions.NotAuthorizedException: Not authorized: {\"code\":\"Unauthorized\",\"subCode\":2,\"message\":\"Access token validation failed.\",\"timeStamp\":\"2026-09-24T09:22:14.6843231Z\",\"httpStatusCode\":401,\"hresult\":-2147467259,\"details\":[{\"code\":\"RootActivityId\",\"message\":\"ddacbdfd-a431-4ff4-8667-917b62e36261\"}],\"exceptionCategory\":1}\n\tat org.apache.iceberg.rest.ErrorHandlers$DefaultErrorHandler.accept(ErrorHandlers.java:343)\n\tat org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:160)\n\tat org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:142)\n\tat org.apache.iceberg.rest.HTTPClient.throwFailure(HTTPClient.java:242)\n\tat org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:347)\n\tat org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:299)\n\tat org.apache.iceberg.rest.BaseHTTPClient.get(BaseHTTPClient.java:101)\n\tat org.apache.iceberg.rest.RESTSessionCatalog.loadInternal(RESTSessionCatalog.java:438)\n\tat org.apache.iceberg.rest.RESTSessionCatalog.loadTable(RESTSessionCatalog.java:468)\n\tat org.apache.iceberg.catalog.BaseSessionCatalog$AsCatalog.loadTable(BaseSessionCatalog.java:105)\n\tat org.apache.iceberg.rest.RESTCatalog.loadTable(RESTCatalog.java:124)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.lambda$doComputeIfAbsent$14(BoundedLocalCache.java:2406)\n\tat java.base/java.util.concurrent.ConcurrentHashMap.compute(ConcurrentHashMap.java:1955)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.doComputeIfAbsent(BoundedLocalCache.java:2404)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.computeIfAbsent(BoundedLocalCache.java:2387)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalCache.computeIfAbsent(LocalCache.java:108)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalManualCache.get(LocalMa\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 91,
+          "dur": 5.3991,
+          "rows": 26,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 92,
+          "dur": 22.1104,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 93,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o95.sql.\n: org.apache.iceberg.exceptions.NotAuthorizedException: Not authorized: {\"code\":\"Unauthorized\",\"subCode\":2,\"message\":\"Access token validation failed.\",\"timeStamp\":\"2026-09-24T09:22:42.3484151Z\",\"httpStatusCode\":401,\"hresult\":-2147467259,\"details\":[{\"code\":\"RootActivityId\",\"message\":\"77996dba-1311-4254-91cd-50adf4bb02a2\"}],\"exceptionCategory\":1}\n\tat org.apache.iceberg.rest.ErrorHandlers$DefaultErrorHandler.accept(ErrorHandlers.java:343)\n\tat org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:160)\n\tat org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:142)\n\tat org.apache.iceberg.rest.HTTPClient.throwFailure(HTTPClient.java:242)\n\tat org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:347)\n\tat org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:299)\n\tat org.apache.iceberg.rest.BaseHTTPClient.get(BaseHTTPClient.java:101)\n\tat org.apache.iceberg.rest.RESTSessionCatalog.loadInternal(RESTSessionCatalog.java:438)\n\tat org.apache.iceberg.rest.RESTSessionCatalog.loadTable(RESTSessionCatalog.java:468)\n\tat org.apache.iceberg.catalog.BaseSessionCatalog$AsCatalog.loadTable(BaseSessionCatalog.java:105)\n\tat org.apache.iceberg.rest.RESTCatalog.loadTable(RESTCatalog.java:124)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.lambda$doComputeIfAbsent$14(BoundedLocalCache.java:2406)\n\tat java.base/java.util.concurrent.ConcurrentHashMap.compute(ConcurrentHashMap.java:1916)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.doComputeIfAbsent(BoundedLocalCache.java:2404)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.computeIfAbsent(BoundedLocalCache.java:2387)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalCache.computeIfAbsent(LocalCache.java:108)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalManualCache.get(LocalMa\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 94,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o95.sql.\n: org.apache.iceberg.exceptions.NotAuthorizedException: Not authorized: {\"code\":\"Unauthorized\",\"subCode\":2,\"message\":\"Access token validation failed.\",\"timeStamp\":\"2026-09-24T09:22:42.5009038Z\",\"httpStatusCode\":401,\"hresult\":-2147467259,\"details\":[{\"code\":\"RootActivityId\",\"message\":\"c49cb42f-40f7-4f12-878e-2f5f27db7a68\"}],\"exceptionCategory\":1}\n\tat org.apache.iceberg.rest.ErrorHandlers$DefaultErrorHandler.accept(ErrorHandlers.java:343)\n\tat org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:160)\n\tat org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:142)\n\tat org.apache.iceberg.rest.HTTPClient.throwFailure(HTTPClient.java:242)\n\tat org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:347)\n\tat org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:299)\n\tat org.apache.iceberg.rest.BaseHTTPClient.get(BaseHTTPClient.java:101)\n\tat org.apache.iceberg.rest.RESTSessionCatalog.loadInternal(RESTSessionCatalog.java:438)\n\tat org.apache.iceberg.rest.RESTSessionCatalog.loadTable(RESTSessionCatalog.java:468)\n\tat org.apache.iceberg.catalog.BaseSessionCatalog$AsCatalog.loadTable(BaseSessionCatalog.java:105)\n\tat org.apache.iceberg.rest.RESTCatalog.loadTable(RESTCatalog.java:124)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.lambda$doComputeIfAbsent$14(BoundedLocalCache.java:2406)\n\tat java.base/java.util.concurrent.ConcurrentHashMap.compute(ConcurrentHashMap.java:1955)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.doComputeIfAbsent(BoundedLocalCache.java:2404)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.computeIfAbsent(BoundedLocalCache.java:2387)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalCache.computeIfAbsent(LocalCache.java:108)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalManualCache.get(LocalMa\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 95,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o95.sql.\n: org.apache.iceberg.exceptions.NotAuthorizedException: Not authorized: {\"code\":\"Unauthorized\",\"subCode\":2,\"message\":\"Access token validation failed.\",\"timeStamp\":\"2026-09-24T09:22:42.6549524Z\",\"httpStatusCode\":401,\"hresult\":-2147467259,\"details\":[{\"code\":\"RootActivityId\",\"message\":\"8f99d860-b372-4e6c-80f8-673766f86d88\"}],\"exceptionCategory\":1}\n\tat org.apache.iceberg.rest.ErrorHandlers$DefaultErrorHandler.accept(ErrorHandlers.java:343)\n\tat org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:160)\n\tat org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:142)\n\tat org.apache.iceberg.rest.HTTPClient.throwFailure(HTTPClient.java:242)\n\tat org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:347)\n\tat org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:299)\n\tat org.apache.iceberg.rest.BaseHTTPClient.get(BaseHTTPClient.java:101)\n\tat org.apache.iceberg.rest.RESTSessionCatalog.loadInternal(RESTSessionCatalog.java:438)\n\tat org.apache.iceberg.rest.RESTSessionCatalog.loadTable(RESTSessionCatalog.java:468)\n\tat org.apache.iceberg.catalog.BaseSessionCatalog$AsCatalog.loadTable(BaseSessionCatalog.java:105)\n\tat org.apache.iceberg.rest.RESTCatalog.loadTable(RESTCatalog.java:124)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.lambda$doComputeIfAbsent$14(BoundedLocalCache.java:2406)\n\tat java.base/java.util.concurrent.ConcurrentHashMap.compute(ConcurrentHashMap.java:1955)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.doComputeIfAbsent(BoundedLocalCache.java:2404)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.computeIfAbsent(BoundedLocalCache.java:2387)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalCache.computeIfAbsent(LocalCache.java:108)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalManualCache.get(LocalMa\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 96,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o95.sql.\n: org.apache.iceberg.exceptions.NotAuthorizedException: Not authorized: {\"code\":\"Unauthorized\",\"subCode\":2,\"message\":\"Access token validation failed.\",\"timeStamp\":\"2026-09-24T09:22:42.8037215Z\",\"httpStatusCode\":401,\"hresult\":-2147467259,\"details\":[{\"code\":\"RootActivityId\",\"message\":\"71980479-0dde-42f8-add8-769cb5378e9c\"}],\"exceptionCategory\":1}\n\tat org.apache.iceberg.rest.ErrorHandlers$DefaultErrorHandler.accept(ErrorHandlers.java:343)\n\tat org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:160)\n\tat org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:142)\n\tat org.apache.iceberg.rest.HTTPClient.throwFailure(HTTPClient.java:242)\n\tat org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:347)\n\tat org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:299)\n\tat org.apache.iceberg.rest.BaseHTTPClient.get(BaseHTTPClient.java:101)\n\tat org.apache.iceberg.rest.RESTSessionCatalog.loadInternal(RESTSessionCatalog.java:438)\n\tat org.apache.iceberg.rest.RESTSessionCatalog.loadTable(RESTSessionCatalog.java:468)\n\tat org.apache.iceberg.catalog.BaseSessionCatalog$AsCatalog.loadTable(BaseSessionCatalog.java:105)\n\tat org.apache.iceberg.rest.RESTCatalog.loadTable(RESTCatalog.java:124)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.lambda$doComputeIfAbsent$14(BoundedLocalCache.java:2406)\n\tat java.base/java.util.concurrent.ConcurrentHashMap.compute(ConcurrentHashMap.java:1955)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.doComputeIfAbsent(BoundedLocalCache.java:2404)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.computeIfAbsent(BoundedLocalCache.java:2387)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalCache.computeIfAbsent(LocalCache.java:108)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalManualCache.get(LocalMa\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 97,
+          "dur": 76.5827,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 98,
+          "dur": 61.6636,
+          "rows": 23658,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 99,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o95.sql.\n: org.apache.iceberg.exceptions.NotAuthorizedException: Not authorized: {\"code\":\"Unauthorized\",\"subCode\":2,\"message\":\"Access token validation failed.\",\"timeStamp\":\"2026-09-24T09:25:01.2208903Z\",\"httpStatusCode\":401,\"hresult\":-2147467259,\"details\":[{\"code\":\"RootActivityId\",\"message\":\"eb0e5a17-d59c-495d-ac23-2ec6d6a81114\"}],\"exceptionCategory\":1}\n\tat org.apache.iceberg.rest.ErrorHandlers$DefaultErrorHandler.accept(ErrorHandlers.java:343)\n\tat org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:160)\n\tat org.apache.iceberg.rest.ErrorHandlers$TableErrorHandler.accept(ErrorHandlers.java:142)\n\tat org.apache.iceberg.rest.HTTPClient.throwFailure(HTTPClient.java:242)\n\tat org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:347)\n\tat org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:299)\n\tat org.apache.iceberg.rest.BaseHTTPClient.get(BaseHTTPClient.java:101)\n\tat org.apache.iceberg.rest.RESTSessionCatalog.loadInternal(RESTSessionCatalog.java:438)\n\tat org.apache.iceberg.rest.RESTSessionCatalog.loadTable(RESTSessionCatalog.java:468)\n\tat org.apache.iceberg.catalog.BaseSessionCatalog$AsCatalog.loadTable(BaseSessionCatalog.java:105)\n\tat org.apache.iceberg.rest.RESTCatalog.loadTable(RESTCatalog.java:124)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.lambda$doComputeIfAbsent$14(BoundedLocalCache.java:2406)\n\tat java.base/java.util.concurrent.ConcurrentHashMap.compute(ConcurrentHashMap.java:1955)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.doComputeIfAbsent(BoundedLocalCache.java:2404)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.computeIfAbsent(BoundedLocalCache.java:2387)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalCache.computeIfAbsent(LocalCache.java:108)\n\tat org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalManualCache.get(LocalMa\u2026"
+        }
+      ],
+      "host": {
+        "runner": "linux-6.17.0-1022-azure",
+        "cpu": 4,
+        "mem_gb": 15.6,
+        "python": "3.12.14"
+      }
+    }
+  }
+}
