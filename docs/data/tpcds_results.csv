@@ -3597,3 +3597,586 @@ Stack trace:
 	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.computeIfAbsent(BoundedLocalCache.java:2387)
 	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalCache.computeIfAbsent(LocalCache.java:108)
 	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalManualCache.get(LocalMa…"
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,setup,0,21.5528,,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,1,28.2866,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,2,38.1386,2513,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,3,45.134,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,4,161.877,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,5,134.4751,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,6,31.5117,52,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,7,53.0549,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,8,8.2266,10,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,9,104.0709,1,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,10,22.8334,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,11,86.3565,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,12,9.2523,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,13,66.3779,1,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,14,143.2315,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,15,15.5394,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,16,56.4737,1,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,17,39.9538,37,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,18,22.2737,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,19,33.9477,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,20,5.6652,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,21,10.2085,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,22,28.3334,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,23,169.2153,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,24,42.5821,40,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,25,63.1958,14,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,26,28.6002,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,27,55.0523,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,28,49.5832,1,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,29,49.4475,62,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,30,5.847,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,31,75.636,275,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,32,18.4591,1,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,33,21.1569,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,34,23.2622,5774,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,35,16.587,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,36,29.287,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,37,37.5836,3,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,38,30.3615,1,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,39,12.9875,7367,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,40,19.1995,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,41,0.5634,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,42,22.7055,11,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,43,32.1315,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,44,19.1392,10,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,45,8.9965,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,46,43.4976,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,47,23.9851,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,48,34.1313,1,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,49,98.7459,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,50,49.6458,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,51,57.3551,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,52,25.5088,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,53,8.9473,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,54,36.2793,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,55,7.1165,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,56,30.8793,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,57,9.2477,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,58,10.2468,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,59,16.7197,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,60,16.0282,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,61,32.2665,1,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,62,15.1354,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,63,8.9783,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,64,120.2733,466,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,65,58.067,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,66,29.4328,15,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,67,118.581,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,68,49.0314,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,69,15.0112,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,70,35.6747,20,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,71,39.9368,59606,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,72,142.4023,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,73,37.178,111,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,74,73.5243,100,ok,
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,75,,,error,"Py4JJavaError: An error occurred while calling o415.collectToPython.
+: org.apache.spark.SparkException: Job aborted due to stage failure: Task 50 in stage 1918.0 failed 1 times, most recent failure: Lost task 50.0 in stage 1918.0 (TID 22290) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: 401 Unauthorized
+Authentication Failed with Bearer token is not present in the request
+Request ID: 
+	at org.apache.gluten.vectorized.ColumnarBatchOutIterator.translateException(ColumnarBatchOutIterator.java:156)
+	at org.apache.gluten.iterator.ClosableIterator.hasNext(ClosableIterator.java:38)
+	at scala.collection.convert.JavaCollectionWrappers$JIteratorWrapper.hasNext(JavaCollectionWrappers.scala:46)
+	at org.apache.gluten.iterator.IteratorsV1$InvocationFlowProtection.hasNext(IteratorsV1.scala:154)
+	at org.apache.gluten.iterator.IteratorsV1$IteratorCompleter.hasNext(IteratorsV1.scala:66)
+	at org.apache.gluten.iterator.IteratorsV1$PayloadCloser.hasNext(IteratorsV1.scala:38)
+	at org.apache.gluten.iterator.IteratorsV1$LifeTimeAccumulator.hasNext(IteratorsV1.scala:95)
+	at org.apache.spark.InterruptibleIterator.hasNext(InterruptibleIterator.scala:37)
+	at org.apache.gluten.iterator.IteratorsV1$ReadTimeAccumulator.hasNext(IteratorsV1.scala:122)
+	at scala.collection.Iterator$$anon$9.hasNext(Iterator.scala:593)
+	at scala.collection.convert.JavaCollectionWrappers$IteratorWrapper.hasNext(JavaCollectionWrappers.scala:32)
+	at org.apache.gluten.vectorized.ColumnarBatchInIterator.hasNext(ColumnarBatchInIterator.java:36)
+	at org.apache.gluten.vectorized.ColumnarBatchOutIterator.nativeHasNext(Native Method)
+	at org.apache.gluten.vectorized.ColumnarBatchOutIterator.hasNext0(ColumnarBatchOutIterator.java:67)
+	at org.apache.gluten.iterator.…"
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,76,,,error,"Py4JJavaError: An error occurred while calling o424.collectToPython.
+: org.apache.spark.SparkException: [STAGE_MATERIALIZATION_MULTIPLE_FAILURES] Multiple failures (3) in stage materialization: 
+  1. SparkException: Job aborted due to stage failure: Task 1 in stage 1924.0 failed 1 times, most recent failure: Lost task 1.0 in stage 1924.0 (TID 22298) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError
+Error Source: RUNTIME
+Error Code: INVALID_STATE
+Reason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/item/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized
+
+Request ID: '.
+Retriable: False
+Context: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/item/00000-data_0.parquet 11697623 - 7834148 Task test_cursor_23687
+Function: throwStorageExceptionWithOperationDetails
+File: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h
+Line: 92
+Stack trace:
+# 0  _ZN8facebook5velox7process10StackTraceC1Ei
+# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_
+# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_
+# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE
+# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE
+# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE
+# 6  _ZN8facebook5velox19FileHandleGeneratorclERKNS0_13Fil…"
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,77,,,error,"Py4JJavaError: An error occurred while calling o435.collectToPython.
+: org.apache.iceberg.exceptions.RuntimeIOException: Failed to open input stream for file: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/web_page/metadata/snap-5929239907243376018-0-6ccef364-6790-4f0a-8a12-6aa79848937f.avro
+	at org.apache.iceberg.hadoop.HadoopInputFile.newStream(HadoopInputFile.java:187)
+	at org.apache.iceberg.avro.AvroIterable.newFileReader(AvroIterable.java:103)
+	at org.apache.iceberg.avro.AvroIterable.iterator(AvroIterable.java:78)
+	at org.apache.iceberg.avro.AvroIterable.iterator(AvroIterable.java:38)
+	at org.apache.iceberg.relocated.com.google.common.collect.Iterables.addAll(Iterables.java:333)
+	at org.apache.iceberg.relocated.com.google.common.collect.Lists.newLinkedList(Lists.java:251)
+	at org.apache.iceberg.ManifestLists.read(ManifestLists.java:43)
+	at org.apache.iceberg.BaseSnapshot.cacheManifests(BaseSnapshot.java:186)
+	at org.apache.iceberg.BaseSnapshot.deleteManifests(BaseSnapshot.java:221)
+	at org.apache.iceberg.BaseDistributedDataScan.findMatchingDeleteManifests(BaseDistributedDataScan.java:208)
+	at org.apache.iceberg.BaseDistributedDataScan.doPlanFiles(BaseDistributedDataScan.java:149)
+	at org.apache.iceberg.SnapshotScan.planFiles(SnapshotScan.java:162)
+	at org.apache.iceberg.spark.source.SparkPartitioningAwareScan.tasks(SparkPartitioningAwareScan.java:182)
+	at org.apache.iceberg.spark.source.SparkPartitioningAwareScan.taskGroups(SparkPartitioningAwareScan.java:210)
+	at org.apache.iceberg.spark.source.SparkPartitioningAwareScan.outputPartitioning(SparkPartitioningAwareScan.java:113)
+	at org.apache.spark.sql.execution.datasources.v2.V2ScanPartitioningAndOrdering$$anonfun$partitioning$1.applyOrElse(V2ScanPartitioningAndOrdering.scala:45)
+	at org.apache.spark.sql.execution.datasources.v2.V2ScanPartitioningAndOrdering$$anonfun$partitioning$1.applyOrElse(V2ScanPartitioningAndOrdering.scala:…"
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,78,,,error,"Py4JJavaError: An error occurred while calling o444.collectToPython.
+: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 1926.0 failed 1 times, most recent failure: Lost task 0.0 in stage 1926.0 (TID 22300) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError
+Error Source: RUNTIME
+Error Code: INVALID_STATE
+Reason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/date_dim/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized
+
+Request ID: '.
+Retriable: False
+Context: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/date_dim/00000-data_0.parquet 4 - 1813944 Task test_cursor_23690
+Function: throwStorageExceptionWithOperationDetails
+File: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h
+Line: 92
+Stack trace:
+# 0  _ZN8facebook5velox7process10StackTraceC1Ei
+# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_
+# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_
+# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE
+# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE
+# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE
+# 6  _ZN8facebook5velox19FileHandleGeneratorclERKNS0_13FileHandleKeyEPKNS0_14FilePropertiesEPNS0_7IoStatsE
+# 7  _ZN8facebook5velox13CachedFactoryINS0_13FileHandleKeyENS0…"
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,79,,,error,"Py4JJavaError: An error occurred while calling o453.collectToPython.
+: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 1933.0 failed 1 times, most recent failure: Lost task 0.0 in stage 1933.0 (TID 22319) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError
+Error Source: RUNTIME
+Error Code: INVALID_STATE
+Reason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/customer/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized
+
+Request ID: '.
+Retriable: False
+Context: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/customer/00000-data_0.parquet 4 - 13817468 Task test_cursor_23708
+Function: throwStorageExceptionWithOperationDetails
+File: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h
+Line: 92
+Stack trace:
+# 0  _ZN8facebook5velox7process10StackTraceC1Ei
+# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_
+# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_
+# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE
+# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE
+# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE
+# 6  _ZN8facebook5velox19File…"
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,80,,,error,"Py4JJavaError: An error occurred while calling o462.collectToPython.
+: org.apache.iceberg.exceptions.RuntimeIOException: Failed to open input stream for file: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/catalog_page/metadata/snap-3721435274257351567-0-241f6c79-bbd7-48e5-8ba5-646d629b29e0.avro
+	at org.apache.iceberg.hadoop.HadoopInputFile.newStream(HadoopInputFile.java:187)
+	at org.apache.iceberg.avro.AvroIterable.newFileReader(AvroIterable.java:103)
+	at org.apache.iceberg.avro.AvroIterable.iterator(AvroIterable.java:78)
+	at org.apache.iceberg.avro.AvroIterable.iterator(AvroIterable.java:38)
+	at org.apache.iceberg.relocated.com.google.common.collect.Iterables.addAll(Iterables.java:333)
+	at org.apache.iceberg.relocated.com.google.common.collect.Lists.newLinkedList(Lists.java:251)
+	at org.apache.iceberg.ManifestLists.read(ManifestLists.java:43)
+	at org.apache.iceberg.BaseSnapshot.cacheManifests(BaseSnapshot.java:186)
+	at org.apache.iceberg.BaseSnapshot.deleteManifests(BaseSnapshot.java:221)
+	at org.apache.iceberg.BaseDistributedDataScan.findMatchingDeleteManifests(BaseDistributedDataScan.java:208)
+	at org.apache.iceberg.BaseDistributedDataScan.doPlanFiles(BaseDistributedDataScan.java:149)
+	at org.apache.iceberg.SnapshotScan.planFiles(SnapshotScan.java:162)
+	at org.apache.iceberg.spark.source.SparkPartitioningAwareScan.tasks(SparkPartitioningAwareScan.java:182)
+	at org.apache.iceberg.spark.source.SparkPartitioningAwareScan.taskGroups(SparkPartitioningAwareScan.java:210)
+	at org.apache.iceberg.spark.source.SparkPartitioningAwareScan.outputPartitioning(SparkPartitioningAwareScan.java:113)
+	at org.apache.spark.sql.execution.datasources.v2.V2ScanPartitioningAndOrdering$$anonfun$partitioning$1.applyOrElse(V2ScanPartitioningAndOrdering.scala:45)
+	at org.apache.spark.sql.execution.datasources.v2.V2ScanPartitioningAndOrdering$$anonfun$partitioning$1.applyOrElse(V2ScanPartitioningAndOrdering.sc…"
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,81,,,error,"Py4JJavaError: An error occurred while calling o471.collectToPython.
+: org.apache.spark.SparkException: [STAGE_MATERIALIZATION_MULTIPLE_FAILURES] Multiple failures (2) in stage materialization: 
+  1. SparkException: Job aborted due to stage failure: Task 0 in stage 1938.0 failed 1 times, most recent failure: Lost task 0.0 in stage 1938.0 (TID 22328) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError
+Error Source: RUNTIME
+Error Code: INVALID_STATE
+Reason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/date_dim/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized
+
+Request ID: '.
+Retriable: False
+Context: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/date_dim/00000-data_0.parquet 4 - 1813944 Task test_cursor_23713
+Additional Context: Operator: TableScan[0] 0
+Function: throwStorageExceptionWithOperationDetails
+File: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h
+Line: 92
+Stack trace:
+# 0  _ZN8facebook5velox7process10StackTraceC1Ei
+# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_
+# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_
+# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE
+# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE
+# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE
+# 6  _ZN8fac…"
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,82,,,error,"Py4JJavaError: An error occurred while calling o482.collectToPython.
+: org.apache.spark.SparkException: Job aborted due to stage failure: Task 2 in stage 1942.0 failed 1 times, most recent failure: Lost task 2.0 in stage 1942.0 (TID 22334) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError
+Error Source: RUNTIME
+Error Code: INVALID_STATE
+Reason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/store_sales/00002-data_10.parquet' encountered azure storage exception, Details: '401 Unauthorized
+
+Request ID: '.
+Retriable: False
+Context: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/store_sales/00002-data_10.parquet 106569490 - 103149896 Task test_cursor_23722
+Additional Context: Operator: TableScan[0] 0
+Function: throwStorageExceptionWithOperationDetails
+File: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h
+Line: 92
+Stack trace:
+# 0  _ZN8facebook5velox7process10StackTraceC1Ei
+# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_
+# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_
+# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE
+# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE
+# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11cha…"
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,83,,,error,"Py4JJavaError: An error occurred while calling o491.collectToPython.
+: org.apache.spark.SparkException: [STAGE_MATERIALIZATION_MULTIPLE_FAILURES] Multiple failures (3) in stage materialization: 
+  1. SparkException: Job aborted due to stage failure: Task 0 in stage 1946.0 failed 1 times, most recent failure: Lost task 0.0 in stage 1946.0 (TID 22342) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError
+Error Source: RUNTIME
+Error Code: INVALID_STATE
+Reason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/item/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized
+
+Request ID: '.
+Retriable: False
+Context: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/item/00000-data_0.parquet 4 - 11697619 Task test_cursor_23730
+Additional Context: Operator: TableScan[0] 0
+Function: throwStorageExceptionWithOperationDetails
+File: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h
+Line: 92
+Stack trace:
+# 0  _ZN8facebook5velox7process10StackTraceC1Ei
+# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_
+# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_
+# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE
+# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE
+# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE
+# 6  _ZN8facebook5v…"
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,84,,,error,"Py4JJavaError: An error occurred while calling o502.collectToPython.
+: org.apache.spark.SparkException: Job aborted due to stage failure: Task 1 in stage 1948.0 failed 1 times, most recent failure: Lost task 1.0 in stage 1948.0 (TID 22346) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError
+Error Source: RUNTIME
+Error Code: INVALID_STATE
+Reason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/customer_demographics/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized
+
+Request ID: '.
+Retriable: False
+Context: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/customer_demographics/00000-data_0.parquet 1992030 - 1990098 Task test_cursor_23733
+Function: throwStorageExceptionWithOperationDetails
+File: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h
+Line: 92
+Stack trace:
+# 0  _ZN8facebook5velox7process10StackTraceC1Ei
+# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_
+# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_
+# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE
+# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE
+# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptions…"
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,85,,,error,"Py4JJavaError: An error occurred while calling o511.collectToPython.
+: org.apache.iceberg.exceptions.RuntimeIOException: Failed to open input stream for file: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/web_page/metadata/snap-5929239907243376018-0-6ccef364-6790-4f0a-8a12-6aa79848937f.avro
+	at org.apache.iceberg.hadoop.HadoopInputFile.newStream(HadoopInputFile.java:187)
+	at org.apache.iceberg.avro.AvroIterable.newFileReader(AvroIterable.java:103)
+	at org.apache.iceberg.avro.AvroIterable.iterator(AvroIterable.java:78)
+	at org.apache.iceberg.avro.AvroIterable.iterator(AvroIterable.java:38)
+	at org.apache.iceberg.relocated.com.google.common.collect.Iterables.addAll(Iterables.java:333)
+	at org.apache.iceberg.relocated.com.google.common.collect.Lists.newLinkedList(Lists.java:251)
+	at org.apache.iceberg.ManifestLists.read(ManifestLists.java:43)
+	at org.apache.iceberg.BaseSnapshot.cacheManifests(BaseSnapshot.java:186)
+	at org.apache.iceberg.BaseSnapshot.deleteManifests(BaseSnapshot.java:221)
+	at org.apache.iceberg.BaseDistributedDataScan.findMatchingDeleteManifests(BaseDistributedDataScan.java:208)
+	at org.apache.iceberg.BaseDistributedDataScan.doPlanFiles(BaseDistributedDataScan.java:149)
+	at org.apache.iceberg.SnapshotScan.planFiles(SnapshotScan.java:162)
+	at org.apache.iceberg.spark.source.SparkPartitioningAwareScan.tasks(SparkPartitioningAwareScan.java:182)
+	at org.apache.iceberg.spark.source.SparkPartitioningAwareScan.taskGroups(SparkPartitioningAwareScan.java:210)
+	at org.apache.iceberg.spark.source.SparkPartitioningAwareScan.outputPartitioning(SparkPartitioningAwareScan.java:113)
+	at org.apache.spark.sql.execution.datasources.v2.V2ScanPartitioningAndOrdering$$anonfun$partitioning$1.applyOrElse(V2ScanPartitioningAndOrdering.scala:45)
+	at org.apache.spark.sql.execution.datasources.v2.V2ScanPartitioningAndOrdering$$anonfun$partitioning$1.applyOrElse(V2ScanPartitioningAndOrdering.scala:…"
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,86,,,error,"Py4JJavaError: An error occurred while calling o520.collectToPython.
+: org.apache.spark.SparkException: Job aborted due to stage failure: Task 1 in stage 1954.0 failed 1 times, most recent failure: Lost task 1.0 in stage 1954.0 (TID 22353) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError
+Error Source: RUNTIME
+Error Code: INVALID_STATE
+Reason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/item/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized
+
+Request ID: '.
+Retriable: False
+Context: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/item/00000-data_0.parquet 11697623 - 7834148 Task test_cursor_23739
+Function: throwStorageExceptionWithOperationDetails
+File: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h
+Line: 92
+Stack trace:
+# 0  _ZN8facebook5velox7process10StackTraceC1Ei
+# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_
+# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_
+# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE
+# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE
+# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE
+# 6  _ZN8facebook5velox19FileHandleGeneratorclERKNS0_13FileHandleKeyEPKNS0_14FilePropertiesEPNS0_7IoStatsE
+# 7  _ZN8facebook5velox13CachedFactoryINS0_13FileHandleKeyENS0_…"
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,87,,,error,"Py4JJavaError: An error occurred while calling o529.collectToPython.
+: org.apache.spark.SparkException: [STAGE_MATERIALIZATION_MULTIPLE_FAILURES] Multiple failures (3) in stage materialization: 
+  1. SparkException: Job aborted due to stage failure: Task 3 in stage 1956.0 failed 1 times, most recent failure: Lost task 3.0 in stage 1956.0 (TID 22358) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError
+Error Source: RUNTIME
+Error Code: INVALID_STATE
+Reason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/customer/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized
+
+Request ID: '.
+Retriable: False
+Context: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/customer/00000-data_0.parquet 41391149 - 13822943 Task test_cursor_23744
+Function: throwStorageExceptionWithOperationDetails
+File: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h
+Line: 92
+Stack trace:
+# 0  _ZN8facebook5velox7process10StackTraceC1Ei
+# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_
+# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_
+# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE
+# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE
+# 5  _ZN8facebook5velox11filesystems14AbfsF…"
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,88,,,error,"Py4JJavaError: An error occurred while calling o540.collectToPython.
+: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 1958.0 failed 1 times, most recent failure: Lost task 0.0 in stage 1958.0 (TID 22361) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError
+Error Source: RUNTIME
+Error Code: INVALID_STATE
+Reason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/time_dim/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized
+
+Request ID: '.
+Retriable: False
+Context: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/time_dim/00000-data_0.parquet 4 - 1128221 Task test_cursor_23748
+Function: throwStorageExceptionWithOperationDetails
+File: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h
+Line: 92
+Stack trace:
+# 0  _ZN8facebook5velox7process10StackTraceC1Ei
+# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_
+# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_
+# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE
+# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE
+# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE
+# 6  _ZN8facebook5velox19FileHandleGeneratorclERKNS0_13FileHandleKeyEPKNS0_14FilePropertiesEPNS0_7IoStatsE
+# 7  _ZN8facebook5velox13CachedFactoryINS0_13FileHandleKeyENS0…"
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,89,,,error,"Py4JJavaError: An error occurred while calling o549.collectToPython.
+: org.apache.spark.SparkException: Job aborted due to stage failure: Task 1 in stage 1968.0 failed 1 times, most recent failure: Lost task 1.0 in stage 1968.0 (TID 22372) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError
+Error Source: RUNTIME
+Error Code: INVALID_STATE
+Reason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/item/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized
+
+Request ID: '.
+Retriable: False
+Context: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/item/00000-data_0.parquet 11697623 - 7834148 Task test_cursor_23759
+Function: throwStorageExceptionWithOperationDetails
+File: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h
+Line: 92
+Stack trace:
+# 0  _ZN8facebook5velox7process10StackTraceC1Ei
+# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_
+# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_
+# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE
+# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE
+# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE
+# 6  _ZN8facebook5velox19FileHa…"
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,90,,,error,"Py4JJavaError: An error occurred while calling o558.collectToPython.
+: org.apache.iceberg.exceptions.RuntimeIOException: Failed to open input stream for file: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/web_page/metadata/snap-5929239907243376018-0-6ccef364-6790-4f0a-8a12-6aa79848937f.avro
+	at org.apache.iceberg.hadoop.HadoopInputFile.newStream(HadoopInputFile.java:187)
+	at org.apache.iceberg.avro.AvroIterable.newFileReader(AvroIterable.java:103)
+	at org.apache.iceberg.avro.AvroIterable.iterator(AvroIterable.java:78)
+	at org.apache.iceberg.avro.AvroIterable.iterator(AvroIterable.java:38)
+	at org.apache.iceberg.relocated.com.google.common.collect.Iterables.addAll(Iterables.java:333)
+	at org.apache.iceberg.relocated.com.google.common.collect.Lists.newLinkedList(Lists.java:251)
+	at org.apache.iceberg.ManifestLists.read(ManifestLists.java:43)
+	at org.apache.iceberg.BaseSnapshot.cacheManifests(BaseSnapshot.java:186)
+	at org.apache.iceberg.BaseSnapshot.deleteManifests(BaseSnapshot.java:221)
+	at org.apache.iceberg.BaseDistributedDataScan.findMatchingDeleteManifests(BaseDistributedDataScan.java:208)
+	at org.apache.iceberg.BaseDistributedDataScan.doPlanFiles(BaseDistributedDataScan.java:149)
+	at org.apache.iceberg.SnapshotScan.planFiles(SnapshotScan.java:162)
+	at org.apache.iceberg.spark.source.SparkPartitioningAwareScan.tasks(SparkPartitioningAwareScan.java:182)
+	at org.apache.iceberg.spark.source.SparkPartitioningAwareScan.taskGroups(SparkPartitioningAwareScan.java:210)
+	at org.apache.iceberg.spark.source.SparkPartitioningAwareScan.outputPartitioning(SparkPartitioningAwareScan.java:113)
+	at org.apache.spark.sql.execution.datasources.v2.V2ScanPartitioningAndOrdering$$anonfun$partitioning$1.applyOrElse(V2ScanPartitioningAndOrdering.scala:45)
+	at org.apache.spark.sql.execution.datasources.v2.V2ScanPartitioningAndOrdering$$anonfun$partitioning$1.applyOrElse(V2ScanPartitioningAndOrdering.scala:…"
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,91,,,error,"Py4JJavaError: An error occurred while calling o567.collectToPython.
+: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 1972.0 failed 1 times, most recent failure: Lost task 0.0 in stage 1972.0 (TID 22376) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError
+Error Source: RUNTIME
+Error Code: INVALID_STATE
+Reason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/customer_address/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized
+
+Request ID: '.
+Retriable: False
+Context: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/customer_address/00000-data_0.parquet 4 - 9991000 Task test_cursor_23763
+Function: throwStorageExceptionWithOperationDetails
+File: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h
+Line: 92
+Stack trace:
+# 0  _ZN8facebook5velox7process10StackTraceC1Ei
+# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_
+# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_
+# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE
+# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE
+# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE
+# 6  _ZN8faceb…"
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,92,,,error,"Py4JJavaError: An error occurred while calling o576.collectToPython.
+: org.apache.spark.SparkException: [STAGE_MATERIALIZATION_MULTIPLE_FAILURES] Multiple failures (3) in stage materialization: 
+  1. SparkException: Job aborted due to stage failure: Task 1 in stage 1979.0 failed 1 times, most recent failure: Lost task 1.0 in stage 1979.0 (TID 22388) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError
+Error Source: RUNTIME
+Error Code: INVALID_STATE
+Reason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/item/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized
+
+Request ID: '.
+Retriable: False
+Context: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/item/00000-data_0.parquet 11697623 - 7834148 Task test_cursor_23775
+Additional Context: Operator: TableScan[0] 0
+Function: throwStorageExceptionWithOperationDetails
+File: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h
+Line: 92
+Stack trace:
+# 0  _ZN8facebook5velox7process10StackTraceC1Ei
+# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_
+# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_
+# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE
+# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE
+# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE
+# 6  _ZN8face…"
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,93,,,error,"Py4JJavaError: An error occurred while calling o587.collectToPython.
+: org.apache.iceberg.exceptions.RuntimeIOException: Failed to open input stream for file: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/reason/metadata/snap-1947273652556580926-0-3828fa1b-6ab7-4045-aed2-d860c440438c.avro
+	at org.apache.iceberg.hadoop.HadoopInputFile.newStream(HadoopInputFile.java:187)
+	at org.apache.iceberg.avro.AvroIterable.newFileReader(AvroIterable.java:103)
+	at org.apache.iceberg.avro.AvroIterable.iterator(AvroIterable.java:78)
+	at org.apache.iceberg.avro.AvroIterable.iterator(AvroIterable.java:38)
+	at org.apache.iceberg.relocated.com.google.common.collect.Iterables.addAll(Iterables.java:333)
+	at org.apache.iceberg.relocated.com.google.common.collect.Lists.newLinkedList(Lists.java:251)
+	at org.apache.iceberg.ManifestLists.read(ManifestLists.java:43)
+	at org.apache.iceberg.BaseSnapshot.cacheManifests(BaseSnapshot.java:186)
+	at org.apache.iceberg.BaseSnapshot.deleteManifests(BaseSnapshot.java:221)
+	at org.apache.iceberg.BaseDistributedDataScan.findMatchingDeleteManifests(BaseDistributedDataScan.java:208)
+	at org.apache.iceberg.BaseDistributedDataScan.doPlanFiles(BaseDistributedDataScan.java:149)
+	at org.apache.iceberg.SnapshotScan.planFiles(SnapshotScan.java:162)
+	at org.apache.iceberg.spark.source.SparkPartitioningAwareScan.tasks(SparkPartitioningAwareScan.java:182)
+	at org.apache.iceberg.spark.source.SparkPartitioningAwareScan.taskGroups(SparkPartitioningAwareScan.java:210)
+	at org.apache.iceberg.spark.source.SparkPartitioningAwareScan.outputPartitioning(SparkPartitioningAwareScan.java:113)
+	at org.apache.spark.sql.execution.datasources.v2.V2ScanPartitioningAndOrdering$$anonfun$partitioning$1.applyOrElse(V2ScanPartitioningAndOrdering.scala:45)
+	at org.apache.spark.sql.execution.datasources.v2.V2ScanPartitioningAndOrdering$$anonfun$partitioning$1.applyOrElse(V2ScanPartitioningAndOrdering.scala:43…"
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,94,,,error,"Py4JJavaError: An error occurred while calling o596.collectToPython.
+: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 1980.0 failed 1 times, most recent failure: Lost task 0.0 in stage 1980.0 (TID 22389) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError
+Error Source: RUNTIME
+Error Code: INVALID_STATE
+Reason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/web_site/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized
+
+Request ID: '.
+Retriable: False
+Context: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/web_site/00000-data_0.parquet 4 - 8730 Task test_cursor_23776
+Additional Context: Operator: TableScan[0] 0
+Function: throwStorageExceptionWithOperationDetails
+File: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h
+Line: 92
+Stack trace:
+# 0  _ZN8facebook5velox7process10StackTraceC1Ei
+# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_
+# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_
+# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE
+# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE
+# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE
+# 6  _ZN8facebook5velox19FileHandleGeneratorclERKNS0_13FileHandleKeyEPKNS0_14FilePropertiesEPNS0_7IoStatsE
+# 7  _ZN8facebook5ve…"
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,95,,,error,"Py4JJavaError: An error occurred while calling o605.collectToPython.
+: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 1987.0 failed 1 times, most recent failure: Lost task 0.0 in stage 1987.0 (TID 22407) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError
+Error Source: RUNTIME
+Error Code: INVALID_STATE
+Reason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/customer_address/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized
+
+Request ID: '.
+Retriable: False
+Context: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/customer_address/00000-data_0.parquet 4 - 9991000 Task test_cursor_23795
+Additional Context: Operator: TableScan[0] 0
+Function: throwStorageExceptionWithOperationDetails
+File: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h
+Line: 92
+Stack trace:
+# 0  _ZN8facebook5velox7process10StackTraceC1Ei
+# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_
+# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_
+# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE
+# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE
+# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_…"
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,96,,,error,"Py4JJavaError: An error occurred while calling o614.collectToPython.
+: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 1995.0 failed 1 times, most recent failure: Lost task 0.0 in stage 1995.0 (TID 22425) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError
+Error Source: RUNTIME
+Error Code: INVALID_STATE
+Reason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/household_demographics/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized
+
+Request ID: '.
+Retriable: False
+Context: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/household_demographics/00000-data_0.parquet 4 - 30598 Task test_cursor_23810
+Function: throwStorageExceptionWithOperationDetails
+File: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h
+Line: 92
+Stack trace:
+# 0  _ZN8facebook5velox7process10StackTraceC1Ei
+# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_
+# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_
+# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE
+# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE
+# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE
+# 6  _ZN8facebook5velox19FileHandleGeneratorclERKNS0_13FileHandleKeyEPKNS0_14FilePropertiesEPNS0_7IoStatsE
+# 7  _ZN8facebook5velox13CachedFacto…"
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,97,,,error,"Py4JJavaError: An error occurred while calling o623.collectToPython.
+: org.apache.spark.SparkException: [STAGE_MATERIALIZATION_MULTIPLE_FAILURES] Multiple failures (2) in stage materialization: 
+  1. SparkException: Job aborted due to stage failure: Task 0 in stage 1997.0 failed 1 times, most recent failure: Lost task 0.0 in stage 1997.0 (TID 22427) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError
+Error Source: RUNTIME
+Error Code: INVALID_STATE
+Reason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/date_dim/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized
+
+Request ID: '.
+Retriable: False
+Context: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/date_dim/00000-data_0.parquet 4 - 1813944 Task test_cursor_23813
+Function: throwStorageExceptionWithOperationDetails
+File: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h
+Line: 92
+Stack trace:
+# 0  _ZN8facebook5velox7process10StackTraceC1Ei
+# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_
+# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_
+# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE
+# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE
+# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE
+# 6  _ZN8facebook5velox19FileHandleGeneratorclERKNS0_13Fi…"
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,98,,,error,"Py4JJavaError: An error occurred while calling o634.collectToPython.
+: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 1998.0 failed 1 times, most recent failure: Lost task 0.0 in stage 1998.0 (TID 22428) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError
+Error Source: RUNTIME
+Error Code: INVALID_STATE
+Reason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/item/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized
+
+Request ID: '.
+Retriable: False
+Context: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/item/00000-data_0.parquet 4 - 11697619 Task test_cursor_23815
+Function: throwStorageExceptionWithOperationDetails
+File: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h
+Line: 92
+Stack trace:
+# 0  _ZN8facebook5velox7process10StackTraceC1Ei
+# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_
+# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_
+# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE
+# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE
+# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE
+# 6  _ZN8facebook5velox19FileHandleGe…"
+35998250865-1,2026-09-24T12:40:43Z,https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865,09f96b1,100,tpcds,linux-6.17.0-1022-azure,4,15.6,3.12.14,pyspark_gluten_iceberg,4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9),ok,cold,query,99,,,error,"Py4JJavaError: An error occurred while calling o643.collectToPython.
+: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 2001.0 failed 1 times, most recent failure: Lost task 0.0 in stage 2001.0 (TID 22432) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError
+Error Source: RUNTIME
+Error Code: INVALID_STATE
+Reason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/call_center/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized
+
+Request ID: '.
+Retriable: False
+Context: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/call_center/00000-data_0.parquet 4 - 10876 Task test_cursor_23818
+Function: throwStorageExceptionWithOperationDetails
+File: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h
+Line: 92
+Stack trace:
+# 0  _ZN8facebook5velox7process10StackTraceC1Ei
+# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_
+# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_
+# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE
+# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE
+# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE
+# 6  _ZN8facebook5velox19FileHandleGeneratorclERKNS0_13FileHandleKeyEPKNS0_14FilePropertiesEPNS0_7IoStatsE
+# 7  _ZN8facebook5velox13CachedFactoryINS0_13FileHandleKey…"

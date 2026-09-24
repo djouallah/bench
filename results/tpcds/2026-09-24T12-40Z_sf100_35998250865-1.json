@@ -1,0 +1,852 @@
+{
+  "run_id": "35998250865-1",
+  "run_started_at": "2026-09-24T12:40:43Z",
+  "sf": 100,
+  "run_url": "https://github.com/djouallah/lakehouse_benchmark/actions/runs/35998250865",
+  "git_sha": "09f96b1",
+  "test": "tpcds",
+  "runner": "linux-6.17.0-1022-azure",
+  "cpu": 4,
+  "mem_gb": 15.6,
+  "python": "3.12.14",
+  "schema_version": 1,
+  "engines": {
+    "pyspark_gluten_iceberg": {
+      "version": "4.1.1 + iceberg Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9)",
+      "status": "ok",
+      "rows": [
+        {
+          "run_type": "cold",
+          "phase": "setup",
+          "query": 0,
+          "dur": 21.5528,
+          "rows": null,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 1,
+          "dur": 28.2866,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 2,
+          "dur": 38.1386,
+          "rows": 2513,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 3,
+          "dur": 45.134,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 4,
+          "dur": 161.877,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 5,
+          "dur": 134.4751,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 6,
+          "dur": 31.5117,
+          "rows": 52,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 7,
+          "dur": 53.0549,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 8,
+          "dur": 8.2266,
+          "rows": 10,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 9,
+          "dur": 104.0709,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 10,
+          "dur": 22.8334,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 11,
+          "dur": 86.3565,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 12,
+          "dur": 9.2523,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 13,
+          "dur": 66.3779,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 14,
+          "dur": 143.2315,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 15,
+          "dur": 15.5394,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 16,
+          "dur": 56.4737,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 17,
+          "dur": 39.9538,
+          "rows": 37,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 18,
+          "dur": 22.2737,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 19,
+          "dur": 33.9477,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 20,
+          "dur": 5.6652,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 21,
+          "dur": 10.2085,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 22,
+          "dur": 28.3334,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 23,
+          "dur": 169.2153,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 24,
+          "dur": 42.5821,
+          "rows": 40,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 25,
+          "dur": 63.1958,
+          "rows": 14,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 26,
+          "dur": 28.6002,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 27,
+          "dur": 55.0523,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 28,
+          "dur": 49.5832,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 29,
+          "dur": 49.4475,
+          "rows": 62,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 30,
+          "dur": 5.847,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 31,
+          "dur": 75.636,
+          "rows": 275,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 32,
+          "dur": 18.4591,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 33,
+          "dur": 21.1569,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 34,
+          "dur": 23.2622,
+          "rows": 5774,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 35,
+          "dur": 16.587,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 36,
+          "dur": 29.287,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 37,
+          "dur": 37.5836,
+          "rows": 3,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 38,
+          "dur": 30.3615,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 39,
+          "dur": 12.9875,
+          "rows": 7367,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 40,
+          "dur": 19.1995,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 41,
+          "dur": 0.5634,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 42,
+          "dur": 22.7055,
+          "rows": 11,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 43,
+          "dur": 32.1315,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 44,
+          "dur": 19.1392,
+          "rows": 10,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 45,
+          "dur": 8.9965,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 46,
+          "dur": 43.4976,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 47,
+          "dur": 23.9851,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 48,
+          "dur": 34.1313,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 49,
+          "dur": 98.7459,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 50,
+          "dur": 49.6458,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 51,
+          "dur": 57.3551,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 52,
+          "dur": 25.5088,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 53,
+          "dur": 8.9473,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 54,
+          "dur": 36.2793,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 55,
+          "dur": 7.1165,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 56,
+          "dur": 30.8793,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 57,
+          "dur": 9.2477,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 58,
+          "dur": 10.2468,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 59,
+          "dur": 16.7197,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 60,
+          "dur": 16.0282,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 61,
+          "dur": 32.2665,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 62,
+          "dur": 15.1354,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 63,
+          "dur": 8.9783,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 64,
+          "dur": 120.2733,
+          "rows": 466,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 65,
+          "dur": 58.067,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 66,
+          "dur": 29.4328,
+          "rows": 15,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 67,
+          "dur": 118.581,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 68,
+          "dur": 49.0314,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 69,
+          "dur": 15.0112,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 70,
+          "dur": 35.6747,
+          "rows": 20,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 71,
+          "dur": 39.9368,
+          "rows": 59606,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 72,
+          "dur": 142.4023,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 73,
+          "dur": 37.178,
+          "rows": 111,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 74,
+          "dur": 73.5243,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 75,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o415.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 50 in stage 1918.0 failed 1 times, most recent failure: Lost task 50.0 in stage 1918.0 (TID 22290) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: 401 Unauthorized\nAuthentication Failed with Bearer token is not present in the request\nRequest ID: \n\tat org.apache.gluten.vectorized.ColumnarBatchOutIterator.translateException(ColumnarBatchOutIterator.java:156)\n\tat org.apache.gluten.iterator.ClosableIterator.hasNext(ClosableIterator.java:38)\n\tat scala.collection.convert.JavaCollectionWrappers$JIteratorWrapper.hasNext(JavaCollectionWrappers.scala:46)\n\tat org.apache.gluten.iterator.IteratorsV1$InvocationFlowProtection.hasNext(IteratorsV1.scala:154)\n\tat org.apache.gluten.iterator.IteratorsV1$IteratorCompleter.hasNext(IteratorsV1.scala:66)\n\tat org.apache.gluten.iterator.IteratorsV1$PayloadCloser.hasNext(IteratorsV1.scala:38)\n\tat org.apache.gluten.iterator.IteratorsV1$LifeTimeAccumulator.hasNext(IteratorsV1.scala:95)\n\tat org.apache.spark.InterruptibleIterator.hasNext(InterruptibleIterator.scala:37)\n\tat org.apache.gluten.iterator.IteratorsV1$ReadTimeAccumulator.hasNext(IteratorsV1.scala:122)\n\tat scala.collection.Iterator$$anon$9.hasNext(Iterator.scala:593)\n\tat scala.collection.convert.JavaCollectionWrappers$IteratorWrapper.hasNext(JavaCollectionWrappers.scala:32)\n\tat org.apache.gluten.vectorized.ColumnarBatchInIterator.hasNext(ColumnarBatchInIterator.java:36)\n\tat org.apache.gluten.vectorized.ColumnarBatchOutIterator.nativeHasNext(Native Method)\n\tat org.apache.gluten.vectorized.ColumnarBatchOutIterator.hasNext0(ColumnarBatchOutIterator.java:67)\n\tat org.apache.gluten.iterator.\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 76,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o424.collectToPython.\n: org.apache.spark.SparkException: [STAGE_MATERIALIZATION_MULTIPLE_FAILURES] Multiple failures (3) in stage materialization: \n  1. SparkException: Job aborted due to stage failure: Task 1 in stage 1924.0 failed 1 times, most recent failure: Lost task 1.0 in stage 1924.0 (TID 22298) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/item/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/item/00000-data_0.parquet 11697623 - 7834148 Task test_cursor_23687\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8facebook5velox19FileHandleGeneratorclERKNS0_13Fil\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 77,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o435.collectToPython.\n: org.apache.iceberg.exceptions.RuntimeIOException: Failed to open input stream for file: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/web_page/metadata/snap-5929239907243376018-0-6ccef364-6790-4f0a-8a12-6aa79848937f.avro\n\tat org.apache.iceberg.hadoop.HadoopInputFile.newStream(HadoopInputFile.java:187)\n\tat org.apache.iceberg.avro.AvroIterable.newFileReader(AvroIterable.java:103)\n\tat org.apache.iceberg.avro.AvroIterable.iterator(AvroIterable.java:78)\n\tat org.apache.iceberg.avro.AvroIterable.iterator(AvroIterable.java:38)\n\tat org.apache.iceberg.relocated.com.google.common.collect.Iterables.addAll(Iterables.java:333)\n\tat org.apache.iceberg.relocated.com.google.common.collect.Lists.newLinkedList(Lists.java:251)\n\tat org.apache.iceberg.ManifestLists.read(ManifestLists.java:43)\n\tat org.apache.iceberg.BaseSnapshot.cacheManifests(BaseSnapshot.java:186)\n\tat org.apache.iceberg.BaseSnapshot.deleteManifests(BaseSnapshot.java:221)\n\tat org.apache.iceberg.BaseDistributedDataScan.findMatchingDeleteManifests(BaseDistributedDataScan.java:208)\n\tat org.apache.iceberg.BaseDistributedDataScan.doPlanFiles(BaseDistributedDataScan.java:149)\n\tat org.apache.iceberg.SnapshotScan.planFiles(SnapshotScan.java:162)\n\tat org.apache.iceberg.spark.source.SparkPartitioningAwareScan.tasks(SparkPartitioningAwareScan.java:182)\n\tat org.apache.iceberg.spark.source.SparkPartitioningAwareScan.taskGroups(SparkPartitioningAwareScan.java:210)\n\tat org.apache.iceberg.spark.source.SparkPartitioningAwareScan.outputPartitioning(SparkPartitioningAwareScan.java:113)\n\tat org.apache.spark.sql.execution.datasources.v2.V2ScanPartitioningAndOrdering$$anonfun$partitioning$1.applyOrElse(V2ScanPartitioningAndOrdering.scala:45)\n\tat org.apache.spark.sql.execution.datasources.v2.V2ScanPartitioningAndOrdering$$anonfun$partitioning$1.applyOrElse(V2ScanPartitioningAndOrdering.scala:\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 78,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o444.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 1926.0 failed 1 times, most recent failure: Lost task 0.0 in stage 1926.0 (TID 22300) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/date_dim/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/date_dim/00000-data_0.parquet 4 - 1813944 Task test_cursor_23690\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8facebook5velox19FileHandleGeneratorclERKNS0_13FileHandleKeyEPKNS0_14FilePropertiesEPNS0_7IoStatsE\n# 7  _ZN8facebook5velox13CachedFactoryINS0_13FileHandleKeyENS0\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 79,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o453.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 1933.0 failed 1 times, most recent failure: Lost task 0.0 in stage 1933.0 (TID 22319) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/customer/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/customer/00000-data_0.parquet 4 - 13817468 Task test_cursor_23708\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8facebook5velox19File\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 80,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o462.collectToPython.\n: org.apache.iceberg.exceptions.RuntimeIOException: Failed to open input stream for file: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/catalog_page/metadata/snap-3721435274257351567-0-241f6c79-bbd7-48e5-8ba5-646d629b29e0.avro\n\tat org.apache.iceberg.hadoop.HadoopInputFile.newStream(HadoopInputFile.java:187)\n\tat org.apache.iceberg.avro.AvroIterable.newFileReader(AvroIterable.java:103)\n\tat org.apache.iceberg.avro.AvroIterable.iterator(AvroIterable.java:78)\n\tat org.apache.iceberg.avro.AvroIterable.iterator(AvroIterable.java:38)\n\tat org.apache.iceberg.relocated.com.google.common.collect.Iterables.addAll(Iterables.java:333)\n\tat org.apache.iceberg.relocated.com.google.common.collect.Lists.newLinkedList(Lists.java:251)\n\tat org.apache.iceberg.ManifestLists.read(ManifestLists.java:43)\n\tat org.apache.iceberg.BaseSnapshot.cacheManifests(BaseSnapshot.java:186)\n\tat org.apache.iceberg.BaseSnapshot.deleteManifests(BaseSnapshot.java:221)\n\tat org.apache.iceberg.BaseDistributedDataScan.findMatchingDeleteManifests(BaseDistributedDataScan.java:208)\n\tat org.apache.iceberg.BaseDistributedDataScan.doPlanFiles(BaseDistributedDataScan.java:149)\n\tat org.apache.iceberg.SnapshotScan.planFiles(SnapshotScan.java:162)\n\tat org.apache.iceberg.spark.source.SparkPartitioningAwareScan.tasks(SparkPartitioningAwareScan.java:182)\n\tat org.apache.iceberg.spark.source.SparkPartitioningAwareScan.taskGroups(SparkPartitioningAwareScan.java:210)\n\tat org.apache.iceberg.spark.source.SparkPartitioningAwareScan.outputPartitioning(SparkPartitioningAwareScan.java:113)\n\tat org.apache.spark.sql.execution.datasources.v2.V2ScanPartitioningAndOrdering$$anonfun$partitioning$1.applyOrElse(V2ScanPartitioningAndOrdering.scala:45)\n\tat org.apache.spark.sql.execution.datasources.v2.V2ScanPartitioningAndOrdering$$anonfun$partitioning$1.applyOrElse(V2ScanPartitioningAndOrdering.sc\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 81,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o471.collectToPython.\n: org.apache.spark.SparkException: [STAGE_MATERIALIZATION_MULTIPLE_FAILURES] Multiple failures (2) in stage materialization: \n  1. SparkException: Job aborted due to stage failure: Task 0 in stage 1938.0 failed 1 times, most recent failure: Lost task 0.0 in stage 1938.0 (TID 22328) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/date_dim/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/date_dim/00000-data_0.parquet 4 - 1813944 Task test_cursor_23713\nAdditional Context: Operator: TableScan[0] 0\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8fac\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 82,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o482.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 2 in stage 1942.0 failed 1 times, most recent failure: Lost task 2.0 in stage 1942.0 (TID 22334) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/store_sales/00002-data_10.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/store_sales/00002-data_10.parquet 106569490 - 103149896 Task test_cursor_23722\nAdditional Context: Operator: TableScan[0] 0\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11cha\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 83,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o491.collectToPython.\n: org.apache.spark.SparkException: [STAGE_MATERIALIZATION_MULTIPLE_FAILURES] Multiple failures (3) in stage materialization: \n  1. SparkException: Job aborted due to stage failure: Task 0 in stage 1946.0 failed 1 times, most recent failure: Lost task 0.0 in stage 1946.0 (TID 22342) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/item/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/item/00000-data_0.parquet 4 - 11697619 Task test_cursor_23730\nAdditional Context: Operator: TableScan[0] 0\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8facebook5v\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 84,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o502.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 1 in stage 1948.0 failed 1 times, most recent failure: Lost task 1.0 in stage 1948.0 (TID 22346) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/customer_demographics/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/customer_demographics/00000-data_0.parquet 1992030 - 1990098 Task test_cursor_23733\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptions\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 85,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o511.collectToPython.\n: org.apache.iceberg.exceptions.RuntimeIOException: Failed to open input stream for file: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/web_page/metadata/snap-5929239907243376018-0-6ccef364-6790-4f0a-8a12-6aa79848937f.avro\n\tat org.apache.iceberg.hadoop.HadoopInputFile.newStream(HadoopInputFile.java:187)\n\tat org.apache.iceberg.avro.AvroIterable.newFileReader(AvroIterable.java:103)\n\tat org.apache.iceberg.avro.AvroIterable.iterator(AvroIterable.java:78)\n\tat org.apache.iceberg.avro.AvroIterable.iterator(AvroIterable.java:38)\n\tat org.apache.iceberg.relocated.com.google.common.collect.Iterables.addAll(Iterables.java:333)\n\tat org.apache.iceberg.relocated.com.google.common.collect.Lists.newLinkedList(Lists.java:251)\n\tat org.apache.iceberg.ManifestLists.read(ManifestLists.java:43)\n\tat org.apache.iceberg.BaseSnapshot.cacheManifests(BaseSnapshot.java:186)\n\tat org.apache.iceberg.BaseSnapshot.deleteManifests(BaseSnapshot.java:221)\n\tat org.apache.iceberg.BaseDistributedDataScan.findMatchingDeleteManifests(BaseDistributedDataScan.java:208)\n\tat org.apache.iceberg.BaseDistributedDataScan.doPlanFiles(BaseDistributedDataScan.java:149)\n\tat org.apache.iceberg.SnapshotScan.planFiles(SnapshotScan.java:162)\n\tat org.apache.iceberg.spark.source.SparkPartitioningAwareScan.tasks(SparkPartitioningAwareScan.java:182)\n\tat org.apache.iceberg.spark.source.SparkPartitioningAwareScan.taskGroups(SparkPartitioningAwareScan.java:210)\n\tat org.apache.iceberg.spark.source.SparkPartitioningAwareScan.outputPartitioning(SparkPartitioningAwareScan.java:113)\n\tat org.apache.spark.sql.execution.datasources.v2.V2ScanPartitioningAndOrdering$$anonfun$partitioning$1.applyOrElse(V2ScanPartitioningAndOrdering.scala:45)\n\tat org.apache.spark.sql.execution.datasources.v2.V2ScanPartitioningAndOrdering$$anonfun$partitioning$1.applyOrElse(V2ScanPartitioningAndOrdering.scala:\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 86,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o520.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 1 in stage 1954.0 failed 1 times, most recent failure: Lost task 1.0 in stage 1954.0 (TID 22353) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/item/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/item/00000-data_0.parquet 11697623 - 7834148 Task test_cursor_23739\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8facebook5velox19FileHandleGeneratorclERKNS0_13FileHandleKeyEPKNS0_14FilePropertiesEPNS0_7IoStatsE\n# 7  _ZN8facebook5velox13CachedFactoryINS0_13FileHandleKeyENS0_\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 87,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o529.collectToPython.\n: org.apache.spark.SparkException: [STAGE_MATERIALIZATION_MULTIPLE_FAILURES] Multiple failures (3) in stage materialization: \n  1. SparkException: Job aborted due to stage failure: Task 3 in stage 1956.0 failed 1 times, most recent failure: Lost task 3.0 in stage 1956.0 (TID 22358) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/customer/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/customer/00000-data_0.parquet 41391149 - 13822943 Task test_cursor_23744\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsF\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 88,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o540.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 1958.0 failed 1 times, most recent failure: Lost task 0.0 in stage 1958.0 (TID 22361) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/time_dim/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/time_dim/00000-data_0.parquet 4 - 1128221 Task test_cursor_23748\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8facebook5velox19FileHandleGeneratorclERKNS0_13FileHandleKeyEPKNS0_14FilePropertiesEPNS0_7IoStatsE\n# 7  _ZN8facebook5velox13CachedFactoryINS0_13FileHandleKeyENS0\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 89,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o549.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 1 in stage 1968.0 failed 1 times, most recent failure: Lost task 1.0 in stage 1968.0 (TID 22372) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/item/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/item/00000-data_0.parquet 11697623 - 7834148 Task test_cursor_23759\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8facebook5velox19FileHa\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 90,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o558.collectToPython.\n: org.apache.iceberg.exceptions.RuntimeIOException: Failed to open input stream for file: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/web_page/metadata/snap-5929239907243376018-0-6ccef364-6790-4f0a-8a12-6aa79848937f.avro\n\tat org.apache.iceberg.hadoop.HadoopInputFile.newStream(HadoopInputFile.java:187)\n\tat org.apache.iceberg.avro.AvroIterable.newFileReader(AvroIterable.java:103)\n\tat org.apache.iceberg.avro.AvroIterable.iterator(AvroIterable.java:78)\n\tat org.apache.iceberg.avro.AvroIterable.iterator(AvroIterable.java:38)\n\tat org.apache.iceberg.relocated.com.google.common.collect.Iterables.addAll(Iterables.java:333)\n\tat org.apache.iceberg.relocated.com.google.common.collect.Lists.newLinkedList(Lists.java:251)\n\tat org.apache.iceberg.ManifestLists.read(ManifestLists.java:43)\n\tat org.apache.iceberg.BaseSnapshot.cacheManifests(BaseSnapshot.java:186)\n\tat org.apache.iceberg.BaseSnapshot.deleteManifests(BaseSnapshot.java:221)\n\tat org.apache.iceberg.BaseDistributedDataScan.findMatchingDeleteManifests(BaseDistributedDataScan.java:208)\n\tat org.apache.iceberg.BaseDistributedDataScan.doPlanFiles(BaseDistributedDataScan.java:149)\n\tat org.apache.iceberg.SnapshotScan.planFiles(SnapshotScan.java:162)\n\tat org.apache.iceberg.spark.source.SparkPartitioningAwareScan.tasks(SparkPartitioningAwareScan.java:182)\n\tat org.apache.iceberg.spark.source.SparkPartitioningAwareScan.taskGroups(SparkPartitioningAwareScan.java:210)\n\tat org.apache.iceberg.spark.source.SparkPartitioningAwareScan.outputPartitioning(SparkPartitioningAwareScan.java:113)\n\tat org.apache.spark.sql.execution.datasources.v2.V2ScanPartitioningAndOrdering$$anonfun$partitioning$1.applyOrElse(V2ScanPartitioningAndOrdering.scala:45)\n\tat org.apache.spark.sql.execution.datasources.v2.V2ScanPartitioningAndOrdering$$anonfun$partitioning$1.applyOrElse(V2ScanPartitioningAndOrdering.scala:\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 91,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o567.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 1972.0 failed 1 times, most recent failure: Lost task 0.0 in stage 1972.0 (TID 22376) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/customer_address/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/customer_address/00000-data_0.parquet 4 - 9991000 Task test_cursor_23763\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8faceb\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 92,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o576.collectToPython.\n: org.apache.spark.SparkException: [STAGE_MATERIALIZATION_MULTIPLE_FAILURES] Multiple failures (3) in stage materialization: \n  1. SparkException: Job aborted due to stage failure: Task 1 in stage 1979.0 failed 1 times, most recent failure: Lost task 1.0 in stage 1979.0 (TID 22388) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/item/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/item/00000-data_0.parquet 11697623 - 7834148 Task test_cursor_23775\nAdditional Context: Operator: TableScan[0] 0\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8face\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 93,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o587.collectToPython.\n: org.apache.iceberg.exceptions.RuntimeIOException: Failed to open input stream for file: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/reason/metadata/snap-1947273652556580926-0-3828fa1b-6ab7-4045-aed2-d860c440438c.avro\n\tat org.apache.iceberg.hadoop.HadoopInputFile.newStream(HadoopInputFile.java:187)\n\tat org.apache.iceberg.avro.AvroIterable.newFileReader(AvroIterable.java:103)\n\tat org.apache.iceberg.avro.AvroIterable.iterator(AvroIterable.java:78)\n\tat org.apache.iceberg.avro.AvroIterable.iterator(AvroIterable.java:38)\n\tat org.apache.iceberg.relocated.com.google.common.collect.Iterables.addAll(Iterables.java:333)\n\tat org.apache.iceberg.relocated.com.google.common.collect.Lists.newLinkedList(Lists.java:251)\n\tat org.apache.iceberg.ManifestLists.read(ManifestLists.java:43)\n\tat org.apache.iceberg.BaseSnapshot.cacheManifests(BaseSnapshot.java:186)\n\tat org.apache.iceberg.BaseSnapshot.deleteManifests(BaseSnapshot.java:221)\n\tat org.apache.iceberg.BaseDistributedDataScan.findMatchingDeleteManifests(BaseDistributedDataScan.java:208)\n\tat org.apache.iceberg.BaseDistributedDataScan.doPlanFiles(BaseDistributedDataScan.java:149)\n\tat org.apache.iceberg.SnapshotScan.planFiles(SnapshotScan.java:162)\n\tat org.apache.iceberg.spark.source.SparkPartitioningAwareScan.tasks(SparkPartitioningAwareScan.java:182)\n\tat org.apache.iceberg.spark.source.SparkPartitioningAwareScan.taskGroups(SparkPartitioningAwareScan.java:210)\n\tat org.apache.iceberg.spark.source.SparkPartitioningAwareScan.outputPartitioning(SparkPartitioningAwareScan.java:113)\n\tat org.apache.spark.sql.execution.datasources.v2.V2ScanPartitioningAndOrdering$$anonfun$partitioning$1.applyOrElse(V2ScanPartitioningAndOrdering.scala:45)\n\tat org.apache.spark.sql.execution.datasources.v2.V2ScanPartitioningAndOrdering$$anonfun$partitioning$1.applyOrElse(V2ScanPartitioningAndOrdering.scala:43\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 94,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o596.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 1980.0 failed 1 times, most recent failure: Lost task 0.0 in stage 1980.0 (TID 22389) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/web_site/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/web_site/00000-data_0.parquet 4 - 8730 Task test_cursor_23776\nAdditional Context: Operator: TableScan[0] 0\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8facebook5velox19FileHandleGeneratorclERKNS0_13FileHandleKeyEPKNS0_14FilePropertiesEPNS0_7IoStatsE\n# 7  _ZN8facebook5ve\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 95,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o605.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 1987.0 failed 1 times, most recent failure: Lost task 0.0 in stage 1987.0 (TID 22407) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/customer_address/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/customer_address/00000-data_0.parquet 4 - 9991000 Task test_cursor_23795\nAdditional Context: Operator: TableScan[0] 0\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 96,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o614.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 1995.0 failed 1 times, most recent failure: Lost task 0.0 in stage 1995.0 (TID 22425) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/household_demographics/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/household_demographics/00000-data_0.parquet 4 - 30598 Task test_cursor_23810\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8facebook5velox19FileHandleGeneratorclERKNS0_13FileHandleKeyEPKNS0_14FilePropertiesEPNS0_7IoStatsE\n# 7  _ZN8facebook5velox13CachedFacto\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 97,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o623.collectToPython.\n: org.apache.spark.SparkException: [STAGE_MATERIALIZATION_MULTIPLE_FAILURES] Multiple failures (2) in stage materialization: \n  1. SparkException: Job aborted due to stage failure: Task 0 in stage 1997.0 failed 1 times, most recent failure: Lost task 0.0 in stage 1997.0 (TID 22427) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/date_dim/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/date_dim/00000-data_0.parquet 4 - 1813944 Task test_cursor_23813\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8facebook5velox19FileHandleGeneratorclERKNS0_13Fi\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 98,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o634.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 1998.0 failed 1 times, most recent failure: Lost task 0.0 in stage 1998.0 (TID 22428) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Error during calling Java code from native code: org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/item/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/item/00000-data_0.parquet 4 - 11697619 Task test_cursor_23815\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8facebook5velox19FileHandleGe\u2026"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 99,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "Py4JJavaError: An error occurred while calling o643.collectToPython.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 2001.0 failed 1 times, most recent failure: Lost task 0.0 in stage 2001.0 (TID 22432) (runnervmtr4k5.25nck5mkgfoenofczkdl0zm0ze.cx.internal.cloudapp.net executor driver): org.apache.gluten.exception.GlutenException: org.apache.gluten.exception.GlutenException: Exception: VeloxRuntimeError\nError Source: RUNTIME\nError Code: INVALID_STATE\nReason: Operation 'GetProperties' to path 'ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/call_center/00000-data_0.parquet' encountered azure storage exception, Details: '401 Unauthorized\n\nRequest ID: '.\nRetriable: False\nContext: Split Hive: abfss://1c52481c-0523-4a5a-bbde-fdc932bd77c2@onelake.dfs.fabric.microsoft.com/ac303243-4441-4885-9e7d-f4f5e7af194c/Tables/DS0100/call_center/00000-data_0.parquet 4 - 10876 Task test_cursor_23818\nFunction: throwStorageExceptionWithOperationDetails\nFile: /__w/gluten/gluten/ep/build-velox/build/velox_ep/./velox/connectors/hive/storage_adapters/abfs/AbfsUtil.h\nLine: 92\nStack trace:\n# 0  _ZN8facebook5velox7process10StackTraceC1Ei\n# 1  _ZN8facebook5velox14VeloxExceptionC1EPKcmS3_St17basic_string_viewIcSt11char_traitsIcEES7_S7_S7_bNS1_4TypeES7_\n# 2  _ZN8facebook5velox6detail14veloxCheckFailINS0_17VeloxRuntimeErrorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKNS1_18VeloxCheckFailArgsET0_\n# 3  _ZN8facebook5velox11filesystems41throwStorageExceptionWithOperationDetailsENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_RN5Azure7Storage16StorageExceptionE\n# 4  _ZN8facebook5velox11filesystems12AbfsReadFile4Impl10initializeERKNS1_11FileOptionsE\n# 5  _ZN8facebook5velox11filesystems14AbfsFileSystem15openFileForReadESt17basic_string_viewIcSt11char_traitsIcEERKNS1_11FileOptionsE\n# 6  _ZN8facebook5velox19FileHandleGeneratorclERKNS0_13FileHandleKeyEPKNS0_14FilePropertiesEPNS0_7IoStatsE\n# 7  _ZN8facebook5velox13CachedFactoryINS0_13FileHandleKey\u2026"
+        }
+      ],
+      "host": {
+        "runner": "linux-6.17.0-1022-azure",
+        "cpu": 4,
+        "mem_gb": 15.6,
+        "python": "3.12.14"
+      }
+    }
+  }
+}
