@@ -24,6 +24,7 @@ The palette, the themes and the axis styling are bench/charts.py, shared with th
 
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -252,6 +253,85 @@ def totals(con, sf: int, out_dir: Path, subtitle: str, n_queries: int = 22) -> l
     return paths
 
 
+def totals_by_sf(
+    con, sfs: tuple[int, ...], out_dir: Path, subtitle: str, test: str, n_queries: int
+) -> list[Path]:
+    """Grouped bars: cold total per engine, one group per scale factor. TPC-DS's totals chart.
+
+    Each engine's LATEST run at each scale, not an average: SF=30 and 60 have one run apiece,
+    and averaging SF=10's five against them would compare a mean with a sample. A run that lost
+    statements is labelled with how many, because its total counts only the ones that finished
+    and would otherwise read as fast.
+    """
+    rows = con.execute(
+        f"""
+        WITH latest AS (
+            SELECT engine, sf, arg_max(run_id, run_started_at) AS run_id
+            FROM raw
+            WHERE test = ? AND run_type = 'cold' AND phase = 'query'
+              AND sf IN ({", ".join(str(s) for s in sfs)})
+            GROUP BY engine, sf
+        )
+        SELECT engine, sf,
+               sum(dur) FILTER (WHERE status = 'ok') AS dur,
+               count(*) FILTER (WHERE status = 'error') AS failed
+        FROM raw JOIN latest USING (engine, sf, run_id)
+        WHERE run_type = 'cold' AND phase = 'query'
+        GROUP BY engine, sf
+        """,
+        [test],
+    ).fetchall()
+    if not rows:
+        return []
+    data = {(engine, sf): (dur or 0.0, failed) for engine, sf, dur, failed in rows}
+    engines = [e for e in ENGINES if any(k[0] == e for k in data)]
+    shown = [s for s in sfs if any(k[1] == s for k in data)]
+    width = 0.8 / len(engines)
+    top = max(v[0] for v in data.values())
+
+    paths = []
+    for theme in THEMES.values():
+        fig, ax = plt.subplots(figsize=(11, 6))
+        for slot, engine in enumerate(engines):
+            for group, sf in enumerate(shown):
+                if (engine, sf) not in data:
+                    continue
+                dur, failed = data[(engine, sf)]
+                x = group + (slot - (len(engines) - 1) / 2) * width
+                ax.bar(
+                    x,
+                    dur,
+                    width=width * 0.94,
+                    color=theme["colors"][engine],
+                    edgecolor=theme["surface"],
+                    linewidth=1.0,
+                    zorder=3,
+                )
+                label = f"{dur:,.0f}s" + (f"\n{failed} failed" if failed else "")
+                ax.text(
+                    x,
+                    dur + top * 0.01,
+                    label,
+                    ha="center",
+                    va="bottom",
+                    fontsize=9,
+                    color=theme["secondary"],
+                    zorder=4,
+                )
+        ax.set_xticks(range(len(shown)))
+        ax.set_xticklabels([f"SF {s}" for s in shown], color=theme["secondary"], fontsize=10)
+        ax.set_ylim(0, top * 1.15)
+        _style(
+            ax,
+            theme,
+            f"Total seconds for all {n_queries} queries, cold — {subtitle}",
+            "seconds (lower is better)",
+        )
+        _legend(ax, theme, engines)
+        paths.append(_save(fig, out_dir, "totals", theme))
+    return paths
+
+
 def trend(con, sf: int, out_dir: Path, subtitle: str, test: str = "tpch") -> list[Path]:
     """Total seconds per engine over time, cold solid and warm dashed.
 
@@ -320,8 +400,12 @@ def render_all(
     test: str = "tpch",
     n_queries: int = 22,
     per_row: int = 22,
+    totals_sfs: tuple[int, ...] = (),
 ) -> list[Path]:
-    """Every chart that has data, light and dark, for one suite (`test`) at one scale."""
+    """Every chart that has data, light and dark, for one suite (`test`) at one scale.
+
+    `totals_sfs` swaps the one-scale totals chart for `totals_by_sf` over those scales.
+    """
     import duckdb
 
     con = duckdb.connect()
@@ -336,7 +420,14 @@ def render_all(
     paths: list[Path] = []
     paths += per_query(con, sf, "cold", out_dir, windowed, per_row)
     paths += per_query(con, sf, "warm", out_dir, windowed, per_row)
-    paths += totals(con, sf, out_dir, windowed, n_queries)
+    if totals_sfs:
+        # Every scale on one chart: the subtitle drops its own "SF n", and the date is not the
+        # date of every bar, so it says whose runs these are instead.
+        subtitle_all = re.sub(r" · \d{4}-\d{2}-\d{2}", "", subtitle.replace(f" SF {sf} ·", " ·"))
+        subtitle_all += " · each engine's latest run"
+        paths += totals_by_sf(con, totals_sfs, out_dir, subtitle_all, test, n_queries)
+    else:
+        paths += totals(con, sf, out_dir, windowed, n_queries)
     paths += trend(con, sf, out_dir, subtitle, test)
     con.close()
     return paths

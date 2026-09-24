@@ -105,6 +105,8 @@ class TpcdsConfig(Config):
     # does not fit a 16 GB runner, so DuckDB's warm was only 8% under its cold (1,046s -> 962s).
     # One pass also halves a run that was already the longest in the repo.
     PASSES = ("cold",)
+    # The totals chart shows every scale the suite has been run at, the per-query chart only SF=60.
+    TOTALS_SFS = (10, 30, 60)
     HEADLINE_SF = HEADLINE_SF
     ENGINES = ENGINES
     TABLES = TABLES

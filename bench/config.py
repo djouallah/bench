@@ -106,6 +106,8 @@ class Config:
     # The passes over the statements, in order. TPC-H runs every statement twice, the second
     # time measuring whatever the engine cached; TpcdsConfig runs once (it says why).
     PASSES = ("cold", "warm")
+    # Scales the totals chart compares side by side; empty draws it at the headline scale only.
+    TOTALS_SFS = ()
 
     workspace_id: str
     lakehouse_id: str

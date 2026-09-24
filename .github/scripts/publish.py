@@ -225,6 +225,7 @@ def write_headline_docs(run: Run, rows: list[dict], table, suite) -> None:
         test=suite.TEST,
         n_queries=suite.N_QUERIES,
         per_row=per_row,
+        totals_sfs=suite.TOTALS_SFS,
     ):
         print(f"wrote {path}")
     write_results_md(run, rows, shown, docs / "RESULTS.md", suite)
