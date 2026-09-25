@@ -18,7 +18,7 @@ from dataclasses import dataclass
 
 from bench.config import SQL_DIR, Config
 
-# THE ENGINES THAT FINISH. TPC-H runs all seven; TPC-DS runs these three. Four of the rest were
+# THE ENGINES THAT FINISH. TPC-H runs all seven; TPC-DS runs these two. Four of the rest were
 # dropped on measurement, not taste -- run 35732997698 (SF=10) and 35732283791 (SF=1) are the
 # evidence, and every number below is from the SF=10 run over identical OneLake tables.
 #
@@ -36,13 +36,16 @@ from bench.config import SQL_DIR, Config
 #   daft_iceberg      never ran here: TPC-H already excludes it from the query benchmark
 #                     (Eventual-Inc/Daft#7532).
 #
-# What is left is DuckDB and Spark. Spark is slow --
-# ~42 min cold, and bench/tpch/engines/pyspark_iceberg.py's `refresh` exists because of it -- but
-# it is the only non-DuckDB engine that answers all 99, so dropping it would leave one engine
-# measured against itself.
+#   pyspark_iceberg   DROPPED 2026-09-26 FOR TIME, not for answers: it completes all 99, but in
+#                     2,170s at SF=10, 9,280s at SF=30 and 9,303s at SF=60 cold -- 22x, 25x and 6.8x
+#                     DuckDB -- which is a two-and-a-half-hour job per scale for a bar that only
+#                     says "stock Spark 4.1 without CBO". Gluten/Velox is Spark with the same
+#                     planner, so the non-DuckDB side is still measured. Its runs stay in
+#                     results/tpcds/; the headline charts draw from ENGINES only.
+#
+# What is left is DuckDB and Spark under Gluten/Velox.
 ENGINES = (
     "duckdb_iceberg",
-    "pyspark_iceberg",
     # Spark with Gluten/Velox underneath. Velox reads OneLake with a one-hour SAS (the engine
     # module says why), so a TPC-DS run has to finish inside that hour -- which is why
     # TpcdsConfig runs one pass.

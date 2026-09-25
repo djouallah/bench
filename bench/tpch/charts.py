@@ -338,7 +338,9 @@ def totals_by_sf(
         ax.set_yticklabels([f"SF {s}" for s in shown], color=theme["secondary"], fontsize=10)
         ax.set_xlim(0, top * 1.18)  # room for "9,303s · 25×" after the longest bar
         ax.invert_yaxis()  # smallest scale, and the fastest engine within it, at the top
-        title = f"Total seconds for all {n_queries} queries, cold — {subtitle}"
+        # Two lines: on one, the run's subtitle made the title wider than the plot, and the saved
+        # figure grew to fit it, squeezing the bars into the left two thirds.
+        title = f"Total seconds for all {n_queries} queries, cold\n{subtitle}"
         _style(ax, theme, title, "", pad=30)
         # _style draws a vertical chart's axes; turn them for this one.
         ax.set_xlabel(
