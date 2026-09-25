@@ -99,9 +99,9 @@ def _runs_note(n: int) -> str:
     return "1 run" if n == 1 else f"mean of {n} runs"
 
 
-def _style(ax, theme, title: str, ylabel: str) -> None:
+def _style(ax, theme, title: str, ylabel: str, pad: int = 14) -> None:
     """Recessive axes and grid; ink in text tokens, never in a series color."""
-    ax.set_title(title, color=theme["primary"], fontsize=13, pad=14, loc="left")
+    ax.set_title(title, color=theme["primary"], fontsize=13, pad=pad, loc="left")
     ax.set_ylabel(ylabel, color=theme["secondary"], fontsize=10)
     ax.set_facecolor(theme["surface"])
     ax.figure.set_facecolor(theme["surface"])
@@ -114,8 +114,12 @@ def _style(ax, theme, title: str, ylabel: str) -> None:
     ax.set_axisbelow(True)
 
 
-def _legend(ax, theme, engines) -> None:
-    """Always present for >=2 series: identity must never be color-alone."""
+def _legend(ax, theme, engines, above: bool = False) -> None:
+    """Always present for >=2 series: identity must never be color-alone.
+
+    `above` puts it over the plot area rather than inside it, for a chart whose top-left corner
+    holds data -- a horizontal bar chart's first bar. The title then needs a larger `pad`.
+    """
     handles = [
         plt.Rectangle((0, 0), 1, 1, facecolor=theme["colors"][e], edgecolor="none") for e in engines
     ]
@@ -124,8 +128,8 @@ def _legend(ax, theme, engines) -> None:
         [LABEL[e] for e in engines],
         frameon=False,
         ncols=len(engines),
-        loc="upper left",
-        bbox_to_anchor=(0, 1.02),
+        loc="lower left" if above else "upper left",
+        bbox_to_anchor=(0, 1.0 if above else 1.02),
         fontsize=9,
     )
     for text in legend.get_texts():

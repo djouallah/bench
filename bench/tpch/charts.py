@@ -256,7 +256,7 @@ def totals(con, sf: int, out_dir: Path, subtitle: str, n_queries: int = 22) -> l
 def totals_by_sf(
     con, sfs: tuple[int, ...], out_dir: Path, subtitle: str, test: str, n_queries: int
 ) -> list[Path]:
-    """Grouped bars: cold total per engine, one group per scale factor. Both suites' totals chart.
+    """Grouped horizontal bars: cold total per engine, one group per scale factor. Both suites' totals chart.
 
     THE MEAN OF EACH ENGINE'S LAST RECENT_RUNS COMPLETE RUNS at each scale -- the same three-run
     window the per-query chart uses, because one run on a shared runner is noisier than the
@@ -292,48 +292,53 @@ def totals_by_sf(
         return []
     engines = [e for e in ENGINES if any(k[0] == e for k in data)]
     shown = [s for s in sfs if any(k[1] == s for k in data)]
-    width = 0.8 / len(engines)
+    height = 0.8 / len(engines)
     top = max(dur for dur, _ in data.values())
 
     paths = []
     for theme in THEMES.values():
-        fig, ax = plt.subplots(figsize=(max(11, 2.2 * len(shown) + 0.5 * len(engines)), 6))
+        # HORIZONTAL: the page is wider than it is tall, and a long bar leaves room for its label.
+        fig, ax = plt.subplots(figsize=(11, max(5, 0.3 * len(data) + 1.5)))
         for group, sf in enumerate(shown):
-            # FASTEST FIRST within each scale, and only the engines with a bar here, centred on
-            # the tick -- so a missing engine leaves no hole. Colour, not position, says which.
+            # FASTEST FIRST (topmost) within each scale, and only the engines with a bar here,
+            # centred on the tick -- so a missing engine leaves no hole. Colour says which.
             present = sorted((e for e in engines if (e, sf) in data), key=lambda e: data[(e, sf)])
             for slot, engine in enumerate(present):
                 dur, _ = data[(engine, sf)]
-                x = group + (slot - (len(present) - 1) / 2) * width
-                ax.bar(
-                    x,
+                y = group + (slot - (len(present) - 1) / 2) * height
+                ax.barh(
+                    y,
                     dur,
-                    width=width * 0.94,
+                    height=height * 0.94,
                     color=theme["colors"][engine],
                     edgecolor=theme["surface"],
                     linewidth=1.0,
                     zorder=3,
                 )
                 ax.text(
-                    x,
-                    dur + top * 0.01,
+                    dur + top * 0.005,
+                    y,
                     f"{dur:,.0f}s",
-                    ha="center",
-                    va="bottom",
+                    ha="left",
+                    va="center",
                     fontsize=9,
                     color=theme["secondary"],
                     zorder=4,
                 )
-        ax.set_xticks(range(len(shown)))
-        ax.set_xticklabels([f"SF {s}" for s in shown], color=theme["secondary"], fontsize=10)
-        ax.set_ylim(0, top * 1.15)
-        _style(
-            ax,
-            theme,
-            f"Total seconds for all {n_queries} queries, cold — {subtitle}",
-            "seconds (lower is better)",
-        )
-        _legend(ax, theme, engines)
+        ax.set_yticks(range(len(shown)))
+        ax.set_yticklabels([f"SF {s}" for s in shown], color=theme["secondary"], fontsize=10)
+        ax.set_xlim(0, top * 1.1)
+        ax.invert_yaxis()  # smallest scale, and the fastest engine within it, at the top
+        title = f"Total seconds for all {n_queries} queries, cold — {subtitle}"
+        _style(ax, theme, title, "", pad=30)
+        # _style draws a vertical chart's axes; turn them for this one.
+        ax.set_xlabel("seconds (lower is better)", color=theme["secondary"], fontsize=10)
+        ax.grid(axis="y", visible=False)
+        ax.grid(axis="x", linestyle="--", linewidth=0.7, color=theme["grid"], alpha=0.8)
+        ax.spines["bottom"].set_visible(False)
+        ax.spines["left"].set_visible(True)
+        ax.tick_params(axis="y", length=0)
+        _legend(ax, theme, engines, above=True)
         paths.append(_save(fig, out_dir, "totals", theme))
     return paths
 
