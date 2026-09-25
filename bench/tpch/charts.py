@@ -260,7 +260,11 @@ def totals_by_sf(
 
     THE MEAN OF EACH ENGINE'S LAST RECENT_RUNS COMPLETE RUNS at each scale -- the same three-run
     window the per-query chart uses, because one run on a shared runner is noisier than the
-    differences being shown. The label is the time alone: a run count under it read as noise.
+    differences being shown. The label carries no run count: under the time it read as noise.
+
+    EACH BAR SAYS HOW MANY TIMES SLOWER IT IS than the fastest engine AT THAT SCALE -- not a fixed
+    baseline engine, because no engine has a bar at every scale (TPC-DS SF 100 has no DuckDB).
+    The fastest bar, and a bar alone at its scale, carry the time only: "1x" says nothing.
 
     ONLY A RUN THAT COMPLETED EVERY STATEMENT COUNTS. A total over the statements that finished
     leaves out the ones that died, so it reads as fast when it is not a total at all. A run that
@@ -303,8 +307,13 @@ def totals_by_sf(
             # FASTEST FIRST (topmost) within each scale, and only the engines with a bar here,
             # centred on the tick -- so a missing engine leaves no hole. Colour says which.
             present = sorted((e for e in engines if (e, sf) in data), key=lambda e: data[(e, sf)])
+            fastest = data[(present[0], sf)][0]
             for slot, engine in enumerate(present):
                 dur, _ = data[(engine, sf)]
+                ratio = dur / fastest
+                label = f"{dur:,.0f}s"
+                if slot:
+                    label += f" · {ratio:.1f}×" if ratio < 10 else f" · {ratio:,.0f}×"
                 y = group + (slot - (len(present) - 1) / 2) * height
                 ax.barh(
                     y,
@@ -318,7 +327,7 @@ def totals_by_sf(
                 ax.text(
                     dur + top * 0.005,
                     y,
-                    f"{dur:,.0f}s",
+                    label,
                     ha="left",
                     va="center",
                     fontsize=9,
@@ -327,7 +336,7 @@ def totals_by_sf(
                 )
         ax.set_yticks(range(len(shown)))
         ax.set_yticklabels([f"SF {s}" for s in shown], color=theme["secondary"], fontsize=10)
-        ax.set_xlim(0, top * 1.1)
+        ax.set_xlim(0, top * 1.18)  # room for "9,303s · 25×" after the longest bar
         ax.invert_yaxis()  # smallest scale, and the fastest engine within it, at the top
         title = f"Total seconds for all {n_queries} queries, cold — {subtitle}"
         _style(ax, theme, title, "", pad=30)
