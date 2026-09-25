@@ -87,7 +87,7 @@ PARQUET_MB_PER_SF = 300
 
 # The scale the headline docs are built at, and tpcds.yml's default. SF=60, the largest a 16 GB
 # runner gets through: 20 GiB of parquet that does not fit in memory, so the engines are measured
-# reading OneLake, not their caches. SF=1, 10, 30 and 100 run too and are recorded, not charted.
+# reading OneLake, not their caches. SF=10, 30 and 100 are charted too, in the totals chart only.
 HEADLINE_SF = 60
 
 
@@ -103,7 +103,7 @@ class TpcdsConfig(Config):
     # One pass also halves a run that was already the longest in the repo.
     PASSES = ("cold",)
     # The totals chart shows every scale the suite has been run at, the per-query chart only SF=60.
-    TOTALS_SFS = (10, 30, 60)
+    TOTALS_SFS = (10, 30, 60, 100)
     HEADLINE_SF = HEADLINE_SF
     ENGINES = ENGINES
     TABLES = TABLES
