@@ -260,7 +260,7 @@ def totals_by_sf(
 
     THE MEAN OF EACH ENGINE'S LAST RECENT_RUNS COMPLETE RUNS at each scale -- the same three-run
     window the per-query chart uses, because one run on a shared runner is noisier than the
-    differences being shown. A bar resting on fewer runs says how many.
+    differences being shown. The label is the time alone: a run count under it read as noise.
 
     ONLY A RUN THAT COMPLETED EVERY STATEMENT COUNTS. A total over the statements that finished
     leaves out the ones that died, so it reads as fast when it is not a total at all. A run that
@@ -303,7 +303,7 @@ def totals_by_sf(
             # the tick -- so a missing engine leaves no hole. Colour, not position, says which.
             present = sorted((e for e in engines if (e, sf) in data), key=lambda e: data[(e, sf)])
             for slot, engine in enumerate(present):
-                dur, n = data[(engine, sf)]
+                dur, _ = data[(engine, sf)]
                 x = group + (slot - (len(present) - 1) / 2) * width
                 ax.bar(
                     x,
@@ -317,7 +317,7 @@ def totals_by_sf(
                 ax.text(
                     x,
                     dur + top * 0.01,
-                    f"{dur:,.0f}s" + ("" if n >= RECENT_RUNS else f"\n{n} run" + "s" * (n > 1)),
+                    f"{dur:,.0f}s",
                     ha="center",
                     va="bottom",
                     fontsize=9,
