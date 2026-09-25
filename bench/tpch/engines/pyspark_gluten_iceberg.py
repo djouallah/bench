@@ -24,13 +24,11 @@ every statement from Q75 on, 54 minutes in, `401 Unauthorized`. Swapping the key
 does not work -- Gluten builds Velox's ABFS config ONCE, at backend init
 (`hiveConnectorConfig_ = createHiveConnectorConfig(backendConf_)`, cpp/velox/compute/
 VeloxBackend.cc), and Velox caches the filesystem per account after that; hadoop-azure's cached
-FileSystem holds its copy too. A new SAS reaches Velox only in a NEW JVM. So `refresh()` -- which
-the runner calls before every statement, untimed -- compares the clock with the earlier of the
-SAS's and the catalog bearer's expiry, and with under TOKEN_MIN_LIFETIME_SECONDS left it stops the
-session, shuts the gateway down and runs setup again on freshly minted credentials. At SF<=30 it
-never fires; at SF=100 about every forty minutes. The cost is real and deliberately left in the
-numbers: the Velox cache and Iceberg's table and manifest caches start empty again, so the next
-statements read cold.
+FileSystem holds its copy too. A new SAS reaches Velox only in a NEW JVM -- which is exactly what
+the base engine's `refresh()` already does for the catalog bearer, so all this engine adds is the
+SAS's expiry to the clock it watches (`_storage_conf`). At SF<=30 it never fires; at SF=100 about
+every forty minutes. The Velox cache starts empty again after a restart, so the next statements
+read cold -- a real cost, deliberately left in the numbers.
 
 ACCOUNT-SCOPED KEYS ONLY. Velox registers a provider for every key starting with
 `fs.azure.account.auth.type` by cutting the account off the end, so the base engine's unscoped
@@ -51,12 +49,10 @@ import datetime as dt
 import hashlib
 import os
 import subprocess
-import time
 import urllib.request
 from pathlib import Path
 
 from bench import auth, scrub
-from bench.config import TOKEN_MIN_LIFETIME_SECONDS
 from bench.tpch.engines.pyspark_iceberg import PACKAGES, PysparkIceberg
 
 # The JDK 17 directory, because every Spark job sets up Temurin 17. amd64: the hosted runners.
@@ -241,51 +237,8 @@ def cache_conf() -> dict[str, str]:
     }
 
 
-def _shutdown_gateway() -> None:
-    """Kill the py4j gateway, and with it the JVM, so the next builder launches a new one.
-
-    `SparkSession.stop()` leaves the JVM running, and a SparkContext created in it again would
-    find Gluten's native backend already initialised on the old SAS. Stopping py4j is not enough
-    either: PythonGatewayServer exits only on EOF from its stdin, so close that and wait.
-    """
-    from pyspark import SparkContext
-
-    gateway = SparkContext._gateway
-    if gateway is not None:
-        proc = getattr(gateway, "proc", None)
-        gateway.shutdown()
-        if proc is not None:
-            proc.stdin.close()
-            try:
-                proc.wait(timeout=60)
-            except subprocess.TimeoutExpired:
-                proc.kill()
-                proc.wait()
-    SparkContext._gateway = None
-    SparkContext._jvm = None
-
-
 class PysparkGlutenIceberg(PysparkIceberg):
     name = "pyspark_gluten_iceberg"
-
-    # When the earliest credential baked into the session expires, epoch seconds.
-    _expires = float("inf")
-
-    def refresh(self) -> None:
-        """Restart on fresh credentials once the session's have under 15 minutes left."""
-        if self._expires - time.time() > TOKEN_MIN_LIFETIME_SECONDS:
-            return
-        start = time.perf_counter()
-        self.close()
-        _shutdown_gateway()
-        # A fresh bearer, not the cached one: the new session's catalog cache is empty, so every
-        # table is loaded again over REST on whatever bearer the header carries.
-        auth.onelake_token(fresh=True)
-        self.setup()
-        scrub.safe_print(
-            f"  SAS/bearer within {TOKEN_MIN_LIFETIME_SECONDS // 60} min of expiry: "
-            f"Spark restarted in {time.perf_counter() - start:.1f}s"
-        )
 
     def _extra_config(self) -> dict[str, str]:
         link_ca_bundle()
@@ -295,9 +248,9 @@ class PysparkGlutenIceberg(PysparkIceberg):
 
     def _storage_conf(self, abfs: dict[str, str], account: str) -> dict[str, str]:
         sas, sas_expiry = onelake_sas(self.cfg.workspace_id, self.cfg.lakehouse_id)
-        # The catalog bearer was minted a moment ago by _catalog_conf; the session is good until
-        # the first of the two runs out.
-        self._expires = min(sas_expiry, auth.token_expires_on())
+        # The base setup has already set _expires from the catalog bearer; the session is good
+        # until the first of the two runs out, and the base refresh() restarts it then.
+        self._expires = min(self._expires, sas_expiry)
         scrub.safe_print(f"  onelake SAS for Velox and hadoop-azure, valid {SAS_LIFETIME}")
         return {
             f"spark.hadoop.fs.azure.account.auth.type.{account}": "SAS",

@@ -1,4 +1,4 @@
-"""Credential refresh: a fresh token really is fresh, and Gluten restarts only when it must."""
+"""Credential refresh: a fresh token really is fresh, and Spark restarts only when it must."""
 
 from __future__ import annotations
 
@@ -9,6 +9,7 @@ import pytest
 from bench import auth
 from bench.config import TOKEN_MIN_LIFETIME_SECONDS
 from bench.tpch.engines import pyspark_gluten_iceberg as gluten
+from bench.tpch.engines import pyspark_iceberg as spark
 
 
 @pytest.fixture(autouse=True)
@@ -55,15 +56,15 @@ def test_token_expiry_is_infinite_before_any_mint():
     assert auth.token_expires_on() == float("inf")
 
 
-def _gluten(monkeypatch, now, expires):
-    engine = gluten.PysparkGlutenIceberg(cfg=None)
+def _spark(monkeypatch, now, expires, cls=spark.PysparkIceberg):
+    engine = cls(cfg=None)
     engine._expires = expires
     events = []
-    monkeypatch.setattr(gluten.time, "time", lambda: now)
+    monkeypatch.setattr(spark.time, "time", lambda: now)
     monkeypatch.setattr(engine, "close", lambda: events.append("close"))
-    monkeypatch.setattr(gluten, "_shutdown_gateway", lambda: events.append("gateway"))
+    monkeypatch.setattr(spark, "_shutdown_gateway", lambda: events.append("gateway"))
     monkeypatch.setattr(
-        gluten.auth, "onelake_token", lambda **kw: events.append(("token", kw.get("fresh")))
+        spark.auth, "onelake_token", lambda **kw: events.append(("token", kw.get("fresh")))
     )
 
     def setup():
@@ -74,16 +75,29 @@ def _gluten(monkeypatch, now, expires):
     return engine, events
 
 
-def test_gluten_leaves_a_session_with_time_left_alone(monkeypatch):
-    engine, events = _gluten(monkeypatch, now=0, expires=TOKEN_MIN_LIFETIME_SECONDS + 60)
+@pytest.mark.parametrize("cls", [spark.PysparkIceberg, gluten.PysparkGlutenIceberg])
+def test_spark_leaves_a_session_with_time_left_alone(monkeypatch, cls):
+    engine, events = _spark(monkeypatch, now=0, expires=TOKEN_MIN_LIFETIME_SECONDS + 60, cls=cls)
     engine.refresh()
     assert events == []
 
 
-def test_gluten_restarts_on_fresh_credentials_under_the_margin(monkeypatch):
-    engine, events = _gluten(monkeypatch, now=0, expires=TOKEN_MIN_LIFETIME_SECONDS - 60)
+@pytest.mark.parametrize("cls", [spark.PysparkIceberg, gluten.PysparkGlutenIceberg])
+def test_spark_restarts_on_fresh_credentials_under_the_margin(monkeypatch, cls):
+    engine, events = _spark(monkeypatch, now=0, expires=TOKEN_MIN_LIFETIME_SECONDS - 60, cls=cls)
     engine.refresh()
     assert events == ["close", "gateway", ("token", True), "setup"]
     assert engine._expires == 3300
     engine.refresh()  # the new session has 55 minutes: no second restart
     assert events.count("setup") == 1
+
+
+def test_gluten_watches_whichever_of_bearer_and_sas_expires_first(monkeypatch):
+    engine = gluten.PysparkGlutenIceberg(cfg=SimpleNamespace(workspace_id="w", lakehouse_id="l"))
+    monkeypatch.setattr(gluten, "onelake_sas", lambda w, lh: ("sas", 1_000.0))
+    engine._expires = 5_000.0  # the bearer, set by the base setup just before
+    engine._storage_conf({}, "onelake.dfs.fabric.microsoft.com")
+    assert engine._expires == 1_000.0
+    engine._expires = 500.0
+    engine._storage_conf({}, "onelake.dfs.fabric.microsoft.com")
+    assert engine._expires == 500.0

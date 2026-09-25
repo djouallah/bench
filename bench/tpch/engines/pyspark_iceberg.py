@@ -35,16 +35,35 @@ into CREATE DATABASE, LakeSail into an env var read once at startup -- all three
 and are hard-bounded by its lifetime. ABFS re-reads the assertion file on every token refresh, so
 the daemon thread below keeps Spark alive indefinitely. GitHub's OIDC assertion lives about five
 minutes, hence the four-minute rewrite.
+
+THE CATALOG BEARER CANNOT, so a long run restarts the session. It is a literal header, fixed for
+the life of the catalog (see _catalog_conf), and once it expires every table not already in the
+catalog cache is a 401. TPC-DS first touches ship_mode at Q62, income_band at Q64, time_dim at Q66
+and web_page at Q77 -- runs 35956230538 (SF=30) and 35956245381 (SF=60) both lost exactly those
+statements from Q62 on, about 95 minutes in, `NotAuthorizedException`. So `refresh()`, which the
+runner calls before every statement and outside the timer, compares the clock with the bearer's
+expiry and, with under TOKEN_MIN_LIFETIME_SECONDS left, stops the session, shuts the JVM down and
+runs setup again on a freshly minted bearer. Gluten watches its SAS on the same clock. The catalog
+and manifest caches start empty after a restart, so the next statements pay their REST lookups
+again: a real cost, left in the numbers.
 """
 
 from __future__ import annotations
 
 import os
+import subprocess
 import threading
+import time
 from pathlib import Path
 
 from bench import auth, scrub
-from bench.config import CATALOG_CACHE_SECONDS, ICEBERG_ENDPOINT, ONELAKE_DFS, Config
+from bench.config import (
+    CATALOG_CACHE_SECONDS,
+    ICEBERG_ENDPOINT,
+    ONELAKE_DFS,
+    TOKEN_MIN_LIFETIME_SECONDS,
+    Config,
+)
 
 CATALOG = "onelake"
 
@@ -91,11 +110,9 @@ def _catalog_conf(name: str, warehouse: str) -> dict[str, str]:
         #
         # The cost of that choice is that the bearer is a STRING, fixed for the life of the
         # catalog instance -- Hadoop's provider above mints its own storage tokens from the OIDC
-        # assertion forever, but nothing here can re-open the catalog with a new one. What keeps
-        # a long run inside one token is therefore the CACHE, not a refresh: every table is
-        # resolved in the first minutes of the cold pass and held for CATALOG_CACHE_SECONDS,
-        # which is why that constant had to outlive the slowest run (bench/config.py says how
-        # 15 minutes failed).
+        # assertion forever, but nothing here can re-open the catalog with a new one. The cache
+        # carries a table loaded early past the bearer's expiry; a table first touched later
+        # cannot be, which is why `refresh()` restarts the session instead (module docstring).
         f"{prefix}.rest.auth.type": "none",
         f"{prefix}.header.Authorization": f"Bearer {auth.onelake_token()}",
         # PIN THE FileIO. Iceberg's ResolvingFileIO maps abfss:// to ADLSFileIO when
@@ -119,8 +136,36 @@ def _catalog_conf(name: str, warehouse: str) -> dict[str, str]:
     }
 
 
+def _shutdown_gateway() -> None:
+    """Kill the py4j gateway, and with it the JVM, so the next builder launches a new one.
+
+    `SparkSession.stop()` leaves the JVM running, and a SparkContext created in it again would
+    find Gluten's native backend already initialised on the old SAS. Stopping py4j is not enough
+    either: PythonGatewayServer exits only on EOF from its stdin, so close that and wait.
+    """
+    from pyspark import SparkContext
+
+    gateway = SparkContext._gateway
+    if gateway is not None:
+        proc = getattr(gateway, "proc", None)
+        gateway.shutdown()
+        if proc is not None:
+            proc.stdin.close()
+            try:
+                proc.wait(timeout=60)
+            except subprocess.TimeoutExpired:
+                proc.kill()
+                proc.wait()
+    SparkContext._gateway = None
+    SparkContext._jvm = None
+
+
 class PysparkIceberg:
     name = "pyspark_iceberg"
+
+    # When the earliest credential baked into the session expires, epoch seconds: the catalog
+    # bearer here, and a variant's own (Gluten's SAS) folded in by _storage_conf.
+    _expires = float("inf")
 
     def __init__(self, cfg: Config):
         self.cfg = cfg
@@ -235,6 +280,8 @@ class PysparkIceberg:
         )
         for key, value in _catalog_conf(CATALOG, self.cfg.warehouse).items():
             builder = builder.config(key, value)
+        # _catalog_conf just put the bearer in the header; refresh() watches its expiry.
+        self._expires = auth.token_expires_on()
         for key, value in self._storage_conf(abfs, account).items():
             builder = builder.config(key, value)
 
@@ -280,6 +327,22 @@ class PysparkIceberg:
     def _extra_config(self) -> dict[str, str]:
         """Session keys a variant adds on top of everything above. Stock Spark adds none."""
         return {}
+
+    def refresh(self) -> None:
+        """Restart on fresh credentials once the session's have under 15 minutes left."""
+        if self._expires - time.time() > TOKEN_MIN_LIFETIME_SECONDS:
+            return
+        start = time.perf_counter()
+        self.close()
+        _shutdown_gateway()
+        # A fresh bearer, not the cached one: the new session's catalog cache is empty, so every
+        # table is loaded again over REST on whatever bearer the header carries.
+        auth.onelake_token(fresh=True)
+        self.setup()
+        scrub.safe_print(
+            f"  credentials within {TOKEN_MIN_LIFETIME_SECONDS // 60} min of expiry: "
+            f"Spark restarted in {time.perf_counter() - start:.1f}s"
+        )
 
     def execute(self, sql: str) -> int:
         return len(self._spark.sql(sql).collect())

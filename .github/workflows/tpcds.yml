@@ -139,10 +139,10 @@ jobs:
     # with the whole run all but done and no part written, so the engine vanished from the
     # results entirely. The job cap must sit clear of the slowest engine, not on top of it.
     #
-    # Token lifetime is a separate clock, and the catalog cache is what keeps the two from
-    # colliding: at CATALOG_CACHE_SECONDS (6 hours; 2 when this was written, 15 minutes before that)
-    # every table is resolved in the first minutes and never looked up again, so a bearer that
-    # expires at minute 70 is never presented to the catalog a second time.
+    # Token lifetime is a separate clock. TPC-DS first touches some tables late (ship_mode at Q62,
+    # web_page at Q77), after the catalog bearer has expired, so the Spark engines restart their
+    # session on fresh credentials between statements when fewer than 15 minutes are left
+    # (bench/tpch/engines/pyspark_iceberg.py, refresh()).
     #
     # 355, JUST UNDER GITHUB'S 360 CEILING, raised from 150 for Spark-OSS at SF=30 and 60: 36
     # minutes cold at SF=10 grows at least with the data, and a job killed at the cap writes no
