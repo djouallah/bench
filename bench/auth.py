@@ -23,7 +23,9 @@ WHAT THIS STILL CANNOT FIX, and why etl.yml sets `timeout-minutes: 50`. DuckDB b
 into `ATTACH`, chDB into `CREATE DATABASE`, LakeSail into an env var read once at server start.
 Those three capture a STRING and never ask again. Refreshing the credential does not reach inside
 them, so an engine session is hard-bounded by the lifetime of the token it was handed. Mint late
-(right before engine setup), never at job start.
+(right before engine setup), never at job start. Gluten is the one that outlives it -- TPC-DS
+SF=100 runs past its one-hour SAS -- and it restarts its JVM on fresh credentials instead; see
+bench/tpch/engines/pyspark_gluten_iceberg.py and `fresh` below.
 """
 
 from __future__ import annotations
@@ -85,20 +87,35 @@ def credential() -> TokenCredential:
     return _credential
 
 
-def onelake_token(skew: int = 300) -> str:
+def onelake_token(skew: int = 300, *, fresh: bool = False) -> str:
     """A bearer for https://storage.azure.com/, re-minted when under `skew` seconds remain.
+
+    `fresh=True` mints a NEW token whatever the cache holds, off a NEW credential. Dropping our
+    cache alone is not enough: azure-identity keeps its own, and hands back the same token until
+    it is within five minutes of expiry -- Entra's ~1h tokens carry no earlier refresh_on. So a
+    caller that wants a full hour (an engine about to bake the string into a session) has to go
+    past both caches. Clients already holding the old credential keep it, and it keeps refreshing
+    itself.
 
     Every token this returns is registered with `scrub` before it leaves the function, so any
     later traceback that quotes it is masked. That ordering is deliberate -- register first,
     return second.
     """
-    global _cached
+    global _cached, _credential
+    if fresh:
+        _cached = None
+        _credential = None
     now = time.time()
     if _cached is None or _cached[1] - now < skew:
         token = credential().get_token(STORAGE_SCOPE)
         scrub.register(token.token)
         _cached = (token.token, float(token.expires_on))
     return _cached[0]
+
+
+def token_expires_on() -> float:
+    """When the token `onelake_token` last returned expires, as epoch seconds; inf before any."""
+    return _cached[1] if _cached is not None else float("inf")
 
 
 def catalog(cfg: Config):

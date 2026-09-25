@@ -62,6 +62,13 @@ STORAGE_SCOPE = "https://storage.azure.com/.default"
 # that can finish at all outlives this.
 CATALOG_CACHE_SECONDS = 6 * 60 * 60  # 6 hours, above tpcds.yml's 355-minute job cap
 
+# HOW MUCH LIFE A CAPTURED CREDENTIAL MUST HAVE LEFT BEFORE A STATEMENT STARTS ON IT. An engine that
+# baked a SAS or a bearer into its session re-mints once the clock says less than this remains,
+# between statements and outside the timer. It has to cover the longest single statement, since a
+# credential cannot be swapped under a running query: that is 169s (Gluten, TPC-DS SF=100 Q23), so
+# fifteen minutes is margin, not a guess. Below it the check never fires at SF<=30.
+TOKEN_MIN_LIFETIME_SECONDS = 15 * 60
+
 
 def azure_transport() -> str | None:
     """Which HTTP transport DuckDB's azure extension should use, or None to leave its default.

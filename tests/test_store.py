@@ -183,3 +183,27 @@ def test_a_part_with_an_unknown_key_still_loads(tmp_path):
     name, restored = read_engine_part(part)
     assert name == "duckdb_iceberg"
     assert restored.rows[0].dur == 2.5 and restored.rows[0].rows == 7
+
+
+class _Refreshing(_Fake):
+    """Records the order of refresh and execute calls; its refresh sometimes raises."""
+
+    def __init__(self):
+        self.calls = []
+
+    def refresh(self):
+        self.calls.append("refresh")
+        if len(self.calls) == 1:
+            raise RuntimeError("token endpoint down")
+
+    def execute(self, sql):
+        self.calls.append("execute")
+        return 7
+
+
+def test_refresh_runs_before_every_statement_and_never_fails_one():
+    """An hour-long pass outlives the credential; the runner offers a refresh each statement."""
+    engine = _Refreshing()
+    result = benchmark(engine, TpcdsConfig(workspace_id="w", lakehouse_id="l", sf=10))
+    assert engine.calls == ["refresh", "execute"] * 99
+    assert all(r.status == "ok" for r in result.rows)

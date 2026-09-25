@@ -55,6 +55,15 @@ class Engine(Protocol):
         """Run one statement to completion and return its row count."""
         ...
 
+    # OPTIONAL, and not declared here so the engines without one still satisfy the protocol:
+    #
+    #     def refresh(self) -> None
+    #
+    # Called by the runner before every statement, OUTSIDE the timer. An engine that captured a
+    # credential string at setup renews it here once less than config.TOKEN_MIN_LIFETIME_SECONDS
+    # of it remains, so a pass longer than the credential's hour does not die `Unauthorized`
+    # partway through. Above that threshold it must cost nothing -- a clock comparison.
+
     def close(self) -> None:
         """Release whatever the engine holds. Must be safe to call twice."""
         ...

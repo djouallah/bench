@@ -158,8 +158,8 @@ class PysparkIceberg:
         assert self._assertion is not None
         self._assertion.write_text(auth._github_oidc_assertion(), encoding="utf-8")
 
-    def _keep_assertion_fresh(self) -> None:
-        while not self._stop.wait(ASSERTION_REFRESH_S):
+    def _keep_assertion_fresh(self, stop: threading.Event) -> None:
+        while not stop.wait(ASSERTION_REFRESH_S):
             try:
                 self._write_assertion()
             except Exception as exc:  # noqa: BLE001 - a failed refresh must not kill the run
@@ -175,7 +175,12 @@ class PysparkIceberg:
         # the four fs.azure keys below resolve to -- which is nothing, so it fails loudly.
         if os.environ.get("ACTIONS_ID_TOKEN_REQUEST_URL"):
             self._write_assertion()
-            self._refresher = threading.Thread(target=self._keep_assertion_fresh, daemon=True)
+            # A new Event per setup, handed to the thread: setup runs again after close() when
+            # Gluten restarts on fresh credentials, and the old thread must stay stopped.
+            self._stop = threading.Event()
+            self._refresher = threading.Thread(
+                target=self._keep_assertion_fresh, args=(self._stop,), daemon=True
+            )
             self._refresher.start()
 
         account = ONELAKE_DFS
