@@ -341,7 +341,11 @@ def totals_by_sf(
         title = f"Total seconds for all {n_queries} queries, cold — {subtitle}"
         _style(ax, theme, title, "", pad=30)
         # _style draws a vertical chart's axes; turn them for this one.
-        ax.set_xlabel("seconds (lower is better)", color=theme["secondary"], fontsize=10)
+        ax.set_xlabel(
+            "seconds (lower is better) · N× = times the fastest engine at that scale",
+            color=theme["secondary"],
+            fontsize=10,
+        )
         ax.grid(axis="y", visible=False)
         ax.grid(axis="x", linestyle="--", linewidth=0.7, color=theme["grid"], alpha=0.8)
         ax.spines["bottom"].set_visible(False)
