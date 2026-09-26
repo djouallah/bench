@@ -170,6 +170,11 @@ def attach(conn, cfg: Config, token: str) -> None:
         cur.execute(f"SET CATALOG {CATALOG}")
         # No per-statement ceiling: the job's own timeout is the bound, as for every engine.
         cur.execute("SET query_timeout = 86400")
+        # SPILL IS OFF BY DEFAULT in StarRocks (`enable_spill`, "Default: false"): an aggregation,
+        # join or sort that outgrows memory fails instead of spilling. TPC-H SF=100 lost Q18 and
+        # Q21 to "Memory of process exceed limit" that way (run 36227016523), while DuckDB and
+        # Gluten, which spill by default, finish all 22. `spill_mode` stays at its default, auto.
+        cur.execute("SET enable_spill = true")
 
 
 def needs_refresh(expires: float) -> bool:
