@@ -167,6 +167,7 @@ before `bench.yml`.
 | DataFusion Comet | Its native Iceberg scan declines `abfss://` (`icebergReadableSchemes` in `CometScanRule.scala`), so OneLake scans run on the JVM anyway. It would also bypass `WorkloadIdentityTokenProvider`. | `abfss` appears in that set |
 
 TPC-DS runs only three engines. The reason each of the others was dropped is in the comment
-above `ENGINES` in [`bench/tpcds/config.py`](bench/tpcds/config.py).
+above `ENGINES` in [`bench/tpcds/config.py`](bench/tpcds/config.py). What broke each engine, at
+what scale, and how it was fixed, is in [LEARNING.md](LEARNING.md), with one section per engine.
 
 Back to the [README](README.md). What the runs taught is in [LEARNING.md](LEARNING.md).
