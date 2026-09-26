@@ -47,6 +47,7 @@ class PolarsIceberg:
         # across runner images rather than tracking whatever the host reports. So BEFORE the
         # import: set after it, as this line used to be, it was read by nothing.
         os.environ.setdefault("POLARS_MAX_THREADS", "4")
+        os.environ["POLARS_OOC_MEMORY_BUDGET_MB"] = "10240"
         import polars as pl
 
         catalog = auth.catalog(self.cfg)
