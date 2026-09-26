@@ -76,6 +76,12 @@ class LakesailIceberg:
         # refused to start at all ("unknown field: found `memory_limit`").
         os.environ["SAIL_RUNTIME__MEMORY_POOL__TYPE"] = "fair"
         os.environ["SAIL_RUNTIME__MEMORY_POOL__FAIR__MAX_SIZE"] = str(POOL_BYTES)
+        # AND JOINS THAT CAN SPILL. The pool alone took SF=30 from a dead runner to 21/22, and the
+        # one left was Q18: "Failed to allocate ... for HashJoinInput[3] with 1665.0 MB already
+        # allocated" (run 36238299506). A hash join's build side cannot spill in DataFusion 54; a
+        # sort-merge join's buffered side can. `optimizer.prefer_hash_join` (default true) picks
+        # sort-merge for the shuffled joins instead; small build sides still broadcast.
+        os.environ["SAIL_OPTIMIZER__PREFER_HASH_JOIN"] = "false"
         #
         # TRIED AND REVERTED: SAIL_PARQUET__PUSHDOWN_FILTERS=true (+ REORDER_FILTERS), Sail's
         # late-materialization switch, off by default. Run 35512613884 at SF=10: the queries it
