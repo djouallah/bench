@@ -68,6 +68,9 @@ class StarrocksIceberg:
         # One fragment per file, a few at a time, instead of all of them at once (see above).
         self._sql("SET enable_phased_scheduler = true")
         self._sql(f"SET phased_scheduler_max_concurrency = {PHASED_CONCURRENCY}")
+        # ONE WRITER BY DEFAULT: `pipeline_sink_dop` 0 means max(1, cores / 3) for <= 24 cores
+        # (fe SessionVariable, branch-4.1), so the Iceberg sink ran on 1 of the runner's 4 cores.
+        self._sql("SET pipeline_sink_dop = 4")
         scrub.safe_print(f"  starrocks {self._version} attached")
 
     def _sql(self, statement: str) -> list[tuple]:

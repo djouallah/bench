@@ -175,6 +175,23 @@ def attach(conn, cfg: Config, token: str) -> None:
         # Q21 to "Memory of process exceed limit" that way (run 36227016523), while DuckDB and
         # Gluten, which spill by default, finish all 22. `spill_mode` stays at its default, auto.
         cur.execute("SET enable_spill = true")
+        # HALF THE CORES BY DEFAULT: `pipeline_dop` 0 means max(1, cores / 2) (fe
+        # BackendResourceStat, branch-4.1), so 2 on this 4 vCPU runner, where every other engine
+        # is told it has 4 threads. Same rule as theirs, not a thumb on the scale.
+        cur.execute("SET pipeline_dop = 4")
+
+
+def datacache_metrics(conn) -> str:
+    """The back end's DataCacheMetrics column from SHOW BACKENDS: what the data cache holds.
+
+    Read at close as proof the cache engaged, as pyspark_alluxio_iceberg does for Alluxio. The
+    allin1 start-up log prints the same column, but at start-up, when it is always 0 B.
+    """
+    with conn.cursor() as cur:
+        cur.execute("SHOW BACKENDS")
+        names = [d[0] for d in cur.description]
+        row = cur.fetchone()
+    return str(row[names.index("DataCacheMetrics")]) if row else "no back end"
 
 
 def needs_refresh(expires: float) -> bool:

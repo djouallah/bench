@@ -59,6 +59,11 @@ class StarrocksIceberg:
     def close(self) -> None:
         if self._conn is not None:
             try:
+                cache = starrocks.datacache_metrics(self._conn)
+                scrub.safe_print(f"  starrocks data cache: {cache}")
+            except Exception as exc:  # noqa: BLE001 - a readout must never fail teardown
+                scrub.safe_print(f"  warning: data cache readout failed: {exc}")
+            try:
                 self._conn.close()
             finally:
                 self._conn = None
