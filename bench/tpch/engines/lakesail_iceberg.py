@@ -80,8 +80,15 @@ class LakesailIceberg:
         # one left was Q18: "Failed to allocate ... for HashJoinInput[3] with 1665.0 MB already
         # allocated" (run 36238299506). A hash join's build side cannot spill in DataFusion 54; a
         # sort-merge join's buffered side can. `optimizer.prefer_hash_join` (default true) picks
-        # sort-merge for the shuffled joins instead; small build sides still broadcast.
-        os.environ["SAIL_OPTIMIZER__PREFER_HASH_JOIN"] = "false"
+        # sort-merge for the shuffled joins instead; small build sides still broadcast. With it,
+        # SF=30 went 22/22 (run 36238967358).
+        #
+        # ONLY WHERE HASH JOINS OUTGROW THE POOL. Sort-merge costs the join-heavy queries 3-5x at
+        # SF=10 -- Q7 35.0s against 6-11s, Q8 38.3s against 8-14s (run 36240159354) -- where
+        # every hash table fits. So sort-merge once the dataset passes half the pool: SF=10
+        # (~2.7 GiB) keeps hash joins, SF=30 (~8 GiB) and up spill.
+        spill_joins = self.cfg.estimated_gib > POOL_BYTES / 2**30 / 2
+        os.environ["SAIL_OPTIMIZER__PREFER_HASH_JOIN"] = "false" if spill_joins else "true"
         #
         # TRIED AND REVERTED: SAIL_PARQUET__PUSHDOWN_FILTERS=true (+ REORDER_FILTERS), Sail's
         # late-materialization switch, off by default. Run 35512613884 at SF=10: the queries it
