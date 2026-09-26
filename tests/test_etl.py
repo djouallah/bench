@@ -405,7 +405,8 @@ def test_each_engine_is_the_mean_of_its_own_last_three_runs(tmp_path):
     def run(run_id: str, day: int, loads: dict[str, float]) -> None:
         engines = {
             engine: EngineResult(
-                version="v", rows=[Row("cold", "setup", 0, 1.0), Row("cold", "load", 1, dur, rows=7)]
+                version="v",
+                rows=[Row("cold", "setup", 0, 1.0), Row("cold", "load", 1, dur, rows=7)],
             )
             for engine, dur in loads.items()
         }
