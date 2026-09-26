@@ -84,7 +84,7 @@ def main() -> int:
             f"::error::credential chain failed before the engine was touched: "
             f"{scrub.scrub_exc(exc, 600)}"
         )
-        print("see RUN.md steps 2-6, or run .github/scripts/auth_smoke.py for the full chain")
+        print("see Agent.md section 2, or run .github/scripts/auth_smoke.py for the full chain")
         return 1
     print(f"  token ok ({len(token)} chars); catalog lists {len(namespaces)} namespaces")
     if cfg.schema not in namespaces:

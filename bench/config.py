@@ -48,7 +48,7 @@ STORAGE_SCOPE = "https://storage.azure.com/.default"
 # `begin_table_access` call `loadTable` on every statement regardless. So Sail alone still pays a
 # REST round-trip per table per statement, which is the 1.5-3s floor under its small queries and
 # where its 20-25s warm-pass stalls land. The setting is still applied to Sail, for the day it
-# caches the loaded table. See RUN.md and https://github.com/lakehq/sail/issues/2629.
+# caches the loaded table. See LEARNING.md and https://github.com/lakehq/sail/issues/2629.
 # TWO HOURS, RAISED FROM 15 MINUTES on 2026-09-23, because 15 was shorter than a run. TPC-DS at
 # SF=10 takes Spark 42 minutes per pass, so its table objects expired three times mid-run and
 # every re-resolve was a REST round-trip against a bearer that, by the warm pass, had itself

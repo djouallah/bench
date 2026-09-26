@@ -37,7 +37,7 @@ on:
         type: string
         default: ""
   # Enable once a manual SF=10 run over all four engines has gone green and the leak check in
-  # publish.py has been confirmed clean. See RUN.md, step 8.
+  # publish.py has been confirmed clean. See Agent.md, section 4.
   # schedule:
   #   - cron: "17 3 * * *"
 

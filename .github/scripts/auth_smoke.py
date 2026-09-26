@@ -183,7 +183,7 @@ def main() -> int:
     ]
     for number, (what, fn) in enumerate(probes, start=1):
         if not _probe(number, what, fn):
-            print(f"\nstopped at probe {number}; see RUN.md steps 2-6")
+            print(f"\nstopped at probe {number}; see Agent.md section 2")
             return 1
 
     print("\nall probes passed -- this repo can generate data and run the benchmark")
