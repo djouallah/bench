@@ -1,3 +1,6 @@
+## Small Data Benchmark
+Most benchmarks are big data using big compute, which does not reflect the majority of actual usage. Here we are testing small data with small compute.
+
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/charts/totals-dark.png">
