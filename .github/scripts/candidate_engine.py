@@ -236,45 +236,55 @@ class StarRocks(Candidate):
         with the 53-column DUNIT layout (bench/etl/schema.py), short rows padded with NULL, then
         filter to DUNIT v3 -- so that is the read asked for here. `schema` is FILES() from 4.1.2.
         """
-        where = " AND ".join(f"{c} = '{v}'" for c, v in FILTER)
         return {
             label: (
-                f"SELECT count(*), sum(CAST(TOTALCLEARED AS DOUBLE)) FROM {source} WHERE {where}"
+                f"SELECT count(*), sum(CAST({cols['TOTALCLEARED']} AS DOUBLE)) FROM {source} "
+                f"WHERE {' AND '.join(f'{cols[c]} = {v!r}' for c, v in FILTER)}"
             )
-            for label, source in self._csv_sources(path, sas).items()
+            for label, (source, cols) in self._csv_sources(path, sas).items()
         }
 
     def files_diagnostics(self, path: str, sas: str) -> dict[str, str]:
         """What each read actually sees in the three filter columns -- printed, not gated."""
         return {
             f"{label}: I/UNIT/VERSION": (
-                f"SELECT I, UNIT, VERSION, count(*) FROM {source} "
+                f"SELECT {cols['I']}, {cols['UNIT']}, {cols['VERSION']}, count(*) FROM {source} "
                 "GROUP BY 1, 2, 3 ORDER BY 4 DESC LIMIT 12"
             )
-            for label, source in self._csv_sources(path, sas).items()
+            for label, (source, cols) in self._csv_sources(path, sas).items()
         }
 
-    def _csv_sources(self, path: str, sas: str) -> dict[str, str]:
+    def _csv_sources(self, path: str, sas: str) -> dict[str, tuple[str, dict[str, str]]]:
+        """Each read as (FILES() source, ETL column name -> name in that source).
+
+        NEUTRAL NAMES IN THE SCHEMA. With the ETL's own names, the column declared `UNIT` came
+        back NULL on EVERY row -- including `I,DISPATCH,...` rows whose second field is plainly
+        "DISPATCH" -- while `I` and `VERSION` in the same schema read fine (run 36219398717).
+        CSV columns bind by position, so `c0..cN` lose nothing and sidestep the name.
+        """
         storage = self.storage_variants(sas)["workload identity"]
         csv = (
             '"format"="csv", "csv.column_separator"=",", "csv.enclose"=\'"\', "csv.skip_header"="1"'
         )
-        named = ", ".join(f"{c} VARCHAR" for c in COLUMNS)
-        # The widest record in these files is 120 fields (the inference error above). Declaring
-        # that width means no row is ever LONGER than the schema, only shorter.
-        spare = ", ".join(f"SPARE{i} VARCHAR" for i in range(len(COLUMNS), CSV_MAX_WIDTH))
+        positional = {c: f"c{i}" for i, c in enumerate(COLUMNS)}
+        named = {c: c for c in COLUMNS}
 
-        def files(options: str) -> str:
-            return f'FILES("path"="{path}", {csv}, {options}, {storage})'
+        def files(width: int, names: dict[str, str], options: str) -> tuple[str, dict[str, str]]:
+            declared = [f"{names[c]} VARCHAR" for c in COLUMNS]
+            # The widest record in these files is 120 fields; declaring that width means no row
+            # is ever LONGER than the schema, only shorter.
+            declared += [f"c{i} VARCHAR" for i in range(len(COLUMNS), width)]
+            schema = f'"schema"="{", ".join(declared)}"'
+            return f'FILES("path"="{path}", {csv}, {schema}, {options}, {storage})', names
 
+        padded = '"fill_mismatch_column_with"="null"'
         return {
-            "120-column schema, short rows NULL-padded": files(
-                f'"schema"="{named}, {spare}", "fill_mismatch_column_with"="null"'
+            "53 positional columns, short rows NULL-padded": files(53, positional, padded),
+            "120 positional columns, short rows NULL-padded": files(
+                CSV_MAX_WIDTH, positional, padded
             ),
-            "53-column schema, short rows NULL-padded": files(
-                f'"schema"="{named}", "fill_mismatch_column_with"="null"'
-            ),
-            "53-column schema, strict": files(f'"schema"="{named}"'),
+            # The ETL's names, kept to show the UNIT problem while it lasts.
+            "53 named columns, short rows NULL-padded": files(53, named, padded),
         }
 
     def write_variants(self, table: str, source: str) -> dict[str, list[str]]:
