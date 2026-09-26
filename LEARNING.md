@@ -76,9 +76,5 @@ On small data a query computes in under a second, so a fixed per-statement cost 
   (apache/gluten#5414, open). Gluten used to have an Arrow-based CSV reader behind
   `spark.gluten.sql.native.arrow.reader.enabled`, but it was switched off for Spark 4
   (apache/gluten#11190) and then deleted (#12130, #12737). No setting brings it back.
-- Fabric's Native Execution Engine does read CSV natively on Runtime 2.0 (Spark 4.1): its docs
-  say "The vectorized CSV parser now supports CSV"
-  (learn.microsoft.com/fabric/data-engineering/native-execution-engine-overview). That parser
-  is Microsoft's own addition and is not in open-source Gluten.
-- Effect on the ETL numbers: Gluten/Velox here shows open-source Gluten, not Fabric's engine.
-  Expect its load time to be close to Spark-OSS, because the CSV parse is most of the work.
+- Effect on the ETL numbers: expect Gluten/Velox's load time to be close to Spark-OSS,
+  because the CSV parse is most of the work.

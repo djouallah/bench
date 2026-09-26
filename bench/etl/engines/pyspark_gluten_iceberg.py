@@ -12,8 +12,7 @@ capped at 50, so the restart-on-expiry the read benchmarks need never fires here
 
 THE CSV SCAN IS NOT VELOX'S. Open-source Gluten on Spark 4.x has no CSV reader, so the scan falls
 back to the JVM (`Unsupported file format TextReadFormat`) and Velox only runs what comes after it.
-Fabric's Native Execution Engine does read CSV natively; that parser is Microsoft's own, not in
-Gluten. LEARNING.md has the details and the upstream PRs. The time is the load, as for every other
+LEARNING.md has the details and the upstream PRs. The time is the load, as for every other
 engine, whichever side ran it.
 """
 

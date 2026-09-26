@@ -39,8 +39,7 @@ from bench.store import Run, load_all, write_run
 GLUTEN_NOTE = (
     "Gluten/Velox: Velox does not read the CSVs. Open-source Gluten has no CSV reader on Spark "
     "4.x, so plain Spark reads and parses them, and Velox runs only the filter, casts and Parquet "
-    "write after that. Fabric's Native Execution Engine does read CSV natively, with a parser "
-    "Microsoft added that is not in open-source Gluten, so these numbers are not Fabric's."
+    "write after that."
 )
 
 
