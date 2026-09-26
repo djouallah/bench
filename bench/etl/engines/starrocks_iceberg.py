@@ -5,7 +5,7 @@ query benchmark. The statement is DuckDB's (engines/duckdb_iceberg.py) in StarRo
 53-column DUNIT layout, short rows NULL-padded, the three-column filter, every measure cast to
 DOUBLE, SETTLEMENTDATE parsed, `year` derived, and the source file's name as `filename`.
 
-TWO THINGS FILES() NEEDS, each found by a failed CI run (candidate_engine.yml, 2026-09-26):
+THREE THINGS FILES() NEEDS, each found by a failed CI run (candidate_engine.yml, 2026-09-26):
 
 * STRING, NEVER BARE VARCHAR. In StarRocks a VARCHAR with no length is VARCHAR(1), and a CSV value
   that does not fit loads as NULL: only one-character fields survived and the DUNIT filter
