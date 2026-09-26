@@ -47,6 +47,12 @@ class PolarsIceberg:
         # across runner images rather than tracking whatever the host reports. So BEFORE the
         # import: set after it, as this line used to be, it was read by nothing.
         os.environ.setdefault("POLARS_MAX_THREADS", "4")
+        # A MEMORY BUDGET, SO THE STREAMING ENGINE CAN SPILL. Polars 2.0 ships out-of-core spilling
+        # but its trigger is `POLARS_OOC_MEMORY_BUDGET_MB`, which defaults to u64::MAX -- never --
+        # so at TPC-H SF=30 it did not spill, it took the runner down 75s into Q7 (run
+        # 36001440696). 10 GiB leaves the rest of the 16 GB runner to Python and the reads in
+        # flight. Upstream marks it experimental (its OOC tests are skipped in py-2.0.0-rc.2).
+        os.environ["POLARS_OOC_MEMORY_BUDGET_MB"] = "10240"
         import polars as pl
 
         catalog = auth.catalog(self.cfg)
