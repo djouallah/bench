@@ -112,6 +112,8 @@ class StarRocks(Candidate):
 
     name = "starrocks"
     default_image = "starrocks/allin1-ubuntu:4.1-latest"
+    # The bench engine's spelling of the TPC-H table names (bench.tpch.queries.IDENT_STYLE).
+    dialect = "starrocks_iceberg"
 
     def start(self) -> None:
         _keep_assertion_fresh()
@@ -451,7 +453,8 @@ def main() -> int:
     # Gate 2: SQL, the whole TPC-H suite.
     _say(f"\n[TPC-H SF={cfg.sf}, {queries.N_QUERIES} statements]")
     passed = 0
-    for index, statement in enumerate(queries.load(name, cfg.schema, cfg.sf), start=1):
+    dialect = getattr(engine, "dialect", name)
+    for index, statement in enumerate(queries.load(dialect, cfg.schema, cfg.sf), start=1):
         ok, rows = _try(engine, f"Q{index}", [statement])
         if ok:
             _say(f"          Q{index}: {len(rows)} rows")

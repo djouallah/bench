@@ -1,0 +1,7 @@
+# starrocks_iceberg.txt plus azure-storage-file-datalake (bench/etl/data.py lists Files/csv over
+# ADLS before the engine starts). StarRocks reads the CSVs and writes the Iceberg table itself,
+# inside its container, so nothing else is added.
+azure-identity>=1.19
+azure-storage-file-datalake>=12.17
+psutil>=6
+pymysql>=1.1

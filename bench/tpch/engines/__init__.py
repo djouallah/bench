@@ -47,4 +47,8 @@ def get_engine(name: str, cfg: Config):
         from bench.tpch.engines.pyspark_iceberg import PysparkIceberg
 
         return PysparkIceberg(cfg)
+    if name == "starrocks_iceberg":
+        from bench.tpch.engines.starrocks_iceberg import StarrocksIceberg
+
+        return StarrocksIceberg(cfg)
     raise ValueError(f"unknown engine {name!r}; expected one of {list(ENGINES)}")

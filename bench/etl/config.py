@@ -32,6 +32,7 @@ ETL_ENGINES = (
     "lakesail_iceberg",
     "pyspark_iceberg",
     "pyspark_gluten_iceberg",
+    "starrocks_iceberg",
 )
 
 # The Iceberg table each engine writes inside namespace T{n}. The notebook's names, kept.
@@ -43,6 +44,7 @@ TABLE = {
     "lakesail_iceberg": "sail",
     "pyspark_iceberg": "spark",
     "pyspark_gluten_iceberg": "gluten",
+    "starrocks_iceberg": "starrocks",
 }
 
 # Where the landed CSVs live inside the lakehouse. The notebook's `/lakehouse/default/Files/csv/`.

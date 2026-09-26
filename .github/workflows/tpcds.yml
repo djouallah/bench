@@ -28,7 +28,7 @@ on:
       engines:
         description: Comma-separated engines to run.
         type: string
-        default: duckdb_iceberg,pyspark_iceberg,pyspark_gluten_iceberg
+        default: duckdb_iceberg,pyspark_iceberg,pyspark_gluten_iceberg,starrocks_iceberg
       regenerate:
         description: Drop and rewrite the namespace even if it is marked complete.
         type: boolean
@@ -104,7 +104,7 @@ jobs:
         # The matrix needs a JSON array; the input is a human-friendly CSV. `started` is stamped
         # once here so every artifact in the run shares one timestamp.
         run: |
-          ENGINES=$(printf '%s' "${{ inputs.engines || 'duckdb_iceberg,pyspark_iceberg,pyspark_gluten_iceberg' }}" \
+          ENGINES=$(printf '%s' "${{ inputs.engines || 'duckdb_iceberg,pyspark_iceberg,pyspark_gluten_iceberg,starrocks_iceberg' }}" \
             | jq -Rc 'split(",") | map(sub("^\\s+";"") | sub("\\s+$";"")) | map(select(length > 0))')
           echo "engines=$ENGINES" >> "$GITHUB_OUTPUT"
           echo "started=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_OUTPUT"
@@ -131,6 +131,7 @@ jobs:
       || matrix.engine == 'daft_iceberg' && '💠 Daft'
       || matrix.engine == 'pyspark_iceberg' && '✨ Spark-OSS'
       || matrix.engine == 'pyspark_gluten_iceberg' && '🚀 Gluten/Velox'
+      || matrix.engine == 'starrocks_iceberg' && '⭐ StarRocks'
       || matrix.engine }}
     runs-on: ubuntu-latest
     # LONGER THAN bench.yml's 50, and longer than the 85 that cost run 35732997698 its Spark
@@ -211,11 +212,25 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           allow-no-subscriptions: true
 
+      # StarRocks is a container, not a wheel (bench/starrocks.py). Pull it here, OUTSIDE the
+      # timer, so the setup row measures a cold start and not a multi-GB download.
+      - name: Pull the StarRocks image
+        if: matrix.engine == 'starrocks_iceberg'
+        run: docker pull "$(python -c 'from bench.starrocks import IMAGE; print(IMAGE)')"
+
       - name: Run 99 queries, one cold pass
         # `shell: bash` is pipefail. Without it `... | tee` exits 0 whatever the script did, and
         # run_engine.py's "attached but completed 0 statements" guard is silently defeated.
         shell: bash
         run: python .github/scripts/run_engine.py parts 2>&1 | tee "${{ matrix.engine }}.log"
+
+      # The server may log statement text, and the catalog DDL carries the bearer. Python mints
+      # it, so ::add-mask:: cannot cover it -- redact JWT shapes.
+      - name: StarRocks server log
+        if: always() && matrix.engine == 'starrocks_iceberg'
+        run: |
+          docker logs starrocks 2>&1 | tail -n 300 \
+            | sed -E 's/eyJ[A-Za-z0-9_-]{8,}\.[A-Za-z0-9_-]{8,}\.[A-Za-z0-9_-]*/***REDACTED***/g'
 
       - uses: actions/upload-artifact@v6
         if: always()

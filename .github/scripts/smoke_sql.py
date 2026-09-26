@@ -316,6 +316,31 @@ def _pyspark_gluten(cfg: Config, paths: dict[str, Path]):
     return _pyspark(cfg, paths, gluten_conf())
 
 
+def _starrocks(cfg: Config, paths: dict[str, Path]):
+    """The benchmark's container with the parquet mounted, one view per table over FILES().
+
+    Views, not tables: an internal table in the single-node allin1 image needs
+    `replication_num=1`, and a view reads the same bytes every other engine reads, as they are.
+    """
+    from bench import starrocks
+    from bench.tpch.engines.starrocks_iceberg import StarrocksIceberg
+
+    data = Path(next(iter(paths.values()))).resolve().parent
+    starrocks.start(mounts={data: "/smoke"})
+    engine = StarrocksIceberg(cfg)
+    engine._conn = starrocks.connect()
+    engine._version = starrocks.version(engine._conn)
+    with engine._conn.cursor() as cur:
+        cur.execute(f"CREATE DATABASE IF NOT EXISTS {cfg.schema}")
+        cur.execute(f"USE {cfg.schema}")
+        for table, path in paths.items():
+            cur.execute(
+                f"CREATE OR REPLACE VIEW {table} AS SELECT * FROM "
+                f'FILES("path"="file:///smoke/{Path(path).name}", "format"="parquet")'
+            )
+    return engine
+
+
 ADAPTERS = {
     "duckdb_iceberg": _duckdb,
     "chdb_iceberg": _chdb,
@@ -326,6 +351,7 @@ ADAPTERS = {
     # Phase 1 reads local parquet; the file cache only exists on the abfss:// path.
     "pyspark_alluxio_iceberg": _pyspark,
     "pyspark_gluten_iceberg": _pyspark_gluten,
+    "starrocks_iceberg": _starrocks,
 }
 
 

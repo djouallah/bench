@@ -12,6 +12,11 @@ recolour Spark.
 Slot 7, brown, is Gluten/Velox, last in ENGINES, validated in that last position in both modes --
 nothing passes the normal-vision floor between blue and orange.
 
+Slot 8, plum, is StarRocks. Bars sort fastest-first, so a new slot can land beside ANY other, and
+it was chosen to pass CVD and the normal-vision floor against every one of the seven, pairwise, in
+both modes (a scan of OKLCH for the hue that clears them all; only plum does in both). The dark
+step carries a contrast WARN (2.61:1), under the same relief rule as light aqua and yellow.
+
 The palette is validated, not eyeballed (dataviz `scripts/validate_palette.js`), and re-validated
 whenever a slot is added -- every subset that can actually render has to pass, not just the full
 set. Light passes every gate with a contrast WARN on aqua and yellow, which obligates the relief
@@ -42,6 +47,7 @@ LIGHT = {
     "daft_iceberg": "#8a5cd1",  # slot 5 purple
     "pyspark_iceberg": "#d6468f",  # slot 6 magenta
     "pyspark_gluten_iceberg": "#a8642a",  # slot 7 brown
+    "starrocks_iceberg": "#980067",  # slot 8 plum
 }
 DARK = {
     "duckdb_iceberg": "#3987e5",
@@ -51,6 +57,7 @@ DARK = {
     "daft_iceberg": "#9b6ee0",
     "pyspark_iceberg": "#e05a9c",
     "pyspark_gluten_iceberg": "#c07a3a",
+    "starrocks_iceberg": "#a0268b",
 }
 
 THEMES = {
@@ -92,6 +99,7 @@ LABEL = {
     "daft_iceberg": "Daft",
     "pyspark_iceberg": "Spark-OSS",
     "pyspark_gluten_iceberg": "Gluten/Velox",
+    "starrocks_iceberg": "StarRocks",
 }
 
 

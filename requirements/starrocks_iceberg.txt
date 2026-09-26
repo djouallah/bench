@@ -1,0 +1,5 @@
+# StarRocks runs in its own container (bench/starrocks.py pins the image); Python only drives it
+# over the MySQL protocol, so this file is the client and the credential.
+azure-identity>=1.19
+psutil>=6
+pymysql>=1.1

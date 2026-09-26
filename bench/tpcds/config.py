@@ -47,6 +47,9 @@ ENGINES = (
     # module says why), so a TPC-DS run has to finish inside that hour -- which is why
     # TpcdsConfig runs one pass.
     "pyspark_gluten_iceberg",
+    # StarRocks: added 2026-09-26 after passing candidate_engine.yml (22/22 TPC-H, OneLake reads
+    # and writes). Its TPC-DS coverage is whatever its first runs show.
+    "starrocks_iceberg",
 )
 
 # The 24 tables of the spec (dsdgen also emits `dbgen_version`, which is not one), LARGEST FIRST
