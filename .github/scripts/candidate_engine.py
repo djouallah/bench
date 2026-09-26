@@ -245,22 +245,31 @@ class StarRocks(Candidate):
         }
 
     def files_diagnostics(self, path: str, sas: str) -> dict[str, str]:
-        """What each read actually sees in the three filter columns -- printed, not gated."""
-        return {
-            f"{label}: I/UNIT/VERSION": (
+        """What each read actually sees -- printed, not gated."""
+        out = {}
+        for label, (source, cols) in self._csv_sources(path, sas).items():
+            first = ", ".join(cols[c] for c in COLUMNS[:6])
+            out[f"{label}: I/UNIT/VERSION"] = (
                 f"SELECT {cols['I']}, {cols['UNIT']}, {cols['VERSION']}, count(*) FROM {source} "
                 "GROUP BY 1, 2, 3 ORDER BY 4 DESC LIMIT 12"
             )
-            for label, (source, cols) in self._csv_sources(path, sas).items()
-        }
+            # The first six fields of a few data rows, as this read splits them.
+            out[f"{label}: first fields of D rows"] = (
+                f"SELECT {first} FROM {source} WHERE {cols['I']} = 'D' LIMIT 3"
+            )
+        return out
 
     def _csv_sources(self, path: str, sas: str) -> dict[str, tuple[str, dict[str, str]]]:
-        """Each read as (FILES() source, ETL column name -> name in that source).
+        """Each read as (FILES() source, ETL column name -> expression in that source).
 
-        NEUTRAL NAMES IN THE SCHEMA. With the ETL's own names, the column declared `UNIT` came
-        back NULL on EVERY row -- including `I,DISPATCH,...` rows whose second field is plainly
-        "DISPATCH" -- while `I` and `VERSION` in the same schema read fine (run 36219398717).
-        CSV columns bind by position, so `c0..cN` lose nothing and sidestep the name.
+        THE DECLARED-SCHEMA READS DROP THE SECOND FIELD. With `"schema"` + NULL padding, the
+        second column is NULL on EVERY row -- including `I,DISPATCH,...` rows -- while the first
+        and fourth read fine, whether it is named `UNIT` (run 36219398717) or `c1` (run
+        36221536704). So the DUNIT filter matches nothing.
+
+        The line-split read sidesteps FILES()'s column mapping: each line is one VARCHAR (a
+        separator that never occurs) and SQL `split_part` takes the fields -- the pattern an ETL
+        uses on ragged text anyway. AEMO quotes only its timestamps, and none contains a comma.
         """
         storage = self.storage_variants(sas)["workload identity"]
         csv = (
@@ -278,12 +287,17 @@ class StarRocks(Candidate):
             return f'FILES("path"="{path}", {csv}, {schema}, {options}, {storage})', names
 
         padded = '"fill_mismatch_column_with"="null"'
+        lines = (
+            f'FILES("path"="{path}", "format"="csv", "csv.column_separator"="|~|", '
+            f'"csv.skip_header"="1", "schema"="line VARCHAR", {storage})'
+        )
+        split = {c: f"split_part(line, ',', {i + 1})" for i, c in enumerate(COLUMNS)}
         return {
+            "one column per line, split_part": (lines, split),
             "53 positional columns, short rows NULL-padded": files(53, positional, padded),
             "120 positional columns, short rows NULL-padded": files(
                 CSV_MAX_WIDTH, positional, padded
             ),
-            # The ETL's names, kept to show the UNIT problem while it lasts.
             "53 named columns, short rows NULL-padded": files(53, named, padded),
         }
 
@@ -430,10 +444,10 @@ def main() -> int:
             {label: [stmt] for label, stmt in engine.files_variants(path, sas).items()},
             matches,
         )
-        if files is None:
-            _say("\n[parse Files/csv: what each read sees]")
-            for label, statement in engine.files_diagnostics(path, sas).items():
-                _try(engine, label, [statement])
+        # Always, pass or fail: the declared-schema reads' behaviour is a finding either way.
+        _say("\n[parse Files/csv: what each read sees]")
+        for label, statement in engine.files_diagnostics(path, sas).items():
+            _try(engine, label, [statement])
     except Exception as exc:  # noqa: BLE001 - no CSV landed, or no SAS: the gate fails, loudly
         _say(f"\n[parse Files/csv]\n    FAIL  setup  {scrub.scrub_exc(exc, 1500)}")
     results["parse Files csv (count + sum = python)"] = files is not None
