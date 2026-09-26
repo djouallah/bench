@@ -262,43 +262,39 @@ class StarRocks(Candidate):
     def _csv_sources(self, path: str, sas: str) -> dict[str, tuple[str, dict[str, str]]]:
         """Each read as (FILES() source, ETL column name -> expression in that source).
 
-        THE DECLARED-SCHEMA READS DROP THE SECOND FIELD. With `"schema"` + NULL padding, the
-        second column is NULL on EVERY row -- including `I,DISPATCH,...` rows -- while the first
-        and fourth read fine, whether it is named `UNIT` (run 36219398717) or `c1` (run
-        36221536704). So the DUNIT filter matches nothing.
+        STRING, NEVER BARE `VARCHAR`. In StarRocks a `VARCHAR` with no length is VARCHAR(1), and a
+        CSV value that does not fit loads as NULL. Declared that way, only one-character fields
+        survived -- `D`, `1` -- while `DUNIT`, `DISPATCH` and every timestamp came back NULL, so
+        the DUNIT filter matched nothing (runs 36219398717, 36221536704, 36221803419; it looked
+        like a column-name problem until the raw fields were printed).
 
-        The line-split read sidesteps FILES()'s column mapping: each line is one VARCHAR (a
-        separator that never occurs) and SQL `split_part` takes the fields -- the pattern an ETL
-        uses on ragged text anyway. AEMO quotes only its timestamps, and none contains a comma.
+        The line-split read is the fallback that avoids FILES()'s column mapping: each line is
+        one STRING (a separator that never occurs) and SQL `split_part` takes the fields. AEMO
+        quotes only its timestamps, and none contains a comma.
         """
         storage = self.storage_variants(sas)["workload identity"]
         csv = (
             '"format"="csv", "csv.column_separator"=",", "csv.enclose"=\'"\', "csv.skip_header"="1"'
         )
-        positional = {c: f"c{i}" for i, c in enumerate(COLUMNS)}
         named = {c: c for c in COLUMNS}
 
-        def files(width: int, names: dict[str, str], options: str) -> tuple[str, dict[str, str]]:
-            declared = [f"{names[c]} VARCHAR" for c in COLUMNS]
+        def files(width: int) -> tuple[str, dict[str, str]]:
+            declared = [f"{c} STRING" for c in COLUMNS]
             # The widest record in these files is 120 fields; declaring that width means no row
             # is ever LONGER than the schema, only shorter.
-            declared += [f"c{i} VARCHAR" for i in range(len(COLUMNS), width)]
-            schema = f'"schema"="{", ".join(declared)}"'
-            return f'FILES("path"="{path}", {csv}, {schema}, {options}, {storage})', names
+            declared += [f"c{i} STRING" for i in range(len(COLUMNS), width)]
+            schema = f'"schema"="{", ".join(declared)}", "fill_mismatch_column_with"="null"'
+            return f'FILES("path"="{path}", {csv}, {schema}, {storage})', named
 
-        padded = '"fill_mismatch_column_with"="null"'
         lines = (
             f'FILES("path"="{path}", "format"="csv", "csv.column_separator"="|~|", '
-            f'"csv.skip_header"="1", "schema"="line VARCHAR", {storage})'
+            f'"csv.skip_header"="1", "schema"="line STRING", {storage})'
         )
         split = {c: f"split_part(line, ',', {i + 1})" for i, c in enumerate(COLUMNS)}
         return {
-            "one column per line, split_part": (lines, split),
-            "53 positional columns, short rows NULL-padded": files(53, positional, padded),
-            "120 positional columns, short rows NULL-padded": files(
-                CSV_MAX_WIDTH, positional, padded
-            ),
-            "53 named columns, short rows NULL-padded": files(53, named, padded),
+            "53 STRING columns, short rows NULL-padded": files(len(COLUMNS)),
+            "120 STRING columns, short rows NULL-padded": files(CSV_MAX_WIDTH),
+            "one STRING per line, split_part": (lines, split),
         }
 
     def write_variants(self, table: str, source: str) -> dict[str, list[str]]:
