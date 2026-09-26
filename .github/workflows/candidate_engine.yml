@@ -23,10 +23,10 @@ on:
         type: string
         default: ""
       sf:
-        description: TPC-H scale the SQL gate reads (the namespace must already exist).
+        description: TPC-H scale the SQL gate reads. The lakehouse holds CH0010 and up; no SF=1.
         type: choice
-        options: ["1", "10"]
-        default: "1"
+        options: ["10", "30", "60", "100"]
+        default: "10"
 
 # The shared lakehouse queue, as bench.yml / etl.yml / tpcds.yml: queue, never cancel.
 concurrency:

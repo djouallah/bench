@@ -166,8 +166,10 @@ class StarRocks(Candidate):
         return ["SET CATALOG onelake", "SET query_timeout = 3600"]
 
     def files_variants(self, path: str, sas: str) -> dict[str, str]:
-        # AEMO CSVs: comma-separated, rows of differing width, so only the count is asked for.
-        csv = '"format"="csv", "csv.column_separator"=","'
+        # AEMO CSVs mix record types of different widths ("Schema column count: 120 doesn't match
+        # source value column count: 10" with ","), so read each line as ONE column: a separator
+        # that never occurs. The gate is storage access; parsing AEMO is the ETL's job.
+        csv = '"format"="csv", "csv.column_separator"="|~|"'
         rel = path.split(f"@{ONELAKE_DFS}/", 1)[1]  # <lakehouse>/Files/csv/<name>
         wasbs = f"wasbs://{self.cfg.workspace_id}@{ONELAKE_BLOB}/{rel}"
         return {
