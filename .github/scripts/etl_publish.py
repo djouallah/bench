@@ -35,6 +35,15 @@ from bench.report import leak_check, merge, write_csv
 from bench.store import Run, load_all, write_run
 
 
+# Why Gluten/Velox is barely faster than Spark-OSS here. LEARNING.md has the upstream PRs.
+GLUTEN_NOTE = (
+    "Gluten/Velox: Velox does not read the CSVs. Open-source Gluten has no CSV reader on Spark "
+    "4.x, so plain Spark reads and parses them, and Velox runs only the filter, casts and Parquet "
+    "write after that. Fabric's Native Execution Engine does read CSV natively, with a parser "
+    "Microsoft added that is not in open-source Gluten, so these numbers are not Fabric's."
+)
+
+
 def summarize(run: Run) -> list[dict]:
     """Per-engine load time, attach time, rows and error, fastest first."""
     out = []
@@ -106,6 +115,11 @@ def write_results_md(run: Run, rows: list[dict], table, path: Path) -> None:
             else f"**the {len(counts)} distinct counts above mean one of them does not.**"
         ),
         "",
+        *(
+            [GLUTEN_NOTE, ""]
+            if any(r["engine"] == "pyspark_gluten_iceberg" for r in rows)
+            else []
+        ),
         "## History",
         "",
         f"{table.num_rows:,} timed rows across "
