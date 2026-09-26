@@ -11,10 +11,11 @@ WHAT FILES() NEEDS, each found by a failed CI run (candidate_engine.yml and etl.
   that does not fit loads as NULL: only one-character fields survived and the DUNIT filter
   matched nothing. The declared `schema` (4.1.2+) plus `fill_mismatch_column_with=null` then reads
   the ragged AEMO rows correctly -- the gate matched Python's csv module row for row.
-* ONE FILES() OVER ALL N FILES. The path is a brace glob of exactly the run's file names --
-  `.../Files/csv/{a.CSV,b.CSV,...}`, the same list every other engine gets from
-  bench/etl/data.py -- so it is one scan streaming into one Iceberg sink: one statement, one
-  commit. The folder can hold more files than the run reads, so a bare `*` would not do.
+* ONE FILES() OVER ALL N FILES. `"path"` takes a COMMA-SEPARATED list of paths -- StarRocks
+  splits on the comma before globbing, so a brace glob `{a.CSV,b.CSV}` fails as "Unclosed group"
+  (run 36233301882). The list is exactly the run's file names, the same list every other engine
+  gets from bench/etl/data.py, so it is one scan streaming into one Iceberg sink: one statement,
+  one commit. The folder can hold more files than the run reads, so a bare `*` would not do.
 
 NO `filename` COLUMN -- A STARROCKS LIMITATION, like Sail's. FILES() cannot expose the source path:
 `columns_from_path` only extracts `key=value` folder segments, and `path_column` is an open PR
@@ -38,7 +39,7 @@ from bench.etl.schema import COLUMNS, FILTER, numeric_columns
 
 CSV = '"format"="csv", "csv.column_separator"=",", "csv.enclose"=\'"\', "csv.skip_header"="1"'
 SCHEMA = ", ".join(f"{c} STRING" for c in COLUMNS)
-# Characters that mean something in a Hadoop glob; a file name carrying one would change the set.
+# The list separator and Hadoop glob characters; a file name carrying one would change the set.
 GLOB_CHARS = set("{},*?[]^\\")
 
 
@@ -75,11 +76,11 @@ class StarrocksIceberg:
             return list(cur.fetchall())
 
     def _select(self, files: list[str]) -> str:
-        """The transform over ONE FILES() scan of exactly `files`: a brace glob of their names."""
+        """The transform over ONE FILES() scan of exactly `files`: a comma list of their paths."""
         unsafe = [name for name in files if GLOB_CHARS & set(name)]
         if unsafe:
-            raise ValueError(f"CSV names that would change the glob: {unsafe[:3]}")
-        path = f"{self.cfg.csv_abfss}/{{{','.join(files)}}}"
+            raise ValueError(f"CSV names that would change the path list: {unsafe[:3]}")
+        path = ",".join(f"{self.cfg.csv_abfss}/{name}" for name in files)
         where = " AND ".join(f"{c} = '{v}'" for c, v in FILTER)
         return (
             "SELECT UNIT, DUID, "
