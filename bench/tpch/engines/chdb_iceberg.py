@@ -115,12 +115,13 @@ class ChdbIceberg:
             *SEMANTIC_SETTINGS,
             "SET max_threads = 4",
             "SET max_memory_usage = 10000000000",
-            # THE SETTINGS THAT DECIDE WHETHER SF>=10 FINISHES. Q9 and Q21 build hash tables over
-            # lineitem that do not fit in 16GB. Without grace_hash and the external thresholds
-            # they do not spill, they raise MEMORY_LIMIT_EXCEEDED.
-            "SET max_bytes_before_external_group_by = 5000000000",
-            "SET max_bytes_before_external_sort = 5000000000",
-            "SET join_algorithm = 'grace_hash,hash'",
+            # SPILL IS LEFT TO THE DEFAULTS, which since 25.x spill by themselves:
+            # max_bytes_ratio_before_external_group_by / _sort / _join are all 0.5, and the join
+            # one turns a hash join into a grace hash join only once memory runs short (it needs a
+            # temporary path, which config.xml's <tmp_path> is). This used to force
+            # join_algorithm='grace_hash,hash' and 5 GB absolute thresholds, from before those
+            # defaults existed. Forcing grace hash ran every join through one-bucket grace hash
+            # instead of the default parallel_hash, even the joins that fit in memory.
         ):
             self._session.query(statement)
 
