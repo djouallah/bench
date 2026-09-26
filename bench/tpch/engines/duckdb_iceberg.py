@@ -50,6 +50,7 @@ class DuckDBIceberg:
                 DEFAULT_SCHEMA '{self.cfg.schema}');
 
             USE onelake;
+            SET external_file_cache_remote_block_size = '8MiB';
         """)
         scrub.safe_print(f"  duckdb {self.version} attached to {self.cfg.schema}")
 
