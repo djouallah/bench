@@ -179,6 +179,7 @@ def attach(conn, cfg: Config, token: str) -> None:
         # BackendResourceStat, branch-4.1), so 2 on this 4 vCPU runner, where every other engine
         # is told it has 4 threads. Same rule as theirs, not a thumb on the scale.
         cur.execute("SET pipeline_dop = 4")
+        cur.execute("SET low_cardinality_optimize_on_lake = true")
 
 
 def datacache_metrics(conn) -> str:
