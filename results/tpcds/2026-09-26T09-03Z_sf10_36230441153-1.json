@@ -1,0 +1,832 @@
+{
+  "run_id": "36230441153-1",
+  "run_started_at": "2026-09-26T09:03:55Z",
+  "sf": 10,
+  "run_url": "https://github.com/djouallah/lakehouse_benchmark/actions/runs/36230441153",
+  "git_sha": "d9dc889",
+  "test": "tpcds",
+  "runner": "linux-6.17.0-1022-azure",
+  "cpu": 4,
+  "mem_gb": 15.6,
+  "python": "3.12.14",
+  "schema_version": 1,
+  "engines": {
+    "starrocks_iceberg": {
+      "version": "4.1.4-4a9848e (starrocks/allin1-ubuntu:4.1-latest)",
+      "status": "ok",
+      "rows": [
+        {
+          "run_type": "cold",
+          "phase": "setup",
+          "query": 0,
+          "dur": 23.9567,
+          "rows": null,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 1,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "ProgrammingError: (1064, 'StarRocks planner use long time 3952 ms in logical phase, This probably because 1. FE Full GC, current query allocated=174.6 MiB, optimizerContextInUse=3.4 MiB2. Hive external table fetch metadata took a long time, 3. The SQL is very complex. You could 1. adjust FE JVM config, 2. try query again, 3. enlarge new_planner_optimize_timeout session variable')"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 2,
+          "dur": 12.0996,
+          "rows": 2513,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 3,
+          "dur": 8.1414,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 4,
+          "dur": 15.4389,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 5,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "ProgrammingError: (1064, 'StarRocks planner use long time 3433 ms in logical phase, This probably because 1. FE Full GC, current query allocated=55.4 MiB, optimizerContextInUse=3.5 MiB2. Hive external table fetch metadata took a long time, 3. The SQL is very complex. You could 1. adjust FE JVM config, 2. try query again, 3. enlarge new_planner_optimize_timeout session variable')"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 6,
+          "dur": 8.9495,
+          "rows": 51,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 7,
+          "dur": 8.809,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 8,
+          "dur": 5.8194,
+          "rows": 9,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 9,
+          "dur": 14.8146,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 10,
+          "dur": 2.4176,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 11,
+          "dur": 4.3088,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 12,
+          "dur": 2.7112,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 13,
+          "dur": 2.0565,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 14,
+          "dur": 7.8211,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 15,
+          "dur": 0.6307,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 16,
+          "dur": 7.6202,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 17,
+          "dur": 3.239,
+          "rows": 0,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 18,
+          "dur": 3.686,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 19,
+          "dur": 0.7639,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 20,
+          "dur": 1.5336,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 21,
+          "dur": 4.8144,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 22,
+          "dur": 11.3187,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 23,
+          "dur": 15.3164,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 24,
+          "dur": 2.5244,
+          "rows": 7,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 25,
+          "dur": 2.1305,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 26,
+          "dur": 2.3444,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 27,
+          "dur": 0.9476,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 28,
+          "dur": 2.5698,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 29,
+          "dur": 1.3919,
+          "rows": 3,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 30,
+          "dur": 1.2329,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 31,
+          "dur": 11.2054,
+          "rows": 288,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 32,
+          "dur": 1.1489,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 33,
+          "dur": 1.6235,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 34,
+          "dur": 0.6854,
+          "rows": 1546,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 35,
+          "dur": 1.0405,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 36,
+          "dur": 0.8555,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 37,
+          "dur": 0.4082,
+          "rows": 2,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 38,
+          "dur": 1.015,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 39,
+          "dur": 2.5512,
+          "rows": 2433,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 40,
+          "dur": 1.3903,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 41,
+          "dur": 0.1405,
+          "rows": 41,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 42,
+          "dur": 0.3867,
+          "rows": 11,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 43,
+          "dur": 0.3467,
+          "rows": 17,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 44,
+          "dur": 1.0868,
+          "rows": 10,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 45,
+          "dur": 1.3941,
+          "rows": 49,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 46,
+          "dur": 1.0084,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 47,
+          "dur": 1.7451,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 48,
+          "dur": 0.9941,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 49,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "ProgrammingError: (1064, \"Getting analyzing error. Detail message: Column '`catalog`.`return_rank`' cannot be resolved.\")"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 50,
+          "dur": 1.4586,
+          "rows": 51,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 51,
+          "dur": 3.3304,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 52,
+          "dur": 0.3247,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 53,
+          "dur": 0.9493,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 54,
+          "dur": 0.8006,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 55,
+          "dur": 0.4223,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 56,
+          "dur": 0.8343,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 57,
+          "dur": 3.607,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 58,
+          "dur": 0.75,
+          "rows": 38,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 59,
+          "dur": 1.3064,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 60,
+          "dur": 1.0361,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 61,
+          "dur": 2.9302,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 62,
+          "dur": 3.7284,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 63,
+          "dur": 0.7321,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 64,
+          "dur": 4.9479,
+          "rows": 33,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 65,
+          "dur": 2.3573,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 66,
+          "dur": 3.6128,
+          "rows": 10,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 67,
+          "dur": 7.2905,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 68,
+          "dur": 5.6152,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 69,
+          "dur": 0.6675,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 70,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "ProgrammingError: (1064, 'Getting analyzing error from line 33, column 9 to line 35, column 9. Detail message: ORDER BY clause cannot contain grouping.')"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 71,
+          "dur": 1.223,
+          "rows": 9669,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 72,
+          "dur": 6.2286,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 73,
+          "dur": 0.4604,
+          "rows": 16,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 74,
+          "dur": 1.6682,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 75,
+          "dur": 2.2216,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 76,
+          "dur": 2.5414,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 77,
+          "dur": 2.8655,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 78,
+          "dur": 4.4001,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 79,
+          "dur": 0.8155,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 80,
+          "dur": 2.0295,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 81,
+          "dur": 0.8785,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 82,
+          "dur": 0.7488,
+          "rows": 6,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 83,
+          "dur": 0.2916,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 84,
+          "dur": 1.8596,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 85,
+          "dur": 1.8126,
+          "rows": 19,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 86,
+          "dur": null,
+          "rows": null,
+          "status": "error",
+          "error": "ProgrammingError: (1064, 'Getting analyzing error from line 19, column 9 to line 21, column 9. Detail message: ORDER BY clause cannot contain grouping.')"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 87,
+          "dur": 1.0368,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 88,
+          "dur": 2.4291,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 89,
+          "dur": 0.5475,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 90,
+          "dur": 0.2432,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 91,
+          "dur": 1.503,
+          "rows": 16,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 92,
+          "dur": 0.2337,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 93,
+          "dur": 1.0165,
+          "rows": 100,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 94,
+          "dur": 2.9236,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 95,
+          "dur": 2.9181,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 96,
+          "dur": 0.4251,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 97,
+          "dur": 1.9358,
+          "rows": 1,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 98,
+          "dur": 0.6557,
+          "rows": 15080,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "query",
+          "query": 99,
+          "dur": 0.8225,
+          "rows": 100,
+          "status": "ok"
+        }
+      ],
+      "host": {
+        "runner": "linux-6.17.0-1022-azure",
+        "cpu": 4,
+        "mem_gb": 15.6,
+        "python": "3.12.14"
+      }
+    }
+  }
+}
