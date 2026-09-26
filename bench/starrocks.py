@@ -37,6 +37,8 @@ IMAGE = os.environ.get("STARROCKS_IMAGE", "starrocks/allin1-ubuntu:4.1-latest")
 CONTAINER = "starrocks"
 CATALOG = "onelake"
 PORT = 9030
+# The container's memory ceiling, of the runner's 15.6 GB (see start()).
+CONTAINER_MEMORY = "15g"
 
 ASSERTION_DIR = Path(os.environ.get("RUNNER_TEMP", "/tmp")) / "starrocks-oidc"
 ASSERTION_IN_CONTAINER = "/var/run/starrocks-oidc/assertion"
@@ -104,6 +106,17 @@ def start(timeout_s: int = 300, mounts: dict[Path, str] | None = None) -> None:
                 "--name",
                 CONTAINER,
                 *[arg for host, inside in volumes.items() for arg in ("-v", f"{host}:{inside}:ro")],
+                # A CEILING UNDER THE RUNNER'S RAM. Uncapped, the BE takes mem_limit 90% of the
+                # host and the FE's JVM may grow to its -Xmx8g on top: 16 GB overcommitted. The
+                # 1000-file ETL (run 36230293425) ran 20 minutes and then took the RUNNER down --
+                # exit 143, no StarRocks error, no artifact. Inside a cgroup the kernel kills a
+                # process in the container instead, the statement fails with a reason and the job
+                # lives. The BE sizes itself from the cgroup, 90% of 15 GB: 13.5 GB, where it had
+                # 13.6 uncapped, so the query benchmark keeps the memory it had.
+                "--memory",
+                CONTAINER_MEMORY,
+                "--memory-swap",
+                CONTAINER_MEMORY,
                 "-p",
                 f"127.0.0.1:{PORT}:9030",
                 "-p",
@@ -192,6 +205,39 @@ def datacache_metrics(conn) -> str:
         names = [d[0] for d in cur.description]
         row = cur.fetchone()
     return str(row[names.index("DataCacheMetrics")]) if row else "no back end"
+
+
+def watch_resources(interval_s: int = 30) -> None:
+    """Log container, host and per-process memory, and free disk, every `interval_s` seconds.
+
+    For the ETL, whose one statement runs for minutes: when memory or disk runs out, the last
+    lines before the failure say which process grew -- FE (java) or BE (starrocks_be) -- and
+    whether it was RAM or spill. A daemon thread; it dies with the process.
+    """
+
+    def sample() -> str:
+        def out(*cmd: str) -> str:
+            res = subprocess.run(cmd, capture_output=True, text=True, check=False)
+            return " ".join(res.stdout.split())
+
+        container = out("docker", "stats", "--no-stream", "--format", "{{.MemUsage}}", CONTAINER)
+        host = out("sh", "-c", 'free -m | awk \'NR==2{print $3"/"$2"MB"}\'')
+        disk = out("sh", "-c", "df -h / --output=avail | tail -1")
+        procs = out(
+            "docker", "exec", CONTAINER, "sh", "-c",
+            "ps -eo rss=,comm= | sort -rn | head -3 | awk '{printf \"%s=%dMB \", $2, $1/1024}'",
+        )  # fmt: skip
+        return f"container {container} | host {host} | disk free {disk} | {procs}"
+
+    def loop() -> None:
+        while True:
+            try:
+                scrub.safe_print(f"    [resources] {sample()}")
+            except Exception as exc:  # noqa: BLE001 - a readout must never fail the run
+                scrub.safe_print(f"    [resources] unavailable: {exc}")
+            time.sleep(interval_s)
+
+    threading.Thread(target=loop, name="starrocks-watch", daemon=True).start()
 
 
 def needs_refresh(expires: float) -> bool:

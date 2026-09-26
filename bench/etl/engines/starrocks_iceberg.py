@@ -72,6 +72,7 @@ class StarrocksIceberg:
         # (fe SessionVariable, branch-4.1), so the Iceberg sink ran on 1 of the runner's 4 cores.
         self._sql("SET pipeline_sink_dop = 4")
         scrub.safe_print(f"  starrocks {self._version} attached")
+        starrocks.watch_resources()
 
     def _sql(self, statement: str) -> list[tuple]:
         with self._conn.cursor() as cur:
