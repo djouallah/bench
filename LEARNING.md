@@ -393,6 +393,12 @@ StarRocks limitation until the error was read closely.
   even under the phased scheduler. At 1000 files the BE grew ~1.5 GB every 30 s to 11.9 GB and
   was killed (run 36231764513). The uncapped run before it took the whole runner down (exit 143,
   run 36230293425), which is why the container is now capped at 15 GB.
+- **TPC-DS SF=10: 94/99 at first** (run 36230441153). Q1 and Q5 hit the 3 s planning cap
+  (below, now lifted). The other three are StarRocks bugs, left as failures because the SQL
+  stays as written: `grouping()` in ORDER BY is rejected, which fails Q70 and Q86
+  ([StarRocks#79806](https://github.com/StarRocks/starrocks/issues/79806)), and a derived table
+  aliased `catalog` can't be referenced, which fails Q49
+  ([StarRocks#79807](https://github.com/StarRocks/starrocks/issues/79807)).
 - **Three defaults were costing it.** Spill is off (`enable_spill`), which lost TPC-H SF=100
   Q18/Q21. Parallelism is half the cores (`pipeline_dop` 0 means 2 on 4 vCPU; the Iceberg sink
   gets 1). Planning is capped at 3 s (`new_planner_optimize_timeout`), and the first query on a
