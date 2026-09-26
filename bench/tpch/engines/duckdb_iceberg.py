@@ -50,6 +50,7 @@ class DuckDBIceberg:
                 DEFAULT_SCHEMA '{self.cfg.schema}');
 
             USE onelake;
+            SET parquet_metadata_cache = true;
         """)
         scrub.safe_print(f"  duckdb {self.version} attached to {self.cfg.schema}")
 
