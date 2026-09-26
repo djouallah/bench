@@ -9,4 +9,5 @@ purpose.txt
 smoke/
 tpch-local/
 tpcds-local/
+presentation/
 *.ipynb
