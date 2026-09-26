@@ -32,8 +32,12 @@ from bench.etl.schema import COLUMNS, FILTER, numeric_columns
 
 CSV = '"format"="csv", "csv.column_separator"=",", "csv.enclose"=\'"\', "csv.skip_header"="1"'
 SCHEMA = ", ".join(f"{c} STRING" for c in COLUMNS)
-# Files per statement. 10 in one statement ran fine and 1000 exhausted the 12.2 GB query pool.
+# Files per statement. 10 in one statement ran fine; 1000, and then 100, exhausted the 12.2 GB
+# query pool (runs 36224282324, 36224617533) with the 1 GB default output file below.
 BATCH_FILES = 100
+# connector_sink_target_max_file_size: 128 MB rather than StarRocks' 1 GB default, so the writers'
+# buffers stay bounded however many rows a batch carries.
+SINK_FILE_BYTES = 128 * 1024 * 1024
 
 
 class StarrocksIceberg:
@@ -57,6 +61,9 @@ class StarrocksIceberg:
         self._conn = starrocks.connect()
         self._version = f"{starrocks.version(self._conn)} ({starrocks.IMAGE})"
         starrocks.attach(self._conn, self.cfg, auth.onelake_token())
+        # Each parallel Iceberg writer buffers up to one output file; the default target is 1 GB,
+        # which is what a batch that fills files runs out of query memory on.
+        self._sql(f"SET connector_sink_target_max_file_size = {SINK_FILE_BYTES}")
         scrub.safe_print(f"  starrocks {self._version} attached")
 
     def _sql(self, statement: str) -> list[tuple]:
@@ -100,6 +107,8 @@ class StarrocksIceberg:
                 )
             else:
                 self._sql(f"INSERT INTO {self.qualified} {select}")
+            done = min(start + BATCH_FILES, len(files))
+            scrub.safe_print(f"    {done}/{len(files)} files committed")
 
     def row_count(self) -> int:
         return int(self._sql(f"SELECT count(*) FROM {self.qualified}")[0][0])
