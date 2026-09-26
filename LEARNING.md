@@ -292,6 +292,8 @@ Largest scale each engine completes, cold, every statement answered:
   - The warm pass then lost 42 statements to `400 Bad Request` once the token baked into its
     environment expired.
   - It was dropped from TPC-DS and kept in TPC-H and the ETL.
+- **Its ETL table has no `filename` column.** The DataFrame transform it shares with Spark
+  (`_spark_df.py`) leaves it out because Sail can't provide it.
 - **Late materialization made it slower.** `SAIL_PARQUET__PUSHDOWN_FILTERS` should help Q6, Q12
   and Q19 most, and they came out the worst of four runs (5.9 s, 6.3 s, 7.2 s). Over object
   storage the row-filter pass costs extra range requests.
@@ -383,3 +385,15 @@ StarRocks limitation until the error was read closely.
 - **OneLake wants the table location.** CTAS works with
   `PROPERTIES ("location"="<base>/Tables/<ns>/<table>")`, as pyiceberg and Spark also have to pass.
 - **The lakehouse has no SF=1 TPC-H** (CH0010 and up); the first run failed on that alone.
+- **The ETL is one `FILES()` scan over all N files, with no `filename` column.** `FILES()` can't
+  expose the source path: `columns_from_path` only reads `key=value` folders, and `path_column`
+  is an open PR ([StarRocks#66975](https://github.com/StarRocks/starrocks/pull/66975)). The first
+  version gave each file its own `FILES()` scan with the name as a literal, UNION ALL'd. That
+  doesn't scale: every branch is a plan fragment holding its buffers until the statement ends,
+  even under the phased scheduler. At 1000 files the BE grew ~1.5 GB every 30 s to 11.9 GB and
+  was killed (run 36231764513). The uncapped run before it took the whole runner down (exit 143,
+  run 36230293425), which is why the container is now capped at 15 GB.
+- **Three defaults were costing it.** Spill is off (`enable_spill`), which lost TPC-H SF=100
+  Q18/Q21. Parallelism is half the cores (`pipeline_dop` 0 means 2 on 4 vCPU; the Iceberg sink
+  gets 1). Planning is capped at 3 s (`new_planner_optimize_timeout`), and the first query on a
+  table loads its Iceberg metadata inside that window: TPC-DS lost Q1 and Q5.
