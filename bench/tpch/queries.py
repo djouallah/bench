@@ -63,6 +63,9 @@ IDENT_STYLE = {
     # Spark with a native executor underneath; the parser is still Spark's.
     "pyspark_gluten_iceberg": "dotted",
     "lakesail_iceberg": "dotted",
+    # A candidate, not a bench engine (candidate_engine.yml): catalog.database.table, and
+    # `SET CATALOG onelake` makes `CH0001.lineitem` resolve.
+    "starrocks": "dotted",
 }
 
 

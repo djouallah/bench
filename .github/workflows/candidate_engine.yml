@@ -1,0 +1,82 @@
+name: candidate engine
+
+# Can a new engine join the bench? It must pass all three, against the real lakehouse:
+#
+#   1. SQL          the 22 TPC-H statements, as SQL
+#   2. read Azure   the OneLake Iceberg tables through the REST catalog, AND raw files in the
+#                   lakehouse Files section (the ETL's landed CSVs)
+#   3. write        an Iceberg table created and filled through the same catalog
+#
+# .github/scripts/candidate_engine.py starts the candidate's container itself, so this file stays
+# engine-agnostic: a new candidate is a class in that script and an option below.
+
+on:
+  workflow_dispatch:
+    inputs:
+      candidate:
+        description: Engine to try.
+        type: choice
+        options: ["starrocks"]
+        default: starrocks
+      image:
+        description: Container image. Empty uses the candidate's default.
+        type: string
+        default: ""
+      sf:
+        description: TPC-H scale the SQL gate reads (the namespace must already exist).
+        type: choice
+        options: ["1", "10"]
+        default: "1"
+
+# The shared lakehouse queue, as bench.yml / etl.yml / tpcds.yml: queue, never cancel.
+concurrency:
+  group: onelake
+  cancel-in-progress: false
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      PYTHONPATH: ${{ github.workspace }}
+      PYTHONUNBUFFERED: "1"
+      BENCH_SUITE: tpch
+      TPCH_SF: ${{ inputs.sf }}
+      CANDIDATE_IMAGE: ${{ inputs.image }}
+      FABRIC_WORKSPACE_ID: ${{ secrets.FABRIC_WORKSPACE_ID }}
+      FABRIC_LAKEHOUSE_ID: ${{ secrets.FABRIC_LAKEHOUSE_ID }}
+      AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: |
+            requirements/catalog.txt
+            requirements/candidate.txt
+      # catalog.txt: pyiceberg (the write gate's independent read-back) and the ADLS client
+      # (listing Files/csv, minting the SAS).
+      - run: pip install -r requirements/catalog.txt -r requirements/candidate.txt
+
+      # OIDC only. No client secret exists on this app registration.
+      - uses: azure/login@v3
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          allow-no-subscriptions: true
+
+      - run: python .github/scripts/candidate_engine.py "${{ inputs.candidate }}"
+
+      # The server may log statement text, and the catalog DDL carries the bearer. Python mints
+      # it, so ::add-mask:: cannot cover it -- redact JWT and SAS shapes.
+      - name: Candidate server log
+        if: always()
+        run: |
+          docker logs candidate 2>&1 | tail -n 300 \
+            | sed -E 's/eyJ[A-Za-z0-9_-]{8,}\.[A-Za-z0-9_-]{8,}\.[A-Za-z0-9_-]*/***REDACTED***/g; s/sig=[A-Za-z0-9%+\/=]+/sig=***REDACTED***/g'

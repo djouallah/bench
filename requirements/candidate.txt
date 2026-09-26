@@ -1,0 +1,2 @@
+# candidate_engine.yml, on top of catalog.txt. StarRocks speaks the MySQL protocol.
+pymysql>=1.1
