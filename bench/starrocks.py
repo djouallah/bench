@@ -183,6 +183,11 @@ def attach(conn, cfg: Config, token: str) -> None:
         cur.execute(f"SET CATALOG {CATALOG}")
         # No per-statement ceiling: the job's own timeout is the bound, as for every engine.
         cur.execute("SET query_timeout = 86400")
+        # NOR ON PLANNING: `new_planner_optimize_timeout` is 3000 ms by default, and the first
+        # statement to touch a table loads its Iceberg metadata over REST inside that window.
+        # TPC-DS SF=10 lost Q1 and Q5 to "StarRocks planner use long time 3952 ms in logical
+        # phase" (run 36230441153): the metadata fetch, not the plan. Same bound as the query's.
+        cur.execute("SET new_planner_optimize_timeout = 86400000")
         # SPILL IS OFF BY DEFAULT in StarRocks (`enable_spill`, "Default: false"): an aggregation,
         # join or sort that outgrows memory fails instead of spilling. TPC-H SF=100 lost Q18 and
         # Q21 to "Memory of process exceed limit" that way (run 36227016523), while DuckDB and
