@@ -38,4 +38,8 @@ def get_engine(name: str, cfg: EtlConfig):
         from bench.etl.engines.pyspark_iceberg import PysparkIceberg
 
         return PysparkIceberg(cfg)
+    if name == "pyspark_gluten_iceberg":
+        from bench.etl.engines.pyspark_gluten_iceberg import PysparkGlutenIceberg
+
+        return PysparkGlutenIceberg(cfg)
     raise ValueError(f"unknown engine {name!r}; expected one of {list(ETL_ENGINES)}")

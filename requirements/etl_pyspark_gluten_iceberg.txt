@@ -1,0 +1,7 @@
+# pyspark_gluten_iceberg.txt, unchanged: it already carries azure-storage-file-datalake (the SAS
+# there, the Files/csv listing here). pyspark stays at the 4.1.1 the nightly bundle is tested
+# against; bench/tpch/engines/pyspark_gluten_iceberg.py says why.
+azure-identity>=1.19
+azure-storage-file-datalake>=12.20
+psutil>=6
+pyspark==4.1.1

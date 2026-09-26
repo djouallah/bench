@@ -94,7 +94,7 @@ def test_spark_restarts_on_fresh_credentials_under_the_margin(monkeypatch, cls):
 
 def test_gluten_watches_whichever_of_bearer_and_sas_expires_first(monkeypatch):
     engine = gluten.PysparkGlutenIceberg(cfg=SimpleNamespace(workspace_id="w", lakehouse_id="l"))
-    monkeypatch.setattr(gluten, "onelake_sas", lambda w, lh: ("sas", 1_000.0))
+    monkeypatch.setattr(gluten, "onelake_sas", lambda w, lh, write=False: ("sas", 1_000.0))
     engine._expires = 5_000.0  # the bearer, set by the base setup just before
     engine._storage_conf({}, "onelake.dfs.fabric.microsoft.com")
     assert engine._expires == 1_000.0

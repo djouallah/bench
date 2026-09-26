@@ -28,7 +28,7 @@ on:
       engines:
         description: Comma-separated engines to run.
         type: string
-        default: duckdb_iceberg,chdb_iceberg,polars_iceberg,daft_iceberg,lakesail_iceberg,pyspark_iceberg
+        default: duckdb_iceberg,chdb_iceberg,polars_iceberg,daft_iceberg,lakesail_iceberg,pyspark_iceberg,pyspark_gluten_iceberg
       publish:
         description: Commit results and charts. Off leaves the artifacts and touches nothing.
         type: boolean
@@ -80,7 +80,7 @@ jobs:
         # The matrix needs a JSON array; the input is a human-friendly CSV. `started` is stamped
         # once here so every artifact in the run shares one timestamp.
         run: |
-          ENGINES=$(printf '%s' "${{ inputs.engines || 'duckdb_iceberg,chdb_iceberg,polars_iceberg,daft_iceberg,lakesail_iceberg,pyspark_iceberg' }}" \
+          ENGINES=$(printf '%s' "${{ inputs.engines || 'duckdb_iceberg,chdb_iceberg,polars_iceberg,daft_iceberg,lakesail_iceberg,pyspark_iceberg,pyspark_gluten_iceberg' }}" \
             | jq -Rc 'split(",") | map(sub("^\\s+";"") | sub("\\s+$";"")) | map(select(length > 0))')
           echo "engines=$ENGINES" >> "$GITHUB_OUTPUT"
           echo "started=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_OUTPUT"
@@ -113,6 +113,7 @@ jobs:
       || matrix.engine == 'daft_iceberg' && '💠 Daft'
       || matrix.engine == 'lakesail_iceberg' && '⛵ LakeSail'
       || matrix.engine == 'pyspark_iceberg' && '✨ Spark-OSS'
+      || matrix.engine == 'pyspark_gluten_iceberg' && '🚀 Gluten/Velox'
       || matrix.engine }}
     runs-on: ubuntu-latest
     # The Entra token is baked into DuckDB's ATTACH, chDB's url() header, Sail's env var and the

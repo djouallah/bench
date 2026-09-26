@@ -21,8 +21,8 @@ from dataclasses import dataclass
 from bench.config import ONELAKE_BLOB, Config, _env_int
 from bench.tpch.config import estimated_gib as _tpch_estimated_gib
 
-# The notebook's engines plus Spark, minus DataFusion (not a public-facing engine the way the
-# others are; dropped). Same identifiers as bench.tpch.config.ENGINES, so bench/charts.py's
+# The notebook's engines plus Spark and Gluten/Velox, minus DataFusion (not a public-facing
+# engine the way the others are; dropped). Same identifiers as bench.tpch.config.ENGINES, so bench/charts.py's
 # labels and colours apply to both benchmarks.
 ETL_ENGINES = (
     "duckdb_iceberg",
@@ -31,6 +31,7 @@ ETL_ENGINES = (
     "daft_iceberg",
     "lakesail_iceberg",
     "pyspark_iceberg",
+    "pyspark_gluten_iceberg",
 )
 
 # The Iceberg table each engine writes inside namespace T{n}. The notebook's names, kept.
@@ -41,6 +42,7 @@ TABLE = {
     "daft_iceberg": "daft",
     "lakesail_iceberg": "sail",
     "pyspark_iceberg": "spark",
+    "pyspark_gluten_iceberg": "gluten",
 }
 
 # Where the landed CSVs live inside the lakehouse. The notebook's `/lakehouse/default/Files/csv/`.

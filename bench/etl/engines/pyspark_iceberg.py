@@ -57,9 +57,12 @@ MAX_PARTITION_BYTES = 1024 * 1024 * 1024
 class PysparkIceberg:
     name = "pyspark_iceberg"
 
+    # The TPC-H engine whose setup() builds the session. Gluten swaps in its own.
+    _session_engine = _TpchSpark
+
     def __init__(self, cfg: EtlConfig):
         self.cfg = cfg
-        self._inner = _TpchSpark(cfg)
+        self._inner = self._session_engine(cfg)
         self._spark = None
 
     @property

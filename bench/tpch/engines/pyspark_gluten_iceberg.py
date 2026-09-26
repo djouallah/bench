@@ -117,8 +117,11 @@ def gluten_conf() -> dict[str, str]:
 SAS_LIFETIME = dt.timedelta(hours=1)
 
 
-def onelake_sas(workspace_id: str, lakehouse_id: str) -> tuple[str, float]:
+def onelake_sas(workspace_id: str, lakehouse_id: str, write: bool = False) -> tuple[str, float]:
     """A read+list user delegation SAS on the lakehouse directory, signed via Entra.
+
+    `write` adds create, write and delete, for the ETL: there Spark writes the data files and
+    manifests over hadoop-azure with this same token, and DROP ... PURGE deletes them.
 
     Returned with its expiry as epoch seconds -- about 55 minutes out, since the start is
     backdated five for clock skew and the whole window is capped at SAS_LIFETIME.
@@ -140,7 +143,9 @@ def onelake_sas(workspace_id: str, lakehouse_id: str) -> tuple[str, float]:
         file_system_name=workspace_id,
         directory_name=lakehouse_id,
         credential=key,
-        permission=DirectorySasPermissions(read=True, list=True),
+        permission=DirectorySasPermissions(
+            read=True, list=True, create=write, write=write, delete=write
+        ),
         expiry=expiry,
         start=start,
     )
@@ -240,6 +245,9 @@ def cache_conf() -> dict[str, str]:
 class PysparkGlutenIceberg(PysparkIceberg):
     name = "pyspark_gluten_iceberg"
 
+    # The TPC-H and TPC-DS runs only read; the ETL's subclass writes.
+    sas_write = False
+
     def _extra_config(self) -> dict[str, str]:
         link_ca_bundle()
         conf = gluten_conf() | cache_conf()
@@ -247,7 +255,9 @@ class PysparkGlutenIceberg(PysparkIceberg):
         return conf
 
     def _storage_conf(self, abfs: dict[str, str], account: str) -> dict[str, str]:
-        sas, sas_expiry = onelake_sas(self.cfg.workspace_id, self.cfg.lakehouse_id)
+        sas, sas_expiry = onelake_sas(
+            self.cfg.workspace_id, self.cfg.lakehouse_id, write=self.sas_write
+        )
         # The base setup has already set _expires from the catalog bearer; the session is good
         # until the first of the two runs out, and the base refresh() restarts it then.
         self._expires = min(self._expires, sas_expiry)
