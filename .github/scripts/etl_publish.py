@@ -27,14 +27,14 @@ import os
 import sys
 from pathlib import Path
 
-from bench.charts import LABEL
+from bench.charts import LABEL, RECENT_RUNS
 from bench.etl import charts
 from bench.etl.config import DEFAULT_FILES, ETL_ENGINES, HEADLINE_FILES
 from bench.etl.runner import load_row
 from bench.report import leak_check, merge, write_csv
 from bench.store import Run, load_all, write_run
 
-# Why Gluten/Velox is barely faster than Spark-OSS here. LEARNING.md has the upstream PRs.
+# Printed under the table whenever Gluten is on it. LEARNING.md has the upstream PRs.
 GLUTEN_NOTE = (
     "Gluten/Velox: Velox does not read the CSVs. Open-source Gluten has no CSV reader on Spark "
     "4.x, so plain Spark reads and parses them, and Velox runs only the filter, casts and Parquet "
@@ -72,17 +72,20 @@ def summarize(run: Run) -> list[dict]:
 
 
 def _table(rows: list[dict]) -> list[str]:
+    """The step summary's table (this run) and RESULTS.md's (means, with a Runs column)."""
+    runs = any("runs" in row for row in rows)
     lines = [
-        "| Engine | Version | Load | Attach | Rows | Error |",
-        "|---|---|---:|---:|---:|---|",
+        "| Engine | Version | Load | Attach |" + (" Runs |" if runs else "") + " Rows | Error |",
+        "|---|---|---:|---:|" + ("---:|" if runs else "") + "---:|---|",
     ]
     for row in rows:
         load = f"{row['load']:,.1f}s" if row["load"] is not None else "—"
         setup = f"{row['setup']:,.1f}s" if row["setup"] is not None else "—"
         count = f"{row['rows']:,}" if row["rows"] is not None else "—"
         error = (row["error"] or "").replace("|", "\\|").replace("\n", " ")[:300]
+        n = f" {row['runs']} |" if runs else ""
         lines.append(
-            f"| {row['label']} | `{row['version']}` | {load} | {setup} | {count} | "
+            f"| {row['label']} | `{row['version']}` | {load} | {setup} |{n} {count} | "
             f"{'`' + error + '`' if error else '—'} |"
         )
     return lines
@@ -100,13 +103,15 @@ def write_results_md(run: Run, rows: list[dict], table, path: Path) -> None:
         f"Last run: `{run.run_started_at}` · commit `{run.git_sha}`"
         + (f" · [Actions run]({run.run_url})" if run.run_url else ""),
         "",
-        "## Latest run",
+        "## Per engine",
         "",
         *_table(rows),
         "",
-        "Load = drop and create the table, read the CSVs, transform, write, commit. Attach = "
-        "session start and catalog attach, timed separately and excluded from Load. Rows is the "
-        "count read back from the table afterwards; every engine applies the same filter, so "
+        f"Each engine is the mean of its own last {RECENT_RUNS} runs at this file count, or of "
+        "as many as it has (Runs). Load = drop and create the table, read the CSVs, transform, "
+        "write, commit. Attach = session start and catalog attach, timed separately and "
+        "excluded from Load. Rows is the count read back from the table after the latest run; "
+        "every engine applies the same filter, so "
         + (
             "they agree."
             if len(counts) <= 1
@@ -180,7 +185,9 @@ def main() -> int:
         )
         for path in charts.render_all(table, files, docs / "etl" / "charts", subtitle):
             print(f"wrote {path}")
-        write_results_md(run, rows, table, docs / "etl" / "RESULTS.md")
+        write_results_md(
+            run, charts.recent_summary(table, files), table, docs / "etl" / "RESULTS.md"
+        )
     else:
         print(
             f"::notice::FILES={files} is not the headline count ({HEADLINE_FILES}): the run and "

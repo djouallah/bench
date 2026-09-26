@@ -16,29 +16,87 @@ from pathlib import Path
 
 import matplotlib.pyplot as plt
 
-from bench.charts import LABEL, RECENT_RUNS, THEMES, _legend, _runs_note, _save, _style
+from bench.charts import LABEL, RECENT_RUNS, THEMES, _legend, _save, _style
 from bench.etl.config import ETL_ENGINES
 
 
 def _window(con, sf: int) -> int:
+    """`recent`: each engine's own last RECENT_RUNS runs at `sf`, however few it has.
+
+    PER ENGINE, not the last N runs overall. A run of one engine must not push every other
+    engine's results out of the window, so an engine run on its own still shows beside the rest,
+    and a new engine with a single run shows that run. Returns the most runs any engine has.
+    """
     con.execute(
         f"""
         CREATE OR REPLACE TEMP VIEW recent AS
-        SELECT * FROM raw
-        WHERE sf = {sf} AND test = 'etl' AND run_id IN (
-            SELECT run_id FROM raw
-            WHERE sf = {sf} AND test = 'etl'
-            GROUP BY run_id
-            ORDER BY max(run_started_at) DESC
-            LIMIT {RECENT_RUNS}
-        )
+        SELECT raw.* FROM raw
+        JOIN (
+            SELECT run_id, engine FROM (
+                SELECT run_id, engine, row_number() OVER (
+                    PARTITION BY engine ORDER BY max(run_started_at) DESC
+                ) AS rn
+                FROM raw
+                WHERE sf = {sf} AND test = 'etl'
+                GROUP BY run_id, engine
+            )
+            WHERE rn <= {RECENT_RUNS}
+        ) AS kept USING (run_id, engine)
+        WHERE raw.sf = {sf} AND raw.test = 'etl'
         """
     )
-    return con.execute("SELECT count(DISTINCT run_id) FROM recent").fetchone()[0]
+    return con.execute(
+        "SELECT coalesce(max(n), 0) FROM (SELECT count(DISTINCT run_id) AS n FROM recent "
+        "GROUP BY engine)"
+    ).fetchone()[0]
+
+
+def recent_summary(table, sf: int) -> list[dict]:
+    """One row per engine over its `recent` window, fastest first, for docs/etl/RESULTS.md.
+
+    Load and Attach are means over the window, like the chart. Version and Rows are the latest
+    run's. Error shows only when the engine has no successful load in the window: an old failure
+    beside a working mean would read as a current one.
+    """
+    import duckdb
+
+    con = duckdb.connect()
+    con.register("raw", table)
+    _window(con, sf)
+    rows = con.execute(
+        """
+        SELECT
+            engine,
+            arg_max(engine_version, run_started_at),
+            avg(dur) FILTER (WHERE phase = 'load' AND status = 'ok'),
+            avg(dur) FILTER (WHERE phase = 'setup' AND status = 'ok'),
+            arg_max(rows, run_started_at) FILTER (WHERE phase = 'load' AND status = 'ok'),
+            count(DISTINCT run_id),
+            arg_max(error, run_started_at) FILTER (WHERE status = 'error')
+        FROM recent
+        GROUP BY engine
+        """
+    ).fetchall()
+    con.close()
+    out = [
+        {
+            "engine": engine,
+            "label": LABEL[engine],
+            "version": version,
+            "load": load,
+            "setup": setup,
+            "rows": count,
+            "runs": runs,
+            "error": error if load is None else None,
+        }
+        for engine, version, load, setup, count, runs, error in rows
+        if engine in LABEL
+    ]
+    return sorted(out, key=lambda r: r["load"] if r["load"] is not None else float("inf"))
 
 
 def totals(con, sf: int, out_dir: Path, subtitle: str) -> list[Path]:
-    """Horizontal bars: mean load seconds per engine over the recent window, fastest at the top.
+    """Horizontal bars: mean load seconds per engine over its own recent runs, fastest on top.
 
     An engine whose load failed in every recent run is drawn as an `x` at zero rather than left
     out: a missing bar and a near-zero bar look the same, and "failed" is the opposite of "fast".
@@ -166,8 +224,9 @@ def render_all(table, sf: int, out_dir: str | Path, subtitle: str) -> list[Path]
     con.register("raw", table)
     out_dir = Path(out_dir)
     n = _window(con, sf)
+    note = "1 run" if n == 1 else f"mean of each engine's last {RECENT_RUNS} runs"
     paths: list[Path] = []
-    paths += totals(con, sf, out_dir, f"{subtitle} · {_runs_note(n)}")
+    paths += totals(con, sf, out_dir, f"{subtitle} · {note}")
     paths += trend(con, sf, out_dir, subtitle)
     con.close()
     return paths
