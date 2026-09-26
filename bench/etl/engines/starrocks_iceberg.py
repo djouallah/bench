@@ -1,4 +1,4 @@
-"""StarRocks: read the CSVs with FILES(), write the Iceberg table with one CTAS, in its container.
+"""StarRocks: read the CSVs with FILES(), write the Iceberg table with a CTAS plus INSERTs.
 
 The container, the catalog and both credentials are bench/starrocks.py, set up exactly as for the
 query benchmark. The statement is DuckDB's (engines/duckdb_iceberg.py) in StarRocks' dialect: the
@@ -13,8 +13,12 @@ TWO THINGS FILES() NEEDS, each found by a failed CI run (candidate_engine.yml, 2
   the ragged AEMO rows correctly -- the gate matched Python's csv module row for row.
 * ONE FILES() PER FILE. FILES() has no source-file column yet (the `path_column` feature,
   StarRocks#66975, is an open PR since 2025-12), and every other engine writes `filename`. So
-  each file is its own FILES() scan carrying its name as a literal, UNION ALL'd into the one
-  CTAS -- still a single statement and a single Iceberg commit.
+  each file is its own FILES() scan carrying its name as a literal, UNION ALL'd together.
+* IN BATCHES OF BATCH_FILES. All 1000 scans in one statement ran out of query memory ("Memory of
+  default_wg exceed limit", 12.2 GB, run 36224282324) where 10 were fine: each FILES() scan holds
+  its own buffers. So the first batch is the CTAS and every later one an INSERT INTO -- ten
+  Iceberg commits at 1000 files where the other engines make one. That is the cost of the missing
+  path column, and it stays in the load time.
 
 OneLake wants the table under `Tables/T{n}/starrocks`, so the CTAS passes that location, as
 pyiceberg and Spark also have to. No partitioning, as for every engine (bench/etl/iceberg.py).
@@ -28,6 +32,8 @@ from bench.etl.schema import COLUMNS, FILTER, numeric_columns
 
 CSV = '"format"="csv", "csv.column_separator"=",", "csv.enclose"=\'"\', "csv.skip_header"="1"'
 SCHEMA = ", ".join(f"{c} STRING" for c in COLUMNS)
+# Files per statement. 10 in one statement ran fine and 1000 exhausted the 12.2 GB query pool.
+BATCH_FILES = 100
 
 
 class StarrocksIceberg:
@@ -82,11 +88,18 @@ class StarrocksIceberg:
             if "already exists" not in str(exc):
                 raise
         self._sql(f"DROP TABLE IF EXISTS {self.qualified} FORCE")
-        union = "\nUNION ALL\n".join(self._one_file(name) for name in files)
-        self._sql(
-            f'CREATE TABLE {self.qualified} PROPERTIES ("location"="{location}") AS '
-            f"SELECT *, year(SETTLEMENTDATE) AS year FROM (\n{union}\n) AS dunit"
-        )
+        for start in range(0, len(files), BATCH_FILES):
+            union = "\nUNION ALL\n".join(
+                self._one_file(name) for name in files[start : start + BATCH_FILES]
+            )
+            select = f"SELECT *, year(SETTLEMENTDATE) AS year FROM (\n{union}\n) AS dunit"
+            if start == 0:
+                self._sql(
+                    f'CREATE TABLE {self.qualified} PROPERTIES ("location"="{location}") AS '
+                    f"{select}"
+                )
+            else:
+                self._sql(f"INSERT INTO {self.qualified} {select}")
 
     def row_count(self) -> int:
         return int(self._sql(f"SELECT count(*) FROM {self.qualified}")[0][0])
