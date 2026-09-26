@@ -10,9 +10,11 @@ and manifests over hadoop-azure with that same token and DROP ... PURGE deletes 
 engine asks for create, write and delete too. The token lives ~55 minutes and the ETL job is
 capped at 50, so the restart-on-expiry the read benchmarks need never fires here.
 
-WHAT VELOX RUNS is whatever Gluten offloads from a scan-filter-project-write plan; a node it
-cannot take falls back to the JVM, and the plan in the log says which. The time is the load, as
-for every other engine, whichever side ran it.
+THE CSV SCAN IS NOT VELOX'S. Open-source Gluten on Spark 4.x has no CSV reader, so the scan falls
+back to the JVM (`Unsupported file format TextReadFormat`) and Velox only runs what comes after it.
+Fabric's Native Execution Engine does read CSV natively; that parser is Microsoft's own, not in
+Gluten. LEARNING.md has the details and the upstream PRs. The time is the load, as for every other
+engine, whichever side ran it.
 """
 
 from __future__ import annotations
