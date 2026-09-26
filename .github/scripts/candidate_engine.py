@@ -21,6 +21,8 @@ A new candidate is a subclass with `start`, `sql`, and the variant lists, plus a
 
 from __future__ import annotations
 
+import csv
+import io
 import os
 import subprocess
 import sys
@@ -28,10 +30,11 @@ import threading
 import time
 from pathlib import Path
 
-from bench import auth, scrub
-from bench.config import ICEBERG_ENDPOINT, ONELAKE_BLOB, ONELAKE_DFS
+from bench import auth, onelake, scrub
+from bench.config import ICEBERG_ENDPOINT, ONELAKE_DFS
 from bench.etl.config import EtlConfig
 from bench.etl.data import csv_names
+from bench.etl.schema import COLUMNS, FILTER
 from bench.suite import suite_class
 from bench.tpch import queries
 from bench.tpch.engines.pyspark_gluten_iceberg import onelake_sas
@@ -221,22 +224,32 @@ class StarRocks(Candidate):
         return ["SET CATALOG onelake", "SET query_timeout = 3600"]
 
     def files_variants(self, path: str, sas: str) -> dict[str, str]:
-        # AEMO CSVs mix record types of different widths ("Schema column count: 120 doesn't match
-        # source value column count: 10" with ","), so read each line as ONE column: a separator
-        # that never occurs. The gate is storage access; parsing AEMO is the ETL's job.
-        csv = '"format"="csv", "csv.column_separator"="|~|"'
-        rel = path.split(f"@{ONELAKE_DFS}/", 1)[1]  # <lakehouse>/Files/csv/<name>
-        wasbs = f"wasbs://{self.cfg.workspace_id}@{ONELAKE_BLOB}/{rel}"
-        variants = {
-            f"abfss + {label}": f'SELECT count(*) FROM FILES("path"="{path}", {csv}, {props})'
-            for label, props in self.storage_variants(sas).items()
-        }
-        return variants | {
-            "wasbs + blob sas_token": (
-                f'SELECT count(*) FROM FILES("path"="{wasbs}", {csv}, '
-                f'"azure.blob.storage_account"="onelake", '
-                f'"azure.blob.container"="{self.cfg.workspace_id}", "azure.blob.sas_token"="{sas}")'
+        """The ETL's actual read of one AEMO file: parse, filter, cast -- not just reach it.
+
+        AEMO "daily" files are RAGGED: a `C` header line, then `I`/`D` rows of several record
+        types, each its own width. Default inference fails on that ("Schema column count: 120
+        doesn't match source value column count: 10", run 36213949272). The ETL's engines read it
+        with the 53-column DUNIT layout (bench/etl/schema.py), short rows padded with NULL, then
+        filter to DUNIT v3 -- so that is the read asked for here. `schema` is FILES() from 4.1.2.
+        """
+        storage = self.storage_variants(sas)["workload identity"]
+        declared = ", ".join(f"{c} VARCHAR" for c in COLUMNS)
+        where = " AND ".join(f"{c} = '{v}'" for c, v in FILTER)
+        csv = (
+            '"format"="csv", "csv.column_separator"=",", "csv.enclose"=\'"\', "csv.skip_header"="1"'
+        )
+
+        def read(options: str) -> str:
+            return (
+                f"SELECT count(*), sum(CAST(TOTALCLEARED AS DOUBLE)) FROM FILES("
+                f'"path"="{path}", {csv}, {options}, {storage}) WHERE {where}'
+            )
+
+        return {
+            "53-column schema, short rows NULL-padded": read(
+                f'"schema"="{declared}", "fill_mismatch_column_with"="null"'
             ),
+            "53-column schema, strict": read(f'"schema"="{declared}"'),
         }
 
     def write_variants(self, table: str, source: str) -> dict[str, list[str]]:
@@ -278,6 +291,30 @@ def _try(engine: Candidate, label: str, statements: list[str]) -> tuple[bool, li
         return False, []
     _say(f"    PASS  {label}  ({time.perf_counter() - started:.1f}s)  {str(rows[:5])[:300]}")
     return True, rows
+
+
+def _reference(etl: EtlConfig, name: str) -> tuple[int, float]:
+    """DUNIT v3 row count and sum(TOTALCLEARED) of one CSV, by Python's csv module alone.
+
+    Same rules as the ETL: skip the first line, filter by position on bench/etl/schema.py's
+    FILTER, pad short rows. Independent of every engine, so a match means the parse is right.
+    """
+    raw = (
+        onelake.file_system(etl)
+        .get_file_client(f"{etl.csv_relative}/{name}")
+        .download_file()
+        .readall()
+        .decode("utf-8", errors="replace")
+    )
+    position = {c: i for i, c in enumerate(COLUMNS)}
+    cleared = position["TOTALCLEARED"]
+    rows, total = 0, 0.0
+    for record in csv.reader(io.StringIO(raw).readlines()[1:]):
+        if all(len(record) > position[c] and record[position[c]] == v for c, v in FILTER):
+            rows += 1
+            if len(record) > cleared and record[cleared]:
+                total += float(record[cleared])
+    return rows, total
 
 
 def _first_passing(
@@ -330,22 +367,33 @@ def main() -> int:
     ok, rows = _try(engine, "nation count", [f"SELECT count(*) FROM onelake.{cfg.schema}.nation"])
     results["read iceberg (nation = 25)"] = bool(ok and rows and int(rows[0][0]) == NATION_ROWS)
 
-    # Gate 1b: read a raw file from the Files section.
+    # Gate 1b: parse a raw AEMO CSV from the Files section, as the ETL does, and match a count
+    # and a sum computed here in plain Python from the same bytes.
     files = None
     try:
         etl = EtlConfig.from_env()
         names, _ = csv_names(etl, 1)
         path = f"{etl.csv_abfss}/{names[0]}"
-        _say(f"\nfile {path}")
+        want_rows, want_sum = _reference(etl, names[0])
+        _say(f"\nfile {path}\n  reference (python csv): {want_rows} DUNIT v3 rows, sum {want_sum}")
+
+        def matches(rows) -> bool:
+            if not rows or rows[0][0] is None:
+                return False
+            got_rows, got_sum = int(rows[0][0]), float(rows[0][1] or 0)
+            return got_rows == want_rows > 0 and abs(got_sum - want_sum) <= 1e-6 * max(
+                1.0, abs(want_sum)
+            )
+
         files = _first_passing(
             engine,
-            "read Files/csv",
+            "parse Files/csv (ragged AEMO, DUNIT v3)",
             {label: [stmt] for label, stmt in engine.files_variants(path, sas).items()},
-            lambda rows: bool(rows) and int(rows[0][0]) > 0,
+            matches,
         )
     except Exception as exc:  # noqa: BLE001 - no CSV landed, or no SAS: the gate fails, loudly
-        _say(f"\n[read Files/csv]\n    FAIL  setup  {scrub.scrub_exc(exc, 1500)}")
-    results["read Files (csv rows > 0)"] = files is not None
+        _say(f"\n[parse Files/csv]\n    FAIL  setup  {scrub.scrub_exc(exc, 1500)}")
+    results["parse Files csv (count + sum = python)"] = files is not None
 
     # Gate 2: SQL, the whole TPC-H suite.
     _say(f"\n[TPC-H SF={cfg.sf}, {queries.N_QUERIES} statements]")

@@ -653,11 +653,13 @@ LIMIT 100;
 
 
 --Query22
+--SUBSTRING(x, 1, 2) rather than the ANSI SUBSTRING(x FROM 1 FOR 2): StarRocks rejects
+--the FROM/FOR form (candidate run 36214753264), and every bench engine takes the comma form.
 WITH avg_acctbal AS (
     SELECT AVG(c_acctbal) AS avg_bal
     FROM `{schema}.customer`
     WHERE c_acctbal > 0
-      AND SUBSTRING(c_phone FROM 1 FOR 2) IN ('13', '31', '23', '29', '30', '18', '17')
+      AND SUBSTRING(c_phone, 1, 2) IN ('13', '31', '23', '29', '30', '18', '17')
 ),
 customers_with_orders AS (
     SELECT DISTINCT o_custkey
@@ -669,11 +671,11 @@ SELECT
     SUM(c_acctbal) AS totacctbal
 FROM (
     SELECT
-        SUBSTRING(c_phone FROM 1 FOR 2) AS cntrycode,
+        SUBSTRING(c_phone, 1, 2) AS cntrycode,
         c_acctbal
     FROM `{schema}.customer`
     CROSS JOIN avg_acctbal
-    WHERE SUBSTRING(c_phone FROM 1 FOR 2) IN ('13', '31', '23', '29', '30', '18', '17')
+    WHERE SUBSTRING(c_phone, 1, 2) IN ('13', '31', '23', '29', '30', '18', '17')
       AND c_acctbal > avg_bal
       AND c_custkey NOT IN (
           SELECT o_custkey FROM customers_with_orders
