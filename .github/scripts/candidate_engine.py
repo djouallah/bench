@@ -28,6 +28,7 @@ import subprocess
 import sys
 import threading
 import time
+from collections import Counter
 from pathlib import Path
 
 from bench import auth, onelake, scrub
@@ -42,6 +43,9 @@ from bench.tpch.engines.pyspark_gluten_iceberg import onelake_sas
 CONTAINER = "candidate"
 WRITE_NS = "candidate"
 NATION_ROWS = 25
+# The widest AEMO record in the landed files, from StarRocks' own inference error in run
+# 36213949272 ("Schema column count: 120").
+CSV_MAX_WIDTH = 120
 # The GitHub OIDC assertion, on the host and as the container sees it. Hadoop's
 # WorkloadIdentityTokenProvider re-reads the file on every token refresh, so a thread rewrites it
 # well inside the assertion's ~5-minute life -- the scheme bench/tpch/engines/pyspark_iceberg.py
@@ -232,24 +236,45 @@ class StarRocks(Candidate):
         with the 53-column DUNIT layout (bench/etl/schema.py), short rows padded with NULL, then
         filter to DUNIT v3 -- so that is the read asked for here. `schema` is FILES() from 4.1.2.
         """
-        storage = self.storage_variants(sas)["workload identity"]
-        declared = ", ".join(f"{c} VARCHAR" for c in COLUMNS)
         where = " AND ".join(f"{c} = '{v}'" for c, v in FILTER)
+        return {
+            label: (
+                f"SELECT count(*), sum(CAST(TOTALCLEARED AS DOUBLE)) FROM {source} WHERE {where}"
+            )
+            for label, source in self._csv_sources(path, sas).items()
+        }
+
+    def files_diagnostics(self, path: str, sas: str) -> dict[str, str]:
+        """What each read actually sees in the three filter columns -- printed, not gated."""
+        return {
+            f"{label}: I/UNIT/VERSION": (
+                f"SELECT I, UNIT, VERSION, count(*) FROM {source} "
+                "GROUP BY 1, 2, 3 ORDER BY 4 DESC LIMIT 12"
+            )
+            for label, source in self._csv_sources(path, sas).items()
+        }
+
+    def _csv_sources(self, path: str, sas: str) -> dict[str, str]:
+        storage = self.storage_variants(sas)["workload identity"]
         csv = (
             '"format"="csv", "csv.column_separator"=",", "csv.enclose"=\'"\', "csv.skip_header"="1"'
         )
+        named = ", ".join(f"{c} VARCHAR" for c in COLUMNS)
+        # The widest record in these files is 120 fields (the inference error above). Declaring
+        # that width means no row is ever LONGER than the schema, only shorter.
+        spare = ", ".join(f"SPARE{i} VARCHAR" for i in range(len(COLUMNS), CSV_MAX_WIDTH))
 
-        def read(options: str) -> str:
-            return (
-                f"SELECT count(*), sum(CAST(TOTALCLEARED AS DOUBLE)) FROM FILES("
-                f'"path"="{path}", {csv}, {options}, {storage}) WHERE {where}'
-            )
+        def files(options: str) -> str:
+            return f'FILES("path"="{path}", {csv}, {options}, {storage})'
 
         return {
-            "53-column schema, short rows NULL-padded": read(
-                f'"schema"="{declared}", "fill_mismatch_column_with"="null"'
+            "120-column schema, short rows NULL-padded": files(
+                f'"schema"="{named}, {spare}", "fill_mismatch_column_with"="null"'
             ),
-            "53-column schema, strict": read(f'"schema"="{declared}"'),
+            "53-column schema, short rows NULL-padded": files(
+                f'"schema"="{named}", "fill_mismatch_column_with"="null"'
+            ),
+            "53-column schema, strict": files(f'"schema"="{named}"'),
         }
 
     def write_variants(self, table: str, source: str) -> dict[str, list[str]]:
@@ -309,11 +334,15 @@ def _reference(etl: EtlConfig, name: str) -> tuple[int, float]:
     position = {c: i for i, c in enumerate(COLUMNS)}
     cleared = position["TOTALCLEARED"]
     rows, total = 0, 0.0
+    widths: Counter[int] = Counter()
     for record in csv.reader(io.StringIO(raw).readlines()[1:]):
         if all(len(record) > position[c] and record[position[c]] == v for c, v in FILTER):
             rows += 1
+            widths[len(record)] += 1
             if len(record) > cleared and record[cleared]:
                 total += float(record[cleared])
+    # The field count of the rows kept: what a schema-by-position reader has to cope with.
+    _say(f"  reference: DUNIT v3 row widths {dict(widths)} (COLUMNS has {len(COLUMNS)})")
     return rows, total
 
 
@@ -391,6 +420,10 @@ def main() -> int:
             {label: [stmt] for label, stmt in engine.files_variants(path, sas).items()},
             matches,
         )
+        if files is None:
+            _say("\n[parse Files/csv: what each read sees]")
+            for label, statement in engine.files_diagnostics(path, sas).items():
+                _try(engine, label, [statement])
     except Exception as exc:  # noqa: BLE001 - no CSV landed, or no SAS: the gate fails, loudly
         _say(f"\n[parse Files/csv]\n    FAIL  setup  {scrub.scrub_exc(exc, 1500)}")
     results["parse Files csv (count + sum = python)"] = files is not None
