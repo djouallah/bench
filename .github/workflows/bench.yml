@@ -123,9 +123,10 @@ jobs:
     runs-on: ubuntu-latest
     # 355, JUST UNDER GITHUB'S 360 CEILING, raised from 50 for SF=30, 60 and 100. The 50 was
     # sized to the token: chDB bakes it into CREATE DATABASE and Sail into an env var, and neither
-    # ever asks again, so a job past the hour fails there anyway. But DuckDB now replaces its
-    # storage secret and Spark re-reads its assertion file, so those two can outlive the token --
-    # and a job killed at the cap writes no part at all. A hang still ends; it just ends later.
+    # ever asks again, so a job past the hour fails there anyway. But Spark and StarRocks restart
+    # or re-attach on a fresh token and their storage re-reads the assertion file, so those can
+    # outlive the token -- and a job killed at the cap writes no part at all. A hang still ends;
+    # it just ends later.
     timeout-minutes: 355
     permissions:
       id-token: write

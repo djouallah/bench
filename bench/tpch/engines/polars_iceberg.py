@@ -43,11 +43,11 @@ class PolarsIceberg:
         return pl.__version__
 
     def setup(self) -> None:
-        import polars as pl
-
         # Polars sizes its thread pool at import time; pinning it keeps the number reproducible
-        # across runner images rather than tracking whatever the host reports.
+        # across runner images rather than tracking whatever the host reports. So BEFORE the
+        # import: set after it, as this line used to be, it was read by nothing.
         os.environ.setdefault("POLARS_MAX_THREADS", "4")
+        import polars as pl
 
         catalog = auth.catalog(self.cfg)
         token = auth.onelake_token()
