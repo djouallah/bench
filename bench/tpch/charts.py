@@ -307,13 +307,14 @@ def totals_by_sf(
         fig, ax = plt.subplots(figsize=(11, max(5, 0.3 * len(data) + 1.5)))
         for group, sf in enumerate(shown):
             # FASTEST FIRST (topmost) within each scale, and only the engines with a bar here,
-            # centred on the tick -- so a missing engine leaves no hole. Colour says which.
+            # centred on the tick -- so a missing engine leaves no hole. The label names the
+            # engine: seven similar hues matched against a legend were hard to read.
             present = sorted((e for e in engines if (e, sf) in data), key=lambda e: data[(e, sf)])
             fastest = data[(present[0], sf)][0]
             for slot, engine in enumerate(present):
                 dur, _ = data[(engine, sf)]
                 ratio = dur / fastest
-                label = f"{dur:,.0f}s"
+                label = f"{LABEL[engine]}  {dur:,.0f}s"
                 if slot:
                     label += f" · {ratio:.1f}×" if ratio < 10 else f" · {ratio:,.0f}×"
                 y = group + (slot - (len(present) - 1) / 2) * height
@@ -338,12 +339,12 @@ def totals_by_sf(
                 )
         ax.set_yticks(range(len(shown)))
         ax.set_yticklabels([f"SF {s}" for s in shown], color=theme["secondary"], fontsize=10)
-        ax.set_xlim(0, top * 1.18)  # room for "9,303s · 25×" after the longest bar
+        ax.set_xlim(0, top * 1.3)  # room for "Spark-OSS  9,303s · 25×" after the longest bar
         ax.invert_yaxis()  # smallest scale, and the fastest engine within it, at the top
         # Two lines: on one, the run's subtitle made the title wider than the plot, and the saved
         # figure grew to fit it, squeezing the bars into the left two thirds.
         title = f"Total seconds for all {n_queries} queries, cold\n{subtitle}"
-        _style(ax, theme, title, "", pad=30)
+        _style(ax, theme, title, "", pad=14)
         # _style draws a vertical chart's axes; turn them for this one.
         ax.set_xlabel(
             "seconds (lower is better) · N× = times the fastest engine at that scale",
@@ -355,7 +356,7 @@ def totals_by_sf(
         ax.spines["bottom"].set_visible(False)
         ax.spines["left"].set_visible(True)
         ax.tick_params(axis="y", length=0)
-        _legend(ax, theme, engines, above=True)
+        # No legend: every bar names its engine.
         paths.append(_save(fig, out_dir, "totals", theme))
     return paths
 
