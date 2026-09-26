@@ -24,7 +24,9 @@ from __future__ import annotations
 import os
 import subprocess
 import sys
+import threading
 import time
+from pathlib import Path
 
 from bench import auth, scrub
 from bench.config import ICEBERG_ENDPOINT, ONELAKE_BLOB, ONELAKE_DFS
@@ -37,6 +39,34 @@ from bench.tpch.engines.pyspark_gluten_iceberg import onelake_sas
 CONTAINER = "candidate"
 WRITE_NS = "candidate"
 NATION_ROWS = 25
+# The GitHub OIDC assertion, on the host and as the container sees it. Hadoop's
+# WorkloadIdentityTokenProvider re-reads the file on every token refresh, so a thread rewrites it
+# well inside the assertion's ~5-minute life -- the scheme bench/tpch/engines/pyspark_iceberg.py
+# uses for Spark-OSS.
+ASSERTION_DIR = Path(os.environ.get("RUNNER_TEMP", "/tmp")) / "candidate-oidc"
+ASSERTION_IN_CONTAINER = "/var/run/candidate-oidc/assertion"
+ASSERTION_REFRESH_S = 240
+
+
+def _keep_assertion_fresh() -> None:
+    ASSERTION_DIR.mkdir(parents=True, exist_ok=True)
+    target = ASSERTION_DIR / "assertion"
+
+    def write() -> None:
+        target.write_text(auth._github_oidc_assertion(), encoding="utf-8")
+        target.chmod(0o644)  # the container's user is not the runner's
+
+    write()
+
+    def loop() -> None:
+        while True:
+            time.sleep(ASSERTION_REFRESH_S)
+            try:
+                write()
+            except Exception as exc:  # noqa: BLE001 - a failed refresh must not kill the run
+                _say(f"  warning: assertion refresh failed: {exc}")
+
+    threading.Thread(target=loop, daemon=True).start()
 
 
 def _say(text: str) -> None:
@@ -54,7 +84,7 @@ class Candidate:
     def start(self) -> None: ...
     def sql(self, statement: str) -> list[tuple]: ...
     def version(self) -> str: ...
-    def attach_variants(self, token: str) -> dict[str, list[str]]: ...
+    def attach_variants(self, token: str, sas: str) -> dict[str, list[str]]: ...
     def files_variants(self, path: str, sas: str) -> dict[str, str]: ...
     def write_variants(self, table: str, source: str) -> dict[str, list[str]]: ...
     def use_catalog(self) -> list[str]: ...
@@ -64,14 +94,20 @@ class StarRocks(Candidate):
     """StarRocks allin1: the Java FE (planner, catalog) and C++ BE (execution) in one container.
 
     Catalog properties are the documented REST ones (docs/en/data_source/catalog/iceberg/
-    iceberg.md). Azure vended credentials landed in StarRocks#61137 -- the path that needs
-    nothing but the catalog bearer, the same shape DuckDB uses.
+    iceberg.md). Storage goes through hadoop-azure, keyed by the HOST of the abfss URI.
+
+    NEVER `azure.adls2.storage_account`: StarRocks turns it into `<account>.dfs.core.windows.net`
+    (AzureStorageCloudCredential), so "onelake" configures the wrong host and every read of
+    onelake.dfs.fabric.microsoft.com falls back to SharedKey -- `fs.azure.account.key` null, the
+    error of run 36214160572. Left empty, the OAuth keys are set unscoped, and
+    `azure.adls2.endpoint` scopes a SAS to OneLake's host instead.
     """
 
     name = "starrocks"
     default_image = "starrocks/allin1-ubuntu:4.1-latest"
 
     def start(self) -> None:
+        _keep_assertion_fresh()
         subprocess.run(
             [
                 "docker",
@@ -79,6 +115,8 @@ class StarRocks(Candidate):
                 "-d",
                 "--name",
                 CONTAINER,
+                "-v",
+                f"{ASSERTION_DIR}:{Path(ASSERTION_IN_CONTAINER).parent}:ro",
                 "-p",
                 "127.0.0.1:9030:9030",
                 "-p",
@@ -137,7 +175,23 @@ class StarRocks(Candidate):
     def version(self) -> str:
         return str(self.sql("SELECT current_version()")[0][0])
 
-    def attach_variants(self, token: str) -> dict[str, list[str]]:
+    def storage_variants(self, sas: str) -> dict[str, str]:
+        """hadoop-azure credentials for OneLake, as StarRocks property lists."""
+        return {
+            # Spark-OSS's credential: the OIDC assertion file, exchanged by hadoop-azure itself,
+            # refreshable for any run length.
+            "workload identity": (
+                f'"azure.adls2.oauth2_token_file"="{ASSERTION_IN_CONTAINER}", '
+                f'"azure.adls2.oauth2_tenant_id"="{os.environ.get("AZURE_TENANT_ID", "")}", '
+                f'"azure.adls2.oauth2_client_id"="{os.environ.get("AZURE_CLIENT_ID", "")}"'
+            ),
+            # Gluten's credential: a user-delegation SAS, scoped to OneLake's dfs host. One hour.
+            "SAS on the OneLake endpoint": (
+                f'"azure.adls2.endpoint"="{ONELAKE_DFS}", "azure.adls2.sas_token"="{sas}"'
+            ),
+        }
+
+    def attach_variants(self, token: str, sas: str) -> dict[str, list[str]]:
         base = (
             '"type"="iceberg", "iceberg.catalog.type"="rest", '
             f'"iceberg.catalog.uri"="{ICEBERG_ENDPOINT}", '
@@ -151,16 +205,17 @@ class StarRocks(Candidate):
                 f"CREATE EXTERNAL CATALOG onelake PROPERTIES ({base}, {props})",
             ]
 
-        return {
-            # Vended: OneLake hands out storage credentials with each table load.
-            "oauth2 token + vended credentials": ddl(
-                f'{oauth}, "iceberg.catalog.vended-credentials-enabled"="true"'
-            ),
-            # Vending off: a catalog that attaches here but not above points at storage.
-            "oauth2 token, no vending": ddl(
-                f'{oauth}, "iceberg.catalog.vended-credentials-enabled"="false"'
-            ),
+        no_vending = '"iceberg.catalog.vended-credentials-enabled"="false"'
+        variants = {
+            f"oauth2 token + {label}": ddl(f"{oauth}, {no_vending}, {props}")
+            for label, props in self.storage_variants(sas).items()
         }
+        # Vended alone attaches and lists, but in run 36214160572 every data read still fell back
+        # to SharedKey: whatever OneLake vends does not reach hadoop-azure. Kept as a check.
+        variants["oauth2 token + vended credentials"] = ddl(
+            f'{oauth}, "iceberg.catalog.vended-credentials-enabled"="true"'
+        )
+        return variants
 
     def use_catalog(self) -> list[str]:
         return ["SET CATALOG onelake", "SET query_timeout = 3600"]
@@ -172,15 +227,11 @@ class StarRocks(Candidate):
         csv = '"format"="csv", "csv.column_separator"="|~|"'
         rel = path.split(f"@{ONELAKE_DFS}/", 1)[1]  # <lakehouse>/Files/csv/<name>
         wasbs = f"wasbs://{self.cfg.workspace_id}@{ONELAKE_BLOB}/{rel}"
-        return {
-            # ADLS2 documents shared key / managed identity / client secret -- none of which this
-            # app has. No credential says what the default provider does on its own.
-            "abfss, no credential": f'SELECT count(*) FROM FILES("path"="{path}", {csv})',
-            # A user-delegation SAS is what Gluten reads OneLake with (onelake_sas).
-            "abfss + adls2 sas_token": (
-                f'SELECT count(*) FROM FILES("path"="{path}", {csv}, '
-                f'"azure.adls2.storage_account"="onelake", "azure.adls2.sas_token"="{sas}")'
-            ),
+        variants = {
+            f"abfss + {label}": f'SELECT count(*) FROM FILES("path"="{path}", {csv}, {props})'
+            for label, props in self.storage_variants(sas).items()
+        }
+        return variants | {
             "wasbs + blob sas_token": (
                 f'SELECT count(*) FROM FILES("path"="{wasbs}", {csv}, '
                 f'"azure.blob.storage_account"="onelake", '
@@ -250,20 +301,26 @@ def main() -> int:
     _say(f"{name} {engine.version()}")
 
     token = auth.onelake_token()
+    sas, _ = onelake_sas(cfg.workspace_id, cfg.lakehouse_id)
     results: dict[str, bool] = {}
 
-    # Gate 0: attach. Every later gate goes through the first variant that lists the namespace.
+    # Gate 0: attach. A variant counts only when it lists the namespace AND reads nation's data
+    # files: listing alone passed in run 36214160572 with storage auth entirely broken.
     attached = None
     _say("\n[attach REST catalog]")
-    for label, statements in engine.attach_variants(token).items():
+    for label, statements in engine.attach_variants(token, sas).items():
         ok, _ = _try(engine, label, statements)
-        if ok:
-            listed, rows = _try(
-                engine, f"{label}: list namespaces", ["SHOW DATABASES FROM onelake"]
-            )
-            if listed and any(cfg.schema in map(str, r) for r in rows):
-                attached = label
-                break
+        if not ok:
+            continue
+        listed, rows = _try(engine, f"{label}: list namespaces", ["SHOW DATABASES FROM onelake"])
+        if not (listed and any(cfg.schema in map(str, r) for r in rows)):
+            continue
+        read, rows = _try(
+            engine, f"{label}: nation", [f"SELECT count(*) FROM onelake.{cfg.schema}.nation"]
+        )
+        if read and rows and int(rows[0][0]) == NATION_ROWS:
+            attached = label
+            break
     results["attach catalog"] = attached is not None
     # Even with no variant listing the namespace, carry on: each later gate's error is diagnosis.
     for statement in engine.use_catalog():
@@ -279,7 +336,6 @@ def main() -> int:
         etl = EtlConfig.from_env()
         names, _ = csv_names(etl, 1)
         path = f"{etl.csv_abfss}/{names[0]}"
-        sas, _ = onelake_sas(cfg.workspace_id, cfg.lakehouse_id)
         _say(f"\nfile {path}")
         files = _first_passing(
             engine,
