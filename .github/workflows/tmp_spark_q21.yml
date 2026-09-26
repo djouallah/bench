@@ -1,0 +1,105 @@
+name: tmp spark q21
+
+# TEMPORARY, deleted once read. TPC-H SF=100 Q21 fails on Spark-OSS with "Not enough memory to
+# build and broadcast the table" (runs 36016179553, 36151085980). This prints Q21's plan and runs
+# it once per broadcast setting, to see which join broadcasts and which setting keeps it off.
+
+on:
+  workflow_dispatch:
+    inputs:
+      sf:
+        type: choice
+        options: ["10", "100"]
+        default: "100"
+      publish:
+        type: boolean
+        default: false
+
+concurrency:
+  group: onelake
+  cancel-in-progress: false
+
+env:
+  PYTHONPATH: ${{ github.workspace }}
+  PYTHONUNBUFFERED: "1"
+  BENCH_SUITE: tpch
+  BENCH_ENGINE: pyspark_iceberg
+  TPCH_SF: ${{ inputs.sf }}
+  FABRIC_WORKSPACE_ID: ${{ secrets.FABRIC_WORKSPACE_ID }}
+  FABRIC_LAKEHOUSE_ID: ${{ secrets.FABRIC_LAKEHOUSE_ID }}
+  AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+  AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+  SPARK_DRIVER_MEMORY: 11g
+
+jobs:
+  q21:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Free runner disk
+        run: sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/share/boost
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements/pyspark_iceberg.txt
+      - run: pip install -r requirements/pyspark_iceberg.txt
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.ivy2
+            ~/.ivy2.5.2
+            ~/.m2/repository
+          key: ivy-spark41-iceberg111-v1
+      - uses: azure/login@v3
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          allow-no-subscriptions: true
+      - name: Q21 plan and broadcast variants
+        shell: bash
+        run: |
+          python - <<'EOF'
+          import time
+          from bench.suite import suite_class
+          from bench.tpch.engines.pyspark_iceberg import PysparkIceberg
+          from bench.tpch.queries import load
+
+          cfg = suite_class().from_env()
+          eng = PysparkIceberg(cfg)
+          eng.setup()
+          spark = eng.session
+          q21 = load(eng.name, cfg.schema, cfg.sf, cfg.SQL_PATH, cfg.N_QUERIES)[20]
+          print("=== static plan, defaults")
+          spark.sql(q21).explain(mode="formatted")
+
+          variants = [
+              ("defaults", {}),
+              ("adaptive threshold -1", {"spark.sql.adaptive.autoBroadcastJoinThreshold": "-1"}),
+              ("both thresholds -1", {"spark.sql.adaptive.autoBroadcastJoinThreshold": "-1",
+                                      "spark.sql.autoBroadcastJoinThreshold": "-1"}),
+          ]
+          for name, conf in variants:
+              for key in ("spark.sql.adaptive.autoBroadcastJoinThreshold",
+                          "spark.sql.autoBroadcastJoinThreshold"):
+                  spark.conf.unset(key)
+              for key, value in conf.items():
+                  spark.conf.set(key, value)
+              df = spark.sql(q21)
+              start = time.perf_counter()
+              try:
+                  rows = len(df.collect())
+                  print(f"=== {name}: OK {time.perf_counter() - start:.1f}s {rows} rows")
+              except Exception as exc:
+                  print(f"=== {name}: FAILED {time.perf_counter() - start:.1f}s {str(exc)[:300]}")
+              print(df._jdf.queryExecution().executedPlan().toString())
+          eng.close()
+          EOF
