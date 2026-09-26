@@ -77,10 +77,11 @@ Largest scale each engine completes, cold, every statement answered:
 |---|---|---|---|
 | Gluten/Velox | SF=100 (1,008 s) | **SF=100** (6,757 s) | nothing on memory; only expired credentials |
 | DuckDB | SF=100 (500 s) | SF=60 (1,367 s) | TPC-DS SF=100 Q64: a bad join plan hits the 90.6 GiB spill limit |
+| StarRocks | SF=100 (688 s) | — | TPC-DS: Q49, Q70, Q86 are StarRocks SQL bugs (#79806, #79807) |
+| LakeSail | SF=100 (2,476 s) | — | TPC-DS: 8 double-quoted aliases don't parse, Q71 (sail#2642) |
 | Spark-OSS | SF=60 (2,318 s) | SF=60 (9,303 s) | TPC-H SF=100 Q21: a broadcast that doesn't fit the 11 GB heap |
 | chDB | SF=30 (382 s) | — | TPC-H SF=60: 9.31 GiB query memory limit; TPC-DS aborts in glibc at any SF |
 | Polars | SF=10 (82–106 s) | — | TPC-H SF=30: runner OOM-killed at Q7; TPC-DS SF=10: runner lost at 55 min |
-| LakeSail | SF=10 (118–236 s) | — | TPC-H SF=30: runner OOM-killed at Q18 |
 
 - **Velox is the robust one.** It runs on a fixed budget of 9 GB off-heap plus 3 GB heap, and it
   is the only engine that finished TPC-DS at SF=100. Not one of its failures at any scale came
@@ -93,6 +94,13 @@ Largest scale each engine completes, cold, every statement answered:
     6.8 s), then the runner was killed 75 s into Q7 (run 36001440696).
   - Exit 143, no traceback, and no row in the results. Only the job log shows it happened.
   - It is a cliff, not a slow spill.
+  - Sail was the same until it got a bound: a 10 GiB `fair` pool took TPC-H SF=30 from a dead
+    runner to 21/22, and the last one, Q18, was a hash join, which DataFusion can't spill.
+    Sort-merge joins (`prefer_hash_join=false`) spill, and with them Sail completes SF=30, 60
+    and 100. They cost the join-heavy queries 3–5× at SF=10, where every hash table fits, so
+    Sail switches to them only once the dataset passes half the pool.
+  - Giving Polars a budget (`POLARS_OOC_MEMORY_BUDGET_MB`, experimental) stopped the runner dying
+    but did not finish: SF=30 stalled and was cancelled (run 36238938131).
 - **A hard limit fails the query, not the runner.** chDB's `max_memory_usage` (10 GB) raises
   `MEMORY_LIMIT_EXCEEDED`, and the run carries on to the next statement.
 - **Spilling is only as good as the plan.** DuckDB's Q64 takes 24.9 s at SF=60. At SF=100 the
@@ -279,10 +287,10 @@ Largest scale each engine completes, cold, every statement answered:
   - A fork patch that cached loaded tables made TPC-H SF=10 19% faster cold. PR #2639 was
     closed. Fork CI showed that a cache the write path can reach feeds stale tables to
     `INSERT OVERWRITE` and CTAS, and gives UPDATE/DELETE/MERGE commit conflicts.
-- **Its memory pool is unbounded.** DataFusion's default pool has no ceiling. The real keys
-  (`runtime.memory_pool.type`, `runtime.memory_pool.fair.max_size`) are experimental and unset,
-  because a limit means spilling. At TPC-H SF=30 the runner was OOM-killed 46 s into Q18, after
-  Q1–Q17 had run fine.
+- **Its memory pool is unbounded by default, so it never spills.** At TPC-H SF=30 the runner was
+  OOM-killed 46 s into Q18, after Q1–Q17 had run fine. Now a 10 GiB `fair` pool
+  (`runtime.memory_pool.*`), plus sort-merge joins past half the pool, and it completes TPC-H up
+  to SF=100 (see "Past memory" above).
   - An earlier guess, `SAIL_EXECUTION__MEMORY_LIMIT`, is not a real key. Sail validates its
     config strictly and refused to start.
 - **TPC-DS at SF=10: 90/99 cold.**
