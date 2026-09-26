@@ -73,7 +73,14 @@ class StarrocksIceberg:
 
     def load(self, files: list[str]) -> None:
         location = f"{self.cfg.base_path}/Tables/{self.cfg.schema}/{TABLE[self.name]}"
-        self._sql(f"CREATE DATABASE IF NOT EXISTS {self.cfg.schema}")
+        # `IF NOT EXISTS` does not see OneLake's existing `T100` (StarRocks checks its own view
+        # of the name, the catalog answers "The given namespace already exists": run
+        # 36223815451), so the namespace's existence is the catalog's answer, not the clause's.
+        try:
+            self._sql(f"CREATE DATABASE IF NOT EXISTS {self.cfg.schema}")
+        except Exception as exc:  # noqa: BLE001 - pymysql is only importable in this job
+            if "already exists" not in str(exc):
+                raise
         self._sql(f"DROP TABLE IF EXISTS {self.qualified} FORCE")
         union = "\nUNION ALL\n".join(self._one_file(name) for name in files)
         self._sql(
