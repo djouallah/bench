@@ -10,13 +10,15 @@ TWO THINGS THE NOTEBOOK COULD IGNORE AND THIS CANNOT:
    not care -- the kernel stays alive anyway. Here it would burn the job's entire timeout. Hence
    `close()` in a `finally`, plus the hard `timeout-minutes` on the workflow step behind it.
 
-2. THE MEMORY POOL IS UNBOUNDED, and nothing here caps it. DataFusion's default pool has no
-   ceiling, so Q21 at SF>=10 on a 16GB runner may be an OOM kill (exit 137, no traceback). An
-   earlier version of this file invented `SAIL_EXECUTION__MEMORY_LIMIT` to cap it; that is not a
-   real setting, and Sail validates its config STRICTLY -- it refused to start rather than
-   ignoring the unknown key. The real keys are `runtime.memory_pool.type` (`greedy` or `fair`,
-   default `unbounded`) and `runtime.memory_pool.fair.max_size`; both are marked experimental
-   and neither is set here, because nothing OOMs at SF=10 and a pool limit means spilling.
+2. THE MEMORY POOL IS UNBOUNDED BY DEFAULT, and unbounded means it never spills: DataFusion
+   spills a sort or an aggregation only when its pool says no. So at TPC-H SF=30 Sail did not
+   slow down, it took the runner with it -- OOM-killed 46s into Q18, no traceback, no row. The
+   pool is now `fair` with a ceiling under the runner's RAM (`setup`). Sort and aggregation spill
+   to the OS temp directory; a HASH JOIN'S BUILD SIDE CANNOT SPILL in DataFusion 54, so a join
+   that outgrows the pool fails as "Resources exhausted" -- one failed statement, like chDB's
+   memory limit, instead of a dead job. An earlier version of this file invented
+   `SAIL_EXECUTION__MEMORY_LIMIT`; that is not a real setting, and Sail validates its config
+   STRICTLY -- it refused to start rather than ignoring the unknown key.
 
 ALSO: `grpcio-status==1.48.2` from cell 3 is deliberately NOT pinned here. That pin exists to
 fight Fabric's preinstalled protobuf/grpcio stack; outside Fabric it actively breaks
@@ -29,6 +31,9 @@ import os
 
 from bench import auth, scrub
 from bench.config import CATALOG_CACHE_SECONDS, Config
+
+# DataFusion's memory pool ceiling. See setup().
+POOL_BYTES = 10 * 1024**3
 
 
 class LakesailIceberg:
@@ -60,16 +65,17 @@ class LakesailIceberg:
         # here and never refreshed, the same ceiling DuckDB and chDB have.
         os.environ["SAIL_OPTIMIZER__ENABLE_JOIN_REORDER"] = "true"
         os.environ["SAIL_EXECUTION__COLLECT_STATISTICS"] = "true"
-        # NO MEMORY-LIMIT SETTING. An earlier version set SAIL_EXECUTION__MEMORY_LIMIT, which is
-        # not a real key -- Sail validates its config strictly and refused to start at all:
+        # A BOUNDED POOL, SO SAIL SPILLS (module docstring). `runtime.memory_pool.type` and
+        # `runtime.memory_pool.fair.max_size` in crates/sail-common/src/config/application.yaml
+        # (v0.7.1), whose defaults are `unbounded` and 64 GiB. Fair, not greedy: FairSpillPool
+        # shares the ceiling among the spilling operators instead of letting the first one take
+        # it all. 10 GiB leaves the rest of the 16 GB runner to the Python client, the gRPC
+        # buffers and the reads in flight, which the pool does not account for.
         #
-        #   failed to load the application config: invalid argument: unknown field: found
-        #   `memory_limit`, expected one of `batch_size`, `default_parallelism`,
-        #   `collect_statistics`, ...
-        #
-        # So the guess did not degrade to "no limit", it took the engine out entirely. The real
-        # keys are runtime.memory_pool.type and runtime.memory_pool.fair.max_size (see the module
-        # docstring); deliberately unset.
+        # An earlier version set SAIL_EXECUTION__MEMORY_LIMIT, which is not a real key, and Sail
+        # refused to start at all ("unknown field: found `memory_limit`").
+        os.environ["SAIL_RUNTIME__MEMORY_POOL__TYPE"] = "fair"
+        os.environ["SAIL_RUNTIME__MEMORY_POOL__FAIR__MAX_SIZE"] = str(POOL_BYTES)
         #
         # TRIED AND REVERTED: SAIL_PARQUET__PUSHDOWN_FILTERS=true (+ REORDER_FILTERS), Sail's
         # late-materialization switch, off by default. Run 35512613884 at SF=10: the queries it
