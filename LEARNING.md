@@ -344,3 +344,42 @@ private val icebergReadableSchemes: Set[String] = Set("file", "s3", "s3a", "gs",
   host label, so OneLake's host is outside its tested URL shape anyway.
 - **Revisit when `abfss` appears in `icebergReadableSchemes`.** Filed as
   [apache/datafusion-comet#6058](https://github.com/apache/datafusion-comet/issues/6058).
+
+## StarRocks: a candidate that qualifies
+
+Tried through the `candidate engine` workflow (`.github/scripts/candidate_engine.py`) on
+`starrocks/allin1-ubuntu:4.1-latest` (4.1.4), Apache-2.0. It is a server, not a pip install: a
+Java front end and a C++ back end in one container, driven over the MySQL protocol. Run
+36222032188 passes all three requirements: 22/22 TPC-H at SF=10 (~75 s total in the probe, one
+run, not the bench harness), OneLake Iceberg and `Files/csv` reads, and a CTAS that pyiceberg reads
+back. It took six runs; four of the failures were probe mistakes, and each looked like a
+StarRocks limitation until the error was read closely.
+
+- **The catalog attaches with the bearer alone, but storage doesn't follow.**
+  `"iceberg.catalog.security"="oauth2"` + `"iceberg.catalog.oauth2.token"` lists the namespaces,
+  with or without `vended-credentials-enabled`. Every data read still failed: whatever OneLake
+  vends never reaches StarRocks' hadoop-azure reader, which falls back to SharedKey and reports
+  `fs.azure.account.key` null for `onelake.dfs.fabric.microsoft.com` (run 36214160572).
+- **Never `azure.adls2.storage_account`.** StarRocks turns it into
+  `<account>.dfs.core.windows.net` (`AzureStorageCloudCredential`), so `"onelake"` configures the
+  wrong host. pyiceberg avoids the same trap with `adls.account-host`. Leave it empty, and either:
+  - **workload identity**, the one that works: `azure.adls2.oauth2_token_file` +
+    `oauth2_tenant_id` + `oauth2_client_id` become hadoop's `WorkloadIdentityTokenProvider`, the
+    same path Spark-OSS uses. The GitHub OIDC assertion is written to a file, mounted into the
+    container, and rewritten every 4 minutes; or
+  - a SAS scoped to OneLake's host with `azure.adls2.endpoint` (not needed once workload identity
+    passed).
+- **Bare `VARCHAR` is VARCHAR(1).** Reading the ragged AEMO CSV with `FILES(... "schema" ...)`
+  and a bare `VARCHAR` per column, every value longer than one character loaded as NULL:
+  `D` and `1` survived, `DUNIT` and every timestamp did not, so the DUNIT filter matched 0 rows
+  where Python's `csv` module finds 138,240. It looked like a column-name bug (`UNIT`), then like
+  a padding bug, until the raw fields were printed. Declared as `STRING`, the read matches Python
+  exactly: 138,240 rows, sum(TOTALCLEARED) 5,317,923.8173.
+- **Ragged CSV is fine once typed right.** The explicit `schema` (4.1.2+) with
+  `"fill_mismatch_column_with"="null"` NULL-pads short rows. Default inference fails on these files
+  ("Schema column count: 120 doesn't match source value column count: 10").
+- **Q22's `SUBSTRING(x FROM 1 FOR 2)` doesn't parse.** `sql/tpch.sql` now uses the comma form,
+  `SUBSTRING(x, 1, 2)`, which every bench engine also runs (smoke run 36219112326).
+- **OneLake wants the table location.** CTAS works with
+  `PROPERTIES ("location"="<base>/Tables/<ns>/<table>")`, as pyiceberg and Spark also have to pass.
+- **The lakehouse has no SF=1 TPC-H** (CH0010 and up); the first run failed on that alone.
