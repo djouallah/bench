@@ -1,0 +1,43 @@
+{
+  "run_id": "36227293837-1",
+  "run_started_at": "2026-09-26T07:46:30Z",
+  "sf": 100,
+  "run_url": "https://github.com/djouallah/lakehouse_benchmark/actions/runs/36227293837",
+  "git_sha": "07f1b02",
+  "test": "etl",
+  "runner": "linux-6.17.0-1022-azure",
+  "cpu": 4,
+  "mem_gb": 15.6,
+  "python": "3.12.14",
+  "schema_version": 1,
+  "engines": {
+    "starrocks_iceberg": {
+      "version": "4.1.4-4a9848e (starrocks/allin1-ubuntu:4.1-latest)",
+      "status": "ok",
+      "rows": [
+        {
+          "run_type": "cold",
+          "phase": "setup",
+          "query": 0,
+          "dur": 21.5948,
+          "rows": null,
+          "status": "ok"
+        },
+        {
+          "run_type": "cold",
+          "phase": "load",
+          "query": 1,
+          "dur": 91.8637,
+          "rows": 13876896,
+          "status": "ok"
+        }
+      ],
+      "host": {
+        "runner": "linux-6.17.0-1022-azure",
+        "cpu": 4,
+        "mem_gb": 15.6,
+        "python": "3.12.14"
+      }
+    }
+  }
+}
