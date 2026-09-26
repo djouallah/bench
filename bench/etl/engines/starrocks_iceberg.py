@@ -1,4 +1,4 @@
-"""StarRocks: read the CSVs with FILES(), write the Iceberg table with a CTAS plus INSERTs.
+"""StarRocks: read the CSVs with FILES(), write the Iceberg table with one CTAS, in its container.
 
 The container, the catalog and both credentials are bench/starrocks.py, set up exactly as for the
 query benchmark. The statement is DuckDB's (engines/duckdb_iceberg.py) in StarRocks' dialect: the
@@ -14,11 +14,19 @@ THREE THINGS FILES() NEEDS, each found by a failed CI run (candidate_engine.yml,
 * ONE FILES() PER FILE. FILES() has no source-file column yet (the `path_column` feature,
   StarRocks#66975, is an open PR since 2025-12), and every other engine writes `filename`. So
   each file is its own FILES() scan carrying its name as a literal, UNION ALL'd together.
-* IN BATCHES OF BATCH_FILES. All 1000 scans in one statement ran out of query memory ("Memory of
-  default_wg exceed limit", 12.2 GB, run 36224282324) where 10 were fine: each FILES() scan holds
-  its own buffers. So the first batch is the CTAS and every later one an INSERT INTO -- ten
-  Iceberg commits at 1000 files where the other engines make one. That is the cost of the missing
-  path column, and it stays in the load time.
+* THE PHASED SCHEDULER. Each FILES() stream is bounded; the UNION of them was not. Every UNION
+  ALL branch is its own plan fragment with an exchange under it (fe RequiredPropertyDeriver
+  320-331, PlanFragmentBuilder 3538-3559 at 4.1.4), the coordinator starts ALL fragments at once
+  (DefaultCoordinator 312-316, AllAtOnceExecutionSchedule), and each branch holds fixed buffers --
+  a 256 MB local passthrough exchange, a 128 MB exchange sink buffer, an 8 MB CSV reader buffer
+  and a scan-chunk share: ~400 MB a branch. Memory scaled with the number of FILES, not rows: 10
+  in one statement ran, 1000 exceeded the 12.2 GB query pool (run 36224282324), and so did
+  batches of 100 (runs 36224617533, 36225548468 -- the latter after five batches). The Iceberg
+  writer was never the problem: one 128 MB row group per writer, sink spill on by default.
+  `enable_phased_scheduler` is StarRocks' documented answer ("can significantly reduce memory
+  usage for a large number of UNION ALL queries"): at most `phased_scheduler_max_concurrency`
+  scan fragments run, and the next starts as one finishes (PhasedExecutionSchedule 246-299). So
+  it is ONE statement and ONE Iceberg commit again, like every other engine.
 
 OneLake wants the table under `Tables/T{n}/starrocks`, so the CTAS passes that location, as
 pyiceberg and Spark also have to. No partitioning, as for every engine (bench/etl/iceberg.py).
@@ -32,12 +40,8 @@ from bench.etl.schema import COLUMNS, FILTER, numeric_columns
 
 CSV = '"format"="csv", "csv.column_separator"=",", "csv.enclose"=\'"\', "csv.skip_header"="1"'
 SCHEMA = ", ".join(f"{c} STRING" for c in COLUMNS)
-# Files per statement. 10 in one statement ran fine; 1000, and then 100, exhausted the 12.2 GB
-# query pool (runs 36224282324, 36224617533) with the 1 GB default output file below.
-BATCH_FILES = 100
-# connector_sink_target_max_file_size: 128 MB rather than StarRocks' 1 GB default, so the writers'
-# buffers stay bounded however many rows a batch carries.
-SINK_FILE_BYTES = 128 * 1024 * 1024
+# Scan fragments (one per file) running at once under the phased scheduler; StarRocks' default.
+PHASED_CONCURRENCY = 2
 
 
 class StarrocksIceberg:
@@ -61,9 +65,9 @@ class StarrocksIceberg:
         self._conn = starrocks.connect()
         self._version = f"{starrocks.version(self._conn)} ({starrocks.IMAGE})"
         starrocks.attach(self._conn, self.cfg, auth.onelake_token())
-        # Each parallel Iceberg writer buffers up to one output file; the default target is 1 GB,
-        # which is what a batch that fills files runs out of query memory on.
-        self._sql(f"SET connector_sink_target_max_file_size = {SINK_FILE_BYTES}")
+        # One fragment per file, a few at a time, instead of all of them at once (see above).
+        self._sql("SET enable_phased_scheduler = true")
+        self._sql(f"SET phased_scheduler_max_concurrency = {PHASED_CONCURRENCY}")
         scrub.safe_print(f"  starrocks {self._version} attached")
 
     def _sql(self, statement: str) -> list[tuple]:
@@ -95,20 +99,12 @@ class StarrocksIceberg:
             if "already exists" not in str(exc):
                 raise
         self._sql(f"DROP TABLE IF EXISTS {self.qualified} FORCE")
-        for start in range(0, len(files), BATCH_FILES):
-            union = "\nUNION ALL\n".join(
-                self._one_file(name) for name in files[start : start + BATCH_FILES]
-            )
-            select = f"SELECT *, year(SETTLEMENTDATE) AS year FROM (\n{union}\n) AS dunit"
-            if start == 0:
-                self._sql(
-                    f'CREATE TABLE {self.qualified} PROPERTIES ("location"="{location}") AS '
-                    f"{select}"
-                )
-            else:
-                self._sql(f"INSERT INTO {self.qualified} {select}")
-            done = min(start + BATCH_FILES, len(files))
-            scrub.safe_print(f"    {done}/{len(files)} files committed")
+        union = "\nUNION ALL\n".join(self._one_file(name) for name in files)
+        self._sql(
+            f'CREATE TABLE {self.qualified} PROPERTIES ("location"="{location}") AS '
+            f"SELECT *, year(SETTLEMENTDATE) AS year FROM (\n{union}\n) AS dunit"
+        )
+        scrub.safe_print(f"    {len(files)} files in one statement, one commit")
 
     def row_count(self) -> int:
         return int(self._sql(f"SELECT count(*) FROM {self.qualified}")[0][0])
