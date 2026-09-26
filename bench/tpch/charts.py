@@ -256,7 +256,9 @@ def totals(con, sf: int, out_dir: Path, subtitle: str, n_queries: int = 22) -> l
 def totals_by_sf(
     con, sfs: tuple[int, ...], out_dir: Path, subtitle: str, test: str, n_queries: int
 ) -> list[Path]:
-    """Grouped horizontal bars: cold total per engine, one group per scale factor. Both suites' totals chart.
+    """Grouped horizontal bars: cold total per engine, one group per scale factor.
+
+    Both suites' totals chart.
 
     THE MEAN OF EACH ENGINE'S LAST RECENT_RUNS COMPLETE RUNS at each scale -- the same three-run
     window the per-query chart uses, because one run on a shared runner is noisier than the

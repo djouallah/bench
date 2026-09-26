@@ -34,7 +34,6 @@ from bench.etl.runner import load_row
 from bench.report import leak_check, merge, write_csv
 from bench.store import Run, load_all, write_run
 
-
 # Why Gluten/Velox is barely faster than Spark-OSS here. LEARNING.md has the upstream PRs.
 GLUTEN_NOTE = (
     "Gluten/Velox: Velox does not read the CSVs. Open-source Gluten has no CSV reader on Spark "

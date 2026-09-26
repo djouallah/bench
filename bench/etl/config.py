@@ -22,8 +22,8 @@ from bench.config import ONELAKE_BLOB, Config, _env_int
 from bench.tpch.config import estimated_gib as _tpch_estimated_gib
 
 # The notebook's engines plus Spark and Gluten/Velox, minus DataFusion (not a public-facing
-# engine the way the others are; dropped). Same identifiers as bench.tpch.config.ENGINES, so bench/charts.py's
-# labels and colours apply to both benchmarks.
+# engine the way the others are; dropped). Same identifiers as bench.tpch.config.ENGINES, so
+# bench/charts.py's labels and colours apply to both benchmarks.
 ETL_ENGINES = (
     "duckdb_iceberg",
     "chdb_iceberg",
