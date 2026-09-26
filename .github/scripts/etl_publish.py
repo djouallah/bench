@@ -113,11 +113,7 @@ def write_results_md(run: Run, rows: list[dict], table, path: Path) -> None:
             else f"**the {len(counts)} distinct counts above mean one of them does not.**"
         ),
         "",
-        *(
-            [GLUTEN_NOTE, ""]
-            if any(r["engine"] == "pyspark_gluten_iceberg" for r in rows)
-            else []
-        ),
+        *([GLUTEN_NOTE, ""] if any(r["engine"] == "pyspark_gluten_iceberg" for r in rows) else []),
         "## History",
         "",
         f"{table.num_rows:,} timed rows across "
